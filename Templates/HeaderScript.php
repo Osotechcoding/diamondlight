@@ -1,6 +1,6 @@
 <!-- favicon -->
-<link rel="apple-touch-icon" href="apple-touch-icon.html">
-<link rel="shortcut icon" type="image/x-icon" href="assets/images/fav-orange.png">
+<link rel="stylesheet" href="">
+<link rel="icon" type="image/icon" href="assets/images/fav.png">
 <!-- Bootstrap v4.4.1 css -->
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <!-- font-awesome css -->

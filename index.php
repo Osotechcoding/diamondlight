@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<!-- Mirrored from keenitsolutions.com/products/html/educavo/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Jul 2022 19:35:09 GMT -->
+>
 <head>
     <?php include_once ("Templates/MetaTag.php");?>
         <!-- meta tag -->
-        
-        <title>Educavo - Education HTML Template</title>
-       
-        <?php include_once ("Templates/Header.php");?>
+        <title> </title>
+        <?php include ("Templates/HeaderScript.php");?>
     </head>
     <body class="defult-home">
         
@@ -31,86 +28,7 @@
             <!--Full width header End-->
 
             <!-- Slider Section Start -->
-            <div class="rs-slider main-home">
-                <div class="rs-carousel owl-carousel" data-loop="true" data-items="1" data-margin="0" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="1" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="1" data-md-device-nav="true" data-md-device-dots="false">
-                    <div class="slider-content slide1">
-                        <div class="container">
-                            <div class="content-part">
-                                <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">Start to learning today</div>
-                                <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">Online Courses From Leading Experts</h1>
-                                <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-                                    <a class="readon orange-btn main-home" href="#">Find Courses</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-content slide2">
-                        <div class="container">
-                            <div class="content-part">
-                                <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">Start to learning today</div>
-                                <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">Explore Interests and Career With Courses</h1>
-                                <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-                                    <a class="readon orange-btn main-home" href="#">Find Courses</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Features Section start -->
-                <div id="rs-features" class="rs-features main-home">
-                    <div class="container">
-                       <div class="row">
-                            <div class="col-lg-4 col-md-12 md-mb-30">
-                                <div class="features-wrap">
-                                    <div class="icon-part">
-                                       <img src="assets/images/features/icon/3.png" alt="">
-                                    </div>
-                                    <div class="content-part">
-                                        <h4 class="title">
-                                            <span class="watermark">5,320 online courses</span>
-                                        </h4>
-                                        <p class="dese">
-                                           Enjoy a variety of fresh topics
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-lg-4 col-md-12 md-mb-30">
-                                <div class="features-wrap">
-                                    <div class="icon-part">
-                                       <img src="assets/images/features/icon/2.png" alt="">
-                                    </div>
-                                    <div class="content-part">
-                                      <h4 class="title">
-                                          <span class="watermark">Expert instruction</span>
-                                      </h4>
-                                        <p class="dese">
-                                            Find the right instructor
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-lg-4 col-md-12">
-                                <div class="features-wrap">
-                                    <div class="icon-part">
-                                       <img src="assets/images/features/icon/1.png" alt="">
-                                    </div>
-                                    <div class="content-part">
-                                        <h4 class="title">
-                                            <span class="watermark">Lifetime access</span>
-                                        </h4>
-                                        <p class="dese">
-                                           Learn on your schedule
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Features Section End -->
-            </div>
+           <?php include_once ("Templates/BannerSliders.php");?>
             <!-- Slider Section End -->                    
 
             <!-- Categories Section Start -->
@@ -681,7 +599,7 @@
                                     <li><i class="fa fa-user-o"></i> Admin</li>
                                     <li><i class="fa fa-calendar"></i>December 15, 2020</li>
                                 </ul>
-                                <h3 class="title"><a href="blog-single.html">Education is The Process of Facilitating Learning</a></h3>
+                                <h3 class="title"><a href="blog-single.php">Education is The Process of Facilitating Learning</a></h3>
                                 <div class="desc">the acquisition of knowledge, skills, values befs, and habits. Educational methods include teach ing, training, storytelling</div>
                                 <div class="btn-btm">
                                     <div class="cat-list">
@@ -704,7 +622,7 @@
                                     <li><i class="fa fa-user-o"></i> Admin</li>
                                     <li><i class="fa fa-calendar"></i>October 15, 2020</li>
                                 </ul>
-                                <h3 class="title"><a href="blog-single.html">High school program starting soon 2021 </a></h3>
+                                <h3 class="title"><a href="blog-single.php">High school program starting soon 2021 </a></h3>
                                 <div class="desc">the acquisition of knowledge, skills, values befs, and habits. Educational methods include teach ing, training, storytelling</div>
                                 <div class="btn-btm">
                                     <div class="cat-list">
@@ -727,7 +645,7 @@
                                     <li><i class="fa fa-user-o"></i> Admin</li>
                                     <li><i class="fa fa-calendar"></i>April 25, 2020</li>
                                 </ul>
-                                <h3 class="title"><a href="blog-single.html">Shutdown of schools extended to Aug 31 </a></h3>
+                                <h3 class="title"><a href="blog-single.php">Shutdown of schools extended to Aug 31 </a></h3>
                                 <div class="desc">the acquisition of knowledge, skills, values befs, and habits. Educational methods include teach ing, training, storytelling</div>
                                 <div class="btn-btm">
                                     <div class="cat-list">
@@ -750,7 +668,7 @@
                                     <li><i class="fa fa-user-o"></i> Admin</li>
                                     <li><i class="fa fa-calendar"></i>June 20, 2010</li>
                                 </ul>
-                                <h3 class="title"><a href="blog-single.html">This is a great source of content for anyone… </a></h3>
+                                <h3 class="title"><a href="blog-single.php">This is a great source of content for anyone… </a></h3>
                                 <div class="desc">the acquisition of knowledge, skills, values befs, and habits. Educational methods include teach ing, training, storytelling</div>
                                 <div class="btn-btm">
                                     <div class="cat-list">
@@ -773,7 +691,7 @@
                                     <li><i class="fa fa-user-o"></i> Admin</li>
                                     <li><i class="fa fa-calendar"></i>August 30, 2020</li>
                                 </ul>
-                                <h3 class="title"><a href="blog-single.html">Pandemic drives millions from Latin America’s</a></h3>
+                                <h3 class="title"><a href="blog-single.php">Pandemic drives millions from Latin America’s</a></h3>
                                 <div class="desc">the acquisition of knowledge, skills, values befs, and habits. Educational methods include teach ing, training, storytelling</div>
                                 <div class="btn-btm">
                                     <div class="cat-list">
@@ -796,7 +714,7 @@
                                     <li><i class="fa fa-user-o"></i> Admin</li>
                                     <li><i class="fa fa-calendar"></i>May 10, 2020</li>
                                 </ul>
-                                <h3 class="title"><a href="blog-single.html">Modern School the lovely valley team work</a></h3>
+                                <h3 class="title"><a href="blog-single.php">Modern School the lovely valley team work</a></h3>
                                 <div class="desc">the acquisition of knowledge, skills, values befs, and habits. Educational methods include teach ing, training, storytelling</div>
                                 <div class="btn-btm">
                                     <div class="cat-list">
@@ -816,68 +734,18 @@
             <!-- Blog Section End -->
 
             <!-- Newsletter section start -->
-            <div class="rs-newsletter style1 orange-color mb--90 sm-mb-0 sm-pb-70">
-                <div class="container">
-                    <div class="newsletter-wrap">
-                        <div class="row y-middle">
-                            <div class="col-lg-6 col-md-12 md-mb-30">
-                               <div class="content-part">
-                                   <div class="sec-title">
-                                       <div class="title-icon md-mb-15">
-                                           <img src="assets/images/newsletter.png" alt="images">
-                                       </div>
-                                       <h2 class="title mb-0 white-color">Subscribe to Newsletter</h2>
-                                   </div>
-                               </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <form class="newsletter-form">
-                                    <input type="email" name="email" placeholder="Enter Your Email" required="">
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include_once ("Templates/NewsletterForm.php");?>
             <!-- Newsletter section end -->
-     
         </div> 
         <!-- Main content End -->
-     
         <!-- Footer Start -->
         <footer id="rs-footer" class="rs-footer home9-style main-home">
             <?php include_once ("Templates/Footer.php");?>
         </footer>
         <!-- Footer End -->
-
-        <!-- start scrollUp  -->
-        <div id="scrollUp" class="orange-color">
-            <i class="fa fa-angle-up"></i>
-        </div>
-        <!-- End scrollUp  -->
-
         <!-- Search Modal Start -->
-        <div aria-hidden="true" class="modal fade search-modal" role="dialog" tabindex="-1">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span class="flaticon-cross"></span>
-            </button>
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="search-block clearfix">
-                        <form>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Search Here..." type="text">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include_once ("Templates/SearchBar.php") ?>
         <!-- Search Modal End -->
-
         <?php include_once ("Templates/FooterScript.php") ?>
     </body>
-
-<!-- Mirrored from keenitsolutions.com/products/html/educavo/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Jul 2022 19:36:14 GMT -->
 </html>
