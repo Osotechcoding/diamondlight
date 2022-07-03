@@ -1,10 +1,12 @@
 <?php
-namespace Osotech;
-if (file_exists("initialize.php")){
-    require_once 'initialize.php';
-}
-die("Database Credentials not Found!");
+//namespace Osotech;
+//if (file_exists("initialize.php")){
+//    require_once 'initialize.php';
+//}else{
+//    die("Database Credentials not Found!");
+//}
 
+require_once 'initialize.php';
 class Database
 {
     private $dbHost =__OSO_HOST__;
@@ -19,7 +21,7 @@ class Database
         return $this->dbh;
     }
     public function Osotech_connect(){
-        $dsn = $this->dbDriver.":host=".__OSO_HOST__.";dbname=".$this->dbname.";charset=".$this->dbCharset;
+        $dsn = $this->dbDriver.":host=".$this->dbHost.";dbname=".$this->dbname.";charset=".$this->dbCharset;
         $options = array(PDO::ATTR_PERSISTENT =>false,PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ);
         try {
             $this->dbh = new PDO($dsn,$this->dbUser,$this->dbPass,$options);

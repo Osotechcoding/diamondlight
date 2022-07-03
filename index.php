@@ -1,3 +1,11 @@
+<?php
+if (file_exists("Inc/Osotech.php")){
+	require_once ("Inc/Osotech.php");
+}else{
+	die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 >
