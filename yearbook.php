@@ -1,3 +1,9 @@
+<?php
+if (!file_exists("Inc/Osotech.php")){
+    die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
+}
+require_once ("Inc/Osotech.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 >
@@ -35,12 +41,12 @@
                     <img src="assets/images/breadcrumbs/4.jpg" alt="Breadcrumbs Image">
                 </div>
                 <div class="breadcrumbs-text white-color">
-                    <h1 class="page-title">Gallery 2</h1>
+                    <h1 class="page-title">YEAR BOOK</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Educavo</a>
+                            <a class="active" href="./">HOME</a>
                         </li>
-                        <li>Gallery 2</li>
+                        <li>YEAR BOOK</li>
                     </ul>
                 </div>
             </div>

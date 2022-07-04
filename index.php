@@ -1,9 +1,8 @@
 <?php
-if (file_exists("Inc/Osotech.php")){
-	require_once ("Inc/Osotech.php");
-}else{
-	die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
+if (!file_exists("Inc/Osotech.php")){
+    die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
 }
+require_once ("Inc/Osotech.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +11,8 @@ if (file_exists("Inc/Osotech.php")){
 <head>
     <?php include_once ("Templates/MetaTag.php");?>
         <!-- meta tag -->
-        <title> </title>
+<!--	<link rel="shortcut icon" type="image/x-icon" href="fav-orange.png">-->
+        <title><?php echo __SCHOOL_NAME__; ?></title>
         <?php include ("Templates/HeaderScript.php");?>
     </head>
     <body class="defult-home">

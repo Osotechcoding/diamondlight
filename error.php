@@ -39,7 +39,7 @@
                         <input type="search" placeholder="Search..." name="s" class="search-input" value="">
                         <button type="submit" value="Search"><i class="fa fa-search"></i></button>
                     </form>
-                    <a class="readon orange-btn" href="index-2.html" title="HOME">Back to Homepage</a>
+                    <a class="readon orange-btn" href="./" title="HOME">Back to Homepage</a>
                 </div>
             </div>
             <!-- Erro 404 Page End Here -->

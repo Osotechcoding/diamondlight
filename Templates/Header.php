@@ -6,7 +6,7 @@
 				<ul class="topbar-contact">
 					<li>
 						<i class="flaticon-email"></i>
-						<a href="mailto:support@rstheme.com">info@diamondlightschools.com</a>
+						<a href="mailto:info@diamondlightschools.com">info@diamondlightschools.com</a>
 					</li>
 					<li>
 						<i class="flaticon-location"></i>
@@ -57,8 +57,8 @@
                                     <a href="#">About Us</a>
                                     <ul class="sub-menu">
                                         <li><a href="about">Our Vision & Mission </a> </li>
-	                                    <li><a href="team">Board of Admins</a> </li>
-	                                    <li><a href="about">Chairman Message</a> </li>                                        <li><a href="about2.html">Admins</a> </li>
+	                                    <li><a href="boards">Board of Admins</a> </li>
+	                                    <li><a href="about">Chairman Message</a> </li>                                        <li><a href="about">Admins</a> </li>
 	                                    <li><a href="faq">Our School History</a> </li>
 	                                    <li><a href="team">Our Staff</a> </li>
 
@@ -68,10 +68,10 @@
 	                            <li class="menu-item-has-children">
 		                            <a href="#">STUDENTS</a>
 		                            <ul class="sub-menu">
-			                            <li><a href="team">STUDENT PREFECT</a> </li>
-			                            <li><a href="team">OUR ALUMNI</a> </li>
+			                            <li><a href="prefects">STUDENT PREFECT</a> </li>
+			                            <li><a href="alumni">OUR ALUMNI</a> </li>
 			                            <li><a href="#">STUDENT ADMISSION</a> </li>
-			                            <li><a href="#">STUDENT PORTAL</a> </li>
+			                            <li><a href="./eportal/">STUDENT PORTAL</a> </li>
 			                            <li><a href="#">RESULT PORTAL</a> </li>
 
 		                            </ul>

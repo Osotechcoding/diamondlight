@@ -1,3 +1,9 @@
+<?php
+if (!file_exists("Inc/Osotech.php")){
+    die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
+}
+require_once ("Inc/Osotech.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 >
@@ -38,7 +44,7 @@
                     <h1 class="page-title">Blog Post Right</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Blog Post Right</li>
                     </ul>

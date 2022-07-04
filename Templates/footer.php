@@ -97,7 +97,7 @@
         <div class="row y-middle">
             <div class="col-lg-6 md-mb-20">
                 <div class="copyright">
-                    <p>&copy; 2020 All Rights Reserved. Developed By <a href="http://businessapp.com.ng/">Osotech</a></p>
+                    <p>&copy; <?php echo date("Y");?> All Rights Reserved. Powered By: <a href="http://businessapp.com.ng/">Osotech</a></p>
                 </div>
             </div>
             <div class="col-lg-6 text-right md-text-left">

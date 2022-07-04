@@ -1,6 +1,5 @@
 <!-- favicon -->
-<link rel="stylesheet" href="">
-<link rel="icon" type="image/icon" href="assets/images/fav.png">
+<!--<link rel="icon" type="image/icon" href="fav-orange.png">-->
 <!-- Bootstrap v4.4.1 css -->
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <!-- font-awesome css -->
@@ -24,7 +23,8 @@
 <!-- spacing css -->
 <link rel="stylesheet" type="text/css" href="assets/css/rs-spacing.css">
 <!-- style css -->
-<link rel="stylesheet" type="text/css" href="style.css"> <!-- This stylesheet dynamically changed from style.less -->
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- This stylesheet dynamically changed from style.less -->
 <!-- responsive css -->
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 <!--[if lt IE 9]>
