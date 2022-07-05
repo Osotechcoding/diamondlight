@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-12 col-sm-12 footer-widget md-mb-50">
                 <div class="footer-logo mb-30">
-                    <a href="./" class="text-center"><img src="<?php echo $Osotech->get_schoolLogoImage();?>" alt="" width="150"></a>
+                    <a href="../" class="text-center"><img src="<?php echo $Osotech->get_schoolLogoImage();?>" alt="" width="150"></a>
                 </div>
                 <div class="textwidget pr-60 md-pr-15"><p class="white-color">Our school history is dated back to September, 1998 when it started like a lit of a candle and now grown into a flame that has produced giant of scholars who could fit into any field of the world.</p>
                 </div>
@@ -61,7 +61,7 @@
                 <h3 class="widget-title">Recent Posts</h3>
                 <div class="recent-post mb-20">
                     <div class="post-img">
-                        <img src="assets/images/footer/1.jpg" alt="">
+                        <img src="../assets/images/footer/1.jpg" alt="">
                     </div>
                     <div class="post-item">
                         <div class="post-desc">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="recent-post mb-20 md-pb-0">
                     <div class="post-img">
-                        <img src="assets/images/footer/2.jpg" alt="">
+                        <img src="../assets/images/footer/2.jpg" alt="">
                     </div>
                     <div class="post-item">
                         <div class="post-desc">
@@ -101,10 +101,10 @@
             </div>
             <div class="col-lg-6 text-right md-text-left">
                 <ul class="copy-right-menu">
-                    <li><a href="career">Career</a></li>
+                    <li><a href="javascript:void(0);">Policy</a></li>
                     <li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
-                    <li><a href="./eportal">School Portal</a></li>
-	                <li><a href="./admission/">Admission</a></li>
+                    <li><a href="../eportal">School Portal</a></li>
+	                <li><a href="./">Admission</a></li>
                 </ul>
             </div>
         </div>

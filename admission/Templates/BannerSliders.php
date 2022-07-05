@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="content-part">
                     <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms"><?php echo $Osotech->getConfigData()->school_name;?></div>
-                    <h5 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">With over 20 years of experience we’ll ensure you always get the best education.</h5>
+                    <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">Education is the passport to the future for tomorrow belongs to those who prepare for it today</h1>
                     <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
                         <a class="readon orange-btn main-home" href="#">Find Courses</a>
                     </div>
@@ -31,45 +31,45 @@
                 <div class="col-lg-4 col-md-12 md-mb-30">
                     <div class="features-wrap">
                         <div class="icon-part">
-                            <img src="assets/images/features/icon/3.png" alt="">
+                            <img src="../assets/images/features/icon/3.png" alt="">
                         </div>
                         <div class="content-part">
                             <h4 class="title">
-                                <span class="watermark">Online Result</span>
+                                <span class="watermark">5,320 online courses</span>
                             </h4>
-                         <!--    <p class="dese">
+                            <p class="dese">
                                 Enjoy a variety of fresh topics
-                            </p> -->
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 md-mb-30">
                     <div class="features-wrap">
                         <div class="icon-part">
-                            <img src="assets/images/features/icon/2.png" alt="">
+                            <img src="../assets/images/features/icon/2.png" alt="">
                         </div>
                         <div class="content-part">
                             <h4 class="title">
-                                <span class="watermark">Seasoned Teachers</span>
+                                <span class="watermark">Expert instruction</span>
                             </h4>
-                          <!--   <p class="dese">
+                            <p class="dese">
                                 Find the right instructor
-                            </p> -->
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="features-wrap">
                         <div class="icon-part">
-                            <img src="assets/images/features/icon/1.png" alt="">
+                            <img src="../assets/images/features/icon/1.png" alt="">
                         </div>
                         <div class="content-part">
                             <h4 class="title">
-                                <span class="watermark">Govt. Approved</span>
+                                <span class="watermark">Lifetime access</span>
                             </h4>
-                          <!--   <p class="dese">
+                            <p class="dese">
                                 Learn on your schedule
-                            </p> -->
+                            </p>
                         </div>
                     </div>
                 </div>

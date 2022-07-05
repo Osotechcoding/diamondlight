@@ -297,7 +297,7 @@ public function get_all_students_by_status(string $status){
 
 public function generate_admission_number(){
 	 $this->response ="";
-	 $prefix="SMA";
+	 $prefix="DLS";
 	$this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM $this->table_name ORDER BY stdRegNo DESC LIMIT 1");
 	$this->stmt->execute();
 	if ($this->stmt->rowCount() > 0) {
@@ -309,7 +309,7 @@ public function generate_admission_number(){
       $this->response = $value2;
     }
 	}else{
-	// "GSSOTA/00001"
+	// "DLS000001"
     $value2 =$prefix.date('y')."000001";
     $this->response =$value2;
 	}
@@ -540,13 +540,13 @@ $this->response = false;
 		$Gender = $this->config->Clean($d['student_gender']);
 		$student_email = $this->config->Clean($d['student_email']);
 		$student_phone = $this->config->Clean($d['student_phone']);
-		$student_username = $this->config->Clean($d['student_username']);
+		// $student_username = $this->config->Clean($d['student_username']);
 		//$student_password = $this->config->Clean($d['student_password']);
 		$student_class = $this->config->Clean($d['student_class']);
 		$adm_date = $this->config->Clean(date("Y-m-d",strtotime($d['admission_date'])));
 		$auth_pass2 = $this->config->Clean($d['auth_pass2']);
 	
-		if ($this->config->isEmptyStr($surName) || $this->config->isEmptyStr($firstName) || $this->config->isEmptyStr($middleName) || $this->config->isEmptyStr($address) || $this->config->isEmptyStr($Dob) || $this->config->isEmptyStr($Gender) || $this->config->isEmptyStr($student_email) || $this->config->isEmptyStr($student_username) || $this->config->isEmptyStr($student_class) || $this->config->isEmptyStr($adm_date) || $this->config->isEmptyStr($auth_pass2)) {
+		if ($this->config->isEmptyStr($surName) || $this->config->isEmptyStr($firstName) || $this->config->isEmptyStr($middleName) || $this->config->isEmptyStr($address) || $this->config->isEmptyStr($Dob) || $this->config->isEmptyStr($Gender) || $this->config->isEmptyStr($student_email) || $this->config->isEmptyStr($student_class) || $this->config->isEmptyStr($adm_date) || $this->config->isEmptyStr($auth_pass2)) {
 			$this->response =$this->alert->alert_toastr("warning","Some Important fields are missing",__OSO_APP_NAME__." Says");
 		}elseif (!$this->config->is_Valid_Email($student_email)) {
 			$this->response =$this->alert->alert_toastr("warning","<$student_email> is not a valid e-mail address!",__OSO_APP_NAME__." Says");

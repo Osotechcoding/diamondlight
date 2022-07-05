@@ -57,9 +57,10 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
     <h3 class="bd-lead text-primary text-bold" style="font-weight: bolder;"><i class="fa fa-credit-card-alt"></i> Scratch Card Generator</h3>
   </div>
 </div>
- <?php include_once("template/pinsLinkBtns.php") ?>
+ 
 
-          <div class="col-12">
+          <div class="col-md-12">
+            <?php include_once("template/pinsLinkBtns.php") ?>
       <div class="card">
       
        <h1 class="text-center mt-1" style="font-weight: bolder;"><i class="fa fa-credit-card-alt"></i> Scratch Card Generator</h1>

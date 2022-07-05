@@ -8,7 +8,7 @@ if (!defined("__AUTHOR_NAME__")) {
     /*define("__OSO_USER__",'diamond_admin');
     define("__OSO_PASS__",'@diamond123');
     define("__OSO_DBNAME__",'diamond_portal');*/
-    define("__SCHOOL_NAME__", strtoupper("Diamond Light School & College"));
+    define("__SCHOOL_NAME__", strtoupper("DiamondLight Schools"));
     define("__SCHOOL_ABBREV", strtoupper("DLSC"));
     define("__OSO_APP_NAME__", strtoupper("smapp"));
     define("APP_ROOT","http://localhost/diamondlight/");

@@ -65,10 +65,24 @@ require_once ("Inc/Osotech.php");
 						</div>
 						<div class="col-lg-6 pr-70 md-pr-15">
 							<div class="sec-title">
-								<div class="sub-title orange">About Educavo</div>
-								<h2 class="title mb-17">Welcome to The Educavo Online Learning</h2>
-								<div class="bold-text mb-22">Recogizing the need is the primary than we expected Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa voluptatibus,</div>
-								<div class="desc">Lorem ipsum dolor sit amet, consectetur adipisic ing elit, sed eius to mod tempors incididunt ut labore et dolore magna this aliqua  enims ad minim. Lorem ipsum dolor sit amet, consectetur adipisic ing elit, sed eius to mod tempor. Lorem ipsum dolor sit amet</div>
+								<div class="sub-title orange">About <?php echo ($Osotech->getConfigData()->school_name);?></div>
+								<h2 class="title mb-17">Welcome to <?php echo ($Osotech->getConfigData()->school_name);?></h2>
+								<div class="bold-text mb-22">The Chairman and Proprietor of <?php echo ($Osotech->getConfigData()->school_name);?>, Mr Samsom Yomi Osewa and Mrs Victoria Olayemi Osewa are passionate about the educational sector.
+
+They are Pharmacists and seasoned Marriage Counsellors.
+
+The Chairman was the director of Ranbaxy Nigeria Ltd and the Nigerian German Chemicals in Lagos, Nigeria. He is passionately driven by a vision he received from God to reach out to children and youths.
+
+The Proprietor took the foremost leadership training in the Haggai International at Maui Center in Hawaii State of the USA in 2011.
+
+She is a mother who believes that the paradigm of education must shift in Nigeria in conformity with international standards and that is evident at <?php echo ($Osotech->getConfigData()->school_name);?>.,</div>
+<blockquote>
+	Each tour gives the parent an opportunity to observe students and teachers in our classrooms. At The Ambassadors Schools, a conducive learning environment is key.
+</blockquote>
+
+								<div class="desc">S.Y. Osewa and his blessed wife, after over 28 years of happy togetherness are seasoned marriage counsellors who have had the opportunity to minister in many churches and christian organizations both in Nigeria and abroad. Samson Yomi Osewa also served as on of the National Directors of the full Gospel Business Men’s Fellowship International – an organization in which he and his wife are active members.
+
+He and his wife are the visionaries behind the founding of this great citadel of learning</div>
 							</div>
 						</div>
 					</div>
@@ -91,9 +105,20 @@ require_once ("Inc/Osotech.php");
 							</div>
 							<div class="col-lg-6 pl-62 pt-134 pb-150 md-pt-50 md-pb-50 md-pl-15">
 								<div class="sec-title mb-40 md-mb-20">
-										<h2 class="title mb-16">Admission Open for 2020</h2>
-										<div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eius to mod tempor incididunt ut labore et dolore magna aliqua. Ut enims ad minim veniam. Aenean massa. Cum sociis natoque penatibus et magnis.</div>
+										<h2 class="title mb-16">Admission Open for 2022-2023</h2>
+										<div class="desc">The homelike quality of our school contributes to a relaxed, focused experience for the child. Our indoor classroom activities are placed on open shelves for selection as interest and readiness inspires the child. Our outdoor environment offers a beautiful developed playground with The homelike quality of our school contributes to a relaxed, focused experience for the child. Our indoor classroom activities are placed on open shelves for selection as interest and readiness inspires the child. Our outdoor environment offers a beautiful developed playground with manipulatives, tricycles, pets, and gardens.
+, tricycles, pets, and gardens.</div>
 								</div>
+								Admission in Progress (2022-2023 academic session)
+Admission is currently open into J.S.S 1 (2022-2023 Academic Session). Details for the examinations are as follows.
+
+1ST Batch: Saturday, March 12, 2022
+2ND Batch: Saturday, May 14, 2022
+Venue: The Junior College
+
+Time: 9:00 AM (Accreditation starts 8:00 AM).
+
+For more information, kindly contact 08131374443, 08140122566
 								<div class="btn-part">
 										<a class="readon2 orange" href="#">Apply Now</a>
 								</div>
@@ -114,7 +139,7 @@ require_once ("Inc/Osotech.php");
 									<img src="assets/images/counter/bg1.png" alt="Counter Image">
 								</div>
 								<div class="counter-text">
-									<h2 class="rs-count kplus">2</h2>
+									<h2 class="rs-count kplus">1</h2>
 									<h4 class="title mb-0">Students</h4>
 								</div>
 							</div>
@@ -125,8 +150,8 @@ require_once ("Inc/Osotech.php");
 									<img src="assets/images/counter/bg2.png" alt="Counter Image">
 								</div>
 								<div class="counter-text">
-									<h2 class="rs-count">3.50</h2>
-									<h4 class="title mb-0">Average CGPA</h4>
+									<h2 class="rs-count">30</h2>
+									<h4 class="title mb-0">Staff</h4>
 								</div>
 							</div>
 						</div>
@@ -136,7 +161,7 @@ require_once ("Inc/Osotech.php");
 									<img src="assets/images/counter/bg3.png" alt="Counter Image">
 								</div>
 								<div class="counter-text">
-									<h2 class="rs-count percent">95</h2>
+									<h2 class="rs-count">195</h2>
 									<h4 class="title mb-0">Graduates</h4>
 								</div>
 							</div>
@@ -180,8 +205,8 @@ require_once ("Inc/Osotech.php");
                                 </div>
                                 <div class="tab-pane fade" id="about-mission" role="tabpanel" aria-labelledby="about-mission-tab">
                                     <div class="sec-title mb-25">
-                                        <h2 class="title">Educavo Mission</h2>
-                                        <div class="desc">At vero eos et accusamus et iusto odio dignissimos ducimus qui blan ditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, sim ilique sunt in culpa.</div>
+                                        <h2 class="title">Educavo Vision</h2>
+                                        <div class="desc">To foster the spiritual, physical and emotional development of every Child. To create a purpose driven youth; thereby empowering the burgeoning learner with the auction to function in a world riddled with challenges. A vision inclined youth is our mission fulfilled.</div>
                                     </div>
                                     <div class="tab-img">
                                         <img class="" src="assets/images/about/tab2.jpg" alt="Tab Image">
@@ -189,8 +214,8 @@ require_once ("Inc/Osotech.php");
                                 </div>
                                 <div class="tab-pane fade" id="about-admin" role="tabpanel" aria-labelledby="about-admin-tab">
                                     <div class="sec-title mb-25">
-                                        <h2 class="title">Educavo Administration</h2>
-                                        <div class="desc">At vero eos et accusamus et iusto odio dignissimos ducimus qui blan ditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, sim ilique sunt in culpa.</div>
+                                        <h2 class="title">Educavo Mission</h2>
+                                        <div class="desc">We will foster spiritual,physical and emotional development of every student. This will be nurtured by providing a solid functional literacy education for the students through the blending of biblical moral principles with modern scholarship and a value-added guidance and counseling with a lot of emphasis on qualitative co-curricular activities</div>
                                     </div>
                                     <div class="tab-img">
                                         <img class="" src="assets/images/about/tab3.jpg" alt="Tab Image">

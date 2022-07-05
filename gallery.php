@@ -41,12 +41,12 @@ require_once ("Inc/Osotech.php");
                     <img src="assets/images/breadcrumbs/4.jpg" alt="Breadcrumbs Image">
                 </div>
                 <div class="breadcrumbs-text white-color">
-                    <h1 class="page-title">Gallery</h1>
+                    <h1 class="page-title">PHOTO GALLERY </h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Educavo</a>
+                            <a class="active" href="./">HOME</a>
                         </li>
-                        <li>Gallery</li>
+                        <li>Photo Gallery</li>
                     </ul>
                 </div>
             </div>

@@ -19,7 +19,7 @@ class Osotech
 
     public function __construct(){
         if (substr($_SERVER['REQUEST_URI'], -4) == ".php" or (stripos($_SERVER['REQUEST_URI'], ".php")== true)) {
-            self::redirect_root("404");
+            self::redirect_root("error");
 
         }
         //$ResizeImage = new ResizeImage($this->passport);

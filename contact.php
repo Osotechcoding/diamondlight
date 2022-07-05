@@ -94,7 +94,7 @@ require_once ("Inc/Osotech.php");
             			<div class="col-lg-6 md-mb-30">
             				<!-- Map Section Start --> 
                             <div class="contact-map3">
-                                <iframe src="https://maps.google.com/maps?q=Fort%20Miley&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4898578679804!2d3.186631315316646!3d6.585866624260978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9bbcd8c905e9%3A0xd32c17ff0bdae9db!2sGolden%20estate!5e0!3m2!1sen!2sng!4v1656944266069!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
             			</div>
             			<div class="col-lg-6 pl-60 md-pl-15">

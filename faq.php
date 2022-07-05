@@ -56,16 +56,35 @@ require_once ("Inc/Osotech.php");
                  <div class="container">
                      <div class="content-part mb-50 md-mb-30">
                          <div class="title mb-40 md-mb-15">
-                             <h3 class="text-part">Kindergarten</h3>
+                        <h3 class="text-part">Admission Into Junior Classes</h3>
+                             Admission in Progress (2022-2023 academic session)
+Admission is currently open into J.S.S 1 (2022-2023 Academic Session). Details for the examinations are as follows.
+
+1ST Batch: Saturday, March 12, 2022
+2ND Batch: Saturday, May 14, 2022
+Venue: The Junior College
+
+Time: 9:00 AM (Accreditation starts 8:00 AM).
+
+For more information, kindly contact 08131374443, 08140122566
                          </div>
                          <div id="accordion" class="accordion">
                             <div class="card">
                                 <div class="card-header">
-                                    <a class="card-link" data-toggle="collapse" href="#collapseOne">What do you mean by item and end product?</a>
+                                    <a class="card-link" data-toggle="collapse" href="#collapseOne">Purchase of admission form?</a>
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                     <div class="card-body">
-                                     Aenean massa. Cum sociis natoque penatibus et magnis dis partu rient to montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellen of the tesque services Donec quam felis, ultricies nec, pellentesque eu, pretium quis,pede justo, of fringilla vel, aliquet nec
+                                        APPLICATION PACK @ N5,000.00 (it includes past questions for J.S.S.1 Only)
+                                     <ul>
+                                         <li>1
+                                            <p>Offline Form: Application Pack can be Purchased at the School premises and can also be sent via courier on request</p>
+                                         </li>
+                                         <li>2 
+                                            <p>Online : To Register via Online Click the link below to Purchase Our online registration scratch card and start your online admission</p>
+                                            <span><a href="#"> Get Scratch Card</a></span>
+                                         </li>
+                                     </ul>
                                     </div>
                                 </div>
                             </div>
@@ -98,21 +117,31 @@ require_once ("Inc/Osotech.php");
                          <div id="accordion2" class="accordion">
                              <div class="card">
                                  <div class="card-header">
-                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false">What if I have an emergency?</a>
+                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false">Requirement for admission?</a>
                                  </div>
                                  <div id="collapseFour" class="collapse" data-parent="#accordion2" style="">
                                      <div class="card-body">
-                                         Hematology, also spelled haematology, is the branch of medicine concerned with the study of the cause, prognosis, treatment, and prevention of diseases related to blood. It involves treating diseases that affect the production of blood and its components, such as blood cells, hemoglobin, blood proteins, bone marrow, platelets, blood vessels, spleen, and the mechanism of coagulation.
+                                         <ul style="list-style:disc; font-size: 20px;">
+                                             <li>Inquiry by Parents / Guardians</li>
+                                             <li>Purchase of form / prospectus</li>
+                                             <li>Submission of completed application form with 2 passport size photographs, photocopy of birth certificate and last school’s result</li>
+                                             <li>Conducting of placement test / entrance examination</li>
+                                             <li>Collection of admission file for the class being admitted into</li>
+                                             <li>Submission of teller for payment of school fees and completed medical form</li>
+                                             <li>Collection of school fees receipt</li>
+                                             <li>Issuance of uniform, letter of authority and other relevant material before resumption</li>
+                                             <li>School begins</li>
+                                         </ul>
                                      </div>
                                  </div>
                              </div>
                              <div class="card">
                                  <div class="card-header">
-                                     <a class="card-link" data-toggle="collapse" href="#collapseFive">What if my regular doctor is unavailable?</a>
+                                     <a class="card-link" data-toggle="collapse" href="#collapseFive">Scholarships?</a>
                                  </div>
                                  <div id="collapseFive" class="collapse show" data-parent="#accordion2">
                                      <div class="card-body">
-                                      Hematology, also spelled haematology, is the branch of medicine concerned with the study of the cause, prognosis, treatment, and prevention of diseases related to blood. It involves treating diseases that affect the production of blood and its components, such as blood cells, hemoglobin, blood proteins, bone marrow, platelets, blood vessels, spleen, and the mechanism of coagulation.
+                                     Scholarships will be awarded to the TOP 20 candidates in the 1ST batch examination only.
                                      </div>
                                  </div>
                              </div>
@@ -165,43 +194,7 @@ require_once ("Inc/Osotech.php");
                              </div>
                          </div>
                      </div>
-                     <div class="content-part">
-                         <div class="title mb-40 md-mb-15">
-                             <h3 class="text-part"> College/University</h3>
-                         </div>
-                         <div id="accordion4" class="accordion">
-                             <div class="card">
-                                 <div class="card-header">
-                                     <a class="card-link" data-toggle="collapse" href="#collapseTen">What is Education?</a>
-                                 </div>
-                                 <div id="collapseTen" class="collapse show" data-parent="#accordion4">
-                                     <div class="card-body">
-                                         Orthopedics (alternatively, orthopaedics) is a specialty focused on the diagnosis and treatment of conditions, disorders, diseases and injuries of the muscles, bones, joints, tendons, ligaments, and nerves.
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="card">
-                                 <div class="card-header">
-                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapseEleven"> What is the difference between a sprain and a fracture?</a>
-                                 </div>
-                                 <div id="collapseEleven" class="collapse" data-parent="#accordion4">
-                                     <div class="card-body">
-                                     The normal heart is composed of four chambers. The two upper chambers (called atriums or atria) are reservoirs which collect blood as it flows back to the heart. From the atriums, blood flows into the lower two chambers (called ventricles) which pump blood, with each heart beat, into the main arteries.
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="card">
-                                 <div class="card-header">
-                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwelve"> What is an Advanced Practitioner?</a>
-                                 </div>
-                                 <div id="collapseTwelve" class="collapse" data-parent="#accordion4">
-                                     <div class="card-body">
-                                         The normal heart is composed of four chambers. The two upper chambers (called atriums or atria) are reservoirs which collect blood as it flows back to the heart. From the atriums, blood flows into the lower two chambers (called ventricles) which pump blood, with each heart beat, into the main arteries.
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+                     
                  </div>
             </div>
 

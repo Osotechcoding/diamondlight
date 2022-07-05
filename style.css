@@ -72,6 +72,7 @@ img {
   max-width: 100%;
   height: auto;
 }
+
 p {
   margin: 0 0 26px;
   line-height: 1.8;
@@ -15161,6 +15162,10 @@ body .modal-backdrop {
 }
 .loader.green-color .loader-container:before {
   border-color: #0c8b51;
+}
+.image-border{
+  border-radius: 20px;
+  border:5px solid orangered;
 }
 @keyframes loaderspin {
   0% {

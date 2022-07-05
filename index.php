@@ -7,16 +7,13 @@ require_once ("Inc/Osotech.php");
 
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-        <!-- meta tag -->
-<!--	<link rel="shortcut icon" type="image/x-icon" href="fav-orange.png">-->
-        <title><?php echo __SCHOOL_NAME__; ?></title>
+
+ <title> Home Page :: <?php echo ($Osotech->getConfigData()->school_name);?></title>
+        <?php include ("Templates/MetaTag.php");?>
         <?php include ("Templates/HeaderScript.php");?>
     </head>
     <body class="defult-home">
-        
         <!--Preloader area start here-->
        <?php include_once ("Templates/Preloader.php");?>
         <!--Preloader area End here--> 
@@ -40,115 +37,7 @@ require_once ("Inc/Osotech.php");
             <!-- Slider Section End -->                    
 
             <!-- Categories Section Start -->
-            <div id="rs-categories" class="rs-categories main-home pt-90 pb-100 md-pt-60 md-pb-40">
-                <div class="container">
-                    <div class="sec-title3 text-center mb-45">
-                        <div class="sub-title"> Top Categories</div>
-                        <h2 class="title black-color">Popular Online Categories</h2>
-                    </div>
-                    <div class="row mb-35">
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="categories-items">
-                                <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/1.jpg" alt=""></a>
-                                </div>
-                                <div class="contents">
-                                    <div class="img-part">
-                                        <img src="assets/images/categories/main-home/icon/1.png" alt="">
-                                    </div>
-                                    <div class="content-wrap">
-                                        <h2 class="title"><a href="#">General Education</a></h2>
-                                        <span class="course-qnty">02 Courses</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="categories-items">
-                                <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/2.jpg" alt=""></a>
-                                </div>
-                                <div class="contents">
-                                    <div class="img-part">
-                                        <img src="assets/images/categories/main-home/icon/2.png" alt="">
-                                    </div>
-                                    <div class="content-wrap">
-                                        <h2 class="title"><a href="#">Computer Science</a></h2>
-                                        <span class="course-qnty">02 Courses</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="categories-items">
-                                <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/3.jpg" alt=""></a>
-                                </div>
-                                <div class="contents">
-                                    <div class="img-part">
-                                        <img src="assets/images/categories/main-home/icon/3.png" alt="">
-                                    </div>
-                                    <div class="content-wrap">
-                                        <h2 class="title"><a href="#">Civil Engineering</a></h2>
-                                        <span class="course-qnty">02 Courses</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="categories-items">
-                                <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/4.jpg" alt=""></a>
-                                </div>
-                                <div class="contents">
-                                    <div class="img-part">
-                                        <img src="assets/images/categories/main-home/icon/4.png" alt="">
-                                    </div>
-                                    <div class="content-wrap">
-                                        <h2 class="title"><a href="#">Artificial Intelligence</a></h2>
-                                        <span class="course-qnty">02 Courses</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="categories-items">
-                                <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/5.jpg" alt=""></a>
-                                </div>
-                                <div class="contents">
-                                    <div class="img-part">
-                                        <img src="assets/images/categories/main-home/icon/5.png" alt="">
-                                    </div>
-                                    <div class="content-wrap">
-                                        <h2 class="title"><a href="#">Business Studies</a></h2>
-                                        <span class="course-qnty">02 Courses</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="categories-items">
-                                <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/6.jpg" alt=""></a>
-                                </div>
-                                <div class="contents">
-                                    <div class="img-part">
-                                        <img src="assets/images/categories/main-home/icon/6.png" alt="">
-                                    </div>
-                                    <div class="content-wrap">
-                                        <h2 class="title"><a href="#">Computer Engineering</a></h2>
-                                        <span class="course-qnty">02 Courses</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 text-center">
-                        <a class="readon orange-btn main-home" href="#">View All categories </a>
-                    </div>
-                </div>
-            </div>
+           <?php include_once("Templates/SchoolClasses.php"); ?>
             <!-- Categories Section End -->
 
             <!-- Categories Section Start -->

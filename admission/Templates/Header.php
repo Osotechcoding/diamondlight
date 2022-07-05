@@ -18,10 +18,10 @@
 				<ul class="topbar-right">
 					<li class="login-register">
 						<i class="fa fa-sign-in"></i>
-						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white">PORTAL</a> ||  <a href="#" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
+						<a href="../eportal/" class="btn btn-dark" style="text-decoration: none;color:white">PORTAL</a> ||  <a href="../eresult/" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
 					</li>
 					<li class="btn-part">
-						<a href="./checkout" class="btn btn-danger" style="text-decoration: none;color:white">E-ADMISSION</a>
+						<a href="./" class="btn btn-danger" style="text-decoration: none;color:white">E-ADMISSION</a>
 					</li>
 				</ul>
 			</div>
@@ -37,10 +37,10 @@
                     <div class="logo-part">
                         <a href="./">
                             <!-- <?php //echo $Osotech->get_schoolLogoImage();?> -->
-                           <!--  <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
-                            <img class="sticky-logo" src="assets/images/dark-logo.png" alt=""> -->
-                             <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
-                            <img class="sticky-logo" src="assets/images/dark-logo.png" alt="">
+                           <!--  <img class="normal-logo" src="../assets/images/lite-logo.png" alt="">
+                            <img class="sticky-logo" src="../assets/images/dark-logo.png" alt=""> -->
+                             <img class="normal-logo" src="../assets/images/lite-logo.png" alt="">
+                            <img class="sticky-logo" src="../assets/images/dark-logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -59,12 +59,12 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">About Us</a>
                                     <ul class="sub-menu">
-                                        <li><a href="about">Our Vision & Mission </a> </li>
-	                                    <li><a href="boards">Board of Admins</a> </li>
-	                                    <li><a href="about">Chairman Message</a> </li>
+                                        <li><a href="../about">Our Vision & Mission </a> </li>
+	                                    <li><a href="../boards">Board of Admins</a> </li>
+	                                    <li><a href="../about">Chairman Message</a> </li>
                                 
-	                                    <li><a href="faq">Our School History</a> </li>
-	                                    <li><a href="team">Our Staff</a> </li>
+	                                    <li><a href="../faq">Our School History</a> </li>
+	                                    <li><a href="../team">Our Staff</a> </li>
 
                                     </ul>
                                 </li>
@@ -72,10 +72,10 @@
 	                            <li class="menu-item-has-children">
 		                            <a href="#">STUDENTS</a>
 		                            <ul class="sub-menu">
-			                            <li><a href="prefects">STUDENT PREFECT</a> </li>
-			                            <li><a href="alumni">OUR ALUMNI</a> </li>
+			                            <li><a href="../prefects">STUDENT PREFECT</a> </li>
+			                            <li><a href="../alumni">OUR ALUMNI</a> </li>
 			                            <li><a href="#">STUDENT ADMISSION</a> </li>
-			                            <li><a href="./eportal/">STUDENT PORTAL</a> </li>
+			                            <li><a href="../eportal/">STUDENT PORTAL</a> </li>
 			                            <li><a href="#">RESULT PORTAL</a> </li>
 
 		                            </ul>
@@ -99,10 +99,10 @@
 		                            <a href="#">INFORMATION</a>
 		                            <ul class="sub-menu">
 			                            <li>
-				                            <a href="gallery">PHOTO GALLERY</a>
-				                            <a href="blog-right">NEWSLETTERS</a>
-				                            <a href="events">SCHOOL EVENTS</a>
-				                            <a href="yearbook">YEAR BOOK</a>
+				                            <a href="../gallery">PHOTO GALLERY</a>
+				                            <a href="../blog-right">NEWSLETTERS</a>
+				                            <a href="../events">SCHOOL EVENTS</a>
+				                            <a href="../yearbook">YEAR BOOK</a>
 				                            <a href="#">SCHOOL CALENDAR</a>
 				                            <a href="#">SCHOOL HOSTEL</a>
 
@@ -111,7 +111,7 @@
 		                            </ul>
 	                            </li>
                                 <li>
-	                                <a href="contact">Contact</a>
+	                                <a href="../contact">Contact</a>
                                 </li>
                             </ul> <!-- //.nav-menu -->
                         </nav>
@@ -158,33 +158,33 @@
         </div>
     </div>
     <div class="canvas-logo">
-        <a href="./"><img src="assets/images/dark-logo.png" alt="logo"></a>
+        <a href="./"><img src="../assets/images/dark-logo.png" alt="logo"></a>
     </div>
     <div class="offcanvas-text">
         <p>We denounce with righteous indige nationality and dislike men who are so beguiled and demo  by the charms of pleasure of the moment data com so blinded by desire.</p>
     </div>
     <div class="offcanvas-gallery">
         <div class="gallery-img">
-            <a class="image-popup" href="assets/images/gallery/1.jpg"><img src="assets/images/gallery/1.jpg" alt=""></a>
+            <a class="image-popup" href="../assets/images/gallery/1.jpg"><img src="../assets/images/gallery/1.jpg" alt=""></a>
         </div>
         <div class="gallery-img">
-            <a class="image-popup" href="assets/images/gallery/2.jpg"><img src="assets/images/gallery/2.jpg" alt=""></a>
+            <a class="image-popup" href="../assets/images/gallery/2.jpg"><img src="../assets/images/gallery/2.jpg" alt=""></a>
         </div>
         <div class="gallery-img">
-            <a class="image-popup" href="assets/images/gallery/3.jpg"><img src="assets/images/gallery/3.jpg" alt=""></a>
+            <a class="image-popup" href="../assets/images/gallery/3.jpg"><img src="../assets/images/gallery/3.jpg" alt=""></a>
         </div>
         <div class="gallery-img">
-            <a class="image-popup" href="assets/images/gallery/4.jpg"><img src="assets/images/gallery/4.jpg" alt=""></a>
+            <a class="image-popup" href="../assets/images/gallery/4.jpg"><img src="../assets/images/gallery/4.jpg" alt=""></a>
         </div>
         <div class="gallery-img">
-            <a class="image-popup" href="assets/images/gallery/5.jpg"><img src="assets/images/gallery/5.jpg" alt=""></a>
+            <a class="image-popup" href="../assets/images/gallery/5.jpg"><img src="../assets/images/gallery/5.jpg" alt=""></a>
         </div>
         <div class="gallery-img">
-            <a class="image-popup" href="assets/images/gallery/6.jpg"><img src="assets/images/gallery/6.jpg" alt=""></a>
+            <a class="image-popup" href="../assets/images/gallery/6.jpg"><img src="../assets/images/gallery/6.jpg" alt=""></a>
         </div>
     </div>
     <div class="map-img">
-        <img src="assets/images/map.jpg" alt="">
+        <img src="../assets/images/map.jpg" alt="">
     </div>
     <div class="canvas-contact">
         <ul class="social">

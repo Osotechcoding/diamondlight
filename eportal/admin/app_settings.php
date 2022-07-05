@@ -616,7 +616,7 @@ require_once "helpers/helper.php";
       	<div class="form-group">
       					<div class="controls">
       									<label>Student Home Address</label>
-      									<textarea name="student_home_address" id="home_address" class="form-control" placeholder="Student Permanent home address">Gasline Ijoko, Ogun State</textarea>
+      									<textarea name="student_home_address" id="home_address" class="form-control" placeholder="Student home address"></textarea>
       					</div>
       	</div>
       </div>
@@ -626,7 +626,7 @@ require_once "helpers/helper.php";
       									<label>Student E-mail</label>
       									<input autocomplete="off" type="text"
       													class="form-control"
-      													placeholder="E-mail"
+      													placeholder="Portal Login e-mail"
       													name="student_email">
       					</div>
       	</div>
@@ -637,12 +637,12 @@ require_once "helpers/helper.php";
       									<label>Mobile</label>
       									<input autocomplete="off" type="number"
       													class="form-control"
-      													placeholder="Mobile"
-      													name="student_phone" value="08037940665">
+      													placeholder="080*********"
+      													name="student_phone">
       					</div>
       	</div>
       </div>
-      <div class="col-md-6">
+     <!--  <div class="col-md-6">
       	<div class="form-group">
       					<div class="controls">
       									<label>Username</label>
@@ -652,8 +652,8 @@ require_once "helpers/helper.php";
       													name="student_username">
       					</div>
       	</div>
-      </div>
-      <div class="col-md-6">
+      </div> -->
+     <!--  <div class="col-md-6">
       	<div class="form-group">
       					<div class="controls">
       									<label>Password</label>
@@ -662,7 +662,7 @@ require_once "helpers/helper.php";
       	placeholder="Portal Password" name="student_password" value="student" readonly>
       					</div>
       	</div>
-      </div>
+      </div> -->
 
       <div class="col-md-6">
       	<div class="form-group">

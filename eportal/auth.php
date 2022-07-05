@@ -38,7 +38,7 @@ background-repeat: no-repeat;">
     
 <div class="container">
      <div class="col-md-12 text-center">
-        <h1 class="text-center" style="font-size:40px;color: darkgreen;font-weight:bold;text-shadow: 2px 2px #ff0000;"><span> <?php echo ucwords($SmappDetails->school_name);?> </span></h1>
+	     <h1 class="text-center" style="font-size:40px;color: #fff;font-weight:bold;text-shadow: 4px 2px black;"><span> <?php echo ucwords($SmappDetails->school_name);?> </span></h1>
     </div>
 <div class="loginbox">
 <div class="login-left">

@@ -12,6 +12,12 @@ require_once ("Inc/Osotech.php");
     <!-- meta tag -->
     <title> </title>
     <?php include ("Templates/HeaderScript.php");?>
+	<style>
+		.image-border{
+			border-radius: 20px;
+			border:5px solid #F4731C;
+		}
+	</style>
 </head>
 <body class="defult-home">
 
@@ -41,12 +47,12 @@ require_once ("Inc/Osotech.php");
                 <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
             </div>
             <div class="breadcrumbs-text white-color">
-                <h1 class="page-title">Team One</h1>
+                <h1 class="page-title">THE SCHOOL PREFECTS</h1>
                 <ul>
                     <li>
-                        <a class="active" href="index-2.html">Home</a>
+                        <a class="active" href="./">HOME</a>
                     </li>
-                    <li>Team One</li>
+                    <li>PREFECTS</li>
                 </ul>
             </div>
         </div>
@@ -58,91 +64,61 @@ require_once ("Inc/Osotech.php");
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-30">
                         <div class="team-item">
-                            <img src="assets/images/team/1.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/1.jpg" alt="">
                             <div class="content-part">
-                                <h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
-                                <span class="designation">Professor</span>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
+                                <h4 class="name"><a href="team-single.php">JOHN DOE</a></h4>
+                                <span class="designation">HEAD PREFECT BOY</span>
+	                            <h5 class="text-center text-white-50">2021-2022 Session</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-30">
                         <div class="team-item">
-                            <img src="assets/images/team/2.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/2.jpg" alt="">
                             <div class="content-part">
-                                <h4 class="name"><a href="team-single.php">Jesika Albenian</a></h4>
-                                <span class="designation">Professor</span>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
+	                            <h4 class="name"><a href="team-single.php">HANNAH DOE</a></h4>
+	                            <span class="designation">HEAD PREFECT GIRL</span>
+	                            <h5 class="text-center text-white-50">2021-2022 Session</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-30">
                         <div class="team-item">
-                            <img src="assets/images/team/3.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/3.jpg" alt="">
                             <div class="content-part">
-                                <h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
-                                <span class="designation">Professor</span>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
+	                            <h4 class="name"><a href="team-single.php">COW DOE</a></h4>
+	                            <span class="designation">HEAD SOCIAL BOY</span>
+	                            <h5 class="text-center text-white-50">2021-2022 Session</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 md-mb-30">
                         <div class="team-item">
-                            <img src="assets/images/team/1.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/1.jpg" alt="">
                             <div class="content-part">
-                                <h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
-                                <span class="designation">Professor</span>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
+	                            <h4 class="name"><a href="team-single.php">TAMI DOE</a></h4>
+	                            <span class="designation">HEAD SOCIAL GIRL</span>
+	                            <h5 class="text-center text-white-50">2021-2022 Session</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 xs-mb-30">
                         <div class="team-item">
-                            <img src="assets/images/team/2.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/2.jpg" alt="">
                             <div class="content-part">
-                                <h4 class="name"><a href="team-single.php">Jesika Albenian</a></h4>
-                                <span class="designation">Professor</span>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
+	                            <h4 class="name"><a href="team-single.php">JOSH DOE</a></h4>
+	                            <span class="designation">HEAD CHAPEL BOY</span>
+	                            <h5 class="text-center text-white-50">2021-2022 Session</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="team-item">
-                            <img src="assets/images/team/3.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/3.jpg" alt="">
                             <div class="content-part">
-                                <h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
-                                <span class="designation">Professor</span>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
+	                            <h4 class="name"><a href="team-single.php">SMITH YAN</a></h4>
+	                            <span class="designation">HEAD CHAPEL GIRL</span>
+                               <h5 class="text-center text-white-50">2021-2022 Session</h5>
                             </div>
                         </div>
                     </div>
