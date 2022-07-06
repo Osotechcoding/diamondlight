@@ -10,7 +10,7 @@ require_once ("../Inc/Osotech.php");
 <head>
     <?php include_once ("Templates/MetaTag.php");?>
 	<!-- meta tag -->
-	<title> </title>
+	<title>Admission :: <?php echo ($Osotech->getConfigData()->school_name);?></title>
     <?php include ("Templates/HeaderScript.php");?>
 </head>
 <body class="defult-home">
@@ -44,7 +44,7 @@ require_once ("../Inc/Osotech.php");
                             <h1 class="page-title">Admission</h1>
                             <ul>
                                 <li>
-                                    <a class="active" href="./">Home</a>
+                                    <a class="active" href="../">Home</a>
                                 </li>
                                 <li>Start Your Admission</li>
                             </ul>

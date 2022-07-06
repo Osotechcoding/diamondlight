@@ -176,7 +176,7 @@ if (isset($_GET['student-data']) && $_GET['student-data']!="") {
                 <div class="col-12 col-md-8 offset-md-4 form-group">
                   <fieldset>
                     <div class="col-md-6">
-                      <input type="text" class="form-control" name="auth_pass" placeholder="Authentication Code">
+                      <input type="password" class="form-control" name="auth_pass" placeholder="Authentication Code">
                       <label >Pls Authenticate This Update</label>
                     </div>
                   </fieldset>

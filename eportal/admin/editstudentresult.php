@@ -122,8 +122,8 @@ require_once "helpers/helper.php";
  <?php   
              
             $student_data = $Student->get_student_data_ByRegNo($search_result_data->stdRegCode);?>
-               <h2 class="text-info text-center"><?php echo strtoupper(__SCHOOL_NAME__) ?> </h2>
-                 <h5 class="text-center text-warning"><?php echo ucwords(__SCHOOL_LOCATION_ADDRESS__) ?> </h5>
+               <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
+                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
         <h5 class="text-center text-info"><strong>YOU ARE ABOUT TO UPDATE <b  class="text-center text-warning"><?php echo strtoupper($student_data->full_name);?></b> EXAM SCORE SHEET ON <?php echo strtoupper($subject) ?> FOR <?php echo strtoupper($session) ?> <?php echo strtoupper($term) ?>  </strong></h5>
                <form id="update_student_result_form">
   <div class="table-responsive">
@@ -160,7 +160,7 @@ require_once "helpers/helper.php";
       <div class="col-md-6">
         <div class="form-group">
           <label for="Auth">Authentication</label>
-          <input type="text" autocomplete="off" class="form-control" name="Auth" placeholder="**********">
+          <input type="password" autocomplete="off" class="form-control" name="Auth" placeholder="**********">
           <input type="hidden" name="action" value="update_student_result_">
         </div>
         
