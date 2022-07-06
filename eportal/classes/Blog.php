@@ -36,7 +36,7 @@ class Blog {
 			$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Pls try again!",__OSO_APP_NAME__." Says");
 		}elseif (!in_array($image_ext, $allowed)) {
 		$this->response = $this->alert->alert_toastr("error","Your file format is not supported, Please check and try again!",__OSO_APP_NAME__." Says");
-		}elseif ($blogFile_size >200) {
+		}elseif ($blogFile_size >500) {
 		$this->response = $this->alert->alert_toastr("error","Blog Image Size should not exceed 200KB, Selected Image Size is :".number_format($blogFile_size,2)."KB",__OSO_APP_NAME__." Says");
 		}elseif ($blogFile_error !==0) {
 		 $this->response = $this->alert->alert_toastr("error","There was an error Uploading Blog Image, Try again!",__OSO_APP_NAME__." Says");

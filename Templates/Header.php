@@ -1,4 +1,4 @@
-<!-- Topbar Area Start -->
+<!--Topbar Area Start -->
 <div class="topbar-area home8-topbar">
 	<div class="container">
 		<div class="row y-middle">
@@ -21,7 +21,7 @@
 						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white">PORTAL</a> ||  <a href="#" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
 					</li>
 					<li class="btn-part">
-						<a href="./checkout" class="btn btn-danger" style="text-decoration: none;color:white">E-ADMISSION</a>
+						<a href="./admission/" class="btn btn-danger" style="text-decoration: none;color:white">E-ADMISSION</a>
 					</li>
 				</ul>
 			</div>
@@ -35,11 +35,8 @@
             <div class="col-lg-2">
                 <div class="logo-cat-wrap">
                     <div class="logo-part">
-                        <a href="./">
-                            <!-- <?php //echo $Osotech->get_schoolLogoImage();?> -->
-                           <!--  <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
-                            <img class="sticky-logo" src="assets/images/dark-logo.png" alt=""> -->
-                             <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
+                        <a href="./"> 
+                            <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
                             <img class="sticky-logo" src="assets/images/dark-logo.png" alt="">
                         </a>
                     </div>
@@ -100,7 +97,7 @@
 		                            <ul class="sub-menu">
 			                            <li>
 				                            <a href="gallery">PHOTO GALLERY</a>
-				                            <a href="blog-right">NEWSLETTERS</a>
+				                            <a href="blog-right">SCHOOL NEWS</a>
 				                            <a href="events">SCHOOL EVENTS</a>
 				                            <a href="yearbook">YEAR BOOK</a>
 				                            <a href="#">SCHOOL CALENDAR</a>
@@ -194,4 +191,4 @@
             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
         </ul>
     </div>
-</nav> -->
+</nav>

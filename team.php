@@ -6,11 +6,10 @@ require_once ("Inc/Osotech.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-	<!-- meta tag -->
+   
 	<title> </title>
+     <?php include ("Templates/MetaTag.php");?>
     <?php include ("Templates/HeaderScript.php");?>
 </head>
 <body class="defult-home">

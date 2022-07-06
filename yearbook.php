@@ -6,11 +6,10 @@ require_once ("Inc/Osotech.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-	<!-- meta tag -->
+   
 	<title> </title>
+     <?php include ("Templates/MetaTag.php");?>
     <?php include ("Templates/HeaderScript.php");?>
 </head>
 <body class="defult-home">
@@ -62,7 +61,7 @@ require_once ("Inc/Osotech.php");
                                     <a class="image-popup" href="assets/images/gallery/1.jpg"><img src="assets/images/gallery/1.jpg" alt=""></a>
                                 </div>
                                 <div class="title">
-                                    Group Study Time
+                                    2022 INTER-HOUSE COMPETITION
                                 </div>
                             </div>
                         </div>  
@@ -72,7 +71,7 @@ require_once ("Inc/Osotech.php");
                                     <a class="image-popup" href="assets/images/gallery/2.jpg"><img src="assets/images/gallery/2.jpg" alt=""></a>
                                 </div>
                                 <div class="title">
-                                    Examination Hall
+                                    2022 DINNER NIGHT PARTY
                                 </div>
                             </div>
                         </div>  
@@ -82,100 +81,12 @@ require_once ("Inc/Osotech.php");
                                     <a class="image-popup" href="assets/images/gallery/3.jpg"><img src="assets/images/gallery/3.jpg" alt=""></a>
                                 </div>
                                 <div class="title">
-                                    Final Year Study
+                                    2021-2022 END OF THE YEAR PARTY
                                 </div>
                             </div>
                         </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/4.jpg"><img src="assets/images/gallery/4.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    Online Study
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/5.jpg"><img src="assets/images/gallery/5.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                   Group Solution
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/6.jpg"><img src="assets/images/gallery/6.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                   New Teacher
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/7.jpg"><img src="assets/images/gallery/7.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                   Friendship Forever
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/8.jpg"><img src="assets/images/gallery/8.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                   Covid-19 Fact
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/9.jpg"><img src="assets/images/gallery/9.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    They Love Eich Other
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 md-mb-30">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/10.jpg"><img src="assets/images/gallery/10.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    Computer Science
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6 sm-md-30">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/11.jpg"><img src="assets/images/gallery/11.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    Group Study & Solution
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/12.jpg"><img src="assets/images/gallery/12.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    Campus Cruse
-                                </div>
-                            </div>
-                        </div>
+                      
+                     
                    </div>
                 </div> 
             </div>

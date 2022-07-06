@@ -6,11 +6,9 @@ require_once ("Inc/Osotech.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-	<!-- meta tag -->
-	<title> </title>
+    <title> </title>
+     <?php include ("Templates/MetaTag.php");?>
     <?php include ("Templates/HeaderScript.php");?>
 </head>
 <body class="defult-home">
@@ -79,97 +77,37 @@ require_once ("Inc/Osotech.php");
                                         </span>
                                     </div>
                                 </div> 
-                                <div class="show-featured ">
-                                    <div class="post-img">
-                                        <a href="#"><img src="assets/images/blog/style2/2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-desc">
-                                        <a href="#">Soundtrack filma Lady Exclusive Music</a>
-                                        <span class="date">
-                                            <i class="fa fa-calendar"></i>
-                                            November 19, 2018
-                                        </span>
-                                    </div>
-                                </div> 
-                                <div class="show-featured ">
-                                    <div class="post-img">
-                                        <a href="#"><img src="assets/images/blog/style2/3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-desc">
-                                        <a href="#">Soundtrack filma Lady Exclusive Music </a>
-                                        <span class="date">
-                                            <i class="fa fa-calendar"></i>
-                                            September 6, 2020
-                                        </span>
-                                    </div>
-                                </div> 
-                                <div class="show-featured ">
-                                    <div class="post-img">
-                                        <a href="#"><img src="assets/images/blog/style2/4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-desc">
-                                        <a href="#">Given void great you’re good appear have i also fifth </a>
-                                        <span class="date">
-                                            <i class="fa fa-calendar"></i>
-                                            September 6, 2020
-                                        </span>
-                                    </div>
-                                </div> 
-                                <div class="show-featured ">
-                                    <div class="post-img">
-                                        <a href="#"><img src="assets/images/blog/style2/5.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-desc">
-                                        <a href="#">Lights winged seasons fish abundantly evening.</a>
-                                        <span class="date">
-                                            <i class="fa fa-calendar"></i>
-                                             September 6, 2020
-                                        </span>
-                                    </div>
-                                </div>
+                              
                             </div>
-                            <div class="widget-archives mb-50">
-                                <h3 class="widget-title">Archives</h3>
-                                <ul>
-                                    <li><a href="#">September 2020</a></li>
-                                    <li><a href="#">September 2020</a></li>
-                                </ul>
-                            </div>   
+                          
                             <div class="widget-archives mb-50">
                                 <h3 class="widget-title">Categories</h3>
                                 <ul>
                                     <li><a href="#">College</a></li>
-                                    <li><a href="#">High School</a></li>
-                                    <li><a href="#">Primary</a></li>
-                                    <li><a href="#">School</a></li>
-                                    <li><a href="#">University</a></li>
+                                    
                                 </ul>
                             </div>
-                              <div class="recent-posts mb-50">
-                                  <h3 class="widget-title">Meta</h3>
-                                  <ul>
-                                      <li><a href="#">Log in</a></li>
-                                      <li><a href="#">Entries feed</a></li>
-                                      <li><a href="#">Comments feed</a></li>
-                                      <li><a href="#">WordPress.org</a></li>
-                                  </ul>
-                              </div>
+                              
                         </div>
                     </div>
                       <div class="col-lg-8 pr-50 md-pr-15">
-                          <div class="row">
-                              <div class="col-lg-12 mb-70">
+                        <div class="row">
+                              <?php 
+$all_blogs_posted = $Osotech->get_all_active_blogs_post();
+if ($all_blogs_posted) {
+  foreach ($all_blogs_posted as $value) {?>
+    <div class="col-lg-12 mb-70">
                                   <div class="blog-item">
                                       <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/1.jpg" alt=""></a>
+                                          <a href="blog-single??bId=<?php echo $value->blog_id;?>&action=view"><img src="eportal/news-images/<?php echo $value->blog_image;?>" alt=""></a>
                                       </div>
                                       <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">University while the lovely valley team work</a></h3>
+                                          <h3 class="blog-title"><a href="blog-single?bId=<?php echo $value->blog_id;?>&action=view"><?php echo $value->blog_title;?></a></h3>
                                           <div class="blog-meta">
                                               <ul class="btm-cate">
                                                   <li>
                                                       <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                          <i class="fa fa-calendar-check-o"></i> <?php echo date("F j, Y",strtotime($value->created_at)) ?>                                                       
                                                       </div>
                                                   </li>
                                                   <li>
@@ -180,272 +118,43 @@ require_once ("Inc/Osotech.php");
                                                   <li>
                                                       <div class="tag-line">
                                                           <i class="fa fa-book"></i>
-                                                          <a href="#">University</a> 
+                                                          <a href="#"><?php echo $value->category_id;?></a> 
                                                       </div>
                                                   </li>
                                               </ul>
                                           </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
+                                         
+                                            <?php 
+                  if (str_word_count($value->blog_content) >= 50) {
+                  echo substr($value->blog_content,0,100)."...";
+                  ?>
+                    <div class="blog-desc">  
+                       </div>
+                       <div class="blog-button">
+             <a class="blog-btn" href="blog-single?bId=<?php echo $value->blog_id;?>&action=view">Continue Reading</a>
+                      </div>
+                 <?php  
+                  }else{
+                    echo $value->blog_content;
+                  }
+                  ?>                                 
+                                         
+                                         
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-lg-12 mb-70">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/2.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">High school program starting soon 2021</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">High School</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-12 mb-70">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/3.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">Modern School the lovely valley team work</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">Primary</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-12 mb-70">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/4.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">While the lovely valley team work</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">College</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-12 mb-70">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/5.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">This is a great source of content for anyone…</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">College</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-12 mb-70">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/6.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">While the lovely valley team work</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">College</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-12 mb-70">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/7.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">The Expenses You Are Thinking</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">School</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-12">
-                                  <div class="blog-item">
-                                      <div class="blog-img">
-                                          <a href="#"><img src="assets/images/blog/inner/8.jpg" alt=""></a>
-                                      </div>
-                                      <div class="blog-content">
-                                          <h3 class="blog-title"><a href="#">This is a great source of content for anyone…</a></h3>
-                                          <div class="blog-meta">
-                                              <ul class="btm-cate">
-                                                  <li>
-                                                      <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
-                                                      </div>
-                                                  </li>
-                                                  <li>
-                                                      <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
-                                                      </div>
-                                                  </li>   
-                                                  <li>
-                                                      <div class="tag-line">
-                                                          <i class="fa fa-book"></i>
-                                                          <a href="#">School</a> 
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                          <div class="blog-desc">   
-                                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
-                                          </div>
-                                          <div class="blog-button">
-                                              <a class="blog-btn" href="#">Continue Reading</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+
+     <?php
+    // code...
+  }
+}else{
+  echo '<div class="alert alert-danger text-center"> <h3> Sorry :) There are no Blog to display at the moment!</h3></div>';
+}
+
+   ?>
+
+
+            
                           </div>
                       </div>
                   </div> 

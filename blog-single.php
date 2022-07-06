@@ -1,16 +1,30 @@
 <?php
+@ob_start();
 if (!file_exists("Inc/Osotech.php")){
     die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
 }
 require_once ("Inc/Osotech.php");
 ?>
+
+<?php 
+
+
+if (isset($_GET['bId']) && ($_GET['bId'] !="") && isset($_GET['action']) && $_GET['action'] ==="view") {
+ $blogId = $_GET['bId'];
+ $blog_details = $Osotech->get_blog_ById($blogId);
+}else{
+  header("Location: ./blog-right");
+  exit();
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-	<!-- meta tag -->
-	<title> </title>
+   
+	<title><?php echo $Osotech->getConfigData()->school_name;?> ::  <?php echo $blog_details->blog_title;?> </title>
+     <?php include_once ("Templates/MetaTag.php");?>
+    <!-- meta tag -->
     <?php include ("Templates/HeaderScript.php");?>
 </head>
 <body class="defult-home">
@@ -41,12 +55,12 @@ require_once ("Inc/Osotech.php");
                     <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
                 </div>
                 <div class="breadcrumbs-text white-color">
-                    <h1 class="page-title">Blog Single</h1>
+                    <h1 class="page-title"> <?php echo $blog_details->blog_title;?></h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
-                        <li>Blog Single</li>
+                        <li> <?php echo $blog_details->blog_title;?></li>
                     </ul>
                 </div>
             </div>
@@ -57,12 +71,12 @@ require_once ("Inc/Osotech.php");
                 <div class="container">
                    <div class="blog-deatails">
                         <div class="bs-img">
-                            <a href="#"><img src="assets/images/blog/inner/1.jpg" alt=""></a>
+                            <a href="#"><img src="eportal/news-images/<?php echo $blog_details->blog_image;?>" alt="" style="width: 100%;"></a>
                         </div>
                        <div class="blog-full">
                            <ul class="single-post-meta">
                                <li>
-                                   <span class="p-date"> <i class="fa fa-calendar-check-o"></i> April 6, 2020 </span>
+                                   <span class="p-date"> <i class="fa fa-calendar-check-o"></i> <?php echo date("F j, Y",strtotime($blog_details->created_at)) ?> </span>
                                </li> 
                                <li>
                                    <span class="p-date"> <i class="fa fa-user-o"></i> admin </span>
@@ -70,63 +84,24 @@ require_once ("Inc/Osotech.php");
                                <li class="Post-cate">
                                    <div class="tag-line">
                                        <i class="fa fa-book"></i>
-                                       <a href="#">Strategy</a>
+                                       <a href="#"><?php echo $blog_details->category_id;?></a>
                                    </div>
                                </li>
                                <li class="post-comment"> <i class="fa fa-comments-o"></i> 0</li>
                            </ul>
                            <div class="blog-desc">
                                <p>
-                                   We denounce with righteous indige nation and dislike men who are so beguiled and demo realized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.
-                               </p>
-                           </div>
-                           <blockquote><p>Globally incubate standards compliant channels before scalable benefits. Quickly disseminate superior deliverables whereas web-enabled applications.</p></blockquote>
-                           <div class="blog-desc mb-40">
-                               <p>
-                                   Interactively procrastinate high-payoff content without backward-compatible data. Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets. Globally incubate standards compliant channels before scalable benefits.
-                               </p>
-                           </div>
-                           <h2 class="title mb-40">Economy may face double recession</h2>
-                           <div class="blog-desc mb-35">
-                               <p>
-                                 Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
-                               </p>
-                           </div>
-                           <div class="blog-img mb-40">
-                               <img src="assets/images/blog/inner/2.jpg" alt="">
-                           </div>
-                           <div class="blog-desc mb-40">
-                               <p>
-                                    Phosfluorescently engage worldwide methodologies with web-enabled technology. Interactively coordinate proactive e-commerce via process-centric “outside the box” thinking. Completely pursue scalable customer service through sustainable potentialities. Collaboratively administrate turnkey channels whereas virtual e-tailers. Objectively seize scalable metrics whereas proactive e-services. Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources.
-                               </p>
-                           </div>
-                           <ul class="unorder-list mb-20">
-                               <li>New Construction Benefit of Service</li>
-                               <li>Renovations Benefit of Service</li>
-                               <li>Historic Renovations and Restorations</li>
-                               <li>Additions Benefit of Service</li>
-                               <li>Rebuilding from fire or water damage</li>
-                           </ul>
-                           <h2 class="title">Experts Always Ready to Maximizing Products</h2>
-                           <div class="blog-desc">
-                               <p>
-                                   Proactively fabricate one-to-one materials via effective e-business. Completely synergize scalable e-commerce rather than high standards in e-services. Assertively iterate resource maximizing products after leading-edge intellectual capital. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
-                               </p>
-                           </div>
-                           <h4 class="sm-title">Experts Always Ready to Maximizing Products</h4>
-                           <div class="blog-desc">
-                               <p>
-                                  Interactively procrastinate high-payoff content without backward-compatible data. Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets. Globally incubate standards compliant channels before scalable benefits. Quickly disseminate superior deliverables whereas web-enabled applications. Quickly drive clicks-and-mortar catalysts for change before vertical architectures.
+                                   <?php echo $blog_details->blog_content;?>
                                </p>
                            </div>
                        </div>
                    </div>
-                   <div class="ps-navigation">
+                  <!--  <div class="ps-navigation">
                        <ul>
                            <li><a href="#"><span class="next-link">Next<i class="flaticon-next"></i></span></a></li>
                            <li><a href="#"><span class="link-text">Soundtrack filma Lady Exclusive Music </span></a></li>
                        </ul>
-                   </div>
+                   </div> -->
                    <div class="comment-area">
                       <div class="comment-full">
                           <h3 class="reply-title">Leave a Reply</h3>

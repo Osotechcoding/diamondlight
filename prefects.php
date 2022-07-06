@@ -6,11 +6,10 @@ require_once ("Inc/Osotech.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-    <!-- meta tag -->
-    <title> </title>
+    
+    <title><?php echo ($Osotech->getConfigData()->school_name);?> :: THE SCHOOL PREFECTS </title>
+    <?php include_once("Templates/MetaTag.php");?>
     <?php include ("Templates/HeaderScript.php");?>
 	<style>
 		.image-border{

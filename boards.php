@@ -6,11 +6,9 @@ require_once ("Inc/Osotech.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
->
 <head>
-    <?php include_once ("Templates/MetaTag.php");?>
-    <!-- meta tag -->
-    <title> </title>
+    <title><?php echo $Osotech->getConfigData()->school_name;?> :: Board of Admin </title>
+     <?php include ("Templates/MetaTag.php");?>
     <?php include ("Templates/HeaderScript.php");?>
 </head>
 <body class="defult-home">
@@ -41,12 +39,12 @@ require_once ("Inc/Osotech.php");
                 <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
             </div>
             <div class="breadcrumbs-text white-color">
-                <h1 class="page-title">Team One</h1>
+                <h1 class="page-title">ADMINISTRATIVE BOARD</h1>
                 <ul>
                     <li>
-                        <a class="active" href="index-2.html">Home</a>
+                        <a class="active" href="./">Home</a>
                     </li>
-                    <li>Team One</li>
+                    <li>EXECUTIVES</li>
                 </ul>
             </div>
         </div>
@@ -61,7 +59,7 @@ require_once ("Inc/Osotech.php");
                             <img src="assets/images/team/1.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
-                                <span class="designation">Professor</span>
+                                <span class="designation">DIRECTOR</span>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -76,7 +74,7 @@ require_once ("Inc/Osotech.php");
                             <img src="assets/images/team/2.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">Jesika Albenian</a></h4>
-                                <span class="designation">Professor</span>
+                                <span class="designation">PROPIETRESS</span>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -91,7 +89,7 @@ require_once ("Inc/Osotech.php");
                             <img src="assets/images/team/3.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
-                                <span class="designation">Professor</span>
+                                <span class="designation">PRINCIPAL</span>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -106,7 +104,7 @@ require_once ("Inc/Osotech.php");
                             <img src="assets/images/team/1.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
-                                <span class="designation">Professor</span>
+                                <span class="designation">VICE PRINCIPAL</span>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -121,7 +119,7 @@ require_once ("Inc/Osotech.php");
                             <img src="assets/images/team/2.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">Jesika Albenian</a></h4>
-                                <span class="designation">Professor</span>
+                                <span class="designation">REGISTRAR</span>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -136,7 +134,7 @@ require_once ("Inc/Osotech.php");
                             <img src="assets/images/team/3.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
-                                <span class="designation">Professor</span>
+                                <span class="designation">H.O.D SCIENCE</span>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
