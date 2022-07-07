@@ -11,7 +11,7 @@
                 <li class="nav-item d-none d-lg-block"><a class="nav-link clock"><i class="fas fa-clock fa-1x dark"></i><span id="displayTime" class="text-danger" style="font-size: 21px;font-weight: 500;"></span></a>
                   <div class="bookmark-input search-input">
                     <div class="bookmark-input-icon"><i class="bx bx-search primary"></i></div>
-                    <input class="form-control input" type="text" placeholder="Explore Visap..." tabindex="0" data-search="template-search">
+                    <input class="form-control input" type="text" placeholder="Explore SMApp..." tabindex="0" data-search="template-search">
                     <ul class="search-list"></ul>
                   </div>
                 </li>
@@ -25,7 +25,7 @@
               <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon bx bx-search"></i></a>
                 <div class="search-input">
                   <div class="search-input-icon"><i class="bx bx-search primary"></i></div>
-                  <input class="input" type="text" placeholder="Explore Visap..." tabindex="-1" data-search="template-search">
+                  <input class="input" type="text" placeholder="Explore SMApp..." tabindex="-1" data-search="template-search">
                   <div class="search-input-close"><i class="bx bx-x"></i></div>
                   <ul class="search-list"></ul>
                 </div>

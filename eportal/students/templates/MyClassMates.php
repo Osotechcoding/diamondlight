@@ -8,7 +8,7 @@
 My Classmates
 </div>
 </div>
-<div class="col-sm-6 text-sm-right">
+<!-- <div class="col-sm-6 text-sm-right">
 <div class=" mt-sm-0 mt-2">
 <button class="btn btn-outline-primary mr-2"><img src="assets/img/excel.png" alt=""><span class="ml-2">Excel</span></button>
 <button class="btn btn-outline-danger mr-2"><img src="assets/img/pdf.png" alt="" height="18"><span class="ml-2">PDF</span></button>
@@ -21,7 +21,7 @@ My Classmates
 <a class="dropdown-item" href="#">Something else here</a>
 </div>
 </div>
-</div>
+</div> -->
 </div>
 </div>
 <div class="card-body">

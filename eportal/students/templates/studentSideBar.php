@@ -3,7 +3,7 @@
 <div id="sidebar-menu" class="sidebar-menu">
 <div class="header-left">
 <a href="./" class="logo">
-<img src="../schlogo.png" width="60" height="60" alt="">
+<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="60" height="60" alt="">
 <span class="text-uppercase"><?php echo __OSO_APP_NAME__; ?></span>
 </a>
 </div>
@@ -16,7 +16,7 @@
 <a href="#"><img src="assets/img/sidebar/icon-3.png" alt="icon"> <span> Academics</span> <span class="menu-arrow"></span></a>
 <ul class="list-unstyled" style="display: none;">
 <li><a href="subject_reg"><span> My Subjects</span></a></li>
-<li><a href="assessment"><span> Performance</span></a></li>
+<!-- <li><a href="assessment"><span> Performance</span></a></li> -->
 <!-- <li><a href="classnotes"><span>Classnotes</span></a></li> -->
 <li><a href="weeklyAssignment"><span> Assignments</span></a></li>
 <li><a href="submittedAssignments"><span>Submitted Assignments</span></a></li>
@@ -25,7 +25,7 @@
 <li class="submenu">
 <a href="#"><img src="assets/img/sidebar/icon-4.png" alt="icon"> <span> Online Classroom</span> <span class="menu-arrow"></span></a>
 <ul class="list-unstyled" style="display: none;">
-<li><a href="virtual_classroom"><span>Classroom</span></a></li>
+<li><a href="virtual_classroom"><span>Online Class</span></a></li>
 </ul>
 </li>
 
@@ -40,7 +40,7 @@
 <li class="submenu">
 <a href="#"><img src="assets/img/sidebar/icon-10.png" alt="icon"><span> Fees </span> <span class="menu-arrow"></span></a>
 <ul class="list-unstyled" style="display: none;">
-<li><a href="payments"><span>Payments</span></a></li>
+<li><a href="payments"><span>Payments History</span></a></li>
 </ul>
 </li>
 <li class="submenu">

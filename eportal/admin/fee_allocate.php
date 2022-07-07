@@ -44,7 +44,7 @@ require_once "helpers/helper.php";
         <div class="content-body">
           <div class="row">
              <div class="col-12">
-    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-money fa-1x"></span> GSSOTA FEE & LEVY STRUCTURE</h3>
+    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-money fa-1x"></span> FEE & LEVY STRUCTURE</h3>
   </div>
     </div>
      <div class="card">
@@ -145,7 +145,7 @@ require_once "helpers/helper.php";
                <div class="col-md-6">
                      <div class="form-group">
                   <label for="status"> TODAY DATE </label>
-               <input type="text" id="date" class="form-control" name="date"value="<?php echo date("Y-m-d");?>" readonly>
+               <input type="text" id="date" class="form-control" name="date" value="<?php echo date("Y-m-d");?>" readonly>
                 </div>
               </div>
                 <input type="hidden" name="action" value="submit_allocation_now">
@@ -231,7 +231,7 @@ require_once "helpers/helper.php";
       $(".__loadingBtn__").html('Submit').attr("disabled",false);
        $("#allocation_form")[0].reset();
        $("#response").html(data);
-        },1500);
+        },500);
       })
         });
 
@@ -245,7 +245,7 @@ require_once "helpers/helper.php";
         setTimeout(()=>{
       $(".__loadingBtn2__").html('Save Changes').attr("disabled",false);
        $("#myres").html(response);
-        },1500);
+        },500);
       })
         });
      })

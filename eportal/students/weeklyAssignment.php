@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
 <head>
 <?php include_once ("templates/Metadata.php");?>
-<title><?php echo __SCHOOL_NAME__; ?> :: Weekly Assignments</title>
+<title><?php echo $SmappDetails->school_name ?> :: Weekly Assignments</title>
 
 <?php include_once ("templates/HeaderLinks.php");?>
 

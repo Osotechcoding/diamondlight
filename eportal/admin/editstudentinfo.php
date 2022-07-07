@@ -68,7 +68,7 @@ if (isset($_GET['student-data']) && $_GET['student-data']!="") {
     <img src="../author.jpg" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
       <?php else: ?>
         <img src="../schoolImages/students/<?php echo $student_data->stdPassport;?>" width="100" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
-    <?php endif ?> <b class="text-muted"><?php echo ucwords($student_data->full_name);?>'s'</b> Profile </h3>
+    <?php endif ?> <b class="text-muted"><?php echo ucwords($student_data->full_name);?>'s </b> Profile </h3>
   </div>
     </div>
     <!-- Dropdown Buttons options -->
@@ -156,7 +156,7 @@ if (isset($_GET['student-data']) && $_GET['student-data']!="") {
                   <label>Portal Username:</label>
                 </div>
                 <div class="col-md-8 form-group">
-                  <input type="text" id="portal_username" class="form-control" name="pusername" placeholder="Portal Username" value="<?php echo $student_data->stdUserName;?>" readonly>
+                  <input type="text" autocomplete="off" id="portal_username" class="form-control" name="pusername" placeholder="Portal Username" value="<?php echo $student_data->stdUserName;?>" readonly>
                 </div>
                 <div class="col-md-4">
                   <label>Student Adimission Status:</label>
@@ -175,9 +175,9 @@ if (isset($_GET['student-data']) && $_GET['student-data']!="") {
                 </div>
                 <div class="col-12 col-md-8 offset-md-4 form-group">
                   <fieldset>
-                    <div class="col-md-6">
-                      <input type="password" class="form-control" name="auth_pass" placeholder="Authentication Code">
-                      <label >Pls Authenticate This Update</label>
+                    <div class="col-md-12">
+                      <input type="password" class="form-control" name="auth_pass" placeholder="**********">
+                      <label >Authentication Code</label>
                     </div>
                   </fieldset>
                 </div>
@@ -222,7 +222,7 @@ if (isset($_GET['student-data']) && $_GET['student-data']!="") {
             setTimeout(()=>{
               $(".__loadingBtn__").html('Save Changes').attr("disabled",false);
               $("#server-response").html(data);
-            },1000);
+            },500);
            });
         })
        })

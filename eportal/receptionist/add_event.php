@@ -9,7 +9,7 @@ require_once "helpers/helper.php";
 <head>
     <!-- metaTag -->
     <?php include ("../template/MetaTag.php"); ?>
-    <title>EVENT - <?php echo __OSO_APP_NAME__ ?></title>
+    <title>EVENT - <?php echo $SmappDetails->school_name ?></title>
      <?php include ("../template/dataTableHeaderLink.php"); ?>
     <!-- include dataTableHeaderLink.php -->
 

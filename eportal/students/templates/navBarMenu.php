@@ -9,7 +9,7 @@
 <ul class="nav float-left">
 
 <li>
-<a href="./" class="mobile-logo d-md-block d-lg-none d-block"><img src="../schlogo.png" alt="" width="30" height="30"></a>
+<a href="./" class="mobile-logo d-md-block d-lg-none d-block"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" alt="" width="30" height="30"></a>
 </li>
 </ul>
 

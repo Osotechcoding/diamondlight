@@ -6,7 +6,7 @@ require_once "helpers/helper.php";
   <!-- BEGIN: Head-->
 <head>
     <?php include "../template/MetaTag.php";?>
-    <title><?php echo $lang['Dashboard'] ?> || <?php echo $lang['webtitle'] ?></title>
+    <title><?php echo $SmappDetails->school_name ?> || <?php echo $_SESSION['STAFF_ROLE'] ?></title>
    <!-- include template/HeaderLink.php -->
    <?php include "../template/HeaderLink.php";?>
   <!-- END: Head-->
@@ -27,7 +27,7 @@ require_once "helpers/helper.php";
        <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
             <div class="breadcrumbs-top">
-              <h5 class="content-header-title float-left pr-1 mb-0">Session: 2021/2022 &raquo; Term: 2nd Term</h5>
+              <h5 class="content-header-title float-left pr-1 mb-0">Session: <?php echo $activeSess->session_desc_name; ?> &raquo; Term: <?php echo $activeSess->term_desc;?></h5>
               <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
@@ -57,25 +57,11 @@ require_once "helpers/helper.php";
     </div>
     <!-- END: Content-->
 
-    <!-- BEGIN: Customizer-->
-   <?php //include ("template/Customizer.php");?>
-    <!-- End: Customizer-->
-    <!-- Buynow Button-->
-    </div>
-    <!-- demo chat-->
-    <?php// include ("template/ChatDemo.php");?>
-    <!-- <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div> -->
-    <!-- BEGIN: Footer-->
-   <!--  -->
    <?php include "../template/footer.php"; ?>
     <!-- END: Footer-->
-
     <!-- BEGIN: Vendor JS-->
     <?php include "../template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
-   <script src="../app-assets/js/scripts/charts/chart-apex.min.js"></script>
-
     <!-- END: Page JS-->
   </body>
   <!-- END: Body-->
