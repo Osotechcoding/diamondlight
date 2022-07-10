@@ -258,8 +258,9 @@ public function get_all_students_by_status(string $status){
 				try {
 		$this->dbh->beginTransaction();
 		$date =date("Y-m-d");
+		$admitted_year = date("Y");
 		$time = date("h:i:s");
-		$admission_no = self::generate_admission_number();
+		$admission_no = self::generate_admission_number($admitted_year);
 		$confirmation_code = substr(md5(uniqid(mt_rand(),true)),0,10);
 		$this->stmt =$this->dbh->prepare("INSERT INTO $this->table_name(stdRegNo,stdEmail,stdUserName,stdPassword,studentClass,stdPhone,stdApplyDate,stdConfToken) VALUES(?,?,?,?,?,?,?,?);");
 	if ($this->stmt->execute(array($admission_no,$stu_email,$username,$hashed_password,$stu_class,$stu_phone,$date,$confirmation_code))) {
@@ -295,22 +296,22 @@ public function get_all_students_by_status(string $status){
 
 	/*ADMISSION REGISTRATION STEP ONE ENDS*/
 
-public function generate_admission_number(){
+public function generate_admission_number(string $admitted_year){
 	 $this->response ="";
-	 $prefix="DLS";
+	 $prefix=__OSO_SCHOOL_CODE__;//school Code 
 	$this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM $this->table_name ORDER BY stdRegNo DESC LIMIT 1");
 	$this->stmt->execute();
 	if ($this->stmt->rowCount() > 0) {
     if ($row = $this->stmt->fetch()) {
       $value2 = $row->stdRegNo;
-      $value2 = substr($value2, 5,11);//separating numeric part
+      $value2 = substr($value2, 10,14);//separating numeric part
       $value2 =$value2 + 1;//incrementing numeric value
-      $value2 = $prefix.date('y').sprintf('%06s',$value2);//concatenating incremented value
+      $value2 = $admitted_year.$prefix.sprintf('%04s',$value2);//concatenating incremented value
       $this->response = $value2;
     }
 	}else{
-	// "DLS000001"
-    $value2 =$prefix.date('y')."000001";
+	// "2021C120040001"
+    $value2 =$admitted_year.$prefix."0001";
     $this->response =$value2;
 	}
 	return $this->response;
@@ -557,13 +558,15 @@ $this->response = false;
 				}elseif ($this->config->check_single_data('visap_student_tbl','stdEmail',$student_email)) {
 	$this->response = $this->alert->alert_toastr("warning","$student_email is already taken on this Portal, Please try another!",__OSO_APP_NAME__." Says");
 				}else{
+					$admitted_year = substr($adm_date,0,4);
 					$default_pass = "student";
 			$hashed_password = $this->config->encrypt_user_password($default_pass);
-				$stdRegNo = self::generate_admission_number();
+				$stdRegNo = self::generate_admission_number($admitted_year);
 			 $confirmation_code = substr(md5(uniqid(mt_rand(),true)),0,14);
 			 $reg_date = date("Y-m-d");
 			 $student_type ="Day";
 			 $admitted ="Active";
+			 $student_username = $surName;
 			 //$portal_email = $student_username."@portal.".__OSO_APP_NAME__;
 			 try {
 			 	 $this->dbh->beginTransaction();
@@ -740,6 +743,7 @@ public function update_student_office_now($data){
 public function update_student_details($data){
 	$stdId = $this->config->Clean($data['studentId']);
 	$student_status = $this->config->Clean($data['student_status']);
+	$stdRegNo = $this->config->Clean($data['student_reg_number']);
 	$surname = $this->config->Clean($data['surname']);
 	$fname = $this->config->Clean($data['fname']);
 	$lname = $this->config->Clean($data['lname']);
@@ -749,15 +753,15 @@ public function update_student_details($data){
 	$gender = $this->config->Clean($data['gender']);
 	$approved = $this->config->Clean($data['auth_pass']);
 	//check for values
-	if ($this->config->isEmptyStr($stdId) || $this->config->isEmptyStr($student_status) || $this->config->isEmptyStr($surname) || $this->config->isEmptyStr($fname) || $this->config->isEmptyStr($lname) || $this->config->isEmptyStr($dob) || $this->config->isEmptyStr($presentClass) || $this->config->isEmptyStr($gender) || $this->config->isEmptyStr($approved) || $this->config->isEmptyStr($address)) {
-		$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Please check your inputs!",__OSO_APP_NAME__." Says");
+	if ($this->config->isEmptyStr($stdId) || $this->config->isEmptyStr($student_status) || $this->config->isEmptyStr($surname) || $this->config->isEmptyStr($fname) || $this->config->isEmptyStr($lname) || $this->config->isEmptyStr($dob) || $this->config->isEmptyStr($presentClass) || $this->config->isEmptyStr($gender) || $this->config->isEmptyStr($approved) || $this->config->isEmptyStr($address) || $this->config->isEmptyStr($stdRegNo)) {
+		$this->response = $this->alert->alert_toastr("error","There is an error in your Submission, Please check your inputs!",__OSO_APP_NAME__." Says");
 	}elseif ($approved !== __OSO__CONTROL__KEY__) {
 	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code, Try again!",__OSO_APP_NAME__." Says");
 	}else{ 
 		try {
 			 	 $this->dbh->beginTransaction();
-			 	$this->stmt = $this->dbh->prepare("UPDATE $this->table_name SET studentClass=?,stdSurName=?,stdFirstName=?,stdMiddleName=?,stdDob=?,stdGender=?,stdAdmStatus=?, stdAddress=? WHERE stdId=? LIMIT 1");
-			 	if ($this->stmt->execute(array($presentClass,$surname,$fname,$lname,$dob,$gender,$student_status,$address,$stdId))) {
+			 	$this->stmt = $this->dbh->prepare("UPDATE $this->table_name SET stdRegNo=?, studentClass=?,stdSurName=?,stdFirstName=?,stdMiddleName=?,stdDob=?,stdGender=?,stdAdmStatus=?, stdAddress=? WHERE stdId=? LIMIT 1");
+			 	if ($this->stmt->execute(array($stdRegNo,$presentClass,$surname,$fname,$lname,$dob,$gender,$student_status,$address,$stdId))) {
 		 $this->dbh->commit();
 				$this->response = $this->alert->alert_toastr("success","Updated Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 							window.location.href='./ab_students';

@@ -620,7 +620,7 @@ require_once "helpers/helper.php";
       					</div>
       	</div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
       	<div class="form-group">
       					<div class="controls">
       									<label>Student E-mail</label>
@@ -642,27 +642,7 @@ require_once "helpers/helper.php";
       					</div>
       	</div>
       </div>
-     <!--  <div class="col-md-6">
-      	<div class="form-group">
-      					<div class="controls">
-      									<label>Username</label>
-      									<input autocomplete="off" type="text"
-      													class="form-control"
-      													placeholder="Portal Username"
-      													name="student_username">
-      					</div>
-      	</div>
-      </div> -->
-     <!--  <div class="col-md-6">
-      	<div class="form-group">
-      					<div class="controls">
-      									<label>Password</label>
-      					<input autocomplete="off" type="text"
-      					class="form-control"
-      	placeholder="Portal Password" name="student_password" value="student" readonly>
-      					</div>
-      	</div>
-      </div> -->
+     
 
       <div class="col-md-6">
       	<div class="form-group">
@@ -704,16 +684,6 @@ require_once "helpers/helper.php";
       									<label>Date of Birth</label>
       					<input autocomplete="off" type="date"
       					class="form-control" name="student_dob">
-      					</div>
-      	</div>
-      </div>
-      <div class="col-md-6">
-      	<div class="form-group">
-      					<div class="controls">
-      									<label>Admission Number</label>
-      					<input autocomplete="off" type="text" value="<?php echo $Student->generate_admission_number();?>"
-      					class="form-control"
-      	placeholder="Will be Generated Automatically" readonly>
       					</div>
       	</div>
       </div>
