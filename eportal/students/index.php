@@ -23,35 +23,6 @@
 <!-- GREETING INFO ENDS -->
 
 <div class="row">
-  <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-  <div class="card">
-  <span class="text-center"></span>
-  <div class="card-header">
-      <h3 class="text-info text-center">  <span>Hi, Welcome to <i class="text-info"><?php echo strtoupper($student_data->studentClass);?></i></span></h3>
-
-  </div>
-  <div class="card-body text-success text-center">
-      <h6>Greetings From the Class Teacher</h6>
-      <p style="font-size: 20px;">No Teacher assigned to Your Class yet</p>
-  </div>
-  </div>
-  </div>
-  <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-    <div class="card">
-    <span class="text-center"></span>
-    <div class="card-header">
-    <h3 class="text-info text-center">Message From Principal!</h3>
-    </div>
-    <div class="card-body text-warning text-center">
-
-      <p style="font-size: 20px;">There are No Message from the Principal today...<br>
-Have a Nice Day....</p>
-
-    </div>
-    </div>
-  </div>
-</div>
-<div class="row">
 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
 <div class="dash-widget dash-widget5">
 <span class="float-left"><img src="assets/img/dash/dash-1.png" alt="" width="80"></span>

@@ -357,6 +357,8 @@ require_once ("Inc/Osotech.php");
             <!-- Newsletter section end -->
         </div> 
         <!-- Main content End -->
+<!-- Modal -->
+
         <!-- Footer Start -->
         <footer id="rs-footer" class="rs-footer home9-style main-home">
             <?php include_once ("Templates/Footer.php");?>
@@ -366,5 +368,6 @@ require_once ("Inc/Osotech.php");
         <?php include_once ("Templates/SearchBar.php") ?>
         <!-- Search Modal End -->
         <?php include_once ("Templates/FooterScript.php") ?>
+       
     </body>
 </html>

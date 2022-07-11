@@ -56,22 +56,25 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">About Us</a>
                                     <ul class="sub-menu">
-                                        <li><a href="about">Our Vision & Mission </a> </li>
-	                                    <li><a href="boards">Board of Admins</a> </li>
-	                                    <li><a href="about">Chairman Message</a> </li>
-                                
-	                                    <li><a href="faq">Our School History</a> </li>
-	                                    <li><a href="team">Our Staff</a> </li>
-
+                                        <li><a href="">History</a></li>
+                                         <li><a href="about">Vision & Mission</a></li>
+                                        <li> <a href="boards">Board of Advisors</a></li>
+                                        <li> <a href="about">Director's Welcome</a></li>
+                                        <li><a href="">Heads of School</a></li>
+                                        <li><a href="">School Song</a></li>
+                                        <li><a href="">School Tour</a></li>
+                                         <li><a href="team"> Staff</a> </li>
                                     </ul>
                                 </li>
 
 	                            <li class="menu-item-has-children">
-		                            <a href="#">STUDENTS</a>
+		                            <a href="#">ACADEMICS</a>
 		                            <ul class="sub-menu">
+                                        <li><a href="">Our Curriculum</a></li>
+                                        <li><a href="">Co-Curricula Activities</a></li>
+                                        <li><a href="">School Calendar</a></li>
 			                            <li><a href="prefects">STUDENT PREFECT</a> </li>
-			                            <li><a href="alumni">OUR ALUMNI</a> </li>
-			                            <li><a href="#">STUDENT ADMISSION</a> </li>
+			                            <li><a href="alumni"> ALUMNI PORTAL</a> </li>
 			                            <li><a href="./eportal/">STUDENT PORTAL</a> </li>
 			                            <li><a href="#">RESULT PORTAL</a> </li>
 
@@ -79,37 +82,52 @@
 	                            </li>
 
                                 <li class="menu-item-has-children">
-                                    <a href="#">ACADEMICS</a>
+                                    <a href="#">ADMISSION</a>
                                     <ul class="sub-menu">
-                                        <li>
-	                                        <a href="#">HOW TO APPLY</a>
-	                                        <a href="#">TUITION & FEE (PDF)</a>
-	                                        <a href="#">PROSPECTUS (PDF) </a>
-	                                        <a href="#">ADMISSION FORM (PDF)</a>
-	                                        <a href="#">TIMETABLE (PDF)</a>
-	                                        <a href="#">LIBRARY</a>
-                                        </li>
+                                        <li> <a href="">Why choose Us</a> </li>
+                                        <li><a href=""> Admission Process</a></li>
+                                        <li><a href="">Faqs</a></li>
+                                        <li><a href="">Online Admission</a> </li>
+                                        <li><a href="">Download Application Form</a></li>
+                                        <li><a href="">Arrange a Visit</a></li>
+                                         
                                     </ul>
                                 </li>
 
 	                            <li class="menu-item-has-children">
-		                            <a href="#">INFORMATION</a>
+		                            <a href="#">ACTIVITIES</a>
 		                            <ul class="sub-menu">
-			                            <li>
-				                            <a href="gallery">PHOTO GALLERY</a>
-				                            <a href="blog-right">SCHOOL NEWS</a>
-				                            <a href="events">SCHOOL EVENTS</a>
-				                            <a href="yearbook">YEAR BOOK</a>
-				                            <a href="#">SCHOOL CALENDAR</a>
-				                            <a href="#">SCHOOL HOSTEL</a>
-
-
-			                            </li>
+			                          
+                                        <li>
+                                             <a href="gallery">Gallery</a>
+                                        </li>
+                                    
+                                         <li>
+                                             <a href="blog-right">News</a>
+                                        </li>
+                                         <li>
+                                            <a href="events"> Events</a>
+                                        </li>
+                                         <li>
+                                            <a href="yearbook"> Year Book</a>
+                                        </li>
 		                            </ul>
 	                            </li>
-                                <li>
-	                                <a href="contact">Contact</a>
+                              
+                                    <li class="menu-item-has-children">
+                                    <a href="#">SCHOOLS</a>
+                                    <ul class="sub-menu">
+                                      
+                                        <li><a href="">Kiddies Land</a></li>
+                                        <li><a href="">Primary Schools</a></li>
+                                        <li><a href="">High School (Boarding)</a></li>
+                                        <li><a href="">Secondary School (Day)</a></li>
+                                         <li>
+                                    <a href="contact">Contact</a>
+                                </li> 
+                                    </ul>
                                 </li>
+                                 
                             </ul> <!-- //.nav-menu -->
                         </nav>
                     </div> <!-- //.main-menu -->
@@ -125,19 +143,7 @@
                                 <i class="flaticon-search"></i>
                             </a>
                         </li>
-
-                        <li class="user-icon last-icon">
-                            <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
-                        </li>
-
                     </ul>
-                    <span>
-                                            <a id="nav-expander" class="nav-expander">
-                                                <span class="dot1"></span>
-                                                <span class="dot2"></span>
-                                                <span class="dot3"></span>
-                                            </a>
-                                        </span>
                 </div>
             </div>
         </div>

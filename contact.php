@@ -42,7 +42,7 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title white-color">Contact Us</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Contact Us</li>
                     </ul>
@@ -61,7 +61,8 @@ require_once ("Inc/Osotech.php");
         						</div>
         						<div class="address-text">
                                     <span class="label">Address</span>
-                                    <span class="des">228-5 Main Street, Georgia, USA</span>
+                                    <span class="des"><?php echo $Osotech->getConfigData()->school_address; ?> <br>
+                                        <?php echo $Osotech->getConfigData()->school_state;?>,  <?php echo $Osotech->getConfigData()->country;?>.</span>
                                 </div>
         					</div>
         				</div>
@@ -72,7 +73,7 @@ require_once ("Inc/Osotech.php");
                                 </div>
                                 <div class="address-text">
                                     <span class="label">Email Address</span>
-                                    <span class="des"><a href="mailto:info@rstheme.com">info@rstheme.com</a></span>
+                                    <span class="des"><a href="mailto:<?php echo $Osotech->getConfigData()->school_email; ?>"><?php echo $Osotech->getConfigData()->school_email; ?></a> <br><a href="mailto:<?php echo $Osotech->getConfigData()->school_gmail; ?>"><?php echo $Osotech->getConfigData()->school_gmail; ?></a></span>
                                 </div>
                             </div>
                         </div> 
@@ -83,7 +84,7 @@ require_once ("Inc/Osotech.php");
                                 </div>
                                 <div class="address-text">
                                     <span class="label">Phone Number</span>
-                                    <span class="des"><a href="tel%2b0885898745.html">(+088)589-8745</a></span>
+                                    <span class="des"><a href="tel:<?php echo $Osotech->getConfigData()->school_phone; ?>"><?php echo $Osotech->getConfigData()->school_phone; ?>, <?php echo $Osotech->getConfigData()->school_fax; ?></a></span>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +103,7 @@ require_once ("Inc/Osotech.php");
                                     <p>Have some suggestions or just want to say hi? Our  support team are ready to help you 24/7.</p>
                                 </div>
 			                    <div id="form-messages"></div>
-								<form id="contact-form" method="post" action="https://keenitsolutions.com/products/html/educavo/mailer.php">
+								<form id="contact-form" method="post" action="">
 									<fieldset>
 										<div class="row">
                                             <div class="col-lg-6 mb-35 col-md-6 col-sm-6">

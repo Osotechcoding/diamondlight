@@ -62,7 +62,7 @@ require_once "helpers/helper.php";
                     <i class="fa fa-edit fa-2x font-medium-10"></i>
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Latest</h3></div>
-                  <h2 class="text-white mb-0"> <?php echo $Administration->count_all_available_lessons_by_type("application/pdf");?></h2>
+                  <h2 class="text-white mb-0"> <?php echo $Blog->CountLatestBlogs();?></h2>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@ require_once "helpers/helper.php";
                     <i class="fa fa-comments fa-2x font-medium-10"></i>
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Comments</h3></div>
-                  <h2 class="text-white mb-0"><?php echo $Administration->count_all_available_lessons_by_type("audio/mp3");?></h2>
+                  <h2 class="text-white mb-0"><?php echo $Blog->countAllBlogsComments();?></h2>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ require_once "helpers/helper.php";
                     <i class="fa fa-edit fa-2x font-medium-10"></i>
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Blogs</h3></div>
-                  <h2 class="text-white mb-0"><?php echo $Administration->count_all_available_lessons();?></h2>
+                  <h2 class="text-white mb-0"><?php echo $Blog->countAllBlogs();?></h2>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ require_once "helpers/helper.php";
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <button type="button" class="btn btn-danger btn-lg btn-round" data-toggle="modal" data-target="#uploadNewsModal"><span class="fa fa-edit fa-1x"></span> Upload Blogs</button> 
+          <button type="button" class="btn btn-dark btn-lg btn-round" data-toggle="modal" data-target="#uploadNewsModal"><span class="fa fa-edit fa-1x"></span> Upload Blogs</button> 
         </div>
         <div class="card-body card-dashboard">
        <div class="text-center" id="response"></div>
@@ -132,7 +132,7 @@ require_once "helpers/helper.php";
                     echo $values->blog_content;
                   }
                   ?></td>
-                  <td><?php echo date("l jS F,  Y",strtotime($values->created_at));?></td>
+                  <td><?php echo date("F j,  Y",strtotime($values->created_at));?></td>
                   <td><span class="badge badge-dark badge-rounded badge-lg"><?php echo $count_comment;?> </span></td>
                   <td><span class="badge badge-pill badge-info badge-md"><?php echo ($values->total_view > 0 ) ? $values->total_view : '0';?> </span></td>
                   <td><div class="btn-group dropdown mb-1">
@@ -141,12 +141,12 @@ require_once "helpers/helper.php";
               <span class="sr-only">Toggle Dropdown</span>
             </button>
            <div class="dropdown-menu">
-            <a class="dropdown-item text-info" href="blogedit?blogId=<?php echo $values->blog_id;?>&action=edit"><span class="fa fa-edit"></span> Edit Comments</a>
-              <a class="dropdown-item text-danger" href="blogcomments?blogId=<?php echo $values->blog_id;?>&action=view"><span class="fa fa-comments-o"></span> View Comments</a>
-              <a class="dropdown-item text-warning" href="javascript:void(0);"><span class="fa fa-edit"></span> Blog Status</a>
+            <a class="dropdown-item text-info" href="blogedit?blogId=<?php echo $values->blog_id;?>&action=edit"><span class="fa fa-edit mr-1"></span>Edit Blog</a>
+              <a class="dropdown-item text-danger" href="blogcomments?blogId=<?php echo $values->blog_id;?>&action=view"><span class="fa fa-comments-o mr-1"></span> View Comments</a>
+              <a class="dropdown-item text-warning" href="javascript:void(0);"><span class="fa fa-edit mr-1"></span> Blog Status</a>
 
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger" href="javascript:void(0);"><span class="fa fa-trash"></span> Delete</a>
+              <a class="dropdown-item text-danger" href="javascript:void(0);"><span class="fa fa-trash mr-1"></span> Delete</a>
             </div>
           </div></td>
                 </tr>
@@ -235,8 +235,7 @@ require_once "helpers/helper.php";
                     </div>
                     <div class="col-md-6 offset-md-3" id="uploaded_passport">
   <img id="previewImg" width="200" src="../assets/loaders/placeholder.png" alt="Placeholder" style="border: 2px solid darkblue;border-radius:10px;">
-  <p>Image Name: <span id="imagename"></span></p> 
-  <p>Image Size: <span id="ImageSize"></span></p> 
+  <p>Selected Image Size: <span id="ImageSize"></span></p> 
 </div>
                   </div>
                   

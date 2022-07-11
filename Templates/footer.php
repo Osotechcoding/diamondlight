@@ -1,3 +1,27 @@
+<!-- Public Alert Message -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text-center text-info"> PUBLIC NOTICE! </h1>
+      </div>
+      <div class="modal-body">
+       <div class="paoc-popup-margin paoc-popup-mheading">ADMISSION ADMISSION ADMISSION!</div>
+<div class="paoc-popup-margin paoc-popup-sheading"><?php echo strtoupper($Osotech->getConfigData()->school_name);?> Opening soon................</div>
+<div class="paoc-popup-margin paoc-popup-content"><p><span style="font-size: 14pt; color: #ff0000;"><strong><?php echo strtoupper($Osotech->getConfigData()->school_name);?>, <?php echo strtoupper($Osotech->getConfigData()->school_address);?>, <?php echo strtoupper($Osotech->getConfigData()->school_state);?> is currently open for admission into 2022/2023 Academic Session.</strong></span></p>
+<p><span style="font-size: 18pt;"><em>Enroll your child/children today. and Obtain 10% Discount Payment</em></span></p>
+<p><span style="font-size: 18pt;"><a href="contact"> Click here</a> to learn more&#8230;&#8230;..</span></p>
+<p><span style="font-size: 18pt;"><a href="tel:+2348131374443"><span style="color: #0000ff;">Call us</span></a> for details&#8230;&#8230;&#8230;&#8230;</span></p>
+<p><span style="font-size: 18pt;"><a href="https://wa.me/2348131374443" target="_blank" rel="noopener">Chat with us</a> now&#8230;&#8230;.</span></p>
+</div>
+ <span  class="text-danger float-right" style="cursor: pointer;" data-dismiss="modal">Close this Message</span>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Public Alert Message -->
+
 <div class="footer-top">
     <div class="container">
         <div class="row">

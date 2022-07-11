@@ -4,6 +4,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <!-- Bootstrap v4.4.1 js -->
 <script src="assets/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- Menu js -->
 <script src="assets/js/rsmenu-main.js"></script>
 <!-- op nav js -->
@@ -33,3 +34,11 @@
 <script src="assets/js/contact.form.js"></script>
 <!-- main js -->
 <script src="assets/js/main.js"></script>
+ <script>
+            $(window).on("load", function(){
+               setTimeout(()=>{
+                 $("#exampleModalCenter").modal("show");
+             },3000);
+
+            })
+        </script>

@@ -142,6 +142,40 @@ if ($this->stmt->rowCount()> 0) {
 	unset($this->dbh); 
 }
 }
+//count all blogs 
+public function countAllBlogs(){
+	$this->stmt = $this->dbh->prepare("SELECT count(`blog_id`) as cnt FROM `visap_blog_post_tbl` ");
+$this->stmt->execute();
+if ($this->stmt->rowCount()>0) {
+	$row =$this->stmt->fetch();
+	$this->response = $row->cnt;
+	return $this->response;
+	unset($this->dbh);
+}
+}
+
+//count all blogs 
+public function countAllBlogsComments(){
+	$this->stmt = $this->dbh->prepare("SELECT count(`blogId`) as cnt FROM `visap_blog_post_comments` ");
+$this->stmt->execute();
+if ($this->stmt->rowCount()>0) {
+	$row =$this->stmt->fetch();
+	$this->response = $row->cnt;
+	return $this->response;
+	unset($this->dbh);
+}
+}
+
+public function CountLatestBlogs(){
+	$this->stmt = $this->dbh->prepare("SELECT count(`blog_id`) as cnt FROM `visap_blog_post_tbl` WHERE DATE(`created_at`) >= (DATE(CURRENT_DATE())- INTERVAL 7 DAY)");
+$this->stmt->execute();
+if ($this->stmt->rowCount()>0) {
+	$row =$this->stmt->fetch();
+	$this->response = $row->cnt;
+	return $this->response;
+	unset($this->dbh);
+}
+}
 
 // EVENT METHODS START
 public function upload_upcomingEvents($data,$file){
