@@ -296,22 +296,24 @@ public function get_all_students_by_status(string $status){
 
 	/*ADMISSION REGISTRATION STEP ONE ENDS*/
 
-public function generate_admission_number(string $admitted_year){
+public function generate_admission_number($admitted_year){
 	 $this->response ="";
-	 $prefix=__OSO_SCHOOL_CODE__;//school Code
+	 $schoolCode=__OSO_SCHOOL_CODE__;//school Code
 	$this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM $this->table_name ORDER BY stdRegNo DESC LIMIT 1");
 	$this->stmt->execute();
 	if ($this->stmt->rowCount() > 0) {
-    if ($row = $this->stmt->fetch()) {
+    if ($row = $this->stmt->fetch());
       $value2 = $row->stdRegNo;
-      $value2 = substr($value2, 10,14);//separating numeric part
-      $value2 =$value2 + 1;//incrementing numeric value
-      $value2 = $admitted_year.$prefix.sprintf('%04s',$value2);//concatenating incremented value
+       //separating numeric part
+      $value2 = substr($value2, 10,14);
+      //incrementing numeric value
+      $value2 = $value2 + 1;
+      //concatenating incremented value
+      $value2 = $admitted_year.$schoolCode.sprintf('%04s',$value2);
       $this->response = $value2;
-    }
 	}else{
 	// "2021C120040001"
-    $value2 =$admitted_year.$prefix."0001";
+    $value2 =$admitted_year.$schoolCode."0001";
     $this->response =$value2;
 	}
 	return $this->response;
@@ -365,6 +367,7 @@ public function register_exam_subject($data){
 			}
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 	//show all my registered exam subject
 	public function all_my_registered_exam_subejcts($stdGrade){
@@ -398,6 +401,7 @@ public function register_exam_subject($data){
 
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function submit_written_classnote($data){
@@ -459,6 +463,7 @@ public function register_exam_subject($data){
 			}
 		}
 		return 	$this->response;
+		unset($this->dbh);
 	}
 
 	//fetch all classnote by student id
@@ -473,6 +478,7 @@ $this->response = false;
 		}
 
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function get_all_my_assessments_by_filter($stdId,$stdRegNo,$stdGrade,$term,$aca_session){
@@ -485,6 +491,7 @@ $this->response = false;
 			$this->response = false;
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	//
@@ -498,6 +505,7 @@ $this->response = false;
 			$this->response = false;
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function logout($id){
@@ -558,7 +566,7 @@ $this->response = false;
 				}elseif ($this->config->check_single_data('visap_student_tbl','stdEmail',$student_email)) {
 	$this->response = $this->alert->alert_toastr("warning","$student_email is already taken on this Portal, Please try another!",__OSO_APP_NAME__." Says");
 				}else{
-					$admitted_year = substr($adm_date,0,4);
+					$admitted_year = date("Y",strtotime($adm_date));
 					$default_pass = "student";
 			$hashed_password = $this->config->encrypt_user_password($default_pass);
 				$stdRegNo = self::generate_admission_number($admitted_year);
