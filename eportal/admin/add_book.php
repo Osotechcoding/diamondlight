@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -42,9 +42,9 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Current User</a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
                   </li>
-                  <li class="breadcrumb-item active">Current Page Title
+                  <li class="breadcrumb-item active">Library Management
                   </li>
                 </ol>
               </div>
@@ -53,11 +53,11 @@ require_once "helpers/helper.php";
         </div>
         <div class="content-body">
           <div class="row">
- 
+
 </div>
  <!-- Statistics Cards Starts -->
         <div class="row">
-       
+
         <div class="col-xl-12 col-md-12">
           <div class="row">
             <div class="col-md-3 dashboard-users-success">
@@ -68,7 +68,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Books</h3></div>
                   <h2 class="text-white mb-0"><?php echo 10; ?></h2>
-                  
+
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Authors</h3></div>
                   <h2 class="text-white mb-0"> <?php echo 20;?></h2>
-                 
+
                 </div>
               </div>
             </div>
@@ -93,7 +93,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Borrowed</h3></div>
                   <h2 class="text-white mb-0"><?php echo 30;?></h2>
-                  
+
                 </div>
               </div>
             </div>
@@ -105,15 +105,15 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Available</h3></div>
                   <h2 class="text-white mb-0"><?php echo 50; ?></h2>
-                  
+
                 </div>
               </div>
             </div>
-           
-            
+
+
           </div>
         </div>
-       
+
       </div>
        <!-- Revenue Growth Chart Starts -->
 
@@ -169,12 +169,12 @@ require_once "helpers/helper.php";
           <button type="button" class="btn btn-outline-dark btn-sm btn-rounded" data-toggle="modal" data-target="#addbookModal"><i class="fa fa-book fa-2x"></i> Add New Book</button>
         </div>
         <div class="card-body card-dashboard">
-       
+
         <div class="table-responsive">
             <table class="table table-striped osotechDatatable">
               <thead class="text-center">
                 <tr>
-                 
+
                   <th>Shef</th>
                   <th>Column</th>
                   <th> Title</th>
@@ -189,7 +189,7 @@ require_once "helpers/helper.php";
               </thead>
               <tbody class="text-center">
                 <tr>
-                 
+
                   <td>12</td>
                   <td>9</td>
                   <td>The Mystery</td>
@@ -353,10 +353,10 @@ require_once "helpers/helper.php";
                      <div class="form-group">
                   <label for="column_no">PLACE AT COLUMN NO</label>
                 <input type="number" class="form-control form-control-lg" name="column_no" id="column_no" step="1" placeholder="12">
-           
+
                     </div>
                   </div>
-                    
+
                  </div>
                   </div>
                 </div>
@@ -473,7 +473,7 @@ require_once "helpers/helper.php";
                 <input type="number" class="form-control form-control-lg" value="30" name="qty" value="90">
                     </div>
                   </div>
-                  
+
                    <div class="col-md-6">
                      <div class="form-group">
                   <label for="shef_no">PLACE AT SHEF NO</label>
@@ -484,10 +484,10 @@ require_once "helpers/helper.php";
                      <div class="form-group">
                   <label for="column_no">PLACE AT COLUMN NO</label>
                 <input type="number" class="form-control form-control-lg" name="column_no" id="column_no" step="1" value="12">
-           
+
                     </div>
                   </div>
-                    
+
                  </div>
                   </div>
                 </div>

@@ -60,13 +60,13 @@ require_once "helpers/helper.php";
                             </a>
                         </li>
                         
-                        <li class="nav-item">
+                      <!--   <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" id="staff-bank-info" data-toggle="pill"
                                 href="#bank" aria-expanded="false">
                                 <i class="bx bx-info-circle"></i>
                                 <span>Update Bank Info</span>
                             </a>
-                        </li>
+                        </li> -->
                         <!--  <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" id="account-pill-password" data-toggle="pill"
                                 href="#update-avatar-photo" aria-expanded="false">
@@ -101,8 +101,8 @@ require_once "helpers/helper.php";
                                     aria-labelledby="account-pill-general" aria-expanded="true">
                                     <div class="media text-center">
                                         <a href="javascript: void(0);">
-                                            <img src="../schlogo.png"
-                                                class="rounded mr-75" alt="profile image" height="100" width="100" style="border: solid black 2px; border-radius: 20px;">
+        <img src="<?php echo $Configuration->get_schoolLogoImage();?>"
+        class="rounded mr-75" alt="profile image" height="150" width="150" style="border:2px solid darkblue;">
                                         </a>
                                         
                                     </div>

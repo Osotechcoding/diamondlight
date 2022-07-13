@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Admin </a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
                   </li>
                   <li class="breadcrumb-item active">Manage Holiday
                   </li>
@@ -57,10 +57,10 @@ require_once "helpers/helper.php";
           </div>
           <!-- Statistics Cards Starts -->
         <div class="row">
-       
+
         <div class="col-xl-12 col-md-12">
           <div class="row">
-            
+
             <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-info">
                 <div class="card-body py-1">
@@ -69,7 +69,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Upcoming</h3></div>
                   <h2 class="text-white mb-0"> <?php echo 20;?></h2>
-                 
+
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Observed</h3></div>
                   <h2 class="text-white mb-0"><?php echo 30;?></h2>
-                  
+
                 </div>
               </div>
             </div>
@@ -94,15 +94,15 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Holidays</h3></div>
                   <h2 class="text-white mb-0"><?php echo 50; ?></h2>
-                  
+
                 </div>
               </div>
             </div>
-           
-            
+
+
           </div>
         </div>
-       
+
       </div>
        <!-- Revenue Growth Chart Starts -->
     <div class="card">
@@ -155,10 +155,10 @@ require_once "helpers/helper.php";
       </div>
     </div>
     <!-- END: Content-->
-  
+
     </div>
     <!-- demo chat-->
-    
+
     <!-- BEGIN: Footer-->
    <!-- BUS MODAL Start -->
    <div class="modal fade" id="addHolidayModal" tabindex="-1" role="dialog"
@@ -191,7 +191,7 @@ require_once "helpers/helper.php";
                </select>
                 </div>
               </div>
-               
+
                    <div class="col-md-6">
                      <div class="form-group">
                   <label for="class_teacher">DATE FROM </label>
@@ -221,7 +221,7 @@ require_once "helpers/helper.php";
                       </fieldset>
                       <small class="counter-value float-right"><span class="char-count">0</span> / 150 </small>
                   </div>
-           
+
                  </div>
                   </div>
                 </div>
@@ -241,7 +241,7 @@ require_once "helpers/helper.php";
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
    <?php include ("../template/DataTableFooterScript.php"); ?>
-  
+
     <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
    <script>
      $(document).ready(function(){

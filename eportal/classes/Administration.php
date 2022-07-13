@@ -309,6 +309,19 @@ return $this->response;
 				$this->response = false;
 			}
 			return $this->response;
+			unset($this->dbh);
+	}
+
+	public function get_all_subjects_by_status(string $status){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `school_subjects` WHERE status=? ORDER BY subject_desc ASC LIMIT 50");
+			$this->stmt->execute([$status]);
+			if ($this->stmt->rowCount()>0) {
+			$this->response = $this->stmt->fetchAll();
+			}else{
+				$this->response = false;
+			}
+			return $this->response;
+			unset($this->dbh);
 	}
 	public function get_subject_ById($subjectId){
 		$this->stmt = $this->dbh->prepare("SELECT * FROM `school_subjects` WHERE subject_id=? LIMIT 1");
@@ -319,6 +332,7 @@ return $this->response;
 				$this->response = false;
 			}
 			return $this->response;
+			unset($this->dbh);
 	}
 
 	public function delete_subject_ById($subjectId){
@@ -343,6 +357,7 @@ return $this->response;
 			$this->response = false;
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function count_all_subjects(){
@@ -1785,7 +1800,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 		if ($this->config->isEmptyStr($todaydate)) {
 		$this->response = $this->alert->alert_msg("Attendance Date  Required! ","danger");
 		}else{
-			for ($i=0; $i < (int)$total_count; $i++) { 
+			for ($i=0; $i < (int)$total_count; $i++) {
 			$reg_number = $data['reg_number'][$i];
 			$attstatus = 	$data['attendant_status'][$i];
 			$classroom = 	$data['student_classroom'][$i];
@@ -1810,7 +1825,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 				window.location.replace('student_attendance');
 			},500);</script>";
 					}
-						
+
 					} catch (PDOException $e) {
 				$this->dbh->rollback();
 					$this->response  = $this->alert->alert_msg(" Attendance Uploading Failed! Please try again...: Error: ".$e->getMessage(),"danger");
@@ -1831,7 +1846,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 return $diff->format('%y');
 	}
 
-	
+
   public function check_Web_Site($url){
     // Check if the URL provided is valid
     if(!filter_var($url, FILTER_VALIDATE_URL)){
@@ -1851,9 +1866,9 @@ return $diff->format('%y');
     return $this->response ? true : false;
     /*$url = 'https://stackhowto.com';
   if(checkWebSite($url)){
-    echo 'The web site is available.';      
+    echo 'The web site is available.';
   }else{
-     echo 'The web site is not available'; 
+     echo 'The web site is not available';
   }*/
   }
 
@@ -1870,7 +1885,7 @@ return $diff->format('%y');
   }
 
   public function get_all_registered_subejcts($gradeClass){
-  	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_registered_subject_tbl` WHERE subject_class=? ORDER BY subject_name ASC LIMIT 15");
+  	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_registered_subject_tbl` WHERE subject_class=? ORDER BY subject_name ASC");
   	$this->stmt->execute(array($gradeClass));
   	if ($this->stmt->rowCount()>0) {
   		$this->response = $this->stmt->fetchAll();
@@ -1898,19 +1913,20 @@ return $diff->format('%y');
 				$this->stmt =$this->dbh->prepare("DELETE FROM `visap_registered_subject_tbl` WHERE id=? AND subject_name=? LIMIT 1");
 				if ($this->stmt->execute(array($subId,$subject))) {
 					$this->dbh->commit();
-					$this->response = $this->alert->alert_msg("Selected subject removed successfully","success")."<script>setTimeout(()=>{
+					$this->response = $this->alert->alert_toastr("success","Selected subject removed successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 							window.location.reload();
 						},500);</script>";
 				}
 			} catch (PDOException $e) {
 				 $this->dbh->rollback();
-    $this->response  =$this->alert->alert_msg("Failed to Unregister Subject: This error Occurred: ".$e->getMessage(),"danger");
+    $this->response  =$this->alert->alert_toastr("error","Failed to Unregister Subject: This error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 			}
 
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
-  
+
 
   public function register_exam_subject($data){
 		//collect form data
@@ -1958,7 +1974,7 @@ return $diff->format('%y');
 		return $this->response;
 	}
 
-	//get student result details to coment on 
+	//get student result details to coment on
 	public function get_all_uploaded_school_resultByClassName($student_class,$term,$session){
 		$this->stmt = $this->dbh->prepare("SELECT DISTINCT(stdRegCode), sum(overallMark) as total_mark FROM `visap_termly_result_tbl` WHERE studentGrade=? AND term=? AND aca_session=? ORDER BY stdRegCode ASC");
 		$this->stmt->execute(array($student_class,$term,$session));
@@ -1976,7 +1992,7 @@ public function send_resend_confirmation_code($data){
 	$this->response = $this->alert->alert_toastr("success","Confirmation code sent, Check your mail Inbox","MAIL SENT");
 	return $this->response;
 }
-	
+
 	/*RESEND CONFIRMATION CODE TO STAFF ENDs*/
 
 //filter attendance student by date
@@ -2007,10 +2023,10 @@ public function send_resend_confirmation_code($data){
               window.location.reload();
             },500);</script>";
       }
-    
+
     } catch (PDOException $e) {
    $this->dbh->rollback();
-   $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),"ERROR"); 
+   $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),"ERROR");
     }
     return $this->response;
     unset($this->dbh);
@@ -2026,10 +2042,10 @@ public function send_resend_confirmation_code($data){
               window.location.reload();
             },500);</script>";
       }
-    
+
     } catch (PDOException $e) {
    $this->dbh->rollback();
-    $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),"ERROR"); 
+    $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),"ERROR");
     }
 
     return $this->response;
@@ -2271,7 +2287,7 @@ public function send_resend_confirmation_code($data){
   		unset($this->dbh);
   }
 
-  //JUST DONE TODAY 18 may 2022 
+  //JUST DONE TODAY 18 may 2022
 public function upload_affective_domain($data){
 		$uploadedBy = $this->config->Clean($data['class_teacher']);
 		$auth_pass = $this->config->Clean($data['auth_pass']);
@@ -2283,7 +2299,7 @@ public function upload_affective_domain($data){
 			}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
 	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code! ",__OSO_APP_NAME__." Says");
 			}else{
-for ($i=0; $i < (int)$total_count; $i++) { 
+for ($i=0; $i < (int)$total_count; $i++) {
 			$reg_number = $data['std_reg_number'][$i];
 			$student_id = 	$data['student_id'][$i];
 			$std_class = 	$data['student_class'][$i];
@@ -2310,7 +2326,7 @@ for ($i=0; $i < (int)$total_count; $i++) {
 				window.location.replace('uploading_behavior');
 			},500);</script>";
 					}
-						
+
 					} catch (PDOException $e) {
 				$this->dbh->rollback();
 					$this->response  = $this->alert->alert_toastr("error","Uploading Failed! Please try again...: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
@@ -2368,7 +2384,7 @@ try {
 				window.location.reload();
 			},500);</script>";
 					}
-						
+
 					} catch (PDOException $e) {
 				$this->dbh->rollback();
 					$this->response  = $this->alert->alert_toastr("error","Uploading Failed! Please try again...: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
@@ -2527,7 +2543,7 @@ $this->stmt->execute(array($admision_no,$stdGrade,$term,$session));
 if ($this->stmt->rowCount()==1) {
 	$this->response = $this->stmt->fetch();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
   }
   public function get_class_teacher_class_name($stdGrade){
@@ -2537,7 +2553,7 @@ $this->stmt->execute(array($stdGrade,$staffRole));
 if ($this->stmt->rowCount()==1) {
 	$this->response = $this->stmt->fetch();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
   }
   public function get_principal_info(){
@@ -2547,7 +2563,7 @@ $this->stmt->execute(array($staffRole));
 if ($this->stmt->rowCount()==1) {
 	$this->response = $this->stmt->fetch();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
   }
 
@@ -2577,7 +2593,7 @@ public function upload_school_logoImage($data, $file){
     else{
     $logo_realName = "logo_".time().mt_rand(0,9999999).".".$image_ext;
     //lets update the student logo in the db
-    $logo_destination = "../schoolImages/Logo/".$logo_realName; 
+    $logo_destination = "../schoolImages/Logo/".$logo_realName;
     try {
     	$this->dbh->beginTransaction();
     	$id =1;
@@ -2590,13 +2606,13 @@ public function upload_school_logoImage($data, $file){
 						},500);</script>";
     		}
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($passport_destination)) {
 		 unlink($passport_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
     }
    }else{
@@ -2615,5 +2631,52 @@ public function upload_school_logoImage($data, $file){
   		unset($this->dbh);
   	}
   }
+
+	//BULK SUBJECT REG
+	public function register_bulk_subjects($data){
+		$student_class = $this->config->Clean($data['student_class']);
+		$auth_pass = $this->config->Clean($data['authcode']);
+			if (isset($data['subject_arr'])) {
+				foreach ($data['subject_arr'] as $subjects) {
+				if ($this->config->isEmptyStr($student_class)) {
+					$this->response = $this->alert->alert_toastr("error","Please Choose a Class  to register the Selected Subjects!",__OSO_APP_NAME__." Says");
+				}elseif ($this->config->isEmptyStr($auth_pass)) {
+				$this->response = $this->alert->alert_toastr("error","Authentication Code is Required!",__OSO_APP_NAME__." Says");
+				}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+				$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+				}
+				else{
+
+					//lets check if the subject is already registered for the selected class
+					$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_registered_subject_tbl` WHERE subject_class=? AND subject_name=?");
+					$this->stmt->execute(array($student_class,$subjects));
+					if ($this->stmt->rowCount() > 0) {
+						$this->response = $this->alert->alert_toastr("error","Selected Subject(s) is/are already Registered for $student_class",__OSO_APP_NAME__." Says");
+					}else{
+						try {
+	$created_at = date("Y-m-d");
+					$this->dbh->beginTransaction();
+	    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_registered_subject_tbl` (subject_class,subject_name,createdBy,created_at) VALUES (?,?,?,?)");
+	    	if ($this->stmt->execute(array($student_class,$subjects,$_SESSION['ADMIN_USERNAME'],$created_at))) {
+	    		$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","Selected Subjects registered Successfully...",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+	    	}else{
+	    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+	    	}
+				} catch (PDOException $e) {
+				$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+				}
+					}
+				}
+				}
+			}else{
+				 $this->response = $this->alert->alert_toastr("error","Please select at least a subject to register",__OSO_APP_NAME__." Says");
+			}
+		return $this->response;
+		unset($this->dbh);
+	}
 
 }

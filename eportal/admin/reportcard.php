@@ -192,24 +192,25 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
     }elseif ($showResult->studentGrade == 'SSS 1 A' || $showResult->studentGrade == 'SSS 1 B' || $showResult->studentGrade == 'SSS 1 C' || $showResult->studentGrade == 'SSS 2 A' || $showResult->studentGrade == 'SSS 2 B' || $showResult->studentGrade == 'SSS 2 C' || $showResult->studentGrade =='SSS 3 A' || $showResult->studentGrade =='SSS 3 B' || $showResult->studentGrade =='SSS 3 C') {
      $amInClass ='Senior';
     }else{
-       $amInClass ='Pry';
+    $amInClass ='Pry';
     }
   $stmt2 = $dbh->prepare("SELECT * FROM `visap_result_grading_tbl` WHERE grade_class='$amInClass' AND $myTotalMark>=score_from AND $myTotalMark<=score_to");
   $stmt2->execute();
-  if ($stmt->rowCount()>0) {
+  if ($stmt2->rowCount()>0) {
     while ($r = $stmt2->fetch()) {?>
-    <td> <?php echo ucwords(strtolower($showResult->subjectName));?></td> 
-                    <td><?php echo intval($showResult->ca+$showResult->test1+$showResult->test2);?></td>
-                    <td> <?php echo $showResult->exam;?></td>
-                    <td><?php echo intval($showResult->ca+$showResult->test1+$showResult->test2+$showResult->exam);?></td>
-                    <td> <?php echo $r->mark_grade;?></td>
-                    <td><?php echo $r->score_remark;?> </td>
+      <tr>
+    <td align="center"> <?php echo ucwords(strtolower($showResult->subjectName));?></td> 
+                    <td align="center"><?php echo intval($showResult->ca);?></td>
+                    <td align="center"> <?php echo $showResult->exam;?></td>
+                    <td align="center"><?php echo $myTotalMark;?></td>
+                   <td align="center"> <?php echo $r->mark_grade;?></td>
+                    <td align="center"><?php echo $r->score_remark;?> </td>
                   </tr>
       <?php
     }
   }
      ?>
- <tr>
+
   <?php }
   }
                ?>

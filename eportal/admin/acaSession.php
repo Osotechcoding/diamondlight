@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
                   </li>
                   <li class="breadcrumb-item active">Manage Session & Term
                   </li>
@@ -53,7 +53,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Current</h3></div>
                   <h2 class="text-white mb-0"><?php echo $activeSess->term_desc;?></h2>
-                  
+
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Weeks</h3></div>
                   <h2 class="text-white mb-0"><?php echo $session_data->Weeks_open;?>Wks</h2>
-                 
+
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Vacation</h3></div>
                   <h2 class="text-white mb-0"><?php echo date("j M, Y",strtotime($session_data->term_ended)) ?></h2>
-                 
+
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ require_once "helpers/helper.php";
       </div>
 <section id="basic-horizontal-layouts">
   <div class="row match-height">
-   
+
     <div class="col-md-6 col-12">
       <div class="card">
         <div class="card-header">
@@ -136,7 +136,7 @@ require_once "helpers/helper.php";
                      <option value="2nd Term">2nd Term</option>
                      <option value="3rd Term">3rd Term</option>
                    </select>
-                   
+
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -194,7 +194,7 @@ require_once "helpers/helper.php";
             </div>
           </form>
         </div>
-        
+
       </div>
     </div>
      <div class="col-md-6 col-12">
@@ -248,7 +248,7 @@ require_once "helpers/helper.php";
                 </div>
                 <div class="col-md-8 form-group">
                   <div class="position-relative has-icon-left">
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                       value="<?php echo date("l jS F Y",strtotime($session_data->new_term_begins));?>" readonly>
                     <div class="form-control-position">
                       <i class="bx bx-calendar"></i>
@@ -261,7 +261,7 @@ require_once "helpers/helper.php";
                 </div>
                 <div class="col-md-8 form-group">
                   <div class="position-relative has-icon-left">
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                       value="<?php echo $session_data->Weeks_open;?> Weeks" readonly>
                     <div class="form-control-position">
                       <i class="bx bx-calendar"></i>
@@ -274,7 +274,7 @@ require_once "helpers/helper.php";
                 </div>
                 <div class="col-md-8 form-group">
                   <div class="position-relative has-icon-left">
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                       value="<?php echo $session_data->Days_open;?> Days" readonly>
                     <div class="form-control-position">
                       <i class="bx bx-calendar"></i>
@@ -297,14 +297,14 @@ require_once "helpers/helper.php";
 
     </div>
     <!-- demo chat-->
-  
+
     <!-- BEGIN: Footer-->
           <!--Basic Modal -->
           <div class="modal fade text-left" id="active_session_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
               <div class="modal-content">
-              <div class="text-center mt-1"><?php echo $Alert->alert_msg("Notice: Session Declared here will Override the Current academic Session!","warning");?> </div> 
+              <div class="text-center mt-1"><?php echo $Alert->alert_msg("Notice: Session Declared here will Override the Current academic Session!","warning");?> </div>
                  <form id="submit_New_Session_Form">
                 <div class="modal-body">
                    <div class="form-group">
@@ -332,7 +332,7 @@ require_once "helpers/helper.php";
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
               <div class="modal-content">
-              <div class="text-center mt-1" id="res"></div> 
+              <div class="text-center mt-1" id="res"></div>
                  <form id="simulation_Form">
                 <div class="modal-body">
                    <div class="form-group">

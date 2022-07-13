@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -31,9 +31,9 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Admin</a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
                   </li>
-                  <li class="breadcrumb-item active">Manage Session & Term
+                  <li class="breadcrumb-item active">Manage School Bus & Students
                   </li>
                 </ol>
               </div>
@@ -43,7 +43,7 @@ require_once "helpers/helper.php";
         <div class="content-body">
 <section id="basic-horizontal-layouts">
   <div class="row">
-   
+
     <div class="col-md-5 col-12">
       <div class="card">
         <div class="text-center mt-1">
@@ -111,7 +111,7 @@ require_once "helpers/helper.php";
                       placeholder="2,000.00" readonly>
                   </div>
                 </div>
-               
+
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-primary mr-1">Submit</button>
                   <button type="reset" class="btn btn-light-secondary">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -130,7 +130,7 @@ require_once "helpers/helper.php";
     </div>
     <!-- END: Content-->
 
-   
+
     </div>
     <!-- demo chat-->
     <!-- BEGIN: Footer-->
@@ -180,7 +180,7 @@ require_once "helpers/helper.php";
           alert("Form submitted");
           window.location.assign("./");
         });
-        //submit new session form action 
+        //submit new session form action
         $("#submitNewSessionForm").on("submit",function(event){
           event.preventDefault();
           alert("text")

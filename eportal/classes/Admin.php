@@ -37,7 +37,7 @@ class Admin{
     if ($this->stmt->rowCount()==1) {
       $result = $this->stmt->fetch();
       $db_password = $result->adminPass;
-      //check if password entered match with db pwd 
+      //check if password entered match with db pwd
       if ($this->config->check_two_passwords_hash($password,$db_password)) {
       	if (isset($data['rememberme']) && $data['rememberme']==='on') {
       		// save details to cookie
@@ -53,7 +53,7 @@ class Admin{
       	$_COOKIE['login_email'] =$email;
       	$_COOKIE['login_pass'] =$password;
       	$_COOKIE['login_user'] =$result->adminUser;
-      	
+
       	$_SESSION['ADMIN_TOKEN_ID'] =$result->adminId;
       	$_SESSION['ADMIN_SES_TYPE'] =$result->adminType;
       	$_SESSION['ADMIN_USERNAME'] =$result->adminUser;
@@ -69,7 +69,7 @@ class Admin{
       $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO_APP_NAME__." Says");// Email Address Not Found or User Details not found
     }
 		}
-		
+
    return $this->response;
    unset($this->dbh);
   }
@@ -113,7 +113,7 @@ class Admin{
     if ($this->stmt->rowCount()==1) {
       $result = $this->stmt->fetch();
       $db_password = $result->adminPass;
-      //check if password entered match with db pwd 
+      //check if password entered match with db pwd
       if ($this->config->check_two_passwords_hash($password,$db_password)) {
       	$session_token = Session::set_xss_token();
       	$_SESSION['ADMIN_TOKEN_ID'] =$result->adminId;
@@ -190,7 +190,7 @@ public function reset_admin_password($data){
 						}
 
 					}else{
-					$this->response = $this->alert->alert_msg("Old Password is not Match!","danger");	
+					$this->response = $this->alert->alert_msg("Old Password is not Match!","danger");
 					}
 				}else{
 					//echo

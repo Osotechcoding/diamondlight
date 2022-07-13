@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -35,9 +35,9 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo strtoupper($_SESSION['STAFF_USERNAME']);?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
                   </li>
-                  <li class="breadcrumb-item active">Financial Info
+                  <li class="breadcrumb-item active">Financial Information
                   </li>
                 </ol>
               </div>
@@ -50,14 +50,14 @@ require_once "helpers/helper.php";
     <h3 class="bd-lead text-primary text-bold"><span class="fa fa-line-chart fa-2x"></span> INCOME & EXPENDITURES </h3>
   </div>
     </div>
-   
+
     <!-- content goes here -->
     <div class="row">
         <!-- Statistics Cards Starts -->
         <div class="col-xl-12 col-md-12">
            <h2 class="brand-text text-bold text-muted">INCOME INFO</h2>
           <div class="row">
-           
+
             <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-success">
                 <div class="card-body py-1">
@@ -66,7 +66,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis" style="font-size: 1.5rem !important"><?php echo date("j F Y");?> 's Income</div>
                   <h2 class="text-white mb-0">&#8358; <?php echo number_format($Administration->get_all_money_paid_today(),2);?></h2>
-                   
+
                 </div>
               </div>
             </div>
@@ -99,18 +99,18 @@ require_once "helpers/helper.php";
       <div class="row">
         <!-- Statistics Cards Starts -->
         <div class="col-xl-12 col-md-12">
-           <h2 class="brand-text text-bold text-muted">EXPENSE INFO</h2>
+           <h2 class="brand-text text-bold text-muted">EXPENDITURES INFO</h2>
           <div class="row">
-          
+
             <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-danger">
                 <div class="card-body py-1">
                   <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
                     <i class="fa fa-line-chart fa-4x font-medium-5"></i>
                   </div>
-                  <div class="text-white line-ellipsis" style="font-size: 1.5rem !important"><?php echo date("j F Y");?> 's Expense</div>
+                  <div class="text-white line-ellipsis" style="font-size: 1.5rem !important"><?php echo date("j F Y");?> 's Expenses</div>
                   <h2 class="text-white mb-0">&#8358;<?php echo number_format($Administration->get_all_today_expenses(),2) ?></h2>
-                   
+
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ require_once "helpers/helper.php";
                   <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
                     <i class="fa fa-money fa-2x font-medium-5"></i>
                   </div>
-                  <div class="text-white line-ellipsis"> <?php echo $activeSess->session_desc_name; ?> Expense</div>
+                  <div class="text-white line-ellipsis"> <?php echo $activeSess->session_desc_name; ?> Expenses</div>
                   <h2 class="text-white mb-0">&#8358; <?php echo number_format($Administration->get_all_expenses_this_session($activeSess->session_desc_name),2) ?></h2>
                 </div>
               </div>
@@ -144,21 +144,14 @@ require_once "helpers/helper.php";
       </div>
     </div>
     <!-- END: Content-->
-
-   
     </div>
-   
     <!-- BEGIN: Footer-->
-   <!--  -->
    <?php include "../template/footer.php"; ?>
     <!-- END: Footer-->
-
     <!-- BEGIN: Vendor JS-->
     <?php include "../template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
-    <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
     <!-- END: Page JS-->
-
     <!-- END: Page JS-->
   </body>
   <!-- END: Body-->

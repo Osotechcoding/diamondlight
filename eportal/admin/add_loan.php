@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Admin</a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
                   </li>
                   <li class="breadcrumb-item active">LOAN MANAGEMENT MODULE
                   </li>
@@ -51,14 +51,14 @@ require_once "helpers/helper.php";
           </div>
         </div>
         <div class="content-body"><div class="row">
- 
+
 </div>
 
 <!-- Column selectors with Export Options and print table -->
 <section id="column-selectors">
    <!-- Statistics Cards Starts -->
     <div class="row">
-       
+
         <div class="col-xl-12 col-md-12">
           <div class="row">
             <div class="col-md-3 dashboard-users-success">
@@ -69,7 +69,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Recieved Today</h3></div>
                   <h2 class="text-white mb-0">&#8358;10,000.00</h2>
-                  
+
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Loaned Out</h3></div>
                   <h2 class="text-white mb-0">&#8358;24,000.00</h2>
-                 
+
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Interest </h3></div>
                   <h2 class="text-white mb-0">&#8358;34,000.00</h2>
-                  
+
                 </div>
               </div>
             </div>
@@ -107,13 +107,13 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Total Amount </h3></div>
                   <h2 class="text-white mb-0">&#8358;34,000.00</h2>
-                  
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-    
+
       </div>
            <!-- Revenue Growth Chart Starts -->
   <div class="row">
@@ -123,7 +123,7 @@ require_once "helpers/helper.php";
           <button type="button" class="btn btn-dark btn-md btn-rounded" data-toggle="modal" data-target="#uploadLoanStaffModal"><span class="fa fa-plus fa-1x"></span> Add Loan</button>
         </div>
         <div class="card-body card-dashboard">
-       
+
         <div class="table-responsive">
             <table class="table table-striped osotechDatatable">
               <thead class="text-center">
@@ -139,7 +139,7 @@ require_once "helpers/helper.php";
                 </tr>
               </thead>
               <tbody class="text-center">
-                <?php 
+                <?php
                 $get_all_loans = $Administration->get_all_loans_list();
                 if ($get_all_loans) {
                   foreach ($get_all_loans as $loans) {?>
@@ -160,7 +160,7 @@ require_once "helpers/helper.php";
               <!--  -->
               <a class="dropdown-item text-info" href="javascript:void(0);"><span class="fa fa-eye"></span>&nbsp; Loan History</a>
                <a class="dropdown-item text-danger" href="javascript:void(0);"><span class="fa fa-trash"></span>&nbsp; Delete</a>
-          
+
             </div>
           </div></td>
                 </tr>
@@ -183,7 +183,7 @@ require_once "helpers/helper.php";
     <!-- END: Content-->
 
     </div>
-   
+
     <!-- BEGIN: Footer-->
 
     <!-- BUS MODAL Start -->
@@ -300,7 +300,7 @@ require_once "helpers/helper.php";
                <input type="number" id="amount_borrowed" autocomplete="off" class="form-control form-control-lg" name="amount_borrowed" readonly>
                     </div>
                </div>
-             
+
                    <div class="col-md-6">
                   <div class="form-group">
                   <label for="monthly">MONTHLY PAYMENT </label>
@@ -352,7 +352,7 @@ require_once "helpers/helper.php";
      LoanForm.on("submit", function(event){
       event.preventDefault();
       $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
-      //send a request 
+      //send a request
       $.post("../actions/actions",LoanForm.serialize(),function(data){
         setTimeout(()=>{
           $(".__loadingBtn__").html('<i class="fa fa-paper-plane"></i> Submit Loan').attr("disabled",false);
@@ -383,7 +383,7 @@ update_loan_btn.on("click", function(){
       $("#updateLoanStaffModal").modal("show");
     }
   });
- 
+
 })
 //track payback amount
 const monthly_returned = $("#monthly_returned");
@@ -394,14 +394,14 @@ monthly_returned .on("change", function(){
     //calculate
     let sumNow = parseFloat(monthly_payment -paynow);
     if (sumNow>0 || sumNow < 0) {
-  $("#error-alert2").html('<?php echo $Alert->alert_msg("Please Enter your monthly payment correctly to proceed!")?>'); 
+  $("#error-alert2").html('<?php echo $Alert->alert_msg("Please Enter your monthly payment correctly to proceed!")?>');
   $(".submit_update_loan_btn").attr("disabled",true);
     }else if (sumNow ===0 || sumNow==0) {
       $(".submit_update_loan_btn").attr("disabled",false);
       $("#monthly").val(sumNow);
       $("#error-alert2").html('');
     }
-  }else 
+  }else
   return false;
 })
 
@@ -437,11 +437,11 @@ function osotechLoanCalculator(){
         UImonthlyPayment.val(monthly.toFixed(2));
         UItotalPayment.val((monthly*calculatedPayments).toFixed(2));
         UItotalInterest.val(((monthly * calculatedPayments)-principal).toFixed(2));
-       
+
     }else{
-        
+
        $("#error-alert").html('<?php echo $Alert->alert_msg("Please check your number") ?>');
-       
+
     }
 }
 </script>

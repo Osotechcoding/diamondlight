@@ -25,6 +25,10 @@
               </li>
                <li><a class="d-flex align-items-center" href="registerStudentSubject"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Classroom">Register Subject</span></a>
               </li>
+              <li><a class="d-flex align-items-center" href="bulkSubjectReg"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Classroom">Bulk Subject Register</span></a>
+             </li>
+             <li><a class="d-flex align-items-center" href="examSubjectList"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Classroom">Filter Registered Subjects</span></a>
+            </li>
            <li class=" nav-item"><a href="student_assignment"><i class="fa fa-book fa-1x"></i><span class="menu-title text-truncate" data-i18n="Assignment">Assignment</span></a>
           </li>
            <li class=" nav-item"><a href="markstudentass"><i class="fa fa-pencil fa-1x"></i><span class="menu-title text-truncate" data-i18n="Assignment">Mark Assignment</span></a>
@@ -60,10 +64,10 @@
           </li>
          <!--  <li class="nav-item"><a href="result_uploading"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Bulk Results</span></a>
           </li> -->
-          
+
           <!-- <li class=" nav-item"><a href="javascript:void(0)"><i class="fa fa-paper-plane fa-1x"></i><span class="menu-title text-truncate" data-i18n="Publish Result">Publish Results</span></a>-->
           <!--</li>-->
-          
+
           <!--  <li class=" nav-item"><a href="javascript:void(0)"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Published Result">View Published</span></a>
           </li> -->
          <!--   <li class=" nav-item"><a href="javascript:void(0)"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Check Result">Check Result</span></a>
@@ -101,7 +105,7 @@
             </ul>
           </li>
           <!-- STUDENT ENDS -->
-         
+
           <li class=" navigation-header text-truncate"><span data-i18n="FINANCIAL">FINANCIAL</span>
           </li>
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-money fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Accounting">ACCOUNTING</span></a>
@@ -150,12 +154,12 @@
           <!--    </li>-->
           <!--  </ul>-->
           <!--</li>-->
-         
+
            <!-- <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-bus fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCHOOL BUS"> SCHOOL BUS </span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="bus_route"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Bus">Manage Bus</span></a>
               </li>
-             
+
                <li><a class="d-flex align-items-center" href="student_n_bus"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Student & Bus">Student & Bus</span></a>
               </li>
               <li><a class="d-flex align-items-center" href="running_cost"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Student & Bus">Bus Maintenance</span></a>
@@ -169,7 +173,7 @@
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="add_event"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Event">Manage Event</span></a> </li>
                 <li><a class="d-flex align-items-center" href="add_holidays"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Holiday">Manage Holiday</span></a> </li>
-                 
+
                <li><a class="d-flex align-items-center" href="uploadblog"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Blog"> Manage Blog</span></a>
               </li>
                <li><a class="d-flex align-items-center" href="javaScript:void(0)"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Gallery</span></a>
@@ -210,7 +214,7 @@
          <li>
                 <a class="d-flex align-items-center" onclick=" return confirm('<?php echo $lang["logout-sure?"];?>');" href="logout?action=logout"><i class="fa fa-power-off"></i>
                 <span class="menu-item text-truncate"> <?php echo $lang['Logout'] ?></span></a>
-               
+
               </li>
         </ul>
       </div>

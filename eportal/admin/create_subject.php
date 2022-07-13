@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ require_once "helpers/helper.php";
     <title><?php echo $SmappDetails->school_name ?> :: Manage School Subjects</title>
      <?php include ("../template/dataTableHeaderLink.php"); ?>
   </head>
-  <!-- END: Head-->../
+  <!-- END: Head-->
   <!-- BEGIN: Body-->
   <body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
     <!-- BEGIN: Header-->
@@ -63,7 +63,7 @@ require_once "helpers/helper.php";
                 </div>
               </div>
             </div>
-           
+
             <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-success">
                 <div class="card-body py-1">
@@ -84,17 +84,17 @@ require_once "helpers/helper.php";
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Inactive Subjects </h3></div>
                   <h2 class="text-white mb-0"><?php echo $Administration->count_all_subjects_status("inactive"); ?></h2>
-                  
+
                 </div>
               </div>
             </div>
 
-            
+
           </div>
         </div>
         <!-- Revenue Growth Chart Starts -->
       </div>
-      
+
     <div class="card">
       <div class="card-header">
           <button type="button" class="btn btn-dark btn-md btn-rounded" data-toggle="modal" data-target="#addSubjectModal"><i class="fa fa-book fa-2x"></i> Add New Subject</button>
@@ -114,7 +114,7 @@ require_once "helpers/helper.php";
         </tr>
       </thead>
        <tbody class="text-center">
-          <?php 
+          <?php
           $all_subjects =$Administration->get_all_subjects();
           if ($all_subjects) {
             // code...
@@ -137,7 +137,7 @@ require_once "helpers/helper.php";
               }
                ?>
 
-              
+
           <?php endif ?></td>
            <td><?php if ($subjects->status ==NULL || $subjects->status =='inactive'): ?>
           <span class="badge badge-danger badge-md">Not Active</span>
@@ -162,7 +162,7 @@ require_once "helpers/helper.php";
 
 
            ?>
-          
+
       </tbody>
       </table>
     </div>
@@ -173,7 +173,7 @@ require_once "helpers/helper.php";
     </div>
     <!-- END: Content-->
     </div>
-   
+
    <!-- BUS MODAL Start -->
    <div class="modal fade" id="addSubjectModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -197,7 +197,7 @@ require_once "helpers/helper.php";
                 <input type="text" autocomplete="off" class="form-control form-control-lg" name="subjectName" placeholder="ENGLISH LANGUAGE">
                     </div>
                </div>
-              
+
                 <div class="col-md-6">
                      <div class="form-group">
                   <label for="code"> SUBJECT CODE </label>
@@ -214,7 +214,7 @@ require_once "helpers/helper.php";
                </select>
                 </div>
               </div>
-               
+
                    <div class="col-md-12">
                      <div class="form-group">
                   <label for="subjectteacher">SUBJECT TEACHER(S) </label>
@@ -224,8 +224,8 @@ require_once "helpers/helper.php";
                </select>
                 </div>
               </div>
-               
-          
+
+
                  </div>
                   </div>
                 </div>
@@ -351,7 +351,7 @@ require_once "helpers/helper.php";
         $("#result-response").html(data);
           },2000);
         })
-    
+
       });
      })
    </script>

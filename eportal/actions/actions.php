@@ -359,7 +359,7 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 			echo $result;
 		}
 	}
-	
+
 	if ($_POST['action'] ==="add_student_office") {
 		$result = $Administration->add_new_student_office_title($_POST);
 		if ($result) {
@@ -373,7 +373,7 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 			echo $result;
 		}
 	}
-	
+
 	//upload_classteacher_comment
 	if ($_POST['action'] ==="upload_classteacher_comment") {
 		$result = $Result->upload_result_comments($_POST);
@@ -414,6 +414,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 	//upload_upcomingEvent_
 	if ($_POST['action'] ==="upload_upcomingEvent_") {
 		$result = $Blog->upload_upcomingEvents($_POST,$_FILES);
+		if ($result) {
+			echo $result;
+		}
+	}
+
+  //submit_bulk_subject_reg
+  if ($_POST['action'] ==="submit_bulk_subject_reg") {
+		$result = $Administration->register_bulk_subjects($_POST);
 		if ($result) {
 			echo $result;
 		}

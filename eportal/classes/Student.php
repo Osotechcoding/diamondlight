@@ -1,5 +1,5 @@
 <?php
-//my postman API KEY 
+//my postman API KEY
 //PMAK-62bb589e27cc4b7125fbe0c4-44f50f392e15b0a2f950adb9c2faa0f36c
 @session_start();
 /**
@@ -298,7 +298,7 @@ public function get_all_students_by_status(string $status){
 
 public function generate_admission_number(string $admitted_year){
 	 $this->response ="";
-	 $prefix=__OSO_SCHOOL_CODE__;//school Code 
+	 $prefix=__OSO_SCHOOL_CODE__;//school Code
 	$this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM $this->table_name ORDER BY stdRegNo DESC LIMIT 1");
 	$this->stmt->execute();
 	if ($this->stmt->rowCount() > 0) {
@@ -546,7 +546,7 @@ $this->response = false;
 		$student_class = $this->config->Clean($d['student_class']);
 		$adm_date = $this->config->Clean(date("Y-m-d",strtotime($d['admission_date'])));
 		$auth_pass2 = $this->config->Clean($d['auth_pass2']);
-	
+
 		if ($this->config->isEmptyStr($surName) || $this->config->isEmptyStr($firstName) || $this->config->isEmptyStr($middleName) || $this->config->isEmptyStr($address) || $this->config->isEmptyStr($Dob) || $this->config->isEmptyStr($Gender) || $this->config->isEmptyStr($student_email) || $this->config->isEmptyStr($student_class) || $this->config->isEmptyStr($adm_date) || $this->config->isEmptyStr($auth_pass2)) {
 			$this->response =$this->alert->alert_toastr("warning","Some Important fields are missing",__OSO_APP_NAME__." Says");
 		}elseif (!$this->config->is_Valid_Email($student_email)) {
@@ -579,10 +579,10 @@ $this->response = false;
 			 	}else{
 				$this->response = $this->alert->alert_toastr("error","Something went wrong, Please try again ...",__OSO_APP_NAME__." Says");
 			 	}
-			 	
+
 			 } catch (PDOException $e) {
 			$this->dbh->rollback();
-   $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 			 }
 				}
 				return $this->response;
@@ -600,9 +600,9 @@ $this->response = false;
 			return $this->response;
 			unset($this->dbh);
 		}
-		
+
 	}
-	
+
 	//get student list in dropDown
 
 	public function get_students_InDropDown(){
@@ -618,7 +618,7 @@ $this->response = false;
 			}
 			return $this->response;
 			unset($this->dbh);
-			
+
 	}
 //NEW UPDATES
 public function assign_new_school_prefect($data){
@@ -653,7 +653,7 @@ try {
 				window.location.reload();
 			},500);</script>";
 					}
-						
+
 					} catch (PDOException $e) {
 				$this->dbh->rollback();
 					$this->response  = $this->alert->alert_toastr("error","Assigning Failed! Please try again...: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
@@ -732,7 +732,7 @@ public function update_student_office_now($data){
 			 	}
 			 } catch (PDOException $e) {
 			$this->dbh->rollback();
-   $this->response = $this->alert->alert_msg("Error Occurred: ".$e->getMessage(),"danger"); 	
+   $this->response = $this->alert->alert_msg("Error Occurred: ".$e->getMessage(),"danger");
 			 }
 	}
 	return $this->response;
@@ -757,7 +757,7 @@ public function update_student_details($data){
 		$this->response = $this->alert->alert_toastr("error","There is an error in your Submission, Please check your inputs!",__OSO_APP_NAME__." Says");
 	}elseif ($approved !== __OSO__CONTROL__KEY__) {
 	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code, Try again!",__OSO_APP_NAME__." Says");
-	}else{ 
+	}else{
 		try {
 			 	 $this->dbh->beginTransaction();
 			 	$this->stmt = $this->dbh->prepare("UPDATE $this->table_name SET stdRegNo=?, studentClass=?,stdSurName=?,stdFirstName=?,stdMiddleName=?,stdDob=?,stdGender=?,stdAdmStatus=?, stdAddress=? WHERE stdId=? LIMIT 1");
@@ -771,7 +771,7 @@ public function update_student_details($data){
 			 	}
 			 } catch (PDOException $e) {
 			$this->dbh->rollback();
-   $this->response = $this->alert->alert_msg("Error Occurred: ".$e->getMessage(),"danger"); 	
+   $this->response = $this->alert->alert_msg("Error Occurred: ".$e->getMessage(),"danger");
 			 }
 	}
 	return $this->response;
@@ -807,7 +807,7 @@ public function upload_student_passport($data,$file){
     	$student_data = self::get_student_data_byId($studentId);
     $passport_realName = $student_data->stdRegNo.mt_rand(0,9999999).".".$image_ext;
     //lets update the student passport in the db
-    $passport_destination = "../schoolImages/students/".$passport_realName; 
+    $passport_destination = "../schoolImages/students/".$passport_realName;
     try {
     	$this->dbh->beginTransaction();
     	$this->stmt = $this->dbh->prepare("UPDATE $this->table_name SET stdPassport=? WHERE stdId=? LIMIT 1");
@@ -819,13 +819,13 @@ public function upload_student_passport($data,$file){
 						},500);</script>";
     		}
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($passport_destination)) {
 		 unlink($passport_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
     }
    }else{
@@ -881,7 +881,7 @@ public function count_all_online_students(){
 			return $this->response;
 			unset($this->dbh);
 		}
-		
+
 	}
 
 	public function get_filtered_students_list($stdGrade,$status){
@@ -944,7 +944,7 @@ if ($this->stmt->rowCount()>0) {
 			return $this->response;
 			unset($this->dbh);
 		}
-		
+
 	}
 
 	 public function get_all_my_class_mates($stdGrade){
@@ -955,7 +955,7 @@ if ($this->stmt->rowCount()>0) {
 			return $this->response;
 			unset($this->dbh);
 		}
-		
+
 	}
 
 	public function upload_student_assignments($data,$file){
@@ -976,7 +976,7 @@ if ($this->stmt->rowCount()>0) {
    $allowed = array("docx","docxs","docs","pdf","xlsx","xls");
    $name_div = explode(".", $assignmentFile_name);
    $image_ext = strtolower(end($name_div));
-   //check for values 
+   //check for values
    if ($this->config->isEmptyStr($subject) || $this->config->isEmptyStr($stdGrade) || $this->config->isEmptyStr($sdate) || $this->config->isEmptyStr($topic) || $this->config->isEmptyStr($note) || $this->config->isEmptyStr($uploadedBy) || $this->config->isEmptyStr($assignmentFile_name)) {
    	 $this->response = $this->alert->alert_toastr("error","Invalid form Submission, Please check and try again!",__OSO_APP_NAME__." Says");
    }elseif ($this->config->isEmptyStr($bypass) || $bypass !== md5("oiza1")) {
@@ -996,7 +996,7 @@ if ($this->stmt->rowCount()>0) {
    	}else{
     $file_realName = $subject."_".mt_rand(1240,99999999).".".$image_ext;
     //lets update the student passport in the db
-    $file_destination = "../assignments/".$file_realName; 
+    $file_destination = "../assignments/".$file_realName;
     try {
     	$this->dbh->beginTransaction();
     	$created_at = date("Y-m-d");
@@ -1011,13 +1011,13 @@ if ($this->stmt->rowCount()>0) {
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
    	}
 
@@ -1094,7 +1094,7 @@ if ($this->stmt->rowCount()>0) {
     $this->response = $this->alert->alert_toastr("success","Password Changed  Successfully, logging out...",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 							window.location.href='logout?action=logout';
 						},500);</script>";
-    		
+
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
@@ -1137,7 +1137,7 @@ if ($this->stmt->rowCount()>0) {
    $allowed = array("docx","docxs","docs","pdf","xlsx","xls");
    $name_div = explode(".", $answerFile_name);
    $image_ext = strtolower(end($name_div));
-   //check for values 
+   //check for values
    if ($this->config->isEmptyStr($subject) || $this->config->isEmptyStr($stdGrade) || $this->config->isEmptyStr($answerFile_name)) {
    	 $this->response = $this->alert->alert_toastr("error","Invalid form Submission, Please check and try again!",__OSO_APP_NAME__." Says");
    }elseif ($this->config->isEmptyStr($bypass) || $bypass !== md5("oiza1")) {
@@ -1157,7 +1157,7 @@ if ($this->stmt->rowCount()>0) {
    	}else{
     $file_realName = $stdId.$stdRegCode."_".mt_rand(140,9999999).".".$image_ext;
     //lets update the student passport in the db
-    $file_destination = "../student-assignments/".$file_realName; 
+    $file_destination = "../student-assignments/".$file_realName;
     try {
     	$this->dbh->beginTransaction();
     	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_submitted_class_assignment_tbl` (question_id,tId,stdRegno,subject,stdGrade,answer,term,school_session,Submitted_at) VALUES (?,?,?,?,?,?,?,?,?);");
@@ -1171,13 +1171,13 @@ if ($this->stmt->rowCount()>0) {
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
    	}
 
@@ -1293,7 +1293,7 @@ if ($this->stmt->rowCount()>0) {
 				else{
 					//update the student class
 					try {
-			
+
 				$this->dbh->beginTransaction();
     	$this->stmt = $this->dbh->prepare("UPDATE {$this->table_name} SET studentClass=? WHERE stdId=?");
     	if ($this->stmt->execute(array($promoted_to,$keyId))) {
@@ -1313,9 +1313,8 @@ if ($this->stmt->rowCount()>0) {
 			}else{
 				 $this->response = $this->alert->alert_toastr("error","Please select atleast one student to promote!",__OSO_APP_NAME__." Says");
 			}
-	
-
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function get_student_details_byRegNo($stdRegNo){
