@@ -554,5 +554,13 @@ if ($_POST['action'] ==="update_staff_office_title") {
         }
     }
 
+    //update_portal
+     if ($_POST['action'] ==="update_portal") {
+        $result = $Administration->updateAdmissionPortal($_POST);
+        if ($result) {
+            echo $result;
+        }
+    }
+
 	}
 }

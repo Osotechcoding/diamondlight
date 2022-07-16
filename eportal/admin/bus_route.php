@@ -178,12 +178,14 @@ require_once "helpers/helper.php";
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
+
                 <div class="modal-header">
                   <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><i class="fa fa-bus fa-2x"></i> Add New Bus,Route & Driver</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                   </button>
                 </div>
+                 <form action="">
                 <div class="modal-body">
                   <div class="col-md-12 col-12 col-xl-12 col-lg-12 col-sm-12">
                   <div class="row">

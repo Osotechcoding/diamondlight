@@ -333,7 +333,7 @@ require_once "helpers/helper.php";
           setTimeout(()=>{
         $(".__loadingBtn2__").html('Save Changes').attr("disabled",false);
         $("#result-response2").html(data);
-          },2000);
+          },500);
         })
         // self.location.reload();
       });
@@ -349,7 +349,7 @@ require_once "helpers/helper.php";
           setTimeout(()=>{
         $(".__loadingBtn__").html('Submit').attr("disabled",false);
         $("#result-response").html(data);
-          },2000);
+          },500);
         })
 
       });

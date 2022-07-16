@@ -427,6 +427,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//declareNew_admission_open
+	if ($_POST['action'] ==="declareNew_admission_open") {
+		$result = $Administration->declareAdmissionPortalOpen($_POST);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

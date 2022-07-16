@@ -2679,4 +2679,118 @@ public function upload_school_logoImage($data, $file){
 		unset($this->dbh);
 	}
 
+	public function declareAdmissionPortalOpen($data){
+		$desc = $this->config->Clean($data['desc']);
+		$batch = $this->config->Clean($data['batch']);
+		$adm_duration = $this->config->Clean($data['adm_duration']);
+		$intDate = $this->config->Clean(date("Y-m-d",strtotime($data['intDate'])));
+		$int_venue = $this->config->Clean($data['int_venue']);
+$exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
+		$note = $this->config->Clean($data['instruction']);
+		$authcode = $this->config->Clean($data['authcode']);
+		$admission_session = $this->config->Clean($data['aca_session']);
+		//check for empty values
+		if ($this->config->isEmptyStr($desc) || $this->config->isEmptyStr($batch) || $this->config->isEmptyStr($adm_duration) || $this->config->isEmptyStr($intDate) || $this->config->isEmptyStr($int_venue) || $this->config->isEmptyStr($exam_time) || $this->config->isEmptyStr($note)) {
+		$this->response = $this->alert->alert_toastr("error","Invalid submission, Please check your input!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->isEmptyStr($authcode)) {
+		$this->response = $this->alert->alert_toastr("error","Authentication Code is Required!",__OSO_APP_NAME__." Says");
+		}elseif ($authcode !== __OSO__CONTROL__KEY__) {
+		$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}else{
+//check the database for any active admission bath
+			$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_admission_open_tbl` WHERE status='1'");
+			$this->stmt->execute();
+			if ($this->stmt->rowCount() > 0) {
+			$this->response = $this->alert->alert_toastr("error","Another Admission batch is in Progress!",__OSO_APP_NAME__." Says");
+			}else{
+				//let check for duplicate entry
+				$adm_div = explode("-", $adm_duration);
+				$admStart = date("Y-m-d",strtotime($adm_div[0]));
+				$admEnd = date("Y-m-d",strtotime($adm_div[1]));
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_admission_open_tbl` WHERE admission_desc=? AND batch=? AND adm_start=? AND adm_end=? AND schl_session=? LIMIT 1");
+			$this->stmt->execute(array($desc,$batch,$admStart,$admEnd,$admission_session));
+			if ($this->stmt->rowCount() ==1) {
+		$this->response = $this->alert->alert_toastr("error","This information is already Created!",__OSO_APP_NAME__." Says");
+			}else{
+//create a fresh adimission portal
+				try {
+					$status=1;
+					$this->dbh->beginTransaction();
+					$this->stmt = $this->dbh->prepare("INSERT INTO `visap_admission_open_tbl` (admission_desc,batch,adm_start,adm_end,interview_date,interview_time,schl_session,note,status) VALUES (?,?,?,?,?,?,?,?,?)");
+	    	if ($this->stmt->execute(array($desc,$batch,$admStart,$admEnd,$intDate,$exam_time,$admission_session,$note,$status))) {
+	    		$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","$desc $batch Declared Open!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+	    	}else{
+	    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+	    	}
+					
+				} catch (Exception $e) {
+					$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");	
+				}
+			}
+			}
+		}
+		
+		return $this->response;
+		unset($this->dbh);
+	}
+
+	public function getAdmissionPortalDetails(){
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_admission_open_tbl` ORDER BY batch DESC LIMIT 2");
+		$this->stmt->execute();
+		if ($this->stmt->rowCount() > 0) {
+			$this->response = $this->stmt->fetchAll();
+			return $this->response;
+			unset($this->dbh);
+		}
+	}
+
+	public function updateAdmissionPortal($data){
+		$id = $this->config->Clean($data['id']);
+		$action = $this->config->Clean($data['portal_action']);
+		//check action
+		switch ($action) {
+			case 'open_admission':
+			$status = 1;
+				break;
+
+					case 'close_admission':
+			$status = 0;
+				break;
+			
+			default:
+				$status = 0;
+				break;
+		}
+		//update the admission portal tbl
+		try {
+			$this->dbh->beginTransaction();
+			$this->stmt = $this->dbh->prepare("UPDATE `visap_admission_open_tbl` SET status=? WHERE id=? LIMIT 1");
+			if ($this->stmt->execute([$status,$id])) {
+				$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","Portal Updated Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+			}else{
+				$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+			}
+
+		} catch (PDOException $e) {
+			$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");	
+		}
+		return $this->response;
+		unset($this->dbh);
+
+	}
+	public function checkAdmissionPortalStatus(): bool{
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_admission_open_tbl` WHERE status = 1 LIMIT 1");
+		$this->stmt->execute();
+		$this->response = $this->stmt->rowCount();
+			return ($this->response == 1) ? true : false;
+	}
+
 }
