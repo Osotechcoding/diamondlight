@@ -183,7 +183,7 @@ class Administration {
 			 $this->dbh->commit();
 			$this->response = $this->alert->alert_msg("Deleted Successfully","success")."<script>setTimeout(()=>{
 			window.location.reload();
-			},1500);</script>";
+			},500);</script>";
 		}
 			} catch (PDOException $e) {
 		$this->dbh->rollback();
@@ -2791,6 +2791,27 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		$this->stmt->execute();
 		$this->response = $this->stmt->rowCount();
 			return ($this->response == 1) ? true : false;
+	}
+	public function deleteAdmissionPortal($Id){
+		if (!$this->config->isEmptyStr($Id)) {
+			try {
+					$this->dbh->beginTransaction();
+			$this->stmt = $this->dbh->prepare("DELETE FROM `visap_admission_open_tbl`  WHERE id=? LIMIT 1");
+			if ($this->stmt->execute([$Id])) {
+				$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+			}else{
+				$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+			}
+			} catch (Exception $e) {
+				$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		}
+		return $this->response;
+		unset($this->dbh);
 	}
 
 }

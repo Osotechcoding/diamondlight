@@ -279,7 +279,6 @@ if ($this->stmt->rowCount()>0) {
 }
 
 public function count_Upcoming_events(int $status =2) : int{
-
 	$this->stmt = $this->dbh->prepare("SELECT count(`eventId`) as cnt FROM `visap_upcoming_event_tbl` WHERE DATE(`edate`) > DATE(CURRENT_DATE) AND status=?");
 $this->stmt->execute([$status]);
 if ($this->stmt->rowCount()>0) {
@@ -291,7 +290,6 @@ if ($this->stmt->rowCount()>0) {
 }
 
 public function count_today_events(int $status =2) : int{
-
 	$this->stmt = $this->dbh->prepare("SELECT count(`eventId`) as cnt FROM `visap_upcoming_event_tbl` WHERE DATE(`edate`) = DATE(CURRENT_DATE) AND status=?");
 $this->stmt->execute([$status]);
 if ($this->stmt->rowCount()>0) {
@@ -303,5 +301,249 @@ if ($this->stmt->rowCount()>0) {
 }
 
 // EVENT METHODS END
+
+public function createNewGallery($data,$file){
+	$auth_pass = $this->config->Clean($data['auth_code']);
+	$desc = $this->config->Clean($data['gallery_desc']);
+	$galleryType = $this->config->Clean($data['galleryType']);
+		$postedBy = $_SESSION['ADMIN_USERNAME'];
+		$GalleryFile_temp = $file['galleryImage']['tmp_name'];
+		$GalleryFileName = $file['galleryImage']['name'];
+		$GalleryFile_size = $file['galleryImage']['size']/1024;
+		$GalleryFile_error = $file['galleryImage']['error'];
+		//$ext = pathinfo($blogFileName, PATHINFO_EXTENSION);
+		$allowed = array("jpg","jpeg","png");
+		 $name_div = explode(".", $GalleryFileName);
+   		$image_ext = strtolower(end($name_div));
+		//CHECK FOR EMPTY FIELDS
+		//
+		if ($this->config->isEmptyStr($desc) || $this->config->isEmptyStr($galleryType) || $this->config->isEmptyStr($GalleryFileName)) {
+			$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Pls try again!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->isEmptyStr($auth_pass)) {
+			$this->response = $this->alert->alert_toastr("error","Please enter an Authentication code to proceed!",__OSO_APP_NAME__." Says");
+		}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}elseif (!in_array($image_ext, $allowed)) {
+		$this->response = $this->alert->alert_toastr("error","Your file format is not supported, Please check and try again!",__OSO_APP_NAME__." Says");
+		}elseif ($GalleryFile_size >200) {
+	$this->response = $this->alert->alert_toastr("error","Gallery Image Size should not exceed 200KB, Selected Image Size is :".number_format($GalleryFile_size,2)."KB",__OSO_APP_NAME__." Says");
+		}elseif ($GalleryFile_error !==0) {
+	 $this->response = $this->alert->alert_toastr("error","There was an error Uploading Gallery Image, Try again!",__OSO_APP_NAME__." Says");
+		}else{
+			$newFileName = __OSO_APP_NAME__.$galleryType.uniqid().".".$image_ext;
+	$file_destination = "../gallery/".$newFileName;
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_gallery_tbl` WHERE title=? LIMIT 1");
+	$this->stmt->execute(array($desc));
+	if ($this->stmt->rowCount() ==1) {
+		$this->response = $this->alert->alert_toastr("error","$desc is already Created, Please check and try again!",__OSO_APP_NAME__." Says");
+	}else {
+		try {
+	$created_at = date("Y-m-d");
+    	$this->dbh->beginTransaction();
+    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_gallery_tbl` (author,title,image,type,created_at) VALUES (?,?,?,?,?);");
+    	if ($this->stmt->execute(array($postedBy,$desc,$newFileName,$galleryType,$created_at))) {
+    		if ($this->config->move_file_to_folder($GalleryFile_temp,$file_destination)) {
+    			$this->dbh->commit();
+    $this->response = $this->alert->alert_toastr("success","Gallery Uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+							window.location.reload();
+						},500);</script>";
+    		}
+    	}else{
+    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+    	}
+    	
+    } catch (PDOException $e) {
+    	$this->dbh->rollback();
+    	if (file_exists($file_destination)) {
+		 unlink($file_destination);
+	}
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+    }
+	}
+		}
+ 	return $this->response;
+	unset($this->dbh);
+}
+
+//get gallery images
+public function getAllGallery(){
+$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_gallery_tbl` ORDER BY id DESC");
+$this->stmt->execute();
+if ($this->stmt->rowCount() >0) {
+	$this->response = $this->stmt->fetchAll();
+	return $this->response;
+	unset($this->dbh); 
+}
+}
+public function countGalleryByType(string $type){
+$this->stmt = $this->dbh->prepare("SELECT count(`id`) as cnt FROM `visap_gallery_tbl` WHERE type=?");
+$this->stmt->execute([$type]);
+if ($this->stmt->rowCount() >0) {
+	$cont = $this->stmt->fetch();
+	$this->response = $cont->cnt;
+	return $this->response;
+	unset($this->dbh); 
+}
+}
+
+public function countAllGallery(){
+$this->stmt = $this->dbh->prepare("SELECT count(`id`) as cnt FROM `visap_gallery_tbl`");
+$this->stmt->execute();
+if ($this->stmt->rowCount() >0) {
+	$cont = $this->stmt->fetch();
+	$this->response = $cont->cnt;
+	return $this->response;
+	unset($this->dbh); 
+}
+}
+public function getGalleryById($Id){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_gallery_tbl` WHERE id=? LIMIT 1");
+	$this->stmt->execute([$Id]);
+	if ($this->stmt->rowCount() == 1) {
+	$this->response =$this->stmt->fetch();
+	return $this->response;
+	unset($this->dbh);
+	}
+}
+
+public function delete_galleryById($Id){
+		if (!$this->config->isEmptyStr($Id)) {
+			$gallery_details = self::getGalleryById($Id);
+			$filePath = "../gallery/".$gallery_details->image;
+			try {
+		$this->dbh->beginTransaction();
+	//Delete the selected Subject
+		$this->stmt = $this->dbh->prepare("DELETE FROM `visap_gallery_tbl` WHERE id=? LIMIT 1");
+		if ($this->stmt->execute([$Id])) {
+			if (file_exists($filePath)) {
+				if (unlink($filePath)) {
+				 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Deleted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.reload();
+			},500);</script>";
+				}
+			}
+		}
+			} catch (PDOException $e) {
+		$this->dbh->rollback();
+    $this->response  = $this->alert->alert_toastr("error","Failed to Delete Gallery: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		return $this->response;
+		unset($this->dbh);
+		}
+		
+	}
+
+
+	public function getSliderById($Id){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_sliders_tbl` WHERE id=? LIMIT 1");
+	$this->stmt->execute([$Id]);
+	if ($this->stmt->rowCount() == 1) {
+	$this->response =$this->stmt->fetch();
+	return $this->response;
+	unset($this->dbh);
+	}
+}
+
+	//delete_SliderById
+	public function delete_SliderById($Id){
+		if (!$this->config->isEmptyStr($Id)) {
+			$slider_details = self::getSliderById($Id);
+			$filePath = "../gallery/Sliders/".$slider_details->image;
+			try {
+		$this->dbh->beginTransaction();
+	//Delete the selected Subject
+		$this->stmt = $this->dbh->prepare("DELETE FROM `visap_sliders_tbl` WHERE id=? LIMIT 1");
+		if ($this->stmt->execute([$Id])) {
+			if (file_exists($filePath)) {
+				if (unlink($filePath)) {
+				 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Deleted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.reload();
+			},500);</script>";
+				}
+			}
+		}
+			} catch (PDOException $e) {
+		$this->dbh->rollback();
+    $this->response  = $this->alert->alert_toastr("error","Failed to Delete Gallery: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		return $this->response;
+		unset($this->dbh);
+		}
+		
+	}
+
+	public function createNewSliders($data, $file) {
+	$auth_pass = $this->config->Clean($data['auth_code']);
+	$slider_desc = $this->config->Clean($data['slider_desc']);
+	$slider_title = $this->config->Clean($data['slider_title']);
+		$SliderFile_temp = $file['sliderImage']['tmp_name'];
+		$SliderFileName = $file['sliderImage']['name'];
+		$SliderFile_size = $file['sliderImage']['size']/1024;
+		$SliderFile_error = $file['sliderImage']['error'];
+		//$ext = pathinfo($blogFileName, PATHINFO_EXTENSION);
+		$allowed = array("jpg","jpeg","png");
+		 $name_div = explode(".", $SliderFileName);
+   		$image_ext = strtolower(end($name_div));
+		//CHECK FOR EMPTY FIELDS
+		//
+		if ($this->config->isEmptyStr($slider_title) || $this->config->isEmptyStr($slider_desc) || $this->config->isEmptyStr($SliderFileName)) {
+			$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Pls try again!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->isEmptyStr($auth_pass)) {
+			$this->response = $this->alert->alert_toastr("error","Please enter an Authentication code to proceed!",__OSO_APP_NAME__." Says");
+		}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}elseif (!in_array($image_ext, $allowed)) {
+		$this->response = $this->alert->alert_toastr("error","Your file format is not supported, Please check and try again!",__OSO_APP_NAME__." Says");
+		}elseif ($SliderFile_size > 200) {
+	$this->response = $this->alert->alert_toastr("error","Slider Image Size should not exceed 200KB, Selected Image Size is :".number_format($SliderFile_size,2)."KB",__OSO_APP_NAME__." Says");
+		}elseif ($SliderFile_error !==0) {
+	 $this->response = $this->alert->alert_toastr("error","There was an error Uploading Slider Image, Try again!",__OSO_APP_NAME__." Says");
+		}else{
+			$newFileName = __OSO_APP_NAME__."_".uniqid()."_.".$image_ext;
+	$file_destination = "../gallery/Sliders/".$newFileName;
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_sliders_tbl` WHERE title=? LIMIT 1");
+	$this->stmt->execute(array($slider_title));
+	if ($this->stmt->rowCount() ==1) {
+		$this->response = $this->alert->alert_toastr("error","$slider_title is already Created, Please check and try again!",__OSO_APP_NAME__." Says");
+	}else {
+		try {
+	$created_at = date("Y-m-d");
+    	$this->dbh->beginTransaction();
+    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_sliders_tbl` (title,slider_desc,image,created_at) VALUES (?,?,?,?);");
+    	if ($this->stmt->execute(array($slider_title,$slider_desc,$newFileName,$created_at))) {
+    		if ($this->config->move_file_to_folder($SliderFile_temp,$file_destination)) {
+    			$this->dbh->commit();
+    $this->response = $this->alert->alert_toastr("success","Slider Uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+							window.location.reload();
+						},500);</script>";
+    		}
+    	}else{
+    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+    	}
+    	
+    } catch (PDOException $e) {
+    	$this->dbh->rollback();
+    	if (file_exists($file_destination)) {
+		 unlink($file_destination);
+	}
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+    }
+	}
+		}
+ 	return $this->response;
+	unset($this->dbh);
+	}
+
+	public function getAllSliders(){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_sliders_tbl` ORDER BY id DESC");
+	$this->stmt->execute();
+	if ($this->stmt->rowCount() >0) {
+	$this->response = $this->stmt->fetchAll();
+	return $this->response;
+	unset($this->dbh); 
+}
+	}
 
 }

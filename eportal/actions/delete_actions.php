@@ -6,7 +6,7 @@ require_once '../classes/Session.php';
 date_default_timezone_set("Africa/Lagos");
 //create an autoload function
 spl_autoload_register(function($filename){
-  include_once "../classes/".$filename.".php";
+  require_once "../classes/".$filename.".php";
 });
   ?>
  <?php 
@@ -17,6 +17,7 @@ $Student = new Student();
 $Pin_serial = new Pins();
 $Visitor = new Visitors();
 $Administration = new Administration();
+$Blog = new Blog();
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 if (isset($_POST['action']) && $_POST['action']!="") {
@@ -88,4 +89,30 @@ if (isset($_POST['action']) && $_POST['action']!="") {
     }
   }
 
+  //delete_call_for_admission
+  if ($_POST['action'] ==="delete_call_for_admission") {
+    $admId = $Configuration->Clean($_POST['admid']);
+    $result = $Administration->deleteAdmissionPortal($admId);
+    if ($result) {
+     echo $result;
+    }
+  }
+
+  //delete_gallery
+  if ($_POST['action'] ==="delete_gallery") {
+    $tId = $Configuration->Clean($_POST['tId']);
+    $result = $Blog->delete_galleryById($tId);
+    if ($result) {
+     echo $result;
+    }
+  }
+
+  //delete_slider
+  if ($_POST['action'] ==="delete_slider") {
+    $tId = $Configuration->Clean($_POST['tId']);
+    $result = $Blog->delete_SliderById($tId);
+    if ($result) {
+     echo $result;
+    }
+  }
 }

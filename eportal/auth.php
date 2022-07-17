@@ -12,7 +12,6 @@ $tses_token = Session::set_xss_token();
 
 <head>
 <?php include_once ("template/MetaTag.php");?>
-<link rel="icon" type="image/icon" href="./favicon.png">
 <title><?php echo ucwords($SmappDetails->school_name); ?> :: Admin Login</title>
 
 

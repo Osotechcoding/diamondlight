@@ -1,4 +1,5 @@
-<!-- Public Alert Message -->
+<?php if ($Osotech->checkAdmissionPortalStatus() == true): ?>
+    <!-- Public Alert Message -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
@@ -6,9 +7,8 @@
         <h1 class="text-center text-info"> PUBLIC NOTICE! </h1>
       </div>
       <div class="modal-body">
-       <div class="paoc-popup-margin paoc-popup-mheading">ADMISSION ADMISSION ADMISSION!</div>
-<div class="paoc-popup-margin paoc-popup-sheading"><?php echo strtoupper($Osotech->getConfigData()->school_name);?> Opening soon................</div>
-<div class="paoc-popup-margin paoc-popup-content"><p><span style="font-size: 14pt; color: #ff0000;"><strong><?php echo strtoupper($Osotech->getConfigData()->school_name);?>, <?php echo strtoupper($Osotech->getConfigData()->school_address);?>, <?php echo strtoupper($Osotech->getConfigData()->school_state);?> is currently open for admission into 2022/2023 Academic Session.</strong></span></p>
+       <div class="paoc-popup-margin paoc-popup-mheading"><h1 class="text-center text-danger">ADMISSION ADMISSION ADMISSION!</h1></div>
+<div class="paoc-popup-margin paoc-popup-content"><p class="text-info"><span style="font-size: 18pt;" class="text-info"><strong>This is to inform the General Public that Admission into all Classes is currently open for the 2022/2023 Academic Session.</strong></span></p>
 <p><span style="font-size: 18pt;"><em>Enroll your child/children today. and Obtain 10% Discount Payment</em></span></p>
 <p><span style="font-size: 18pt;"><a href="contact"> Click here</a> to learn more&#8230;&#8230;..</span></p>
 <p><span style="font-size: 18pt;"><a href="tel:+2348131374443"><span style="color: #0000ff;">Call us</span></a> for details&#8230;&#8230;&#8230;&#8230;</span></p>
@@ -21,6 +21,8 @@
   </div>
 </div>
 <!-- Public Alert Message -->
+<?php endif ?>
+
 
 <div class="footer-top">
     <div class="container">

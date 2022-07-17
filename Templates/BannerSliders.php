@@ -1,27 +1,30 @@
 <div class="rs-slider main-home">
     <div class="rs-carousel owl-carousel" data-loop="true" data-items="1" data-margin="0" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="1" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="1" data-md-device-nav="true" data-md-device-dots="false">
-        <div class="slider-content slide1">
+        <?php 
+        $all_sliders = $Osotech->getAllSliders();
+        if ($all_sliders) {
+            foreach ($all_sliders as $slider) {?>
+               <div class="slider-content slide1" style="background: url(eportal/gallery/Sliders/<?php echo $slider->image;?>);
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;">
             <div class="container">
                 <div class="content-part">
-                    <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms">Start to learning with us today</div>
-                    <h1 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">Our purpose is to provide a safe, happy environment for your child.</h1>
+                    <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms"><?php echo $slider->title;?></div>
+                    <h1 class="sl-title wow fadeInRight" style="background: rgba(0, 0, 0, .4);border-radius:10px;" data-wow-delay="600ms" data-wow-duration="2000ms"><?php echo $slider->slider_desc;?></h1>
                     <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-                        <a class="readon orange-btn main-home" href="#">Enroll Your Child Today</a>
+                        <a class="readon orange-btn main-home" href="admission/">Apply Today</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="slider-content slide2">
-            <div class="container">
-                <div class="content-part">
-                    <div class="sl-sub-title wow bounceInLeft" data-wow-delay="300ms" data-wow-duration="2000ms"><?php echo $Osotech->getConfigData()->school_name;?></div>
-                    <h5 class="sl-title wow fadeInRight" data-wow-delay="600ms" data-wow-duration="2000ms">With over 20 years of experience we’ll ensure you always get the best education.</h5>
-                    <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-                        <a class="readon orange-btn main-home" href="#">Find Courses</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> 
+        <?php
+            }
+        }
+
+
+         ?>
+        
     </div>
 
     <!-- Features Section start -->

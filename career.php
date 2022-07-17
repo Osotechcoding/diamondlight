@@ -54,22 +54,22 @@ require_once ("Inc/Osotech.php");
             <div id="rs-checkout" class="rs-checkout orange-color pt-100 pb-100 md-pt-70 md-pb-70">
                  <div class="container">
                     <div class="text-center">
-                        <h3>From time to time, job openings and vacancies available will be posted here, and you are welcome to submit applications that suit your career profile.</h3>
+                        <h3 class="text-info">From time to time, job openings and vacancies available will be posted here, and you are welcome to submit applications that suit your career profile.</h3>
 
-<h2>What to do when jobs are posted here:</h2>
+<h2 class="text-danger">What to do when jobs are posted here:</h2>
 
-<p>Review advertised job descriptions and details specified for eligibility of positions listed.
+<p style="font-size: 23px;"><em class="text-warning bg-dark">Review advertised job descriptions and details specified for eligibility of positions listed.
 Send in your CV (with applicants detailed information) and cover letter using the form provided on this page.
 What happens next?
 <br>
 CVs would be reviewed and qualified applicants invited to write an aptitude test.
 Successful candidates would be invited to begin the interview process.
 The last phase of the interview process is a meeting with the Chairman of the School.
-Current Vacancies</p>
+Current Vacancies</em>
 <ul>
-    <li>Teacher of Mathematics.</li>
-    <li>Teacher of English.</li>
-</ul>
+    <li>Mathematics Teacher</li>
+    <li>English Teacher.</li>
+</ul></p>
 
 
                     </div>
@@ -111,7 +111,7 @@ Current Vacancies</p>
                                          </div>
                                          <div class="col-md-12 col-sm-12 col-xs-12">
                                              <div class="form-group">
-                                                 <label>Position Applied For ( e.g Teacher of English) *</label>
+                                                 <label>Position Applied For ( e.g English Language Teacher) *</label>
                                                  <input id="city" name="student_class" class="form-control-mod" type="text" placeholder="e.g JSS1">
                                              </div>
                                          </div>
@@ -124,7 +124,7 @@ Current Vacancies</p>
                                          </div>
                                          <div class="col-md-12 col-sm-12 col-xs-12">
                                              <div class="form-group">
-                                                 <label>Submit your CV in doc, docx or pdf format and must not be more than 2MB in size. *</label>
+                                                 <label>Submit your CV in doc, docx or pdf format and must not be more than 1MB in size. *</label>
                                               <input type="file" name="cv" id="" class="form-control-file">
                                              </div>
                                          </div>
@@ -135,8 +135,7 @@ Current Vacancies</p>
 
                              <div class="payment-method ">
                                  <div class="bottom-area">
-                                     <p class="mt-15">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-                                     <button class="btn-shop orange-color" type="submit">Continue to payment</button>
+                                     <button class="btn-shop orange-color" type="submit">Submit Application</button>
                                  </div>
                              </div>
                          </form>

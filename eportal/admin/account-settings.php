@@ -171,7 +171,15 @@ require_once "helpers/helper.php";
                                     <form class="validate-form" id="password-update-form">
                                       <div class="col-md-12 text-center" id="myResponseText"></div>
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" value="<?php echo $admin_data->adminEmail;?>" readonly disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="controls">
                                                         <label>Old Password</label>
@@ -307,8 +315,8 @@ require_once "helpers/helper.php";
       $.post("../actions/actions",UPDATEPWDFORM.serialize(),function(data){
         setTimeout(()=>{
           $(".__loadingBtn__").html('Save Changes').attr("disabled",false);
-          $("#myResponseText").html(data);
-        },1000);
+          $("#server-response").html(data);
+        },500);
       })
     });
 
@@ -337,7 +345,7 @@ require_once "helpers/helper.php";
             setTimeout(()=>{
                  $(".resend-btn").html('Resend Confirmation');
             $("#resendResponse").html(result);
-            },1500);
+            },500);
         })
     })
 
@@ -352,7 +360,7 @@ require_once "helpers/helper.php";
         setTimeout(()=>{
           $(".__loadingBtn3__").html('Save Changes').attr("disabled",false);
           $("#myResponseText3").html(res_data);
-        },1000);
+        },500);
       })
     })
 
@@ -374,7 +382,7 @@ const MY_PROFILE_UPDATE_FORM = $("#admin_profile_update_form");
         setTimeout(()=>{
           $(".__loadingBtn38__").html('Save Changes').attr("disabled",false);
           $("#server-response").html(re_data);
-        },1000);
+        },500);
       })
     })
 

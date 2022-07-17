@@ -55,44 +55,29 @@ require_once ("Inc/Osotech.php");
             <div class="rs-gallery pt-100 pb-100 md-pt-70 md-pb-70">
                 <div class="container">
                    <div class="row">
+                    <?php $yearBooks = $Osotech->GalleryByType("yearbook");
+                    if ($yearBooks) {
+                        foreach ($yearBooks as $yearbook) {?>
                         <div class="col-lg-4 mb-30 col-md-6">
                             <div class="gallery-item">
                                 <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/1.jpg"><img src="assets/images/gallery/1.jpg" alt=""></a>
+                                    <a class="image-popup" href="eportal/gallery/<?php echo $yearbook->image;?>"><img src="eportal/gallery/<?php echo $yearbook->image;?>" alt="<?php echo $yearbook->title;?>"></a>
                                 </div>
                                 <div class="title">
-                                    2022 INTER-HOUSE COMPETITION
+                                    <?php echo strtoupper($yearbook->title);?>
                                 </div>
                             </div>
                         </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/2.jpg"><img src="assets/images/gallery/2.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    2022 DINNER NIGHT PARTY
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-item">
-                                <div class="gallery-img">
-                                    <a class="image-popup" href="assets/images/gallery/3.jpg"><img src="assets/images/gallery/3.jpg" alt=""></a>
-                                </div>
-                                <div class="title">
-                                    2021-2022 END OF THE YEAR PARTY
-                                </div>
-                            </div>
-                        </div>  
-                      
-                     
+                            <?php
+                        }
+                    }
+
+                     ?>
+                        
                    </div>
                 </div> 
             </div>
             <!-- Events Section End -->
-
-            
  <!-- Newsletter section start -->
             <?php include_once ("Templates/NewsletterForm.php");?>
             <!-- Newsletter section end -->

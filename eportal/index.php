@@ -12,7 +12,6 @@ require_once "classes/Session.php";
 
 <head>
 <?php include_once ("template/MetaTag.php");?>
-<link rel="icon" type="image/icon" href="./favicon.png">
 <title><?php echo ucwords($SmappDetails->school_name); ?> :: Student Login</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
 

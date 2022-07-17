@@ -18,11 +18,14 @@
 				<ul class="topbar-right">
 					<li class="login-register">
 						<i class="fa fa-sign-in"></i>
-						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white">PORTAL</a> ||  <a href="#" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
+						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white" target="_blank">PORTAL</a> ||  <a href="#" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
 					</li>
-					<li class="btn-part">
-						<a href="./admission/" class="btn btn-danger" style="text-decoration: none;color:white">E-ADMISSION</a>
-					</li>
+                    <?php if ($Osotech->checkAdmissionPortalStatus() == true): ?>
+                        <li class="btn-part">
+                        <a href="./admission/" class="btn btn-danger" style="text-decoration: none;color:white">E-ADMISSION</a>
+                    </li>
+                    <?php endif ?>
+					
 				</ul>
 			</div>
 		</div>
@@ -36,8 +39,11 @@
                 <div class="logo-cat-wrap">
                     <div class="logo-part">
                         <a href="./"> 
-                            <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
-                            <img class="sticky-logo" src="assets/images/dark-logo.png" alt="">
+                            <!--  -->
+                             <img class="normal-logo" src="<?php echo $Osotech->get_schoolLogoImage();?>" alt="">
+                            <img class="sticky-logo" src="<?php echo $Osotech->get_schoolLogoImage();?>" alt="">
+                           <!--  <img class="normal-logo" src="assets/images/lite-logo.png" alt="">
+                            <img class="sticky-logo" src="assets/images/dark-logo.png" alt=""> -->
                         </a>
                     </div>
                 </div>

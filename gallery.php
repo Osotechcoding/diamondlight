@@ -55,66 +55,24 @@ require_once ("Inc/Osotech.php");
             <div class="rs-gallery pt-100 pb-100 md-pt-70 md-pb-70">
                 <div class="container">
                    <div class="row">
-                       <div class="col-lg-4 mb-30 col-md-6">
+                    <?php $schoolGallery = $Osotech->GalleryByType("gallery");
+                    if ($schoolGallery) {
+                        foreach ($schoolGallery as $gallery) {?>
+                        <div class="col-lg-6 mb-30 col-md-6">
                             <div class="gallery-img">
-                                <a class="image-popup" href="assets/images/gallery/1.jpg"><img src="assets/images/gallery/1.jpg" alt=""></a>
+                                <a class="image-popup" href="eportal/gallery/<?php echo $gallery->image;?>"><img src="eportal/gallery/<?php echo $gallery->image;?>" alt=""></a>
                             </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">
-                                <a class="image-popup" href="assets/images/gallery/2.jpg"><img src="assets/images/gallery/2.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/3.jpg"><img src="assets/images/gallery/3.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/4.jpg"><img src="assets/images/gallery/4.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/5.jpg"><img src="assets/images/gallery/5.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/6.jpg"><img src="assets/images/gallery/6.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/7.jpg"><img src="assets/images/gallery/7.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/8.jpg"><img src="assets/images/gallery/8.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/9.jpg"><img src="assets/images/gallery/9.jpg" alt="Image"></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 md-mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/10.jpg"><img src="assets/images/gallery/10.jpg" alt=""></a>
-                            </div>
-                       </div>
-                       <div class="col-lg-4 sm-mb-30 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/11.jpg"><img src="assets/images/gallery/11.jpg" alt=""></a>
-                            </div>
+                            <div class="title text-center mt-2">
+                                    <h2><?php echo strtoupper($gallery->title);?></h2>
+                                </div>
                        </div> 
-                       <div class="col-lg-4 col-md-6">
-                            <div class="gallery-img">                                
-                                <a class="image-popup" href="assets/images/gallery/12.jpg"><img src="assets/images/gallery/12.jpg" alt=""></a>
-                            </div>
-                       </div>
+                            <?php
+                        }
+                    }
+
+                     ?>
+                      
+                    
                    </div>
                 </div> 
             </div>

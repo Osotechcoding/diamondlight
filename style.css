@@ -4647,12 +4647,12 @@ body .modal-backdrop {
   margin-bottom: 39px;
   margin-left: -5px;
 }
-.rs-slider.style1 .slider-content.slide1 {
+/*.rs-slider.style1 .slider-content.slide1 {
   background: url(assets/images/slider/h2-1.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
+}*/
 .rs-slider.style1 .slider-content.slide2 {
   background: url(assets/images/slider/h2-2.jpg);
   background-size: cover;

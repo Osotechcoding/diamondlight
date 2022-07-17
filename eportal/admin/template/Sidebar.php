@@ -176,7 +176,8 @@
 
                <li><a class="d-flex align-items-center" href="uploadblog"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Blog"> Manage Blog</span></a>
               </li>
-               <li><a class="d-flex align-items-center" href="javaScript:void(0)"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Gallery</span></a>
+               <li><a class="d-flex align-items-center" href="add_gallery"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Gallery</span></a>
+                <li><a class="d-flex align-items-center" href="add_slider"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Slider</span></a>
               </li>
 
                 <li><a class="d-flex align-items-center" href="visitor_book"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Visitor">Vistors' Book</span></a>

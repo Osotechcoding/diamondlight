@@ -97,12 +97,24 @@ table {
 tbody >tr:nth-child(odd) {
   background: #d1d0ce3a;
 }
-.schname{
+/*.schname{
     display: block;
-    /* margin-left: auto; */
+     margin-left: auto; 
     margin-right: auto;
     width: 80%;
+}*/
+/*Osotech Custom style*/
+img.schlogo-image{
+    width: 100px;
+    float: left;
+    margin-top: 20px;
+     padding: 5px;
 }
+#osotech-div {
+   width: 80%;
+   font-weight: bold;
+}
+/*Osotech Custom style*/
 .container-ca{
     display: flex;
     flex-wrap: nowrap;
@@ -151,9 +163,16 @@ tbody >tr:nth-child(odd) {
 </head>
 <body>
   <section id="result">
-    <img src="../../assets/images/resulttop1.jpg" alt="" class="schname">
+    <div id="osotech-div">
+      <img src="<?php echo $Configuration->get_schoolLogoImage();?>" class="schlogo-image" style="float: left;">
+      <small style="text-align: auto;margin-left: 30px;font-size: 20px;"><?php echo strtoupper($SmappDetails->school_name); ?></small>
+     
+       <h5 style="text-align: center;margin-right: 50px;font-size: 10px;"> Tel: <?php echo ucwords($SmappDetails->school_phone); ?> , <?php echo ucwords($SmappDetails->school_fax); ?> </h5>
+      <h5 style="text-align: center;margin-right: 50px;font-size: 14px;"> Location: <?php echo ucwords($SmappDetails->school_address); ?> <?php echo ucwords($SmappDetails->country); ?></h5>
+       <h2 style="text-align:center; text-decoration: underline;">STUDENT'S <?php echo strtoupper($term);?> PERFORMANCE  REPORT</h2>
+    </div>
      <hr> 
-    <h2 style="text-align:center; text-decoration: underline;">STUDENT'S <?php echo strtoupper($term);?> PERFORMANCE  REPORT</h2>
+  
     <p>NAME: &nbsp; &nbsp;<b><?php echo strtoupper($student_data->full_name);?> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </b> GENDER:&nbsp;&nbsp; <b><?php echo ucfirst($student_data->stdGender)?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; CLASS: <b><?php echo strtoupper($student_data->studentClass);?>&nbsp;</b> &nbsp;&nbsp;&nbsp;&nbsp;Term: <b><?php echo $term ?></b></p>
     <P>SESSION:&nbsp;&nbsp; <b><?php echo $rsession; ?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ADMISSION NO:&nbsp;&nbsp; <b><?php echo strtoupper($student_data->stdRegNo);?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; D.O.B:&nbsp;&nbsp; <b><?php echo date("F jS, Y",strtotime($student_data->stdDob));?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; AGE:&nbsp;&nbsp; <b><?php echo $Administration->get_student_age($student_data->stdDob);?>yrs</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P>
     <!-- <P>CLUB / SOCIETY:&nbsp;&nbsp; <b>JET, CHOIR</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P> -->

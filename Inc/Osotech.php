@@ -1,12 +1,5 @@
 <?php
-
-
-//namespace Osotech;
-//if (file_exists("Database.php")){
-//    require_once 'Database.php';
-//}else{
-//    die("Database Credentials not Found!");
-//}
+@ob_start();
 require_once 'Database.php';
 
 class Osotech
@@ -28,7 +21,7 @@ class Osotech
     }
 
     public function osotech_session_kick(){
-        @session_start();
+        return @session_start();
     }
     public function check_resultmi_session(){
         if (!isset($_SESSION['resultmi']) || $_SESSION['resultmi'] =="") {
@@ -534,9 +527,10 @@ class Osotech
                     $hashed_password = self::encrypt_user_password($portal_password);
                     try {
                         $this->dbh->beginTransaction();
-                        $date =date("Y-m-d");
+                       $date =date("Y-m-d");
+                        $admitted_year = date("Y");
                         $time = date("h:i:s");
-                        $admission_no = self::generate_admission_number();
+                        $admission_no = self::generate_admission_number($admitted_year);
                         $confirmation_code = substr(md5(uniqid(mt_rand(),true)),0,10);
                         $this->stmt =$this->dbh->prepare("INSERT INTO `visap_student_tbl`(stdRegNo,stdEmail,stdUserName,stdPassword,studentClass,stdPhone,stdApplyDate,stdConfToken) VALUES(?,?,?,?,?,?,?,?);");
                         if ($this->stmt->execute(array($admission_no,$stu_email,$username,$hashed_password,$stu_class,$stu_phone,$date,$confirmation_code))) {
@@ -932,26 +926,29 @@ class Osotech
         }
     }
 
-    public function generate_admission_number(){
-        $prefix="SMA";
-        $this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM `visap_student_tbl` ORDER BY stdRegNo DESC LIMIT 1");
-        $this->stmt->execute();
-        if ($this->stmt->rowCount() > 0) {
-            if ($row = $this->stmt->fetch()) {
-                $value2 = $row->stdRegNo;
-                $value2 = substr($value2, 5,11);//separating numeric part
-                $value2 =$value2 + 1;//incrementing numeric value
-                $value2 = $prefix.date('y').sprintf('%06s',$value2);//concatenating incremented value
-                $this->response = $value2;
-            }
-        }else{
-            // "GSSOTA/00001"
-            $value2 =$prefix.date('y')."000001";
-            $this->response =$value2;
-        }
-        return $this->response;
-        unset($this->dbh);
+    public function generate_admission_number($admitted_year){
+     $this->response ="";
+     $schoolCode=__OSO_SCHOOL_CODE__;//school Code
+    $this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM $this->table_name ORDER BY stdRegNo DESC LIMIT 1");
+    $this->stmt->execute();
+    if ($this->stmt->rowCount() > 0) {
+    if ($row = $this->stmt->fetch());
+      $value2 = $row->stdRegNo;
+       //separating numeric part
+      $value2 = substr($value2, 10,14);
+      //incrementing numeric value
+      $value2 = $value2 + 1;
+      //concatenating incremented value
+      $value2 = $admitted_year.$schoolCode.sprintf('%04s',$value2);
+      $this->response = $value2;
+    }else{
+    // "2021C120040001"
+    $value2 =$admitted_year.$schoolCode."0001";
+    $this->response =$value2;
     }
+    return $this->response;
+    unset($this->dbh);
+}
 
     public function fetch_all_local_govt_state($state){
         $this->response ="";
@@ -1097,5 +1094,33 @@ class Osotech
         $this->response = $ourLogo;
         return $this->response;
     }
+
+    public function checkAdmissionPortalStatus(): bool{
+        $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_admission_open_tbl` WHERE status = 1 LIMIT 1");
+        $this->stmt->execute();
+        $this->response = $this->stmt->rowCount();
+            return ($this->response == 1) ? true : false;
+    }
+
+public function GalleryByType(string $type){
+$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_gallery_tbl` WHERE type=? ORDER BY id DESC");
+$this->stmt->execute([$type]);
+if ($this->stmt->rowCount() > 0) {
+    $this->response = $this->stmt->fetchAll();
+    return $this->response;
+    unset($this->dbh); 
+        }
+    }
+
+    public function getAllSliders(){
+    $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_sliders_tbl` ORDER BY id DESC");
+    $this->stmt->execute();
+    if ($this->stmt->rowCount() > 0) {
+    $this->response = $this->stmt->fetchAll();
+    return $this->response;
+    unset($this->dbh); 
+}
+    }
+
 }
 $Osotech = new Osotech();

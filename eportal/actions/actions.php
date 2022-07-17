@@ -435,6 +435,22 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//upload_newGallery
+	if ($_POST['action'] ==="upload_newGallery") {
+		$result = $Blog->createNewGallery($_POST,$_FILES);
+		if ($result) {
+			echo $result;
+		}
+	}
+
+	//upload_newSliders
+	if ($_POST['action'] ==="upload_newSliders") {
+		$result = $Blog->createNewSliders($_POST,$_FILES);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

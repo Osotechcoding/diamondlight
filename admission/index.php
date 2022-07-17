@@ -1,9 +1,14 @@
 <?php
+ob_start();
 if (!file_exists("../Inc/Osotech.php")){
     die("Access to this Page is Denied! <p>Please Contact Your Administrator for assistance</p>");
 }
 require_once ("../Inc/Osotech.php");
 ?>
+<?php if ($Osotech->checkAdmissionPortalStatus() !== true): ?>
+   <?php header("Location: ../");
+   exit();?>
+<?php endif ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +17,7 @@ require_once ("../Inc/Osotech.php");
 	<!-- meta tag -->
 	<title>Admission :: <?php echo ($Osotech->getConfigData()->school_name);?></title>
     <?php include ("Templates/HeaderScript.php");?>
+    <link rel="stylesheet" href="signature.css">
 </head>
 <body class="defult-home">
 
@@ -60,7 +66,7 @@ require_once ("../Inc/Osotech.php");
                              <div class="card">
                                  <div class="card-header" id="headingOne">
                                      <div class="card-title">
-                                         <span><i class="fa fa-window-maximize"></i> Do you want to continue your admission?</span>
+                                         <span><i class="fa fa-window-maximize"></i> Do you want to continue your unfinished registration?</span>
                                          <button class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Click here</button>
                                      </div>
                                  </div>
@@ -112,40 +118,53 @@ require_once ("../Inc/Osotech.php");
                                          <div class="col-md-6 col-sm-12 col-xs-12">
                                              <div class="form-group">
                                                  <label>Scratch Card PIN *</label>
-                                                 <input id="fname" name="fname" class="form-control-mod" type="text" required="">
+                                                 <input autocomplete="off" id="fname" name="fname" class="form-control-mod" type="text" placeholder="Scratch Card Pin">
                                              </div>
                                          </div>
                                          <div class="col-md-6 col-sm-12 col-xs-12">
                                              <div class="form-group">
                                                  <label>Scratch Card Serial *</label>
-                                                 <input id="lname" name="lname" class="form-control-mod" type="text" required="">
+                                                 <input autocomplete="off" id="lname" name="lname" class="form-control-mod" type="text" placeholder="Scratch Card Serial">
                                              </div>
                                          </div>
                                          
                                          <div class="col-md-6 col-sm-12 col-xs-12">
                                              <div class="form-group">
                                                  <label>Email Address *</label>
-                                                 <input id="hnumber" name="hnumber" class="form-control-mod margin-bottom" type="text" placeholder="yourname@smapp.com" >
+                                                 <input autocomplete="off" id="hnumber" name="hnumber" class="form-control-mod margin-bottom" type="text" placeholder="yourname@smapp.com" >
                                              </div>
                                          </div>
                                          <div class="col-md-6 col-sm-12 col-xs-12">
                                              <div class="form-group">
                                                  <label>Surname (username) *</label>
-                                                 <input id="city" name="city" class="form-control-mod" type="text">
+                                                 <input autocomplete="off" id="city" name="city" class="form-control-mod" type="text">
                                              </div>
                                          </div>
                                          <div class="col-md-6 col-sm-12 col-xs-12">
                                              <div class="form-group">
                                                  <label>Active Phone *</label>
-                                                 <input id="hnumber" name="hnumber" class="form-control-mod margin-bottom" type="text" placeholder="08131374443" required="">
+                                                 <input autocomplete="off" id="hnumber" name="hnumber" class="form-control-mod margin-bottom" type="text" placeholder="08131374443">
                                              </div>
                                          </div>
                                          <div class="col-md-6 col-sm-12 col-xs-12">
                                              <div class="form-group">
                                                  <label>Enter Your Proposed Class *</label>
-                                                 <input id="city" name="student_class" class="form-control-mod" type="text" placeholder="e.g JSS1">
+                                                 <input autocomplete="off" id="city" name="student_class" class="form-control-mod" type="text" placeholder="e.g JSS1">
                                              </div>
                                          </div>
+ <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group">
+ <label>Please Use the Mouse to Sign Here *</label>
+    <div class="flex-row">
+       <div class="wrapper">
+           <canvas id="signature-pad" width="400" height="70"></canvas>
+       </div>
+       <div class="clear-btn">
+           <section id="clear"><span> Clear </span></section>
+       </div>
+    </div>
+</div>
+     </div>
                                       
                                       </div>
                                  </div>
@@ -176,5 +195,6 @@ require_once ("../Inc/Osotech.php");
     <?php include_once ("Templates/SearchBar.php") ?>
 	<!-- Search Modal End -->
     <?php include_once ("Templates/FooterScript.php") ?>
+    <script src="signature.js"></script>
 </body>
 </html>

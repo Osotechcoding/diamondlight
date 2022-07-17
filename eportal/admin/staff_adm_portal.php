@@ -7,7 +7,7 @@ require_once "helpers/helper.php";
 <head>
     <!-- metaTag -->
     <?php include ("../template/MetaTag.php"); ?>
-    <title><?php echo $SmappDetails->school_nam; ?> :: Staff Admission Portal</title>
+    <title><?php echo $SmappDetails->school_name; ?> :: Staff Admission Portal</title>
      <?php include ("../template/dataTableHeaderLink.php"); ?>
   </head>
   <!-- END: Head-->
@@ -64,23 +64,21 @@ require_once "helpers/helper.php";
             <table class="table table-striped osotechDatatable">
               <thead>
                 <tr>
-                  <th>Photo</th>
                   <th>Full Name</th>
-                  <th>Education</th>
+                  <th>Email Address</th>
                   <th>Job Desc</th>
-                  <th>Application</th>
-                  <th> Date</th>
+                  <th>Cover Letter</th>
+                  <th>Date</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="../result-asset/avatar.jpg" width="60"></td>
                   <td>Tata Godwin E</td>
                   <td>BSC</td>
                   <td>Teaching Staff</td>
-                  <td><span class="badge badge-pill badge-info" style="cursor: pointer;">Read Letter</span></td>
-                  <td>2011/04/25</td>
+                  <td><span class="badge badge-pill badge-dark" style="cursor: pointer;">Read</span></td>
+                  <td><?php echo date("Y-m-d");?></td>
                   <td> <!-- new btn link -->
                     <div class="btn-group dropdown mb-1">
             <button type="button" class="btn btn-primary">Options</button>
@@ -88,13 +86,10 @@ require_once "helpers/helper.php";
               <span class="sr-only">Toggle Dropdown</span>
             </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item text-info" href="javascript:void(0);"> View Info</a>
-                
                 <a class="dropdown-item text-warning" href="javascript:void(0);">Download CV</a>
-                <a class="dropdown-item text-warning" href="javascript:void(0);">Upload Interview</a>
                 <a class="dropdown-item text-success" href="javascript:void(0);"> Send Message</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger" href="javascript:void(0);">Delete Applicant</a>
+              <a class="dropdown-item text-danger" href="javascript:void(0);">Ignore Applicant</a>
             </div>
           </div>
                    <!--new btn link ends  --> 

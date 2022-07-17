@@ -42,7 +42,7 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title">Faq</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Faq Us</li>
                     </ul>
@@ -54,7 +54,7 @@ require_once ("Inc/Osotech.php");
                  <div class="container">
                      <div class="content-part mb-50 md-mb-30">
                          <div class="title mb-40 md-mb-15">
-                        <h3 class="text-part">Admission Into Junior Classes</h3>
+                        <h3 class="text-part"> Admission Into Junior Classes</h3>
                              Admission in Progress (2022-2023 academic session)
 Admission is currently open into J.S.S 1 (2022-2023 Academic Session). Details for the examinations are as follows.
 

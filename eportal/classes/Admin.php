@@ -148,16 +148,16 @@ public function reset_admin_password($data){
 			$confirm_new_pass = $this->config->Clean($data['confirm-new-password']);
 			//check for empty
 			if ($this->config->isEmptyStr($old_pass)) {
-				$this->response = $this->alert->alert_msg("Please enter your current password to continue!","danger");
+				$this->response = $this->alert->alert_toastr("error","Please enter your current password to continue!",__OSO_APP_NAME__." Says");
 			}elseif ($this->config->isEmptyStr($new_password)) {
 				// code...
-					$this->response = $this->alert->alert_msg("Enter your new Password to Continue!","danger");
+					$this->response = $this->alert->alert_toastr("error","Enter your new Password to Continue!",__OSO_APP_NAME__." Says");
 			}elseif ($this->config->isEmptyStr($confirm_new_pass)) {
-				$this->response = $this->alert->alert_msg("Confirm your new Password to Continue!","danger");
+				$this->response = $this->alert->alert_toastr("error","Confirm your new Password to Continue!",__OSO_APP_NAME__." Says");
 			}elseif ((strlen($new_password) < 8) || (strlen($new_password) >15)) {
-				$this->response = $this->alert->alert_msg("Password lenght must be between Eight (8) and twelve (12) characters","danger");
+				$this->response = $this->alert->alert_toastr("error","Password lenght must be between Eight (8) and twelve (12) characters","danger");
 			}elseif ($new_password !== $confirm_new_pass) {
-				$this->response = $this->alert->alert_msg("New Password and Confirm Password is not Match!","danger");
+				$this->response = $this->alert->alert_toastr("error","New Password and Confirm Password is not Match!",__OSO_APP_NAME__." Says");
 			}else{
 				//check the old pass with the one in the database
 				$this->stmt = $this->dbh->prepare("SELECT * FROM {$this->table} WHERE adminId=? LIMIT 1");
@@ -177,24 +177,24 @@ public function reset_admin_password($data){
 				if ($this->stmt->execute(array($real_pass,$adminId))) {
 					// code...
 					$this->dbh->commit();
-			$this->response = $this->alert->alert_msg("Password updated Successfully! Please wait...","success")."<script>setTimeout(()=>{
+			$this->response = $this->alert->alert_toastr("success","Password updated Successfully! Please wait...",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 			window.location.href='logout?action=logout';
 			},500);</script>";
 				}else{
-			$this->response = $this->alert->alert_msg("Internal Error Occured!, Please try again","danger");
+			$this->response = $this->alert->alert_toastr("error","Internal Error Occured!, Please try again",__OSO_APP_NAME__." Says");
 				}
 
 						} catch (PDOException $e) {
 	$this->dbh->rollback();
-    $this->response  =$this->alert->alert_msg("Password update failed: Error Occurred: ".$e->getMessage(),"danger");
+    $this->response  =$this->alert->alert_toastr("error","Password update failed: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 						}
 
 					}else{
-					$this->response = $this->alert->alert_msg("Old Password is not Match!","danger");
+					$this->response = $this->alert->alert_toastr("error","Old Password is not Match!",__OSO_APP_NAME__." Says");
 					}
 				}else{
 					//echo
-					$this->response = $this->alert->alert_msg("Account details not found!","danger");
+					$this->response = $this->alert->alert_toastr("error","Account details not found!",__OSO_APP_NAME__." Says");
 				}
 			}
 

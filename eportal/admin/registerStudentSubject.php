@@ -204,7 +204,7 @@ if ($regiestered_subejcts) {
           setTimeout(()=>{
             $(".__loadingBtn2__"+theId).html("<i class='far fa-trash-alt'></i> Unregister").attr("disabled",false);
             $(".server-response").html(data);
-          },1000);
+          },500);
         });
       }else{
         return false;
@@ -223,7 +223,7 @@ if ($regiestered_subejcts) {
           setTimeout(()=>{
         $(".__loadingBtn__2").html('Register').attr("disabled",false);
         $("#result-responseText").html(data);
-          },1000);
+          },500);
         })
     
       });

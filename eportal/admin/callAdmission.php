@@ -65,7 +65,7 @@ require_once "helpers/helper.php";
            
           </div>
         <div class="mt-2" style="text-align: center;">
-          <h4 class="text-center text-info">ACTIVE ADMISSION PORTAL FOR <?php echo $activeSess->session_desc_name; ?> APPLICATION </h4>
+          <h4 class="text-center text-info"> ADMISSION PORTAL FOR <?php echo $activeSess->session_desc_name; ?> APPLICATION </h4>
         </div>
         <div class="card-body card-dashboard">
 
@@ -101,7 +101,8 @@ require_once "helpers/helper.php";
                   <td><?php if ($kPortal->status == 1): ?>
                   <button class="btn btn-danger btn-sm round declear_open_close_btn" data-action="close_admission" data-id="<?php echo $kPortal->id; ?>"><i class="fas fa-lock"></i> Close Admission</button>
                     <?php else: ?>
-                     <button class="btn btn-dark btn-sm round declear_open_close_btn" data-action="open_admission"data-id="<?php echo $kPortal->id; ?>"><i class="fas fa-reply-all"></i> Open Admission</button>
+                     <button class="badge badge-dark badge-pill round declear_open_close_btn" data-action="open_admission"data-id="<?php echo $kPortal->id; ?>">Re-Open Portal</button>
+                     <button class="badge badge-danger badge-pill round mt-2 mr-1 ml-1 delete_adm_portal_btn" data-id="<?php echo $kPortal->id; ?>">Delete</button>
                   <?php endif ?></td>
                 </tr>
                   <?php 
@@ -276,7 +277,21 @@ require_once "helpers/helper.php";
         })
       }
      })
-
+//when delete bt is clicked
+const delete_btn = $(".delete_adm_portal_btn");
+delete_btn.on("click", function(){
+  confirmDelete = f=confirm("Are you sure you want ot delete this Announcement?");
+  if (confirmDelete) {
+    let action ='delete_call_for_admission';
+    let admId = $(this).data('id');
+    //send request 
+    $.post("../actions/delete_actions",{action:action,admid:admId}, function(res){
+      setTimeout(()=>{
+        $("#server-response").html(res);
+      },200);
+    })
+  }
+})
        })
      </script>
   </body>
