@@ -49,52 +49,7 @@ require_once "helpers/helper.php";
     <h3 class="bd-lead text-primary text-bold"><span class="fa fa-image fa-1x"></span> SCHOOL EXAMINATION MODULE</h3>
   </div>
           </div>
-           <!-- Statistics Cards Starts -->
-    <div class="row">
-       
-        <div class="col-xl-12 col-md-12">
-          <div class="row">
-            <div class="col-md-4 dashboard-users-success">
-              <div class="card text-center bg-dark">
-                <div class="card-body py-1">
-                  <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
-                    <i class="fa fa-edit fa-2x font-medium-10"></i>
-                  </div>
-                  <div class="text-white line-ellipsis"><h3 class="text-white">RECENT UPLOADS</h3></div>
-                  <h2 class="text-white mb-0"><?php echo $Blog->countGalleryByType('gallery');?></h2>
-                 
-                </div>
-              </div>
-            </div>
-
-             <div class="col-md-4 dashboard-users-success">
-              <div class="card text-center bg-warning">
-                <div class="card-body py-1">
-                  <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
-                    <i class="fa fa-edit fa-2x font-medium-10"></i>
-                  </div>
-                  <div class="text-white line-ellipsis"><h3 class="text-white">PENDING </h3></div>
-                  <h2 class="text-white mb-0"><?php echo $Blog->countGalleryByType('yearbook');?></h2>
-                  
-                </div>
-              </div>
-            </div>
-
-              <div class="col-md-4 dashboard-users-success">
-              <div class="card text-center bg-success">
-                <div class="card-body py-1">
-                  <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
-                    <i class="fa fa-edit fa-2x font-medium-10"></i>
-                  </div>
-                  <div class="text-white line-ellipsis"><h3 class="text-white">APPROVED </h3></div>
-                  <h2 class="text-white mb-0"><?php echo $Blog->countAllGallery();?></h2>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          
            <!-- Revenue Growth Chart Starts -->
     <div class="card">
       <div class="card-header">
