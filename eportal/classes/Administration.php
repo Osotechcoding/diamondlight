@@ -2814,4 +2814,113 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		unset($this->dbh);
 	}
 
+	public function submitExamQuestions($data,$file){
+		$teacher = $this->config->Clean($data['teacher']);
+	$exam_class = $this->config->Clean($data['examClass']);
+	$subject = $this->config->Clean($data['subject']);
+	$term = $this->config->Clean($data['term']);
+	$schl_session = $this->config->Clean($data['school_session']);
+		$examFile_temp = $file['examfile']['tmp_name'];
+		$examFileName = $file['examfile']['name'];
+		$examFile_size = $file['examfile']['size']/1024;
+		$examFile_error = $file['examfile']['error'];
+		//$ext = pathinfo($blogFileName, PATHINFO_EXTENSION);
+		$allowed = array("docx","doc","docxs");
+		 $name_div = explode(".", $examFileName);
+   		$image_ext = strtolower(end($name_div));
+		//CHECK FOR EMPTY FIELDS
+		//
+		if ($this->config->isEmptyStr($teacher) || $this->config->isEmptyStr($exam_class) || $this->config->isEmptyStr($subject) || $this->config->isEmptyStr($examFileName)) {
+			$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Pls try again!",__OSO_APP_NAME__." Says");
+		}elseif (!in_array($image_ext, $allowed)) {
+		$this->response = $this->alert->alert_toastr("error","Your file format is not supported, Please check and try again!",__OSO_APP_NAME__." Says");
+		}elseif ($examFile_size > 200) {
+	$this->response = $this->alert->alert_toastr("error","Examination file Size should not exceed 200KB, Selected File Size is :".number_format($examFile_size,2)."KB",__OSO_APP_NAME__." Says");
+		}elseif ($examFile_error !==0) {
+	 $this->response = $this->alert->alert_toastr("error","There was an error Uploading Your file, Try again!",__OSO_APP_NAME__." Says");
+		}else{
+			$newFileName = "exam_".$subject.mt_rand(190,99999999).".".$image_ext;
+	$file_destination = "../exams/".$newFileName;
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` WHERE teacher=? AND exam_class=? AND subject=? AND term=? AND schl_session=? LIMIT 1");
+	$this->stmt->execute(array($teacher,$exam_class,$subject,$term,$schl_session));
+	if ($this->stmt->rowCount() ==1) {
+		$this->response = $this->alert->alert_toastr("error","$subject Examination Question is already Uploaded for $term $schl_session, Please check and try again!",__OSO_APP_NAME__." Says");
+	}else {
+		try {
+	$created_at = date("Y-m-d");
+    	$this->dbh->beginTransaction();
+    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_exam_subject_tbl` (teacher,exam_class,subject,exam_file,created_at,term,schl_session) VALUES (?,?,?,?,?,?,?);");
+    	if ($this->stmt->execute(array($teacher,$exam_class,$subject,$newFileName,$created_at,$term,$schl_session))) {
+    		if ($this->config->move_file_to_folder($examFile_temp,$file_destination)) {
+    			$this->dbh->commit();
+    $this->response = $this->alert->alert_toastr("success","Exam Question Uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+							window.location.reload();
+						},500);</script>";
+    		}
+    	}else{
+    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+    	}
+    	
+    } catch (PDOException $e) {
+    	$this->dbh->rollback();
+    	if (file_exists($file_destination)) {
+		 unlink($file_destination);
+	}
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+    }
+	}
+		}
+ 	return $this->response;
+	unset($this->dbh);
+	}
+
+	public function getAllUploadedExamQuestions(){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` ORDER BY examId DESC");
+	$this->stmt->execute();
+	if ($this->stmt->rowCount() >0) {
+	$this->response = $this->stmt->fetchAll();
+	return $this->response;
+	unset($this->dbh); 
+}
+	}
+
+	public function getExamQuestionById($Id){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` WHERE examId=? LIMIT 1");
+	$this->stmt->execute([$Id]);
+	if ($this->stmt->rowCount() == 1) {
+	$this->response =$this->stmt->fetch();
+	return $this->response;
+	unset($this->dbh);
+	}
+}
+
+	//delete_SliderById
+	public function delete_ExamQuestionById($Id){
+		if (!$this->config->isEmptyStr($Id)) {
+			$exam_details = self::getExamQuestionById($Id);
+			$filePath = "../exams/".$exam_details->exam_file;
+			try {
+		$this->dbh->beginTransaction();
+	//Delete the selected Subject
+		$this->stmt = $this->dbh->prepare("DELETE FROM `visap_exam_subject_tbl` WHERE examId=? LIMIT 1");
+		if ($this->stmt->execute([$Id])) {
+			if (file_exists($filePath)) {
+				if (unlink($filePath)) {
+				 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Deleted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.reload();
+			},500);</script>";
+				}
+			}
+		}
+			} catch (PDOException $e) {
+		$this->dbh->rollback();
+    $this->response  = $this->alert->alert_toastr("error","Failed to Delete Gallery: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		return $this->response;
+		unset($this->dbh);
+		}
+		
+	}
+
 }

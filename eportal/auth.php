@@ -47,7 +47,7 @@ background-repeat: no-repeat;">
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
-<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo" ></div>
+<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo"></div>
 <h1 class="mb-3">ADMIN PORTAL</h1>
 <form id="adminLoginForm">
 <input type="hidden" name="action" value="logAdminIn">
@@ -72,7 +72,7 @@ placeholder="<?php echo $lang['password'];?>">
    <select name="login_as" id="login_as" class="select2 form-control">
        <option value="" selected>Choose...</option>
        <option value="admin">Admin</option>
-       <option value="director">School Owner</option>
+       <option value="director">Director</option>
    </select>
 </div>
 <div class="checkbox form-group form-box clearfix">

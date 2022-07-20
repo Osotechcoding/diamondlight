@@ -22,7 +22,8 @@
           <!-- RESULT -->
           <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-bar-chart fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE RESULTS">Student Results</span></a>
             <ul class="menu-content">
-          
+           <li class=" nav-item"><a href="examinationquestion"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Exam Question">Upload Questions</span></a>
+          </li>
           <li class="nav-item"><a href="result_uploading"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Results</span></a>
           </li>
            <!-- RESULT COMMENT SECTION -->

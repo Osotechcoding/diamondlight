@@ -451,6 +451,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//upload_examQuestion_now
+	if ($_POST['action'] ==="upload_examQuestion_now") {
+		$result = $Administration->submitExamQuestions($_POST,$_FILES);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

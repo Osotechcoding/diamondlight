@@ -33,7 +33,10 @@
           </li>
            <li class=" nav-item"><a href="markstudentass"><i class="fa fa-pencil fa-1x"></i><span class="menu-title text-truncate" data-i18n="Assignment">Mark Assignment</span></a>
           </li>
-          <li class=" nav-item"><a href="dutyAssignment"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Assign Duty">Assign Duty</span></a>
+          <li class=" nav-item"><a href="examquestion"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Exam Question">Exam Questions</span></a>
+          </li>
+
+           <li class=" nav-item"><a href="dutyAssignment"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Assign Duty">Assign Duty</span></a>
           </li>
             </ul>
           </li>
