@@ -36,7 +36,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['ADMIN_SES_TYPE'] ?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void();"><?php echo $_SESSION['ADMIN_SES_TYPE'] ?></a>
                   </li>
                   <li class="breadcrumb-item active">Students Attendance
                   </li>
@@ -97,7 +97,7 @@ require_once "helpers/helper.php";
                 </div>
                
               </div>
-               <button type="submit" name="submit_search" class="btn btn-dark btn-md badge-pill float-right">View Attendant</button>
+               <button type="submit" name="submit_search" class="btn btn-dark btn-md badge-pill float-right">View Attendance</button>
                <div class="clearfix"></div>
             </div>
           </form>
@@ -127,7 +127,7 @@ require_once "helpers/helper.php";
         <div class="card">
           <div class="card-body">
             <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
-                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name) ?> </h5>
+                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
         <h4 class="text-center text-danger"><strong>STUDENTS ATTENDANCE SHEET</strong></h4>
               <h2 class="card-title text-danger text-center">Roll Call Details For (<b class="text-info"><?php echo strtoupper($student_class) ?></b>) On <?php echo date("l jS F, Y",strtotime($_POST['att_date'])) ?></h2>
 

@@ -53,7 +53,7 @@ if ($request_method!=="GET") {
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']) ?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']) ?></a>
                   </li>
                   <li class="breadcrumb-item active">Student Payment Reciept
                   </li>
@@ -106,7 +106,7 @@ if ($request_method!=="GET") {
             </div>
            
             <div class="col-sm-6 col-12 text-center text-sm-right order-1 order-sm-2 d-sm-flex justify-content-end mb-1 mb-sm-0">
-              <img src="../schlogo.jpg" alt="logo" height="" width="164">
+              <img src="<?php echo $Configuration->get_schoolLogoImage();?>" alt="logo" height="" width="164">
             </div>
           </div>
           <hr>

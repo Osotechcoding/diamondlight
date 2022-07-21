@@ -9,7 +9,7 @@ require_once "helpers/helper.php";
 <head>
     <!-- metaTag -->
     <?php include ("../template/MetaTag.php"); ?>
-    <title><?php echo $SmappDetails->school_name; ?> :: Upload Exam Question</title>
+    <title><?php echo $SmappDetails->school_name; ?> :: Uploaded Exam Questions</title>
      <?php include ("../template/dataTableHeaderLink.php"); ?>
   </head>
   <!-- END: Head-->
@@ -36,7 +36,7 @@ require_once "helpers/helper.php";
                   </li>
                   <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']) ?> </a>
                   </li>
-                  <li class="breadcrumb-item active"> Submit Examination Question
+                  <li class="breadcrumb-item active"> Submitted Examination Questions
                   </li>
                 </ol>
               </div>
@@ -51,9 +51,9 @@ require_once "helpers/helper.php";
           </div>
            
     <div class="card">
-      <div class="card-header">
+     <!--  <div class="card-header">
           <button type="button" class="btn btn-dark btn-lg btn-rounded" data-toggle="modal" data-target="#uploadExamModal"><span class="fa fa-camera fa-1x"></span> Upload Question</button>
-        </div>
+        </div> -->
       <div class="card-body">
         <div class="table-responsive">
       <table class="table osotechDatatable table-bordered">
@@ -62,7 +62,8 @@ require_once "helpers/helper.php";
           <th>TEACHER</th>
           <th>SUBJECT</th>
           <th>CLASS</th>
-          <th>DOWNLOAD Question</th>
+          <th>Submitted at</th>
+          <th> Question</th>
           <th>ACTION</th>
         </tr>
       </thead>
@@ -71,12 +72,13 @@ require_once "helpers/helper.php";
               $all_exam_questions = $Administration->getAllUploadedExamQuestions();
                 if ($all_exam_questions) {
                   foreach ($all_exam_questions as $question) {
-                   
+                   $staff_data = $Staff->get_staff_ById($question->teacherId);
                     ?>
           <tr>
-            <td><?php echo ucwords($question->teacher);?></td>
+            <td><?php echo ucwords($staff_data->full_name);?></td>
           <td><?php echo ucwords($question->subject);?></td>
           <td><?php echo ucfirst($question->exam_class);?></td>
+          <td><?php echo date("l jS F, Y",strtotime($question->created_at));?></td>
           <td><a class="dropdown-item text-warning"  href="downloadExam?equestion=<?php echo ucfirst($question->exam_file);?>"><span class="fa fa-download"></span>&nbsp; Download</a> </td>
          <td> <button type="button" class="btn btn-danger btn-md delete_exam_btn __loadingBtn2__<?php echo $question->examId;?>" data-id="<?php echo $question->examId;?>">Delete</button> </td>
         </tr>
@@ -140,7 +142,7 @@ require_once "helpers/helper.php";
                <div class="col-md-12">
                   <div class="form-group">
                   <label for="teacher">Uploaded By</label>
-                <input type="text" autocomplete="off" class="form-control form-control-lg" name="teacher" value="Osotech Software Inc" readonly>
+                <input type="text" autocomplete="off" class="form-control form-control-lg" name="teacher_id" value="<?php echo $_SESSION['ADMIN_ID'] ?>" readonly>
                     </div>
                </div>
                

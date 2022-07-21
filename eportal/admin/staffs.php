@@ -136,7 +136,7 @@ require_once "helpers/helper.php";
                         <thead>
                             <tr>
                                 <th>PASSPORT</th>
-                                <th>REG NO</th>
+                                <th>STAFF APPNO</th>
                                 <th>NAME</th>
                                 <th>PHONE</th>
                                 <th>EMAIL</th>

@@ -166,10 +166,10 @@ img.schlogo-image{
   <section id="result">
     <div id="osotech-div">
       <img src="<?php echo $Configuration->get_schoolLogoImage();?>" class="schlogo-image" style="float: left;">
-      <small style="text-align: auto;margin-left: 30px;font-size: 20px;"><?php echo strtoupper($SmappDetails->school_name); ?></small>
+      <span style="text-align: auto;margin-left: 30px;font-size: 20px;"><?php echo strtoupper($SmappDetails->school_name); ?></span>
      
-       <h5 style="text-align: center;margin-right: 50px;font-size: 10px;">School Phones: <?php echo ucwords($SmappDetails->school_phone); ?> , <?php echo ucwords($SmappDetails->school_fax); ?> </h5>
-      <h5 style="text-align: center;margin-right: 50px;font-size: 14px;">School Address: <?php echo ucwords($SmappDetails->school_address); ?> <?php echo ucwords($SmappDetails->country); ?></h5>
+       <h3 style="text-align: center;margin-right: 50px;font-size: 15px;">Phones: <?php echo ucwords($SmappDetails->school_phone); ?> , <?php echo ucwords($SmappDetails->school_fax); ?> </h3>
+      <h5 style="text-align: center;margin-right: 50px;font-size: 14px;">Location: <?php echo ucwords($SmappDetails->school_address); ?> <?php echo ucwords($SmappDetails->country); ?></h5>
       <center> <h2 style="text-align:center; text-decoration: underline;">STUDENT'S PERFORMANCE  REPORT</h2></center>
     </div>
    <!--   -->
