@@ -459,6 +459,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//add_new_holiday
+	if ($_POST['action'] ==="add_new_holiday") {
+		$result = $Administration->declareSchoolHoliday($_POST);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

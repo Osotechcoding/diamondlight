@@ -549,7 +549,7 @@ require_once "helpers/helper.php";
                   <label for="logoName">News Logo <span class="text-danger">(png,jpg or jpeg format Only)</span></label>
                 <input type="file" class="form-control form-control-lg" name="logoName" onchange="previewFile(this);">
                     </div>
-                    <div class="col-md-6 offset-5" id="uploaded_logo">
+                    <div class="col-md-6 offset-2" id="uploaded_logo">
   <img id="previewImg" width="200" src="<?php echo $Configuration->get_schoolLogoImage();?>" alt="Placeholder" style="border: 2px solid darkblue;border-radius:10px;">
   <p>Image Size: <span id="ImageSize"></span></p> 
 </div>
@@ -565,7 +565,7 @@ require_once "helpers/helper.php";
         </div>
       </div>
       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-        <button type="submit" class="btn btn-dark glow mr-sm-1 mb-1 __loadingBtn10__">Upload</button>
+        <button type="submit" class="btn btn-dark bnt-lg glow mr-sm-1 mb-1 __loadingBtn10__">Upload </button>
         
       </div>
       </div>

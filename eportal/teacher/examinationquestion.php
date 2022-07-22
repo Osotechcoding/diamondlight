@@ -69,12 +69,13 @@ require_once "helpers/helper.php";
       </thead>
         <tbody class="text-center">
             <?php 
-              $all_exam_questions = $Administration->getAllUploadedExamQuestions();
+              $all_exam_questions = $Administration->getAllUploadedExamQuestionsStaffId($_SESSION['STAFF_SES_ID']);
                 if ($all_exam_questions) {
                   foreach ($all_exam_questions as $question) {
+                    $staff_data = $Staff->get_staff_ById($question->teacherId);
                     ?>
           <tr>
-            <td><?php echo ucwords($question->teacher);?></td>
+            <td><?php echo ucwords($staff_data->full_name);?></td>
           <td><?php echo ucwords($question->subject);?></td>
           <td><?php echo ucfirst($question->exam_class);?></td>
           <td><?php echo date("l jS F, Y",strtotime($question->created_at));?></td>
@@ -133,15 +134,11 @@ require_once "helpers/helper.php";
                      <div class="form-group">
                   <label for="examfile">Exam Question <span class="text-danger">(docx(msword)format Only; Max Size 200KB)</span></label>
                 <input type="file" class="form-control form-control-lg" id="examfile" name="examfile">
+                <input type="hidden" class="form-control form-control-lg" name="teacher_id" value="<?php echo $staff_data->staffId;?>" readonly>
                     </div>
                     
                   </div>
-               <div class="col-md-12">
-                  <div class="form-group">
-                  <label for="teacher">Uploaded By</label>
-                <input type="text" autocomplete="off" class="form-control form-control-lg" name="teacher" value="<?php echo $staff_data->full_name;?>" readonly>
-                    </div>
-               </div>
+             
                
                  </div>
                   </div>

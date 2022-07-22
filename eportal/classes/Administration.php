@@ -2815,7 +2815,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 	}
 
 	public function submitExamQuestions($data,$file){
-		$teacher = $this->config->Clean($data['teacher']);
+		$teacher = $this->config->Clean($data['teacher_id']);
 	$exam_class = $this->config->Clean($data['examClass']);
 	$subject = $this->config->Clean($data['subject']);
 	$term = $this->config->Clean($data['term']);
@@ -2841,7 +2841,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		}else{
 			$newFileName = "exam_".$subject.mt_rand(190,99999999).".".$image_ext;
 	$file_destination = "../exams/".$newFileName;
-	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` WHERE teacher=? AND exam_class=? AND subject=? AND term=? AND schl_session=? LIMIT 1");
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` WHERE teacherId=? AND exam_class=? AND subject=? AND term=? AND schl_session=? LIMIT 1");
 	$this->stmt->execute(array($teacher,$exam_class,$subject,$term,$schl_session));
 	if ($this->stmt->rowCount() ==1) {
 		$this->response = $this->alert->alert_toastr("error","$subject Examination Question is already Uploaded for $term $schl_session, Please check and try again!",__OSO_APP_NAME__." Says");
@@ -2849,7 +2849,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		try {
 	$created_at = date("Y-m-d");
     	$this->dbh->beginTransaction();
-    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_exam_subject_tbl` (teacher,exam_class,subject,exam_file,created_at,term,schl_session) VALUES (?,?,?,?,?,?,?);");
+    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_exam_subject_tbl` (teacherId,exam_class,subject,exam_file,created_at,term,schl_session) VALUES (?,?,?,?,?,?,?);");
     	if ($this->stmt->execute(array($teacher,$exam_class,$subject,$newFileName,$created_at,$term,$schl_session))) {
     		if ($this->config->move_file_to_folder($examFile_temp,$file_destination)) {
     			$this->dbh->commit();
@@ -2877,6 +2877,16 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 	public function getAllUploadedExamQuestions(){
 	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` ORDER BY examId DESC");
 	$this->stmt->execute();
+	if ($this->stmt->rowCount() >0) {
+	$this->response = $this->stmt->fetchAll();
+	return $this->response;
+	unset($this->dbh); 
+}
+	}
+
+	public function getAllUploadedExamQuestionsStaffId($staffId){
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_exam_subject_tbl` WHERE teacherId=? ORDER BY examId DESC");
+	$this->stmt->execute([$staffId]);
 	if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
@@ -2921,6 +2931,82 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		unset($this->dbh);
 		}
 		
+	}
+
+	//Holiday Methods
+	public function declareSchoolHoliday($data){
+			$description = $this->config->Clean($data['holiday_desc']);
+			$by = $this->config->Clean($data['declaredBy']);
+			$from = $this->config->Clean(date("Y-m-d",strtotime($data['holiday_from'])));
+			$to = $this->config->Clean(date("Y-m-d",strtotime($data['holiday_to'])));
+			$note = $this->config->Clean($data['message']);
+			$auth_pass = $this->config->Clean($data['auth_code']);
+			//check for empty vals
+			if ($this->config->isEmptyStr($description) || $this->config->isEmptyStr($by) || $this->config->isEmptyStr($from) || $this->config->isEmptyStr($to) || $this->config->isEmptyStr($note)) {
+			$this->response = $this->alert->alert_toastr("error","Invalid Submission, Check your input!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->isEmptyStr($auth_pass)) {
+			$this->response = $this->alert->alert_toastr("error","Authentication code is Required!",__OSO_APP_NAME__." Says");
+		}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+				$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}else{
+		//check for duplicate holiday
+			$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_holiday_tbl` WHERE holiday_desc=? AND declared_by=? AND date_from=? AND to_date=? LIMIT 1");
+			$this->stmt->execute(array($description,$by,$from,$to));
+			if ($this->stmt->rowCount() ==1) {
+				$this->response = $this->alert->alert_toastr("error","This $description is already Declared!",__OSO_APP_NAME__." Says");
+			}else{
+try {
+					$this->dbh->beginTransaction();
+					$date = date("Y-m-d");
+			$this->stmt = $this->dbh->prepare("INSERT INTO `visap_holiday_tbl` (holiday_desc,declared_by,date_from,to_date,note_msg,created_at) VALUES (?,?,?,?,?,?);");
+			if ($this->stmt->execute(array($description,$by,$from,$to,$note,$date))) {
+				$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","$description Declared Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+			}else{
+				$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+			}
+			} catch (Exception $e) {
+				$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+			}
+		}
+		return $this->response;
+		unset($this->dbh);
+	}
+
+	public function getAllHolidays(){
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_holiday_tbl` ORDER BY id DESC");
+	$this->stmt->execute();
+	if ($this->stmt->rowCount() > 0) {
+	$this->response = $this->stmt->fetchAll();
+	return $this->response;
+	unset($this->dbh); 
+}
+	}
+
+	public function deleteHolidayById($Id){
+		if (!$this->config->isEmptyStr($Id)) {
+			try {
+					$this->dbh->beginTransaction();
+			$this->stmt = $this->dbh->prepare("DELETE FROM `visap_holiday_tbl`  WHERE id=? LIMIT 1");
+			if ($this->stmt->execute([$Id])) {
+				$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+			}else{
+				$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+			}
+			} catch (Exception $e) {
+				$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		}
+		return $this->response;
+		unset($this->dbh);
 	}
 
 }

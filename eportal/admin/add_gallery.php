@@ -102,7 +102,7 @@ require_once "helpers/helper.php";
         </div>
       <div class="card-body">
         <div class="table-responsive">
-      <table class="table osotechDatatable table-bordered">
+      <table class="table osotechDatatable table-hover table-bordered">
         <thead class="text-center">
           <tr>
           <th>Image</th>

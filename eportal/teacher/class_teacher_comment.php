@@ -188,7 +188,7 @@ if ($get_all_uploaded_results_students) {
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label>Authentication Code</label>
-                                <input type="text" class="form-control" placeholder="Authentication Code" name="auth_pass">
+                                <input type="password" class="form-control" placeholder="**********" name="auth_pass">
                               </div>
                               </div>
                         <button class="btn btn-dark submit-btn btn-md mr-2 float-right mt-1 __loadingBtn__" type="submit" name="upload-btn"> UPLOAD COMMENT</button>

@@ -55,59 +55,10 @@ require_once "helpers/helper.php";
     <h3 class="bd-lead text-primary text-bold"><span class="fa fa-calendar fa-1x"></span> SCHOOL HOLIDAYS</h3>
   </div>
           </div>
-          <!-- Statistics Cards Starts -->
-        <div class="row">
-
-        <div class="col-xl-12 col-md-12">
-          <div class="row">
-
-            <div class="col-md-4 dashboard-users-success">
-              <div class="card text-center bg-info">
-                <div class="card-body py-1">
-                  <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
-                    <i class="fa fa-calendar fa-2x font-medium-10"></i>
-                  </div>
-                  <div class="text-white line-ellipsis"><h3 class="text-white"> Upcoming</h3></div>
-                  <h2 class="text-white mb-0"> <?php echo 20;?></h2>
-
-                </div>
-              </div>
-            </div>
-
-             <div class="col-md-4 dashboard-users-success">
-              <div class="card text-center bg-danger">
-                <div class="card-body py-1">
-                  <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
-                    <i class="fa fa-calendar fa-2x font-medium-10"></i>
-                  </div>
-                  <div class="text-white line-ellipsis"><h3 class="text-white"> Observed</h3></div>
-                  <h2 class="text-white mb-0"><?php echo 30;?></h2>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 dashboard-users-success">
-              <div class="card text-center bg-dark">
-                <div class="card-body py-1">
-                  <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
-                    <i class="fa fa-calendar fa-2x font-medium-10"></i>
-                  </div>
-                  <div class="text-white line-ellipsis"><h3 class="text-white">Holidays</h3></div>
-                  <h2 class="text-white mb-0"><?php echo 50; ?></h2>
-
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-
-      </div>
-       <!-- Revenue Growth Chart Starts -->
+         
     <div class="card">
       <div class="card-header">
-          <button type="button" class="btn btn-dark btn-md btn-round" data-toggle="modal" data-target="#addHolidayModal"><span class="fa fa-calendar fa-1x"></span> Add Holiday</button>
+          <button type="button" class="btn btn-dark btn-lg btn-round" data-toggle="modal" data-target="#addHolidayModal"><span class="fa fa-calendar fa-1x"></span> Declare Holiday</button>
         </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -115,37 +66,44 @@ require_once "helpers/helper.php";
         <thead class="text-center">
           <tr>
           <th>S/N</th>
-          <th>DESC</th>
-          <th>BY</th>
-          <th>FROM</th>
-          <th>TO</th>
+          <th>DESCRIPTION</th>
+          <th>DECLARED BY</th>
+          <th>DATE FROM</th>
+          <th>DATE TO</th>
           <th>STATUS</th>
           <th>ACTION</th>
         </tr>
       </thead>
         <tbody class="text-center">
+          <?php 
+
+          $allHolidays = $Administration->getAllHolidays();
+          if ($allHolidays) {
+            $cnt =0;
+           foreach ($allHolidays as $holiday) {
+            $cnt++;
+            ?>
           <tr>
-          <td>1</td>
-          <td>Public Holiday</td>
-          <td>Federal Govt</td>
-          <td><?php echo date("Y-m-d");?></td>
-          <td><?php echo date("Y-m-d",strtotime('+ 5days'));?></td>
-          <td><span class="badge badge-pill badge-success">Observed</span></td>
-         <td> <!-- Dropdown Buttons options -->
-    <div class="btn-group dropdown mb-1">
-            <button type="button" class="btn btn-warning">Options</button>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-           <div class="dropdown-menu">
-              <a class="dropdown-item text-danger" href="javascript:void(0);"><span class="fa fa-cogs"></span>Read Info</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger" href="javascript:void(0);"><span class="fa fa-trash"></span> Delete</a>
-            </div>
-          </div>
-          <!-- Dropdown Buttons options -->
-        </td>
+          <td><?php echo $cnt; ?></td>
+          <td><?php echo ucwords($holiday->holiday_desc);?></td>
+          <td><?php echo ucwords($holiday->declared_by);?><br>
+            <span class="badge badge-pill badge-dark read_info" data-info="<?php echo $holiday->note_msg; ?>" style="cursor: pointer;" >Read Details</span>
+          </td>
+          <td><?php echo date("D j M, Y",strtotime($holiday->date_from));?></td>
+          <td><?php echo date("D j M, Y",strtotime($holiday->to_date));?></td>
+          <td><?php if (date("Y-m-d",strtotime($holiday->to_date)) <= date("Y-m-d")): ?>
+          <span class="badge badge-pill badge-dark">Observed</span>
+            <?php else: ?>
+            <span class="badge badge-pill badge-info">Up Coming</span>
+          <?php endif ?> </td>
+         <td><button class="btn btn-danger btn-md btn-round __loadingBtn__<?php echo $holiday->id;?> delete_btn" data-id="<?php echo $holiday->id;?>">Delete</button> </td>
         </tr>
+
+            <?php
+             // code...
+           }
+          }
+           ?>
       </tbody>
       </table>
     </div>
@@ -167,68 +125,60 @@ require_once "helpers/helper.php";
             <div class="modal-dialog modal-lg ">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><span class="fa fa-calendar fa-1x"></span> Add Holiday</h2>
+                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><span class="fa fa-calendar fa-1x"></span> Holiday Declaration Form</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                   </button>
                 </div>
+                <form id="holidayDeclarationForm">
                 <div class="modal-body">
                   <div class="col-md-12 col-12 col-xl-12 col-lg-12 col-sm-12">
                   <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-12">
                   <div class="form-group">
-                  <label for="route_name">HOLIDAY DESC</label>
-                <input type="text" autocomplete="off" class="form-control form-control-lg" name="pin_view_code" placeholder="Public Holiday">
+                  <label for="holiday_desc">HOLIDAY DESC</label>
+                <input type="text" autocomplete="off" class="form-control form-control-lg" name="holiday_desc" placeholder="Public Holiday">
                     </div>
                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                      <div class="form-group">
-                  <label for="class_division"> DECLARED BY </label>
-               <select name="class_division" id="class_division" class="select2 form-control form-control-lg">
-                 <option value="">--select--</option>
-                 <option value="A">Federal Government</option>
-                 <option value="B">School Authority</option>
-               </select>
+                  <label for="declaredBy"> DECLARED BY </label>
+              <input type="text" name="declaredBy" id="declaredBy" class="form-control form-control-lg" placeholder="Federal Government">
                 </div>
               </div>
 
                    <div class="col-md-6">
                      <div class="form-group">
-                  <label for="class_teacher">DATE FROM </label>
-              <fieldset class="form-group position-relative has-icon-left">
-                  <input type="text" class="form-control form-control-lg pickadate" placeholder="Select a Date">
-                  <div class="form-control-position">
-                      <i class='bx bx-calendar-check'></i>
-                  </div>
-              </fieldset>
+                  <label for="holiday_from">DATE FROM </label>
+                  <input type="date" name="holiday_from" class="form-control form-control-lg" placeholder="Select a Date">
                 </div>
               </div>
               <div class="col-md-6">
                      <div class="form-group">
-                  <label for="class_teacher">DATE TO </label>
-              <fieldset class="form-group position-relative has-icon-left">
-                  <input type="text" class="form-control form-control-lg pickadate" placeholder="Select a Date">
-                  <div class="form-control-position">
-                      <i class='bx bx-calendar-check'></i>
-                  </div>
-              </fieldset>
+                  <label for="holiday_to">DATE TO </label>
+                  <input type="date" name="holiday_to" class="form-control form-control-lg" placeholder="Select a Date">
                 </div>
               </div>
                <div class="col-12 mt-1">
-                      <fieldset class="form-label-group mb-0">
-                          <textarea data-length=150 class="form-control char-textarea" id="textarea-counter" rows="3" placeholder="More Information (Max Character (150))"></textarea>
-                          <label for="textarea-counter">More Information (Max Character (150))</label>
-                      </fieldset>
-                      <small class="counter-value float-right"><span class="char-count">0</span> / 150 </small>
+                      <label for="textarea-counter">More Information (Max Character (500))</label>
+                          <textarea data-length=500 class="form-control char-textarea" id="textarea-counter" rows="3" placeholder="Write additional Message here" name="message"></textarea>
+                      <small class="counter-value float-right"><span class="char-count">0</span> / 500 </small>
                   </div>
+                  <div class="col-md-12">
+                  <div class="form-group">
+                  <label for="auth_code"> Authentication Code</label>
+              <input type="password" autocomplete="off" class="form-control form-control-lg" name="auth_code" placeholder="*********">
+                    </div>
+               </div>
 
                  </div>
                   </div>
                 </div>
+                 <input type="hidden" name="action" value="add_new_holiday">
                 <div class="modal-footer">
-                   <button type="submit" class="btn btn-success ml-1">
-                   <span class="fa fa-calendar fa-1x"></span> Save</button>
-                  <button type="button" class="btn btn-warning ml-1" data-dismiss="modal">
+                   <button type="submit" class="btn btn-dark ml-1 __loadingBtn__">
+                   <span class="fa fa-calendar fa-1x"></span> Submit</button>
+                  <button type="button" class="btn btn-danger ml-1" data-dismiss="modal">
                     <span class="fa fa-power-off"></span> Back
                   </button>
                 </div>
@@ -237,20 +187,77 @@ require_once "helpers/helper.php";
             </div>
           </div>
     <!-- BUS MODAL  END -->
+
+     <!--Basic Modal -->
+          <div class="modal fade text-left" id="holidayDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="myModalLabel1">Instruction</h3>
+                  <button type="button" class="close rounded-pill" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p class="mb-0" id="view_aNote">
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger ml-1" data-dismiss="modal">Back</button>
+                </div>
+              </div>
+            </div>
+          </div>
   <?php include ("../template/footer.php"); ?>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
    <?php include ("../template/DataTableFooterScript.php"); ?>
-
-    <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
    <script>
      $(document).ready(function(){
-      $("#ComponentFormFee").on("submit", function(event){
-        event.preventDefault();
-        const ComponentFormFee = $(this).serialize();
-        alert("Yes Component Fee Saved");
-        self.location.reload();
+
+             const readmeBtn = $(".read_info");
+  readmeBtn.on("click", function(){
+     let holidaydetails = $(this).data("info");
+      $("#view_aNote").html(holidaydetails);
+    $("#holidayDetailsModal").modal("show");
+  })
+
+
+      const HOLIDAYFORM = $("#holidayDeclarationForm");
+                HOLIDAYFORM.on("submit", function(event){
+                event.preventDefault();
+            $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
+            //send request 
+            $.post("../actions/actions",HOLIDAYFORM.serialize(),function(data){
+                setTimeout(()=>{
+                    $(".__loadingBtn__").html('Submit').attr("disabled",false);
+                    $("#server-response").html(data);
+                },500);
+            })
+        });
+
+
+      const delete_btn = $(".delete_btn");
+      delete_btn.on("click", function(){
+        let holidayId = $(this).data("id");
+        let action = 'delete_holiday';
+         let is_true = confirm("Are you Sure you want to Remove this Holiday?");
+      if (is_true) {
+        $(".__loadingBtn__"+holidayId).html('<img src="../assets/loaders/rolling_loader.svg" width="20"> Processing...').attr("disabled",true);
+        //send request 
+        $.post("../actions/delete_actions",{action:action,holidayId:holidayId},function(response){
+          setTimeout(()=>{
+            $(".__loadingBtn__"+holidayId).html("Delete").attr("disabled",false);
+            $("#server-response").html(response);
+          },500);
+        });
+      }else{
+        return false;
+      }
       })
+
+
      })
    </script>
   </body>

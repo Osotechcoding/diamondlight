@@ -18,7 +18,7 @@
 				<ul class="topbar-right">
 					<li class="login-register">
 						<i class="fa fa-sign-in"></i>
-						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white" target="_blank">PORTAL</a> ||  <a href="#" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
+						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white" target="_blank">PORTAL</a> ||  <a href="./e-result/" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>
 					</li>
                     <?php if ($Osotech->checkAdmissionPortalStatus() == true): ?>
                         <li class="btn-part">

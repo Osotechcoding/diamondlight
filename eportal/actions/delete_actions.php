@@ -115,4 +115,13 @@ if (isset($_POST['action']) && $_POST['action']!="") {
      echo $result;
     }
   }
+
+  //delete_holiday
+   if ($_POST['action'] ==="delete_holiday") {
+    $holidayId = $Configuration->Clean($_POST['holidayId']);
+    $result = $Administration->deleteHolidayById($holidayId);
+    if ($result) {
+     echo $result;
+    }
+  }
 }

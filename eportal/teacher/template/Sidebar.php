@@ -80,6 +80,11 @@
               <span class="menu-item text-truncate"> <?php echo $lang['Logout'] ?></span></a>
                
               </li>
+              <li>
+                <a class="d-flex align-items-center" href="../../" target="_blank"><i class="fa fa-globe"></i>
+                <span class="menu-item text-truncate"> <?php echo 'Visit Website' ?></span></a>
+
+              </li>
         </ul>
       </div>
     </div>

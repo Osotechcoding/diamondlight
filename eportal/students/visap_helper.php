@@ -6,7 +6,7 @@ include_once '../classes/Session.php';
 date_default_timezone_set("Africa/Lagos");
 //create an autoload function
 spl_autoload_register(function($filename){
-  include_once __DIR__."/../classes/".$filename.".php";
+  require_once "../classes/".ucfirst()$filename.".php";
 });
 $Configuration 	= new Configuration();
 $Student = new Student();

@@ -1,19 +1,15 @@
 <?php
 @ob_start();
 @session_start();
-require_once '../classes/Database.php';
+//require_once '../classes/Database.php';
 require_once "../languages/config.php";
-require_once "../classes/Configuration.php";
+//require_once "../classes/Configuration.php";
 date_default_timezone_set("Africa/Lagos");
 //create an autoload function
 spl_autoload_register(function($filename){
   include_once "../classes/".ucwords($filename).".php";
 });
 
-// if(!isset($_SESSION['ADMIN_TOKEN_ID'])){
-//     header("Location:".APP_ROOT);
-//     exit();
-// }
 $Visitor        = new Visitors();
 $Student        = new Student();
 $Result         = new Result();
