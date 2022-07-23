@@ -1,4 +1,4 @@
- <?php 
+ <?php
  @session_start();
 include_once "../languages/config.php";
 // require_once "../classes/Configuration.php";
@@ -9,7 +9,7 @@ spl_autoload_register(function($filename){
   require_once "../classes/".$filename.".php";
 });
   ?>
- <?php 
+ <?php
 $ses_token = Session::set_xss_token();
 $Configuration 	= new Configuration();
 $Admin = new Admin();
@@ -124,4 +124,13 @@ if (isset($_POST['action']) && $_POST['action']!="") {
      echo $result;
     }
   }
+
+  //delete_exam
+  if ($_POST['action'] ==="delete_exam") {
+   $examid = $Configuration->Clean($_POST['examid']);
+   $result = $Administration->deleteExamById($examid);
+   if ($result) {
+    echo $result;
+   }
+ }
 }

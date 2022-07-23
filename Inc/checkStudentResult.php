@@ -100,7 +100,7 @@ if ($request_method == 'POST') {
             // }
             $output = '<script>setTimeout(()=>{
 				window.location.assign("staffapplicant");
-			},1000)</script>';
+			},500)</script>';
             echo $output;
         }
     }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
 // $_Pins_ = new Pins();
  ?>
@@ -63,7 +63,7 @@ require_once "helpers/helper.php";
         <a href="genpin"><button type="button" class="btn btn-danger btn-xs">Generate Pin</button></a>
         </div> -->
         <div class="card-body card-dashboard">
-       
+
           <div class="table-responsive">
             <table class="table table-bordered table-striped osotechExp table-hover">
               <thead class="text-sm-center">
@@ -78,14 +78,14 @@ require_once "helpers/helper.php";
                   <th>Usage</th>
                 </tr>
               </thead>
-              <tbody>
-               <?php 
+              <tbody class="text-center">
+               <?php
                 $pin_datas = $Pin_serial->get_pins("tbl_result_pins");
                  if ($pin_datas!="") {
                   $cnt =1;
                  foreach ($pin_datas as $pin_data):
                   $userData = $Pin_serial->get_pin_card_user_by_code_serial($pin_data->pin_code,$pin_data->pin_serial);
-                  ?> 
+                  ?>
                    <tr>
                   <td><?php echo $cnt++; ?></td>
                   <td><?php echo $pin_data->pin_serial;?></td>
@@ -102,10 +102,10 @@ require_once "helpers/helper.php";
                   <td>&#8358;<?php echo number_format($pin_data->price,2);?></td>
                   <td><?php echo $pin_data->created_at;?></td>
                   <td><?php if ($pin_data->pin_status==0) {
-                   echo '<span class="badge badge-pill badge-success badge-sm">Active</span>';
+                   echo '<span class="badge badge-pill badge-success badge-sm">Unuse</span>';
                   }else{
                      echo '<span class="badge badge-pill badge-danger badge-sm">Used</span>';
-                  } 
+                  }
 
                    ?>
                     </td>
@@ -117,6 +117,7 @@ require_once "helpers/helper.php";
                    <td><?php if ($userData): ?>
                    <?php if ($userData->pin_counter >='5'): ?>
                      <span class="badge badge-pill badge-danger badge-sm">Exhausted</span>
+                     <button type="button" name="button" class="badge badge-pill badge-danger badge-sm"><span class="fa fa-trash"></span> Delete</button>
                    <?php else: ?>
                     <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Times</span>
                    <?php endif ?>
@@ -126,9 +127,9 @@ require_once "helpers/helper.php";
                 </tr>
                   <?php endforeach; ?>
                <?php } ?>
-                
+
               </tbody>
-             
+
             </table>
           </div>
         </div>
@@ -144,7 +145,7 @@ require_once "helpers/helper.php";
     </div>
     <!-- END: Content-->
      <?php include_once ("template/pinPassModal.php") ?>
-   
+
     <!-- BEGIN: Footer-->
   <?php include ("../template/footer.php"); ?>
     <!-- END: Footer-->
@@ -153,7 +154,7 @@ require_once "helpers/helper.php";
    <!-- DataTableFooterScript.php -->
    <script>
      $(document).ready(function(){
-     //when del btn is active 
+     //when del btn is active
       $(document).on("click",".del_pinBtn_", function(){
         let id = $(this).data("id");
         let table_name = $(this).data("table");
@@ -166,7 +167,7 @@ require_once "helpers/helper.php";
           });
         }else{
           return false;
-        } 
+        }
       });
       //ends
 
@@ -175,27 +176,27 @@ require_once "helpers/helper.php";
         window.location.href="./regPin";
       },1000);
     })
-    //exam pins 
+    //exam pins
      $(".view_ex_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./examPin";
       },1000);
     })
 
-      //exam pins 
+      //exam pins
     //  $(".gen_pin_btn").on("click", function(){
     //   setTimeout(()=>{
     //     window.location.href="./genpin";
     //   },1000);
     // })
 
-      //Result pins 
+      //Result pins
      $(".view_res_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./resPin";
       },1000);
     })
-        //Wallet pins 
+        //Wallet pins
      $(".view_wallet_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./walletPin";

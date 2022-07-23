@@ -1,4 +1,4 @@
-<?php 
+<?php
 @session_start();
 require_once "Database.php";
 require_once "Session.php";
@@ -67,13 +67,13 @@ try {
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
 }
 return $this->response;
@@ -97,7 +97,7 @@ $this->stmt->execute(array($blogStatus));
 if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
 
@@ -119,7 +119,7 @@ $this->stmt->execute(array($status));
 if ($this->stmt->rowCount()>0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
 
@@ -139,10 +139,10 @@ $this->stmt->execute(array($status));
 if ($this->stmt->rowCount()> 0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
-//count all blogs 
+//count all blogs
 public function countAllBlogs(){
 	$this->stmt = $this->dbh->prepare("SELECT count(`blog_id`) as cnt FROM `visap_blog_post_tbl` ");
 $this->stmt->execute();
@@ -154,7 +154,7 @@ if ($this->stmt->rowCount()>0) {
 }
 }
 
-//count all blogs 
+//count all blogs
 public function countAllBlogsComments(){
 	$this->stmt = $this->dbh->prepare("SELECT count(`blogId`) as cnt FROM `visap_blog_post_comments` ");
 $this->stmt->execute();
@@ -232,13 +232,13 @@ public function upload_upcomingEvents($data,$file){
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
 	}
 		}
@@ -263,7 +263,7 @@ $this->stmt->execute(array($status));
 if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
 
@@ -351,13 +351,13 @@ public function createNewGallery($data,$file){
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
 	}
 		}
@@ -372,7 +372,7 @@ $this->stmt->execute();
 if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
 public function countGalleryByType(string $type){
@@ -382,7 +382,7 @@ if ($this->stmt->rowCount() >0) {
 	$cont = $this->stmt->fetch();
 	$this->response = $cont->cnt;
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
 
@@ -393,7 +393,7 @@ if ($this->stmt->rowCount() >0) {
 	$cont = $this->stmt->fetch();
 	$this->response = $cont->cnt;
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 }
 public function getGalleryById($Id){
@@ -431,7 +431,7 @@ public function delete_galleryById($Id){
 		return $this->response;
 		unset($this->dbh);
 		}
-		
+
 	}
 
 
@@ -471,7 +471,7 @@ public function delete_galleryById($Id){
 		return $this->response;
 		unset($this->dbh);
 		}
-		
+
 	}
 
 	public function createNewSliders($data, $file) {
@@ -522,13 +522,13 @@ public function delete_galleryById($Id){
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
 	}
 		}
@@ -542,7 +542,7 @@ public function delete_galleryById($Id){
 	if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 	}
 

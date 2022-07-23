@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
 $_Pins_ = new Pins();
  ?>
@@ -47,21 +47,21 @@ $_Pins_ = new Pins();
           </div>
         </div>
         <div class="content-body"><div class="row"></div>
-           
+
   <div class="col-12">
     <h3 class="bd-lead text-primary text-bold"><span class="fa fa-credit-card-alt fa-1x"></span> ADMISSION SCRATCH CARDS</h3>
   </div>
 
-        
+
 <!-- Column selectors with Export Options and print table -->
 <section id="column-selectors">
    <?php include_once("template/pinsLinkBtns.php") ?>
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
       <div class="card">
-       
+
         <div class="card-body card-dashboard">
-       
+
           <div class="table-responsive">
             <table class="table table-bordered table-striped osotechExp table-hover">
               <thead class="text-sm-center">
@@ -73,16 +73,16 @@ $_Pins_ = new Pins();
                   <th>Created</th>
                   <th>Status</th>
                   <th>Used By</th>
-                  <!-- <th>Action</th> -->
+                  <th>Delete</th>
                 </tr>
               </thead>
-              <tbody>
-                <?php 
+              <tbody class="text-center">
+                <?php
                 $pin_datas = $_Pins_->get_pins("tbl_reg_pins");
                  if ($pin_datas!="") {
                   $cnt =1;
                  foreach ($pin_datas as $pin_data):?>
-              <?php $userData = $Pin_serial->get_admission_pin_card_user($pin_data->pin_code,$pin_data->pin_serial); ?> 
+              <?php $userData = $Pin_serial->get_admission_pin_card_user($pin_data->pin_code,$pin_data->pin_serial); ?>
                    <tr>
                   <td><?php echo $cnt++; ?></td>
                   <td><?php echo $pin_data->pin_serial;?></td>
@@ -102,7 +102,7 @@ $_Pins_ = new Pins();
                    echo '<span class="badge badge-pill badge-success badge-sm">Active</span>';
                   }else{
                      echo '<span class="badge badge-pill badge-danger badge-sm">Used</span>';
-                  } 
+                  }
 
                    ?>
                     </td>
@@ -113,11 +113,16 @@ $_Pins_ = new Pins();
                       <span class="badge badge-pill badge-success badge-sm">Not Used</span>
                   <?php endif ?>
                     </td>
+                    <td><?php if ($pin_data->pin_status=='1'): ?>
+                      <button type="button" name="button" class="badge badge-pill badge-danger badge-sm"><span class="fa fa-trash"></span> Delete</button>
+                      <?php else: ?>
+                        <button type="button" name="button" class="badge badge-pill badge-warning badge-sm" style="cursor:not-allowed;"><span class="fa fa-check"></span> Not Allowed</button>
+                    <?php endif; ?></td>
                 </tr>
                   <?php endforeach; ?>
                <?php } ?>
               </tbody>
-             
+             <!--   -->
             </table>
           </div>
         </div>
@@ -132,7 +137,7 @@ $_Pins_ = new Pins();
     </div>
     <!-- END: Content-->
      <?php include_once ("template/pinPassModal.php") ?>
-   
+
     <!-- BEGIN: Footer-->
   <?php include ("../template/footer.php"); ?>
     <!-- END: Footer-->
@@ -153,7 +158,7 @@ return true;
 
 }
      $(document).ready(function(){
-     //when del btn is active 
+     //when del btn is active
       $(document).on("click",".del_pinBtn_", function(){
         let id = $(this).data("id");
         let table_name = $(this).data("table");
@@ -166,7 +171,7 @@ return true;
           });
         }else{
           return false;
-        } 
+        }
       });
       //ends
 
@@ -175,28 +180,28 @@ return true;
         window.location.href="./regPin";
       },1000);
     })
-    //exam pins 
+    //exam pins
      $(".view_ex_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./examPin";
       },1000);
     })
 
-    //   //exam pins 
+    //   //exam pins
     //  $(".gen_pin_btn").on("click", function(){
     //   setTimeout(()=>{
     //     window.location.href="./genpin";
     //   },1000);
     // })
 
-      //Result pins 
+      //Result pins
      $(".view_res_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./resPin";
       },1000);
     })
 
-       //Wallet pins 
+       //Wallet pins
      $(".view_wallet_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./walletPin";

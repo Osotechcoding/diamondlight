@@ -42,13 +42,13 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title">Blog</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Blog</li>
                     </ul>
                 </div>
             </div>
-            <!-- Breadcrumbs End -->            
+            <!-- Breadcrumbs End -->
 
     		  <!-- Blog Section Start -->
             <div class="rs-inner-blog orange-color pt-100 pb-100 md-pt-70 md-pb-70">
@@ -78,7 +78,7 @@ require_once ("Inc/Osotech.php");
                                         <li><a href="#">September 2020</a></li>
                                         <li><a href="#">September 2020</a></li>
                                     </ul>
-                                </div>   
+                                </div>
                                 <div class="widget-archives mb-50">
                                     <h3 class="widget-title">Categories</h3>
                                     <ul>
@@ -113,24 +113,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">University</a> 
+                                                            <a href="#">University</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -149,24 +149,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">High School</a> 
+                                                            <a href="#">High School</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -185,24 +185,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">Primary</a> 
+                                                            <a href="#">Primary</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -221,24 +221,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">College</a> 
+                                                            <a href="#">College</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -257,24 +257,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">College</a> 
+                                                            <a href="#">College</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -293,24 +293,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">College</a> 
+                                                            <a href="#">College</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -329,24 +329,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">School</a> 
+                                                            <a href="#">School</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -365,24 +365,24 @@ require_once ("Inc/Osotech.php");
                                                 <ul class="btm-cate">
                                                     <li>
                                                         <div class="blog-date">
-                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020                                                        
+                                                            <i class="fa fa-calendar-check-o"></i> September 14, 2020
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="author">
-                                                            <i class="fa fa-user-o"></i> admin  
+                                                            <i class="fa fa-user-o"></i> admin
                                                         </div>
-                                                    </li>   
+                                                    </li>
                                                     <li>
                                                         <div class="tag-line">
                                                             <i class="fa fa-book"></i>
-                                                            <a href="#">School</a> 
+                                                            <a href="#">School</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="blog-desc">   
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...                                     
+                                            <div class="blog-desc">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam...
                                             </div>
                                             <div class="blog-button">
                                                 <a class="blog-btn" href="#">Continue Reading</a>
@@ -392,7 +392,7 @@ require_once ("Inc/Osotech.php");
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
           <!-- Blog Section End -->

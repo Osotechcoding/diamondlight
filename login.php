@@ -43,19 +43,19 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title">My Account</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>My Account</li>
                     </ul>
                 </div>
             </div>
-            <!-- Breadcrumbs End -->            
+            <!-- Breadcrumbs End -->
 
     		<!-- My Account Section Start -->
     		<div class="rs-login pt-100 pb-100 md-pt-70 md-pb-70">
                 <div class="container">
                     <div class="noticed">
-                        <div class="main-part">                           
+                        <div class="main-part">
                             <div class="method-account">
                                 <h2 class="login">Login</h2>
                                 <form>
@@ -71,9 +71,9 @@ require_once ("Inc/Osotech.php");
                     </div>
                 </div>
             </div>
-            <!-- My Account Section End -->  
+            <!-- My Account Section End -->
 
-        </div> 
+        </div>
         <!-- Main content End -->
 	<!-- Newsletter section start -->
     <?php include_once ("Templates/NewsletterForm.php");?>

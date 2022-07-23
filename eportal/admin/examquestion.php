@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ require_once "helpers/helper.php";
     <h3 class="bd-lead text-primary text-bold"><span class="fa fa-image fa-1x"></span> SCHOOL EXAMINATION MODULE</h3>
   </div>
           </div>
-           
+
     <div class="card">
      <!--  <div class="card-header">
           <button type="button" class="btn btn-dark btn-lg btn-rounded" data-toggle="modal" data-target="#uploadExamModal"><span class="fa fa-camera fa-1x"></span> Upload Question</button>
@@ -68,7 +68,7 @@ require_once "helpers/helper.php";
         </tr>
       </thead>
         <tbody class="text-center">
-            <?php 
+            <?php
               $all_exam_questions = $Administration->getAllUploadedExamQuestions();
                 if ($all_exam_questions) {
                   foreach ($all_exam_questions as $question) {
@@ -137,7 +137,7 @@ require_once "helpers/helper.php";
                   <label for="examfile">Exam Question <span class="text-danger">(docx(msword)format Only; Max Size 200KB)</span></label>
                 <input type="file" class="form-control form-control-lg" id="examfile" name="examfile">
                     </div>
-                    
+
                   </div>
                <div class="col-md-12">
                   <div class="form-group">
@@ -145,7 +145,7 @@ require_once "helpers/helper.php";
                 <input type="text" autocomplete="off" class="form-control form-control-lg" name="teacher_id" value="<?php echo $_SESSION['ADMIN_ID'] ?>" readonly>
                     </div>
                </div>
-               
+
                  </div>
                   </div>
                 </div>
@@ -164,27 +164,24 @@ require_once "helpers/helper.php";
             </div>
           </div>
     <!-- BUS MODAL  END -->
-
-    
   <?php include ("../template/footer.php"); ?>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
    <?php include ("../template/DataTableFooterScript.php"); ?>
-  
    <script>
      $(document).ready(function(){
       //when the delete gallery btn is clicked
-      const delete_gallery = $(".delete_gallery_btn");
-      delete_gallery.on("click", function(){
-        let tId = $(this).data("id");
-        let action = 'delete_gallery';
-         let is_true = confirm("Are you Sure you want to Remove this Image?");
+      const delete_exam = $(".delete_exam_btn");
+      delete_exam.on("click", function(){
+        let examid = $(this).data("id");
+        let action = 'delete_exam';
+         let is_true = confirm("Are you Sure you want to Remove this Question?");
       if (is_true) {
-        $(".__loadingBtn2__"+tId).html('<img src="../assets/loaders/rolling_loader.svg" width="20"> Processing...').attr("disabled",true);
-        //send request 
-        $.post("../actions/delete_actions",{action:action,tId:tId},function(response){
+        $(".__loadingBtn2__"+examid).html('<img src="../assets/loaders/rolling_loader.svg" width="20">').attr("disabled",true);
+        //send request
+        $.post("../actions/delete_actions",{action:action,examid:examid},function(response){
           setTimeout(()=>{
-            $(".__loadingBtn2__"+tId).html("Delete").attr("disabled",false);
+            $(".__loadingBtn2__"+examid).html("Delete").attr("disabled",false);
             $("#server-response").html(response);
           },500);
         });
@@ -208,7 +205,7 @@ require_once "helpers/helper.php";
     success:function(data){
       setTimeout(()=>{
          $(".__loadingBtn__").html('Submit').attr("disabled",false);
-        //$("#addNewGalleryModalForm")[0].reset();
+
         $("#server-response").html(data);
        // alert(data);
       },500);

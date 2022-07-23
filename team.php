@@ -7,7 +7,7 @@ require_once ("Inc/Osotech.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
 	<title> </title>
      <?php include ("Templates/MetaTag.php");?>
     <?php include ("Templates/HeaderScript.php");?>
@@ -43,7 +43,7 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title">Team One</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Team One</li>
                     </ul>

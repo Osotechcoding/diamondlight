@@ -42,15 +42,15 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title">Blog Sidebar</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Blog Single</li>
                     </ul>
                 </div>
             </div>
-            <!-- Breadcrumbs End -->            
+            <!-- Breadcrumbs End -->
 
-	      
+
             <!-- Blog Section Start -->
             <div class="rs-inner-blog orange-color pt-100 pb-100 md-pt-70 md-pb-70">
               <div class="container">
@@ -76,23 +76,23 @@ require_once ("Inc/Osotech.php");
                                              April 6, 2020
                                         </span>
                                     </div>
-                                </div> 
-                              
+                                </div>
+
                             </div>
-                          
+
                             <div class="widget-archives mb-50">
                                 <h3 class="widget-title">Categories</h3>
                                 <ul>
                                     <li><a href="#">College</a></li>
-                                    
+
                                 </ul>
                             </div>
-                              
+
                         </div>
                     </div>
                       <div class="col-lg-8 pr-50 md-pr-15">
                         <div class="row">
-                              <?php 
+                              <?php
 $all_blogs_posted = $Osotech->get_all_active_blogs_post();
 if ($all_blogs_posted) {
   foreach ($all_blogs_posted as $value) {?>
@@ -107,39 +107,39 @@ if ($all_blogs_posted) {
                                               <ul class="btm-cate">
                                                   <li>
                                                       <div class="blog-date">
-                                                          <i class="fa fa-calendar-check-o"></i> <?php echo date("F j, Y",strtotime($value->created_at)) ?>                                                       
+                                                          <i class="fa fa-calendar-check-o"></i> <?php echo date("F j, Y",strtotime($value->created_at)) ?>
                                                       </div>
                                                   </li>
                                                   <li>
                                                       <div class="author">
-                                                          <i class="fa fa-user-o"></i> admin  
+                                                          <i class="fa fa-user-o"></i> admin
                                                       </div>
-                                                  </li>   
+                                                  </li>
                                                   <li>
                                                       <div class="tag-line">
                                                           <i class="fa fa-book"></i>
-                                                          <a href="#"><?php echo $value->category_id;?></a> 
+                                                          <a href="#"><?php echo $value->category_id;?></a>
                                                       </div>
                                                   </li>
                                               </ul>
                                           </div>
-                                         
-                                            <?php 
+
+                                            <?php
                   if (str_word_count($value->blog_content) >= 50) {
                   echo substr($value->blog_content,0,100)."...";
                   ?>
-                    <div class="blog-desc">  
+                    <div class="blog-desc">
                        </div>
                        <div class="blog-button">
              <a class="blog-btn" href="blog-single?bId=<?php echo $value->blog_id;?>&action=view">Continue Reading</a>
                       </div>
-                 <?php  
+                 <?php
                   }else{
                     echo $value->blog_content;
                   }
-                  ?>                                 
-                                         
-                                         
+                  ?>
+
+
                                       </div>
                                   </div>
                               </div>
@@ -154,10 +154,10 @@ if ($all_blogs_posted) {
    ?>
 
 
-            
+
                           </div>
                       </div>
-                  </div> 
+                  </div>
               </div>
             </div>
             <!-- Blog Section End -->

@@ -42,13 +42,13 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title white-color">Contact 2</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Contact 2</li>
                     </ul>
                 </div>
             </div>
-            <!-- Breadcrumbs End -->            
+            <!-- Breadcrumbs End -->
 
     		<!-- Contact Section Start -->
     		<div class="contact-page-section pt-100 pb-100 md-pt-70 md-pb-70">
@@ -59,13 +59,13 @@ require_once ("Inc/Osotech.php");
                               <div class="img-part js-tilt">
                                   <img src="assets/images/contact/contact4.png" alt="">
                               </div>
-                          </div> 
+                          </div>
                           <div class="col-lg-6 pl-50 md-pl-15">
                                <!-- Map Section Start -->
                                <div class="contact-map3">
                                   <iframe src="https://maps.google.com/maps?q=mirpur%20stadium&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
                                </div>
-                               <!-- Map Section End --> 
+                               <!-- Map Section End -->
                           </div>
                       </div>
                    </div>
@@ -73,7 +73,7 @@ require_once ("Inc/Osotech.php");
                         <div class="col-lg-4 col-md-12 md-mb-30">
                             <div class="rs-contact-wrap">
                                 <div class="inner-part text-center">
-                                    <h2 class="title2">General</h2>                                   
+                                    <h2 class="title2">General</h2>
                                 </div>
                                 <div class="address-item">
                                     <div class="address-icon">
@@ -83,7 +83,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="label">Email Addresss</span>
                                          <span class="des">info@educavo.com</span>
                                      </div>
-                                </div> 
+                                </div>
                                 <div class="address-item">
                                     <div class="address-icon">
                                         <i class="fa fa-headphones"></i>
@@ -92,7 +92,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="label">Phone Number</span>
                                          <span class="des"><a href="tel%2b0885898745.html">(+088)589-8745</a></span>
                                      </div>
-                                </div> 
+                                </div>
                                 <div class="address-item">
                                     <div class="address-icon">
                                         <i class="fa fa-map-signs"></i>
@@ -102,12 +102,12 @@ require_once ("Inc/Osotech.php");
                                          <span class="des">New Jesrsy, 1201, USA</span>
                                      </div>
                                 </div>
-                            </div> 
-                        </div> 
+                            </div>
+                        </div>
                         <div class="col-lg-4 col-md-12 md-mb-30">
                             <div class="rs-contact-wrap">
                                 <div class="inner-part text-center">
-                                    <h2 class="title2">Admissions</h2>                                   
+                                    <h2 class="title2">Admissions</h2>
                                 </div>
                                 <div class="address-item">
                                     <div class="address-icon">
@@ -117,7 +117,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="label">Email Address</span>
                                          <span class="des">admission@educavo.com</span>
                                      </div>
-                                </div> 
+                                </div>
                                 <div class="address-item">
                                     <div class="address-icon">
                                         <i class="fa fa-headphones"></i>
@@ -126,7 +126,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="label">Phone Number 1</span>
                                          <span class="des"><a href="tel%2b0885898745.html">(+088)589-8745</a></span>
                                      </div>
-                                </div> 
+                                </div>
                                 <div class="address-item">
                                     <div class="address-icon">
                                         <i class="fa fa-headphones"></i>
@@ -136,12 +136,12 @@ require_once ("Inc/Osotech.php");
                                          <span class="des"><a href="tel%2b0885898102.html">(+088)589-102</a></span>
                                      </div>
                                 </div>
-                            </div> 
-                        </div> 
+                            </div>
+                        </div>
                         <div class="col-lg-4 col-md-12">
                             <div class="rs-contact-wrap">
                                 <div class="inner-part text-center">
-                                    <h2 class="title2">Emergency</h2>                                   
+                                    <h2 class="title2">Emergency</h2>
                                 </div>
                                 <div class="address-item">
                                     <div class="address-icon">
@@ -151,7 +151,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="label">Email Address</span>
                                          <span class="des">emergency@educavo.com</span>
                                      </div>
-                                </div> 
+                                </div>
                                 <div class="address-item">
                                     <div class="address-icon">
                                         <i class="fa fa-headphones"></i>
@@ -160,7 +160,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="label">Phone Number 1</span>
                                          <span class="des"><a href="tel%2b0885898745.html">(+088)589-8745</a></span>
                                      </div>
-                                </div> 
+                                </div>
                                 <div class="address-item">
                                     <div class="address-icon">
                                         <i class="fa fa-headphones"></i>
@@ -170,7 +170,7 @@ require_once ("Inc/Osotech.php");
                                          <span class="des"><a href="tel%2b0885898102.html">(+088)589-102</a></span>
                                      </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                    <div class="rs-quick-contact">
@@ -184,26 +184,26 @@ require_once ("Inc/Osotech.php");
                             <div class="row">
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="name" name="name" placeholder="Name" required="">
-                                </div> 
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="email" name="email" placeholder="Email" required="">
-                                </div>   
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="phone" name="phone" placeholder="Phone" required="">
-                                </div>   
+                                </div>
                                 <div class="col-lg-6 mb-35 col-md-12">
                                     <input class="from-control" type="text" id="subject" name="subject" placeholder="Subject" required="">
                                 </div>
-                             
+
                                 <div class="col-lg-12 mb-50">
                                     <textarea class="from-control" id="message" name="message" placeholder=" Message" required=""></textarea>
                                 </div>
                             </div>
                             <div class="form-group mb-0">
                                 <input class="btn-send" type="submit" value="Submit Now">
-                            </div>       
+                            </div>
                         </form>
-                   </div> 
+                   </div>
             	</div>
             </div>
             <!-- Contact Section End -->

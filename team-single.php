@@ -43,17 +43,17 @@ require_once ("Inc/Osotech.php");
                     <h1 class="page-title">Team Single</h1>
                     <ul>
                         <li>
-                            <a class="active" href="index-2.html">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                         <li>Team Single</li>
                     </ul>
                 </div>
             </div>
-            <!-- Breadcrumbs End -->            
+            <!-- Breadcrumbs End -->
 
             <!-- Profile Section -->
-            <section class="profile-section orange-color pt-100 pb-100 md-pt-70 md-pb-70"> 
-                <div class="container">                   
+            <section class="profile-section orange-color pt-100 pb-100 md-pt-70 md-pb-70">
+                <div class="container">
                     <div class="row clearfix">
                         <!-- Image Section -->
                         <div class="image-column col-lg-5 md-mb-50">
@@ -82,7 +82,7 @@ require_once ("Inc/Osotech.php");
                                     <a href="#" class="fa fa-github"></a>
                                 </div>
                             </div>
-                        </div>                      
+                        </div>
                         <!-- Content Section -->
                         <div class="content-column col-lg-7 pl-60 pt-50 md-pl-15 md-pt-0">
                             <div class="inner-column">

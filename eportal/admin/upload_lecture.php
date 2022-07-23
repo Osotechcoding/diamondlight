@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ iframe[seamless] {
         <div class="content-body">
           <div class="row">
  <div class="col-12 mb-2">
-    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-file fa-1x"></span> ONLINE LECTURE MODULE</h3>
+    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-laptop fa-1x"></span> ONLINE LECTURE MODULE</h3>
   </div>
 </div>
 
@@ -65,11 +65,11 @@ iframe[seamless] {
 <section id="column-selectors">
    <!-- Statistics Cards Starts -->
         <div class="row">
-       
+
         <div class="col-xl-12 col-md-12">
           <div class="row">
-            
-           <div class="col-md-3 dashboard-users-success">
+
+           <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-info">
                 <div class="card-body py-1">
                   <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
@@ -80,20 +80,20 @@ iframe[seamless] {
                 </div>
               </div>
             </div>
-             <div class="col-md-3 dashboard-users-success">
+             <!-- <div class="col-md-3 dashboard-users-success">
               <div class="card text-center bg-secondary">
                 <div class="card-body py-1">
                   <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
                     <i class="fa fa-calendar fa-2x font-medium-10"></i>
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white">Video</h3></div>
-                  <h2 class="text-white mb-0"> <?php echo $Administration->count_all_available_lessons_by_type("video/mp4");?></h2>
-                 
+                  <h2 class="text-white mb-0"> <?php //echo $Administration->count_all_available_lessons_by_type("video/mp4");?></h2>
+
                 </div>
               </div>
-            </div>
+            </div> -->
 
-             <div class="col-md-3 dashboard-users-success">
+             <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-danger">
                 <div class="card-body py-1">
                   <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
@@ -101,11 +101,11 @@ iframe[seamless] {
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Audio</h3></div>
                   <h2 class="text-white mb-0"><?php echo $Administration->count_all_available_lessons_by_type("audio/mp3");?></h2>
-                  
+
                 </div>
               </div>
             </div>
-            <div class="col-md-3 dashboard-users-success">
+            <div class="col-md-4 dashboard-users-success">
               <div class="card text-center bg-dark">
                 <div class="card-body py-1">
                   <div class="badge-circle badge-circle-lg badge-circle-light-white mx-auto mb-50">
@@ -113,21 +113,21 @@ iframe[seamless] {
                   </div>
                   <div class="text-white line-ellipsis"><h3 class="text-white"> Lessons</h3></div>
                   <h2 class="text-white mb-0"><?php echo $Administration->count_all_available_lessons();?></h2>
-                  
+
                 </div>
               </div>
             </div>
-           
+
           </div>
         </div>
-       
+
       </div>
        <!-- Revenue Growth Chart Starts -->
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <button type="button" class="btn btn-danger btn-lg btn-round" data-toggle="modal" data-target="#uploadLectureModal"><span class="fa fa-video-camera fa-1x"></span> Upload Lecture</button>  
+          <button type="button" class="btn btn-danger btn-lg btn-round" data-toggle="modal" data-target="#uploadLectureModal"><span class="fa fa-video-camera fa-1x"></span> Upload Lecture</button>
         </div>
         <div class="card-body card-dashboard">
        <div class="text-center" id="response"></div>
@@ -146,7 +146,7 @@ iframe[seamless] {
                 </tr>
               </thead>
               <tbody class="text-center">
-                <?php 
+                <?php
                 $get_all_Virtual_lessons = $Administration->get_all_virtual_lectures();
                 if ($get_all_Virtual_lessons) {
                   // code...
@@ -167,9 +167,7 @@ iframe[seamless] {
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 
              <a class="dropdown-item text-info" href="watch?type=<?php echo $values->file_type;?>&lessonId=<?php echo $values->lectureId;?>">
-                <?php if ($values->file_type==="video/mp4"){
-                  echo '<span class="fa fa-eye"></span>&nbsp;Watch';
-                }elseif ($values->file_type==="audio/mp3") {
+                <?php if ($values->file_type==="audio/mp3") {
                  echo ' <span class="fa fa-signal"></span>&nbsp; Listen';
                 }else{
                   echo '<span class="fa fa-eye"></span>&nbsp;View';
@@ -209,7 +207,7 @@ iframe[seamless] {
             <div class="modal-dialog modal-lg modal-dialog-center">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><i class="fa fa-file fa-1x"></i> Upload Online Lecture</h2>
+                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><i class="fa fa-files-o fa-1x"></i> Upload Online Lecture</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                   </button>
@@ -258,17 +256,17 @@ iframe[seamless] {
                 <input type="text" autocomplete="off" class="form-control form-control-lg" name="topic" placeholder="Common Errors in English Language">
                     </div>
                </div>
-                   
+
                    <div class="col-12 mt-1">
                     <label for="textarea-counter">Instruction to student (Max Character (150))</label>
                     <textarea data-length=150 class="form-control char-textarea" id="textarea-counter" name="message" rows="3" placeholder="Instruction to student (Max Character (150))"></textarea>
-                    
+
                       <small class="counter-value float-right mb-2"><span class="char-count">0</span> / 150 </small>
                   </div>
                    <div class="col-md-12">
                      <div class="form-group">
-                  <label for="lecture_mp4">LECTURE FILE <span class="text-danger">(Video,Audio & PDF Files Only)</span></label>
-                <input type="file" accept=".mp4,.mp3,.pdf" class="form-control form-control-lg" name="myFile">
+                  <label for="lecture_mp4">LECTURE FILE <span class="text-danger">(Audio & PDF Files Only)</span></label>
+                <input type="file" accept=".mp3,.pdf" class="form-control form-control-lg" name="myFile">
                     </div>
                   </div>
                  </div>
@@ -288,7 +286,7 @@ iframe[seamless] {
             </div>
           </div>
     <!-- BUS MODAL  END -->
-    
+
     <!--Modal Read Instruction Starts -->
           <div class="modal fade text-left" id="ReadInstructModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
             aria-hidden="true">
@@ -328,7 +326,7 @@ delete_btn.on("click", function(){
   if (is_true) {
 $.post("../actions/delete_actions",{action:action,lectureId:lectureId}, function(res){
     setTimeout(()=>{
-      $("#response").html(res);
+      $("#server-response").html(res);
     },500);
   })
   }else{
@@ -361,7 +359,7 @@ $("#video_form").on("submit",function(event){
       setTimeout(()=>{
          $(".__loadingBtn__").html('Submit Lecture').attr("disabled",false);
         $("#video_form")[0].reset();
-        $("#server-response-text").html(data);
+        $("#server-response").html(data);
         //alert(data);
       },2500);
     }

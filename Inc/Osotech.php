@@ -1108,7 +1108,7 @@ $this->stmt->execute([$type]);
 if ($this->stmt->rowCount() > 0) {
     $this->response = $this->stmt->fetchAll();
     return $this->response;
-    unset($this->dbh); 
+    unset($this->dbh);
         }
     }
 
@@ -1118,8 +1118,29 @@ if ($this->stmt->rowCount() > 0) {
     if ($this->stmt->rowCount() > 0) {
     $this->response = $this->stmt->fetchAll();
     return $this->response;
-    unset($this->dbh); 
+    unset($this->dbh);
 }
+    }
+
+    public function get_event_ById($Id){
+    	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_upcoming_event_tbl` WHERE eventId=? LIMIT 1");
+    $this->stmt->execute([$Id]);
+    if ($this->stmt->rowCount()==1) {
+    	$this->response = $this->stmt->fetch();
+    	return $this->response;
+    	unset($this->dbh);
+    }
+    }
+
+    public function get_all_active_events(){
+    	$status = "2";
+      	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_upcoming_event_tbl` WHERE status=? ORDER BY created_at DESC");
+    $this->stmt->execute(array($status));
+    if ($this->stmt->rowCount() >0) {
+    	$this->response = $this->stmt->fetchAll();
+    	return $this->response;
+    	unset($this->dbh);
+    }
     }
 
 }

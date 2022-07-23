@@ -557,6 +557,7 @@ if ($this->stmt->rowCount()>0) {
 			$this->response = false;
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 	//Fee management methods end
 //FEE ALLOCATION METHODS
@@ -599,6 +600,7 @@ if ($this->stmt->rowCount()>0) {
 			}
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function update_allocation_fee($data){
@@ -628,6 +630,7 @@ if ($this->stmt->rowCount()>0) {
 
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	public function get_feeTypeByType($type){
@@ -636,7 +639,8 @@ if ($this->stmt->rowCount()>0) {
 	$this->stmt->execute([$type]);
 	if ($this->stmt->rowCount()==1) {
 		$this->response =$this->stmt->fetch();
-		return $this->response;
+	return $this->response;
+		unset($this->dbh);
 	}
 		}
 	}
@@ -650,6 +654,7 @@ if ($this->stmt->rowCount()>0) {
 				$this->response = false;
 			}
 			return $this->response;
+		unset($this->dbh);
 	}
 
 	public function get_all_allocated_fees(){
@@ -662,6 +667,7 @@ if ($this->stmt->rowCount()>0) {
 				$this->response = false;
 			}
 			return $this->response;
+		unset($this->dbh);
 	}
 
 	//public function delete_virtual_lecture_ById($id){}
@@ -977,10 +983,6 @@ if ($this->stmt->rowCount()>0) {
     $fileError  = $file['myFile']['error'];
     $file_ext = explode(".", $lecture_file);
     $real_ext = strtolower(end($file_ext));
-    //File Info Ends
-    /*
-	 $real_ext = strtolower(pathinfo($lecture_file,PATHINFO_EXTENSION));
-    */
 	 $lesson_class = $this->config->Clean($data['std_grade']);
 	 $subject = $this->config->Clean($data['subject']);
 	 $posted_by = $this->config->Clean($data['posted_by']);
@@ -988,25 +990,25 @@ if ($this->stmt->rowCount()>0) {
 	 $topic = $this->config->Clean($data['topic']);
 	 $message = $this->config->Clean($data['message']);
 	 $bypass = $this->config->Clean($data['bypass']);
-	 $allowed = array("mp4","mp3","pdf");
+	 $allowed = array("mp3","pdf");
 	 //check if Auth
 	 if ($this->config->isEmptyStr($bypass) || $bypass!= md5("oiza1")) {
-	 	$this->response = $this->alert->alert_msg("Authentication Failed, Please Check your Connection and Try again!","danger");
+	 	$this->response = $this->alert->alert_toastr("error","Authentication Failed, Please Check your Connection and Try again!",__OSO_APP_NAME__." Says");
 	 }elseif ($this->config->isEmptyStr($lesson_class) || $this->config->isEmptyStr($subject) || $this->config->isEmptyStr($posted_by) || $this->config->isEmptyStr($expiry_date) || $this->config->isEmptyStr($topic) || $this->config->isEmptyStr($message) || $this->config->isEmptyStr($lecture_file)) {
-	 $this->response = $this->alert->alert_msg("Please check all your inputs and try again!","danger");
+	 $this->response = $this->alert->alert_toastr("error","Please check all your inputs and try again!",__OSO_APP_NAME__." Says");
 	 }elseif (!in_array($real_ext, $allowed)) {
-	$this->response = $this->alert->alert_msg("Your file format is not supported, Only MP4 & MP3 is allowed!","danger");
-	 }elseif (($size > 200)) {
-	$this->response = $this->alert->alert_msg("Your file Size cannot be greater than 200MB,Please check and try again!","danger");
+	$this->response = $this->alert->alert_toastr("error","Your file format is not supported, Only MP4 & MP3 is allowed!",__OSO_APP_NAME__." Says");
+}elseif (($size > 10)) {
+	$this->response = $this->alert->alert_toastr("error","Your file Size cannot be greater than 10MB,Please check and try again!",__OSO_APP_NAME__." Says");
 	 }elseif ($fileError!=0) {
-	$this->response = $this->alert->alert_msg("There was an error uploading the selected file, Please try again!","danger");
+	$this->response = $this->alert->alert_toastr("error","There was an error uploading the selected file, Please try again!",__OSO_APP_NAME__." Says");
 	 }
 	 else{
 	 	//check for duplicate entry
 	 	$this->stmt =$this->dbh->prepare("SELECT lectureId FROM `visap_virtual_lesson_tbl` WHERE lesson_topic=? AND lesson_grade=? AND subject=? AND teacher=? LIMIT 1");
 	 	$this->stmt->execute(array($topic,$lesson_class,$subject,$posted_by));
 	 	if ($this->stmt->rowCount()==1) {
-	 	$this->response = $this->alert->alert_msg("This Lesson file already uploaded!","danger");
+	 	$this->response = $this->alert->alert_toastr("error","This Lesson file already uploaded!",__OSO_APP_NAME__." Says");
 	 	}else{
 	 		try {
 	 			$this->dbh->beginTransaction();
@@ -1014,9 +1016,9 @@ if ($this->stmt->rowCount()>0) {
 	 $fileNewName = date("Ymd").uniqid().mt_rand(100,10000).substr(time(),0,6).".".$real_ext;
 	 $file_destination = "../lecture_file/".$fileNewName;
 	 switch ($real_ext) {
-	 	case 'mp4':
-	 		$file_type ="video/mp4";
-	 		break;
+	 	// case 'mp4':
+	 	// 	$file_type ="video/mp4";
+	 	// 	break;
 
 	 		case 'pdf':
 	 		$file_type ="application/pdf";
@@ -1031,11 +1033,11 @@ if ($this->stmt->rowCount()>0) {
 	 if ($this->stmt->execute(array($fileNewName,$topic,$lesson_class,$subject,$posted_by,$file_type,$message,$expiry_date,$uploaded_date))) {
 	 	if ($this->config->move_file_to_folder($tmp, $file_destination)) {
 	$this->dbh->commit();
-	$this->response = $this->alert->alert_msg("Virtual Lesson submitted Successfully","success")."<script>setTimeout(()=>{
+	$this->response = $this->alert->alert_toastr("success","Submitted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 			window.location.reload();
 			},500);</script>";
 	 	}else{
-$this->response = $this->alert->alert_msg("Your file could not be moved to folder!","warning");
+$this->response = $this->alert->alert_toastr("error","Your file could not be moved to folder!",__OSO_APP_NAME__." Says");
 	 	}
 	 }
 	 		} catch (PDOException $e) {
@@ -1043,7 +1045,7 @@ $this->response = $this->alert->alert_msg("Your file could not be moved to folde
 	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-    $this->response  = $this->alert->alert_msg("Failed to upload lesson file: Error Occurred: ".$e->getMessage(),"danger");
+    $this->response  = $this->alert->alert_toastr("error","Failed to upload lesson file: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 	 		}
 	 	}
 	 }
@@ -1085,23 +1087,24 @@ $this->response = $this->alert->alert_msg("Your file could not be moved to folde
 	//Delete the selected Subject
 		$this->stmt = $this->dbh->prepare("DELETE FROM `visap_virtual_lesson_tbl` WHERE lectureId=? LIMIT 1");
 		if ($this->stmt->execute([$id])) {
-			if($filePath){
+			if(file_exists($filePath)){
            	unlink($filePath);
            }
 			 $this->dbh->commit();
-			$this->response = $this->alert->alert_msg("Deleted Successfully","success")."<script>setTimeout(()=>{
+			$this->response = $this->alert->alert_toastr("success","Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 			window.location.reload();
 			},500);</script>";
 		}
 			} catch (PDOException $e) {
 		$this->dbh->rollback();
-    $this->response  = $this->alert->alert_msg("Failed to Delete Subject: Error Occurred: ".$e->getMessage(),"danger");
+    $this->response  = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 			}
 			// code...
 		}else{
 			$this->response = false;
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 
@@ -2725,15 +2728,15 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 	    	}else{
 	    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
 	    	}
-					
+
 				} catch (Exception $e) {
 					$this->dbh->rollback();
-				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");	
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 				}
 			}
 			}
 		}
-		
+
 		return $this->response;
 		unset($this->dbh);
 	}
@@ -2760,7 +2763,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 					case 'close_admission':
 			$status = 0;
 				break;
-			
+
 			default:
 				$status = 0;
 				break;
@@ -2780,7 +2783,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 
 		} catch (PDOException $e) {
 			$this->dbh->rollback();
-				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");	
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 		}
 		return $this->response;
 		unset($this->dbh);
@@ -2860,13 +2863,13 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
     	}else{
     		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
     	}
-    	
+
     } catch (PDOException $e) {
     	$this->dbh->rollback();
     	if (file_exists($file_destination)) {
 		 unlink($file_destination);
 	}
-   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
 	}
 		}
@@ -2880,7 +2883,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 	if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 	}
 
@@ -2890,7 +2893,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 	if ($this->stmt->rowCount() >0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 	}
 
@@ -2930,7 +2933,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		return $this->response;
 		unset($this->dbh);
 		}
-		
+
 	}
 
 	//Holiday Methods
@@ -2983,7 +2986,7 @@ try {
 	if ($this->stmt->rowCount() > 0) {
 	$this->response = $this->stmt->fetchAll();
 	return $this->response;
-	unset($this->dbh); 
+	unset($this->dbh);
 }
 	}
 
@@ -2992,6 +2995,27 @@ try {
 			try {
 					$this->dbh->beginTransaction();
 			$this->stmt = $this->dbh->prepare("DELETE FROM `visap_holiday_tbl`  WHERE id=? LIMIT 1");
+			if ($this->stmt->execute([$Id])) {
+				$this->dbh->commit();
+	    $this->response = $this->alert->alert_toastr("success","Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+								window.location.reload();
+							},500);</script>";
+			}else{
+				$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+			}
+			} catch (Exception $e) {
+				$this->dbh->rollback();
+				$this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		}
+		return $this->response;
+		unset($this->dbh);
+	}
+	public function deleteExamById($Id){
+		if (!$this->config->isEmptyStr($Id)) {
+			try {
+					$this->dbh->beginTransaction();
+			$this->stmt = $this->dbh->prepare("DELETE FROM `visap_exam_subject_tbl`  WHERE examId=? LIMIT 1");
 			if ($this->stmt->execute([$Id])) {
 				$this->dbh->commit();
 	    $this->response = $this->alert->alert_toastr("success","Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
