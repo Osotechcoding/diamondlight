@@ -530,10 +530,10 @@ $this->response = false;
 
 	public function getStudentsByClassName($grade_desc){
 		$status ="Active";
-		$this->stmt = $this->dbh->prepare("SELECT *,concat(`stdSurName`,' ',`stdFirstName`,' ',`stdMiddleName`) as full_name FROM $this->table_name WHERE studentClass=? AND stdAdmStatus=?");
+		$this->stmt = $this->dbh->prepare("SELECT *,concat(`stdSurName`,' ',`stdFirstName`,' ',`stdMiddleName`) as full_name FROM $this->table_name WHERE studentClass=? AND stdAdmStatus=? ORDER BY stdSurName ASC");
 		$this->stmt->execute([$grade_desc,$status]);
 		if ($this->stmt->rowCount()>0) {
-			$this->response =$this->stmt->fetchAll();
+			$this->response = $this->stmt->fetchAll();
 			return $this->response;
 			unset($this->dbh);
 		}
@@ -555,16 +555,25 @@ $this->response = false;
 		$adm_date = $this->config->Clean(date("Y-m-d",strtotime($d['admission_date'])));
 		$auth_pass2 = $this->config->Clean($d['auth_pass2']);
 
-		if ($this->config->isEmptyStr($surName) || $this->config->isEmptyStr($firstName) || $this->config->isEmptyStr($middleName) || $this->config->isEmptyStr($address) || $this->config->isEmptyStr($Dob) || $this->config->isEmptyStr($Gender) || $this->config->isEmptyStr($student_email) || $this->config->isEmptyStr($student_class) || $this->config->isEmptyStr($adm_date) || $this->config->isEmptyStr($auth_pass2)) {
-			$this->response =$this->alert->alert_toastr("warning","Some Important fields are missing",__OSO_APP_NAME__." Says");
+		if ($this->config->isEmptyStr($surName) ||
+		 $this->config->isEmptyStr($firstName) ||
+		 $this->config->isEmptyStr($middleName) ||
+		 $this->config->isEmptyStr($address) ||
+		 $this->config->isEmptyStr($Dob) ||
+		 $this->config->isEmptyStr($Gender) ||
+		 $this->config->isEmptyStr($student_email) ||
+		 $this->config->isEmptyStr($student_class) ||
+		 $this->config->isEmptyStr($adm_date) ||
+		 $this->config->isEmptyStr($auth_pass2)) {
+			$this->response =$this->alert->alert_toastr("error","Some Important fields are missing",__OSO_APP_NAME__." Says");
 		}elseif (!$this->config->is_Valid_Email($student_email)) {
-			$this->response =$this->alert->alert_toastr("warning","<$student_email> is not a valid e-mail address!",__OSO_APP_NAME__." Says");
+			$this->response =$this->alert->alert_toastr("error","<$student_email> is not a valid e-mail address!",__OSO_APP_NAME__." Says");
 		}elseif ($auth_pass2 !== __OSO__CONTROL__KEY__) {
 			$this->response =$this->alert->alert_toastr("error","Invalid Authentication Code entered!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->check_single_data('visap_staff_tbl','staffEmail',$student_email)) {
-				$this->response = $this->alert->alert_toastr("warning","$student_email is already taken, Please try another email address!",__OSO_APP_NAME__." Says");
+				$this->response = $this->alert->alert_toastr("error","$student_email is already taken, Please try another email address!",__OSO_APP_NAME__." Says");
 				}elseif ($this->config->check_single_data('visap_student_tbl','stdEmail',$student_email)) {
-	$this->response = $this->alert->alert_toastr("warning","$student_email is already taken on this Portal, Please try another!",__OSO_APP_NAME__." Says");
+	$this->response = $this->alert->alert_toastr("error","$student_email is already taken on this Portal, Please try another Email address!",__OSO_APP_NAME__." Says");
 				}else{
 					$admitted_year = date("Y",strtotime($adm_date));
 					$default_pass = "student";
@@ -1334,5 +1343,27 @@ if ($this->stmt->rowCount()>0) {
   		unset($this->dbh);
   	}
   }
+
+
+	//get student psychomotor
+	public function getStudentPsychomotorDetails($stdReg,$stdGrade,$term,$session){
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_psycho_tbl` WHERE reg_number=? AND student_class=? AND term=? AND session=? LIMIT 1");
+		$this->stmt->execute(array($stdReg,$stdGrade,$term,$session));
+		if ($this->stmt->rowCount() ==1) {
+			$this->response = $this->stmt->fetch();
+			return $this->response;
+			unset($this->dbh);
+		}
+	}
+
+	public function getStudentAffectiveDomainDetails($stdReg,$stdGrade,$term,$session){
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_behavioral_tbl` WHERE reg_number=? AND student_class=? AND term=? AND session=? LIMIT 1");
+		$this->stmt->execute(array($stdReg,$stdGrade,$term,$session));
+		if ($this->stmt->rowCount() ==1) {
+			$this->response = $this->stmt->fetch();
+			return $this->response;
+			unset($this->dbh);
+		}
+	}
 
 }

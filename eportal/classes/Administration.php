@@ -2298,7 +2298,7 @@ public function upload_affective_domain($data){
 		$session = $this->config->Clean($data['school_session']);
 		$total_count = $this->config->Clean($data['total_count']);
 		if ($this->config->isEmptyStr($uploadedBy) || $this->config->isEmptyStr($auth_pass)) {
-	$this->response = $this->alert->alert_toastr("warning","Invalid form Submission! ",__OSO_APP_NAME__." Says");
+	$this->response = $this->alert->alert_toastr("error","Invalid form Submission! ",__OSO_APP_NAME__." Says");
 			}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
 	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code! ",__OSO_APP_NAME__." Says");
 			}else{
@@ -2306,24 +2306,23 @@ for ($i=0; $i < (int)$total_count; $i++) {
 			$reg_number = $data['std_reg_number'][$i];
 			$student_id = 	$data['student_id'][$i];
 			$std_class = 	$data['student_class'][$i];
-			$hand_writing = 	$data['hand_writing'][$i];
-			$musical_skill = 	$data['musical_skill'][$i];
-			$sport = 	$data['sport'][$i];
-			$attentiveness = 	$data['attentiveness'][$i];
-			$attitude = 	$data['attitude_to_work'][$i];
-			$health = 	$data['health'][$i];
 			$punctuality = 	$data['punctuality'][$i];
-			$politeness = 	$data['politeness'][$i];
+			$neatness = 	$data['neatness'][$i];
+			$honesty = 	$data['honesty'][$i];
+			$selfcontrol = 	$data['selfcontrol'][$i];
+			$attentiveness = 	$data['attentiveness'][$i];
+			$leadership = 	$data['leadership'][$i];
+
 			$uploaded_date = date("Y-m-d");
 			$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_behavioral_tbl` WHERE student_id=? AND reg_number=? AND student_class=? AND term=? AND session=?");
 			$this->stmt->execute(array($student_id,$reg_number,$std_class,$term,$session));
 			if ($this->stmt->rowCount()>0) {
-			$this->response = $this->alert->alert_toastr("warning","Affective Domain for $term $session is already uploaded for ".strtoupper($std_class)."! ",__OSO_APP_NAME__." Says");
+			$this->response = $this->alert->alert_toastr("error","Affective Domain for $term $session is already uploaded for ".strtoupper($std_class)."! ",__OSO_APP_NAME__." Says");
 			}else{
 				try {
 					$this->dbh->beginTransaction();
-					$this->stmt = $this->dbh->prepare("INSERT INTO `visap_behavioral_tbl`(student_id,reg_number,student_class,term,session,hand_writing,musical_skills,sports,health,attentiveness,attitude_to_work,politeness,punctality,class_teacher,uploaded_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-					if ($this->stmt->execute(array($student_id,$reg_number,$std_class,$term,$session,$hand_writing,$musical_skill,$sport,$health,$attentiveness,$attitude,$politeness,$punctuality,$uploadedBy,$uploaded_date))) {
+					$this->stmt = $this->dbh->prepare("INSERT INTO `visap_behavioral_tbl`(student_id,reg_number,student_class,term,session,punctuality,neatness,honesty,self_control,attentiveness,leadership,class_teacher,uploaded_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);");
+					if ($this->stmt->execute(array($student_id,$reg_number,$std_class,$term,$session,$punctuality,$neatness,$honesty,$selfcontrol,$attentiveness,$leadership,$uploadedBy,$uploaded_date))) {
 					$this->dbh->commit();
 				$this->response = $this->alert->alert_toastr("success","Affective Domain Uploaded Successfully, Please wait... ",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 				window.location.replace('uploading_behavior');
@@ -2351,6 +2350,69 @@ public function get_all_affective_domain($class,$term,$session){
 			unset($this->dbh);
 			}
 }
+
+
+// PSYCHOMOTOR METHODS
+public function upload_psychomotor_domain($data){
+		$uploadedBy = $this->config->Clean($data['class_teacher']);
+		$auth_pass = $this->config->Clean($data['auth_pass']);
+		$term = $this->config->Clean($data['term']);
+		$session = $this->config->Clean($data['school_session']);
+		$total_count = $this->config->Clean($data['total_count']);
+		if ($this->config->isEmptyStr($uploadedBy) || $this->config->isEmptyStr($auth_pass)) {
+	$this->response = $this->alert->alert_toastr("error","Invalid form Submission! ",__OSO_APP_NAME__." Says");
+			}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code! ",__OSO_APP_NAME__." Says");
+			}else{
+for ($i=0; $i < (int)$total_count; $i++) {
+			$reg_number = $data['std_reg_number'][$i];
+			$student_id = 	$data['student_id'][$i];
+			$std_class = 	$data['student_class'][$i];
+			$handwriting = 	$data['handwriting'][$i];
+			$sports = 	$data['sports'][$i];
+			$fluency = 	$data['fluency'][$i];
+			$handlingtool = 	$data['handlingtool'][$i];
+			$drawing = 	$data['drawing'][$i];
+			$crafts = 	$data['crafts'][$i];
+
+			$uploaded_date = date("Y-m-d");
+			$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_psycho_tbl` WHERE student_id=? AND reg_number=? AND student_class=? AND term=? AND session=?");
+			$this->stmt->execute(array($student_id,$reg_number,$std_class,$term,$session));
+			if ($this->stmt->rowCount()>0) {
+			$this->response = $this->alert->alert_toastr("error","Psychomotor Domain for $term $session is already uploaded for ".strtoupper($std_class)."! ",__OSO_APP_NAME__." Says");
+			}else{
+				try {
+					$this->dbh->beginTransaction();
+					$this->stmt = $this->dbh->prepare("INSERT INTO `visap_psycho_tbl`(student_id,reg_number,student_class,term,session,Handwriting,Sports,Fluency,Handlingtools,Drawing,crafts,class_teacher,uploaded_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);");
+					if ($this->stmt->execute(array($student_id,$reg_number,$std_class,$term,$session,$handwriting,$sports,$fluency,$handlingtool,$drawing,$crafts,$uploadedBy,$uploaded_date))) {
+					$this->dbh->commit();
+				$this->response = $this->alert->alert_toastr("success","Psychomotor Domain Uploaded Successfully, Please wait... ",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+				window.location.replace('uploading_behavior');
+			},500);</script>";
+					}
+
+					} catch (PDOException $e) {
+				$this->dbh->rollback();
+					$this->response  = $this->alert->alert_toastr("error","Uploading Failed! Please try again...: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+					}
+			}
+		}
+			}
+			return $this->response;
+		unset($this->dbh);
+}
+
+//get all affective domain uploaded by class term and session
+public function get_all_psychomotor_domain($class,$term,$session){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_psycho_tbl` WHERE student_class=? AND term=? AND session=? ORDER BY id ASC");
+			$this->stmt->execute(array($class,$term,$session));
+			if ($this->stmt->rowCount()>0) {
+			$this->response = $this->stmt->fetchAll();
+			return $this->response;
+			unset($this->dbh);
+			}
+}
+// PSYCHOMOTOR METHOD
 
 public function get_recent_payment_records(){
 	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_student_payment_history_tbl` WHERE DATE(`today_date`) >= DATE(CURRENT_DATE() - INTERVAL

@@ -34,10 +34,14 @@
           </li>
            <li class="nav-item"><a href="view_uploaded_comment"><i class="fa fa-comment fa-1x"></i><span class="menu-title text-truncate" data-i18n="Result Comments"> View Comments</span></a>
           </li>
-           <li class=" nav-item"><a href="uploading_behavior"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">Upload Cognitive</span></a>
+           <li class=" nav-item"><a href="uploading_behavior"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">Upload Affective</span></a>
           </li>
-          <li class=" nav-item"><a href="view_cognitive"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Cognitive</span></a>
+          <li class=" nav-item"><a href="view_cognitive"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Affective</span></a>
           </li>
+          <li class=" nav-item"><a href="psycho"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="Psychomotor"> Psychomotor</span></a>
+         </li>
+         <li class=" nav-item"><a href="viewpsychomotor"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Psychomotor">View Psychomotor</span></a>
+         </li>
           <?php endif ?>
          <!-- RESULT COMMENT SECTION -->
            <li class=" nav-item"><a href="view_uploaded_result"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
@@ -61,7 +65,7 @@
           </li>
           <?php endif ?>
           <!-- SUBJECT REGISTRATION -->
-         
+
           <!-- STUDENT ENDS -->
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-calendar fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="blog & event"> EVENTS</span></a>
             <ul class="menu-content">
@@ -70,7 +74,7 @@
                <li><a class="d-flex align-items-center" href="add_event"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Event">School Events</span></a> </li>
                 <li><a class="d-flex align-items-center" href="add_holidays"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Holiday"> Holidays</span></a> </li>
 
-                
+
             </ul>
           </li>
           <li><a class="d-flex align-items-center" href="account-settings"><i class="fa fa-cogs"></i><span class="menu-item text-truncate" data-i18n="Virtual Lecture">Edit Profile</span></a>
@@ -78,7 +82,7 @@
               <li>
                 <a class="d-flex align-items-center" onclick=" return confirm('<?php echo $lang["logout-sure?"];?>');" href="logout?action=logout"><i class="fa fa-power-off"></i>
               <span class="menu-item text-truncate"> <?php echo $lang['Logout'] ?></span></a>
-               
+
               </li>
               <li>
                 <a class="d-flex align-items-center" href="../../" target="_blank"><i class="fa fa-globe"></i>

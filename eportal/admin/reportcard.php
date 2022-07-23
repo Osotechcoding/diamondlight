@@ -1,4 +1,4 @@
-<?php 
+<?php
 @session_start();
 @ob_start();
 require_once "helpers/helper.php";
@@ -7,7 +7,7 @@ require_once "helpers/helper.php";
    <?php header("Location: ./checkResult");
    exit(); ?>
  <?php endif ?>
-<?php 
+<?php
 $con = new Database();
 $dbh = $con->osotech_connect();
 //   $stdSession=  $_SESSION['result_session'];
@@ -22,7 +22,7 @@ if (isset($_SESSION['resultmi'])) {
         $student_class =$rowResult->studentGrade;
         $term =$rowResult->term;
         $rsession =$rowResult->aca_session;
-                  
+
                   }
                 }
 
@@ -100,7 +100,7 @@ tbody >tr:nth-child(odd) {
 
 /*.schname{
     display: block;
-     margin-left: auto; 
+     margin-left: auto;
     margin-right: auto;
     width: 80%;
 }*/
@@ -167,14 +167,14 @@ img.schlogo-image{
     <div id="osotech-div">
       <img src="<?php echo $Configuration->get_schoolLogoImage();?>" class="schlogo-image" style="float: left;">
       <span style="text-align: auto;margin-left: 30px;font-size: 20px;"><?php echo strtoupper($SmappDetails->school_name); ?></span>
-     
+
        <h3 style="text-align: center;margin-right: 50px;font-size: 15px;">Phones: <?php echo ucwords($SmappDetails->school_phone); ?> , <?php echo ucwords($SmappDetails->school_fax); ?> </h3>
       <h5 style="text-align: center;margin-right: 50px;font-size: 14px;">Location: <?php echo ucwords($SmappDetails->school_address); ?> <?php echo ucwords($SmappDetails->country); ?></h5>
       <center> <h2 style="text-align:center; text-decoration: underline;">STUDENT'S PERFORMANCE  REPORT</h2></center>
     </div>
    <!--   -->
     <!-- <hr> -->
-   
+
     <p>NAME: &nbsp; &nbsp;<b><?php echo strtoupper($student_data->full_name);?> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </b> GENDER:&nbsp;&nbsp; <b><?php echo ucfirst($student_data->stdGender)?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; CLASS: <b><?php echo strtoupper($student_data->studentClass);?>&nbsp;</b> &nbsp;&nbsp;&nbsp;&nbsp;Term: <b><?php echo $term ?></b></p>
     <P>SESSION:&nbsp;&nbsp; <b><?php echo $rsession; ?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ADMISSION NO:&nbsp;&nbsp; <b><?php echo strtoupper($student_data->stdRegNo);?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; D.O.B:&nbsp;&nbsp; <b><?php echo date("F jS, Y",strtotime($student_data->stdDob));?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; AGE:&nbsp;&nbsp; <b><?php echo $Administration->get_student_age($student_data->stdDob);?>yrs</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P>
     <!-- <P>CLUB / SOCIETY:&nbsp;&nbsp; <b>JET, CHOIR</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P> -->
@@ -192,10 +192,10 @@ img.schlogo-image{
                         <td colspan="8"><b style="font-size: 17px;">COGNITIVE DOMAIN</b> </td>
                     </tr>
                 </thead>
-                
+
                 <thead>
                   <tr style="height: 90px;">
-                    <td style="width: 280px;"> SUBJECT</td> 
+                    <td style="width: 280px;"> SUBJECT</td>
                     <td style="transform: rotate(-90deg);" >C.A(40)</td>
                     <td style="transform: rotate(-90deg);">EXAM(60)</td>
                     <td style="transform: rotate(-90deg);">TOTAL(100) </td>
@@ -203,14 +203,14 @@ img.schlogo-image{
                     <td>REMARKS </td>
                   </tr>
                 </thead>
-              <?php 
+              <?php
                $resultScore = $dbh->prepare("SELECT * FROM  `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
 $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession));
   if ($resultScore->rowCount()>0) {
-   while ($showResult = $resultScore->fetch()) { 
+   while ($showResult = $resultScore->fetch()) {
     $myTotalMark = intval($showResult->overallMark);
     ?>
-    <?php 
+    <?php
     if ($showResult->studentGrade == 'JSS 1 A' || $showResult->studentGrade == 'JSS 1 B' || $showResult->studentGrade =='JSS 1 C' || $showResult->studentGrade == 'JSS 2 A' || $showResult->studentGrade == 'JSS 2 B' || $showResult->studentGrade == 'JSS 2 C' || $showResult->studentGrade == 'JSS 3 A' || $showResult->studentGrade == 'JSS 3 B' || $showResult->studentGrade == 'JSS 3 C') {
       $amInClass ='Junior';
     }elseif ($showResult->studentGrade == 'SSS 1 A' || $showResult->studentGrade == 'SSS 1 B' || $showResult->studentGrade == 'SSS 1 C' || $showResult->studentGrade == 'SSS 2 A' || $showResult->studentGrade == 'SSS 2 B' || $showResult->studentGrade == 'SSS 2 C' || $showResult->studentGrade =='SSS 3 A' || $showResult->studentGrade =='SSS 3 B' || $showResult->studentGrade =='SSS 3 C') {
@@ -223,7 +223,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
   if ($stmt2->rowCount()>0) {
     while ($r = $stmt2->fetch()) {?>
       <tr>
-    <td align="center"> <?php echo ucwords(strtolower($showResult->subjectName));?></td> 
+    <td align="center"> <?php echo ucwords(strtolower($showResult->subjectName));?></td>
                     <td align="center"><?php echo intval($showResult->ca);?></td>
                     <td align="center"> <?php echo $showResult->exam;?></td>
                     <td align="center"><?php echo $myTotalMark;?></td>
@@ -247,13 +247,13 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                   </tr>
               </thead>
               <tr>
-                  <td>Marks Obtainable</td> 
+                  <td>Marks Obtainable</td>
                   <td>Marks Obtained</td>
                   <td>Percentage Score</td>
                   <td>Grade</td>
                   <td>Remarks</td>
                 </tr>
-                <?php 
+                <?php
                 $stmt42 = $dbh->prepare("SELECT sum(`overallMark`) as totalMark FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
                 $stmt42->execute(array($student_reg_number,$student_class,$term,$rsession));
                 if ($stmt42->rowCount()>0) {
@@ -280,7 +280,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
 
                  ?>
                 <tr>
-                  <td><?php echo $mx; ?></td> 
+                  <td><?php echo $mx; ?></td>
                   <td><?php echo $markOb; ?></td>
                   <td><?php echo ($percentage_mark);?> %</td>
                   <?php if ($percentage_mark >=75 && $percentage_mark <= 100) {
@@ -316,7 +316,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                   </tr>
               </thead>
               <tr>
-                  <td>75 - 100 = A (Excellent) </td> 
+                  <td>75 - 100 = A (Excellent) </td>
                   <td>65 - 74.99 = B (Very Good) </td>
                   <td>60 - 64.99 = C (Good) </td>
                   <td>50 - 59.99 = D (Fairly Good) </td>
@@ -334,18 +334,18 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                 </tr>
             </thead>
             <tr>
-                <td>No of Times School Opened </td> 
-                <td><?php echo $schl_session_data->Days_open; ?> </td>
+                <td>No of Times School Opened </td>
+                <td><?php echo $schl_session_data->Days_open;?> </td>
             </tr>
             <tr>
-              <td>No of Times Present </td> 
+              <td>No of Times Present </td>
               <td><?php echo $timePresent; ?> </td>
           </tr>
           <tr>
-            <td>No of Times Absent </td> 
+            <td>No of Times Absent </td>
             <td><?php echo $timeAbsent ?> </td>
           </tr>
-         
+
         </table>
         <br>
         <table style="width: 100%;" id="attendanceSummary">
@@ -359,86 +359,115 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                   <td><b style="font-size: 9px;">&nbsp;1&nbsp;</b> </td>
               </tr>
           </thead>
+<?php $affective = $Student->getStudentAffectiveDomainDetails($student_reg_number,$student_class,$term,$rsession); ?>
           <tr style="text-align:center;">
-              <td style="font-size: 8px;">Attendance</td> 
-              <td></td>
-              <td></td>
-              <td>&#10003;</td>
-              <td></td>
-              <td></td>
+              <td style="font-size: 8px;">Punctuality</td>
+              <td><?php if ($affective->punctuality == 5): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($affective->punctuality == 4): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($affective->punctuality == 3): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($affective->punctuality == 2): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($affective->punctuality == 1): ?>
+              &#10003;
+              <?php endif; ?></td>
           </tr>
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Honesty</td> 
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
+            <td style="font-size: 8px;">Neatness</td>
+            <td><?php if ($affective->neatness == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->neatness == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->neatness == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->neatness == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->neatness == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Neatness</td> 
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
+            <td style="font-size: 8px;">Honesty</td>
+            <td><?php if ($affective->honesty == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->honesty == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->honesty == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->honesty == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->honesty == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Politeness</td> 
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="font-size: 8px;">Self Control</td>
+            <td><?php if ($affective->self_control == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->self_control == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->self_control == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->self_control == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($affective->self_control == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
         </tr>
         <tr style="text-align:center;">
-          <td style="font-size: 8px;">Punctuality/Assembly</td> 
-          <td>&#10003;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td style="font-size: 8px;">Attentiveness in Class</td>
+          <td><?php if ($affective->attentiveness == 5): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->attentiveness == 4): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->attentiveness == 3): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->attentiveness == 2): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->attentiveness == 1): ?>
+          &#10003;
+          <?php endif; ?></td>
         </tr>
         <tr style="text-align:center;">
-          <td style="font-size: 8px;">Self Control/Calmness</td> 
-          <td></td>
-          <td>&#10003;</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td style="font-size: 8px;">Leadership</td>
+          <td><?php if ($affective->leadership == 5): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->leadership == 4): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->leadership == 3): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->leadership == 2): ?>
+          &#10003;
+          <?php endif; ?></td>
+          <td><?php if ($affective->leadership == 1): ?>
+          &#10003;
+          <?php endif; ?></td>
         </tr>
-        <tr style="text-align:center;">
-          <td style="font-size: 8px;">Obedience</td> 
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>&#10003;</td>
-          <td></td>
-        </tr>
-        <tr style="text-align:center;">
-          <td style="font-size: 8px;">Reliability</td> 
-          <td></td>
-          <td></td>
-          <td>&#10003;</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr style="text-align:center;">
-            <td style="font-size: 8px;">Sense of Responsibility</td> 
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
-            <td></td>
-          </tr>
-          <tr style="text-align:center;">
-            <td style="font-size: 8px;">Relationship With Others</td> 
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         </table>
         <br>
         <table style="width: 100%;" id="attendanceSummary">
@@ -452,53 +481,118 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                   <td><b style="font-size: 9px;">&nbsp;1&nbsp;</b> </td>
               </tr>
           </thead>
+          <?php $psychomotors = $Student->getStudentPsychomotorDetails($student_reg_number,$student_class,$term,$rsession) ?>
           <tr style="text-align:center;">
-              <td style="font-size: 8px;">Handling of Tools</td> 
-              <td>&#10003;</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <td style="font-size: 8px;">Handwriting</td>
+            <td><?php if ($psychomotors->Handwriting == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Handwriting == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Handwriting == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Handwriting == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Handwriting == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Drawing / Painting</td> 
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
+            <td style="font-size: 8px;">Sports & Games</td>
+            <td><?php if ($psychomotors->Sports == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Sports == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Sports == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Sports == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Sports == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
+
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Handwriting</td> 
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
+            <td style="font-size: 8px;">Speech Fluency</td>
+            <td><?php if ($psychomotors->Fluency == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Fluency == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Fluency == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Fluency == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Fluency == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
+
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Public Speaking</td> 
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
+              <td style="font-size: 8px;">Handling of Tools</td>
+              <td><?php if ($psychomotors->Handlingtools == 5): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($psychomotors->Handlingtools == 4): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($psychomotors->Handlingtools == 3): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($psychomotors->Handlingtools == 2): ?>
+              &#10003;
+              <?php endif; ?></td>
+              <td><?php if ($psychomotors->Handlingtools == 1): ?>
+              &#10003;
+              <?php endif; ?></td>
           </tr>
+
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Speech Fluency</td> 
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>&#10003;</td>
+            <td style="font-size: 8px;">Drawing / Painting</td>
+            <td><?php if ($psychomotors->Drawing == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Drawing == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Drawing == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Drawing == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->Drawing == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
+
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">Sports & Games</td> 
-            <td></td>
-            <td>&#10003;</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="font-size: 8px;">Crafts</td>
+            <td><?php if ($psychomotors->crafts == 5): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->crafts == 4): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->crafts == 3): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->crafts == 2): ?>
+            &#10003;
+            <?php endif; ?></td>
+            <td><?php if ($psychomotors->crafts == 1): ?>
+            &#10003;
+            <?php endif; ?></td>
           </tr>
         </table>
        <!--  <br>
@@ -532,7 +626,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
               </tr>
           </thead>
           <tr style="text-align:center;">
-              <td style="font-size: 8px;">GRADE</td> 
+              <td style="font-size: 8px;">GRADE</td>
               <td>&nbsp;A&nbsp;</td>
               <td>&nbsp;B&nbsp;</td>
               <td>&nbsp;C&nbsp;</td>
@@ -541,7 +635,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
               <td>&nbsp;F&nbsp;</td>
           </tr>
           <tr style="text-align:center;">
-            <td style="font-size: 8px;">NO</td> 
+            <td style="font-size: 8px;">NO</td>
             <td>11</td>
             <td>2</td>
             <td>-</td>
@@ -550,7 +644,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             <td>-</td>
         </tr>
         <tr>
-          <td colspan="4">TOTAL SUBJECTS OFFERED</td> 
+          <td colspan="4">TOTAL SUBJECTS OFFERED</td>
           <td colspan="3"  style="text-align:center;"><?php echo intval($subjectOffered)?></td>
       </tr>
     </table>
@@ -566,7 +660,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             <?php
             // code...
           } ?>
-          
+
           <p style="text-align: right;"><b> <?php $staff_data_details = $Administration->get_class_teacher_class_name($student_class)?> <?php if ($staff_data_details): ?>
             <?php $staff_Gender = $staff_data_details->staffGender;
             if ($staff_Gender =="Male") {
@@ -586,7 +680,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             <?php
             // code...
           } ?>
-          
+
           <p style="text-align: right;"><b> <?php $principal_details = $Administration->get_principal_info();?> <?php if ($principal_details): ?>
             <?php $staff_Gender = $principal_details->staffGender;
             if ($staff_Gender =="Male") {

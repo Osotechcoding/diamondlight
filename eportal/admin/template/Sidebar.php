@@ -53,13 +53,17 @@
             <ul class="menu-content">
               <li class="nav-item"><a href="rgrading"><i class="fa fa-line-chart fa-1x"></i><span class="menu-title text-truncate" data-i18n="rgrading">Result Grading</span></a>
           </li>
-           <li class=" nav-item"><a href="result_uploading"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">Upload Results</span></a>
+           <li class=" nav-item"><a href="result_uploading"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">Upload Results</span></a>
           </li>
            <li class=" nav-item"><a href="view_uploaded_result"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
           </li>
-          <li class=" nav-item"><a href="uploading_behavior"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">Upload Cognitive</span></a>
+          <li class=" nav-item"><a href="uploading_behavior"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Affective Domain">Affective Domain</span></a>
           </li>
-          <li class=" nav-item"><a href="view_cognitive"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Cognitive</span></a>
+          <li class=" nav-item"><a href="view_cognitive"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Affective">View Affective</span></a>
+          </li>
+          <li class=" nav-item"><a href="psychomotor"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Psychomotor">Psychomotor</span></a>
+          </li>
+          <li class=" nav-item"><a href="viewpsycho"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Psychomotor">View Psychomotor</span></a>
           </li>
           <li class=" nav-item"><a href="checkResult"><i class="fa fa-line-chart fa-1x"></i><span class="menu-title text-truncate" data-i18n="Check Result">Check Result</span></a>
           </li>

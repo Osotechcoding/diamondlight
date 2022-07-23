@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ require_once "helpers/helper.php";
                     </select>
                   </div>
                 </div>
-                
+
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="term"> Term</label>
@@ -98,7 +98,7 @@ require_once "helpers/helper.php";
                       value="<?php echo $activeSess->session_desc_name;?>" readonly>
                   </div>
                 </div>
-               
+
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" name="submit_show_affective_domain" class="btn btn-dark mr-1">Show Broad Sheet</button>
                 </div>
@@ -108,14 +108,14 @@ require_once "helpers/helper.php";
         </div>
       </div>
     </div>
-   
+
   </div>
 </section>
 <!-- Basic Vertical form layout section end -->
         </div>
       </div>
        <!--starts  -->
-       <?php 
+       <?php
        if (isset($_POST['submit_show_affective_domain'])) {
         $student_class = $Configuration->Clean($_POST['student_class']);
         $term = $Configuration->Clean($_POST['term']);
@@ -134,7 +134,7 @@ require_once "helpers/helper.php";
   <div class="mb-3">
     <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
                  <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
-        <h4 class="text-center text-danger"><strong>STUDENTS BEHAVIORAL ANALYSIS SHEET</strong></h4>
+        <h4 class="text-center text-danger"><strong>STUDENTS AFFECTIVE DOMAIN ANALYSIS SHEET</strong></h4>
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center offset-1">
             <span class="btn btn-info btn-round text-center"><?php echo strtoupper($student_class) ?> </span>
                 <span class="btn btn-dark btn-round text-center"><?php echo strtoupper($term) ?></span>
@@ -148,20 +148,18 @@ require_once "helpers/helper.php";
                 <thead class="text-center">
                     <tr>
                     <th width="250">Student</th>
-                    <th> Writing</th>
-                    <th> Musical</th>
-                    <th>Sports</th>
+                    <th> Punctuality</th>
+                    <th> Neatness</th>
+                    <th>Honesty</th>
+                    <th>Self Control</th>
                     <th>Attentiveness</th>
-                    <th>Attitude To Work</th>
-                    <th>Punctuality</th>
-                    <th>Health</th>
-                    <th>Politeness</th>
+                    <th>Leadership</th>
                 </tr>
             </thead>
             <tbody class="text-center">
-                    <?php 
+                    <?php
                     $cnt =0;
-                    foreach ($student_details as $value) { 
+                    foreach ($student_details as $value) {
                       $cnt++;?>
                     <tr>
                       <td width="250"><?php echo ucwords($value->full_name);?>
@@ -170,7 +168,7 @@ require_once "helpers/helper.php";
                         <input type="hidden" value="<?php echo strtoupper($value->studentClass);?>" name="student_class[]">
                       </td>
                        <td>
-                        <select class="select form-control" name="hand_writing[]">
+                        <select class="select form-control" name="punctuality[]">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -178,14 +176,21 @@ require_once "helpers/helper.php";
                          <option value="5">5</option>
                        </select>
                 </td>
-                        <td><select name="musical_skill[]" class="select form-control">
+                        <td><select name="neatness[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
                          <option value="4">4</option>
-                         <option value="5">5</option>              
+                         <option value="5">5</option>
             </select></td>
-                        <td><select name="sport[]" class="select form-control">
+                        <td><select name="honesty[]" class="select form-control">
+                         <option value="1" selected>1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                         <option value="5">5</option>
+                       </select></td>
+                        <td><select name="selfcontrol[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -199,36 +204,18 @@ require_once "helpers/helper.php";
                          <option value="4">4</option>
                          <option value="5">5</option>
                        </select></td>
-                        <td><select name="attitude_to_work[]" class="select form-control">
+                        <td><select name="leadership[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
                          <option value="4">4</option>
                          <option value="5">5</option>
-                       </select></td>
-                        <td><select name="punctuality[]" class="select form-control">
-                         <option value="1" selected>1</option>
-                         <option value="2">2</option>
-                         <option value="3">3</option>
-                         <option value="4">4</option>
-                         <option value="5">5</option>
-                          </select></td>
-                        <td><select name="health[]" class="select form-control">
-                         <option value="1" selected>1</option>
-                         <option value="2">2</option>
-                         <option value="3">3</option>
-                         <option value="4">4</option>
-                         <option value="5">5</option></select></td>
-                        <td><select name="politeness[]" class="select form-control">
-                         <option value="1" selected>1</option>
-                         <option value="2">2</option>
-                         <option value="3">3</option>
-                         <option value="4">4</option>
-                         <option value="5">5</option></select>
-           <input type="hidden" name="total_count" value="<?php echo $cnt; ?>"></td>
-                    </tr>  
+                          </select>
+                          <input type="hidden" name="total_count" value="<?php echo $cnt; ?>">
+                        </td>
+                    </tr>
                     <?php }
-                     ?>         
+                     ?>
                     </tbody>
                     </table>
                         </div>

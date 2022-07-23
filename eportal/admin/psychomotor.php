@@ -7,7 +7,7 @@ require_once "helpers/helper.php";
   <!-- BEGIN: Head-->
 <head>
     <?php include "../template/MetaTag.php";?>
-    <title><?php echo $SmappDetails->school_name; ?> :: Uploading Affective Domain</title>
+    <title><?php echo $SmappDetails->school_name; ?> :: Uploading Psychomotor</title>
    <!-- include template/HeaderLink.php -->
    <?php include "../template/HeaderLink.php";?>
   <!-- END: Head-->
@@ -35,9 +35,9 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo $_SESSION['STAFF_ROLE'];?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo $_SESSION['ADMIN_SES_TYPE'];?></a>
                   </li>
-                  <li class="breadcrumb-item active">Student Affective Domain
+                  <li class="breadcrumb-item active">Student Psychomotor
                   </li>
                 </ol>
               </div>
@@ -47,18 +47,14 @@ require_once "helpers/helper.php";
         <div class="content-body">
 <div class="row">
              <div class="col-12">
-    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-line-chart fa-1x"></span>Upload Student Affective Domain </h3>
+    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-line-chart fa-1x"></span>Upload Student Psychomotor </h3>
   </div>
     </div>
     <!-- content goes here -->
         <div class="card">
-          <div class="card-header">
-            <!-- <h3>Upload Cognitive Domain</h3> -->
-             <?php //include_once 'Links/results_btn.php'; ?>
-          </div>
 
           <div class="card-body">
-             <!-- Basic Vertical form layout section start -->
+           <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
   <div class="row match-height">
     <div class="col-md-12 col-12">
@@ -100,7 +96,7 @@ require_once "helpers/helper.php";
                 </div>
 
                 <div class="col-12 d-flex justify-content-end">
-                  <button type="submit" name="submit_show_affective_domain" class="btn btn-dark mr-1">Show Broad Sheet</button>
+                  <button type="submit" name="submit_show_affective_domain" class="btn btn-dark mr-1">Show Sheet</button>
                 </div>
               </div>
             </div>
@@ -134,26 +130,26 @@ require_once "helpers/helper.php";
   <div class="mb-3">
     <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
                  <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
-        <h4 class="text-center text-danger"><strong>STUDENTS AFFECTIVE DOMAIN ANALYSIS SHEET</strong></h4>
+        <h4 class="text-center text-danger"><strong>STUDENTS PSYCHOMOTOR DOMAIN ANALYSIS SHEET</strong></h4>
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center offset-1">
             <span class="btn btn-info btn-round text-center"><?php echo strtoupper($student_class) ?> </span>
                 <span class="btn btn-dark btn-round text-center"><?php echo strtoupper($term) ?></span>
                 <span class="btn btn-danger btn-round text-center"><?php echo ($session) ?></span>
             </div>
   </div>
-  <form id="submit_affectiveDomain_form">
+  <form id="submit_psychomotorDomain_form">
 
 <div class="table-responsive">
         <table class=" table-bordered table table-stripped table-hover datatable">
                 <thead class="text-center">
                     <tr>
                     <th width="250">Student</th>
-                    <th> Punctuality</th>
-                    <th> Neatness</th>
-                    <th>Honesty</th>
-                    <th>Self Control</th>
-                    <th>Attentiveness</th>
-                    <th>Leadership</th>
+                    <th> Handwriting</th>
+                    <th> Sports</th>
+                    <th>Fluency</th>
+                    <th>Handling of Tools</th>
+                    <th>Drawing & Painting</th>
+                    <th>Crafts</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -168,7 +164,7 @@ require_once "helpers/helper.php";
                         <input type="hidden" value="<?php echo strtoupper($value->studentClass);?>" name="student_class[]">
                       </td>
                        <td>
-                        <select class="select form-control" name="punctuality[]">
+                        <select class="select form-control" name="handwriting[]">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -176,35 +172,35 @@ require_once "helpers/helper.php";
                          <option value="5">5</option>
                        </select>
                 </td>
-                        <td><select name="neatness[]" class="select form-control">
+                        <td><select name="sports[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
                          <option value="4">4</option>
                          <option value="5">5</option>
             </select></td>
-                        <td><select name="honesty[]" class="select form-control">
+                        <td><select name="fluency[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
                          <option value="4">4</option>
                          <option value="5">5</option>
                        </select></td>
-                        <td><select name="selfcontrol[]" class="select form-control">
+                        <td><select name="handlingtool[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
                          <option value="4">4</option>
                          <option value="5">5</option>
                        </select></td>
-                        <td><select name="attentiveness[]" class="select form-control">
+                        <td><select name="drawing[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
                          <option value="4">4</option>
                          <option value="5">5</option>
                        </select></td>
-                        <td><select name="leadership[]" class="select form-control">
+                        <td><select name="crafts[]" class="select form-control">
                          <option value="1" selected>1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -221,7 +217,7 @@ require_once "helpers/helper.php";
                         </div>
                          <input type="hidden" name="term" value="<?php echo $term;?>">
                     <input type="hidden" name="school_session" value="<?php echo $session;?>">
-                    <input type="hidden" name="action" value="submit_affective_domain">
+                    <input type="hidden" name="action" value="submit_psychomotor_domain">
                      <div class="col-md-12">
                     <div class="row">
                       <div class="col-md-6">
@@ -270,7 +266,7 @@ require_once "helpers/helper.php";
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><i class="fa fa-file fa-2x"></i> Upload Affective Domain In CSV</h2>
+                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><i class="fa fa-file fa-2x"></i> Upload Cognitive In CSV</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="bx bx-x"></i>
                   </button>
@@ -337,12 +333,12 @@ require_once "helpers/helper.php";
      <!-- BEGIN: Page JS-->
      <script>
        $(document).ready(function(){
-        const AFFECTIVE_DOMAIN_FORM = $("#submit_affectiveDomain_form");
-        AFFECTIVE_DOMAIN_FORM.on("submit", function(event){
+        const PSYCHOMOTOR_DOMAIN_FORM = $("#submit_psychomotorDomain_form");
+        PSYCHOMOTOR_DOMAIN_FORM.on("submit", function(event){
           event.preventDefault();
           $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
      //send to server
-     $.post("../actions/actions",AFFECTIVE_DOMAIN_FORM.serialize(),function(data){
+     $.post("../actions/actions",PSYCHOMOTOR_DOMAIN_FORM.serialize(),function(data){
       setTimeout(()=>{
          $(".__loadingBtn__").html('UPLOAD NOW').attr("disabled",false);
          console.log(data);

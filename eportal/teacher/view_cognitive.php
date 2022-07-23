@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "helpers/helper.php";
  ?>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ require_once "helpers/helper.php";
   <!-- BEGIN: Head-->
 <head>
     <?php include "../template/MetaTag.php";?>
-    <title><?php echo __SCHOOL_NAME__ ?> :: Uploaded Students Affective Domain</title>
+    <title><?php echo $SmappDetails->school_name; ?> ::Students Affective Domain</title>
    <!-- include template/HeaderLink.php -->
    <?php include ("../template/dataTableHeaderLink.php"); ?>
    <?php //include "template/HeaderLink.php"; ?>
@@ -38,7 +38,7 @@ require_once "helpers/helper.php";
                   </li>
                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['STAFF_ROLE']);?></a>
                   </li>
-                  <li class="breadcrumb-item active">View Affective Domain
+                  <li class="breadcrumb-item active"> Affective Domain
                   </li>
                 </ol>
               </div>
@@ -48,16 +48,12 @@ require_once "helpers/helper.php";
         <div class="content-body">
 <div class="row">
              <div class="col-12">
-    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-line-chart fa-2x"></span> View Uploaded Students Affective Domain </h3>
+    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-line-chart fa-2x"></span>  Uploaded Students Affective Domain </h3>
   </div>
     </div>
     <!-- content goes here -->
-     
+
         <div class="card">
-          <div class="card-header">
-            <!-- <h3>View Cognitive</h3> -->
-             <?php //include_once 'Links/results_btn.php'; ?>
-          </div>
 
           <div class="card-body">
              <!-- Basic Vertical form layout section start -->
@@ -65,7 +61,7 @@ require_once "helpers/helper.php";
   <div class="row match-height">
     <div class="col-md-12 col-12">
       <div class="card">
-       
+
         <div class="card-body">
           <form class="form form-vertical" action="" method="post">
             <div class="form-body">
@@ -79,7 +75,7 @@ require_once "helpers/helper.php";
                     </select>
                   </div>
                 </div>
-              
+
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="_term"> Term</label>
@@ -100,7 +96,7 @@ require_once "helpers/helper.php";
                     </select>
                   </div>
                 </div>
-               
+
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" name="view_cognitive_btn" class="btn btn-dark mr-1">View Affective Domain</button>
                 </div>
@@ -110,13 +106,13 @@ require_once "helpers/helper.php";
         </div>
       </div>
     </div>
-   
+
   </div>
 </section>
 <!-- Basic Vertical form layout section end -->
         </div>
       </div>
-      <?php 
+      <?php
       if (isset($_POST['view_cognitive_btn'])) {
          $std_class = $Configuration->Clean($_POST['_class_name']);
             $_term = $Configuration->Clean($_POST['_term']);
@@ -128,7 +124,7 @@ $all_affective_domains = $Administration->get_all_affective_domain($std_class,$_
 if ($all_affective_domains) {?>
 <div class="card">
    <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
-                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
+                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name) ?> </h5>
         <h4 class="text-center text-danger"><strong>STUDENTS AFFECTIVE DOMAIN ANALYSIS SHEET</strong></h4>
                       <!-- ############################# -->
             <br />
@@ -136,22 +132,20 @@ if ($all_affective_domains) {?>
             <span class="btn btn-info btn-round text-center"><?php echo strtoupper($std_class) ?> </span>
                 <span class="btn btn-dark btn-round text-center"><?php echo strtoupper($_term) ?> </span>
                 <span class="btn btn-danger btn-round text-center"><?php echo ($school_session) ?> </span>
-            </div> 
+            </div>
  <div class="card-body">
 <div class="table-responsive">
-        <table class=" table-bordered table table-stripped table-hover osotechExp">
+        <table class=" table-bordered table table-stripped table-hover">
                 <thead class="text-center">
                    <tr>
-                    <th>Student</th>
-                    <th>Reg No</th>
-                    <th> Writing</th>
-                    <th> Musical</th>
-                    <th>Sports</th>
+                    <th width="250">Student</th>
+                    <th>Admission No</th>
+                    <th> Punctuality</th>
+                    <th> Neatness</th>
+                    <th>Honesty</th>
+                    <th>Self Control</th>
                     <th>Attentiveness</th>
-                    <th>Attitude</th>
-                    <th>Punctuality</th>
-                    <th>Health</th>
-                    <th>Politeness</th>
+                    <th>Leadership</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -160,17 +154,15 @@ if ($all_affective_domains) {?>
                             <tr>
                         <td><span><?php echo strtoupper($student_data->full_name);?></span></td>
                         <td><span><?php echo strtoupper($student_data->stdRegNo);?></span></td>
-                        <td><?php echo $value->hand_writing;?></td>
-                        <td><?php echo $value->musical_skills;?></td>
-                        <td><?php echo $value->sports;?></td>
+                        <td><?php echo $value->punctuality;?></td>
+                        <td><?php echo $value->neatness;?></td>
+                        <td><?php echo $value->honesty;?></td>
+                        <td><?php echo $value->self_control;?></td>
                         <td><?php echo $value->attentiveness;?></td>
-                        <td><?php echo $value->attitude_to_work;?></td>
-                        <td><?php echo $value->punctality;?></td>
-                        <td><?php echo $value->health;?></td>
-                        <td><?php echo $value->politeness;?></td>
-                    </tr>                   
-                    <?php endforeach ?>               
-                          
+                        <td><?php echo $value->leadership;?></td>
+                    </tr>
+                    <?php endforeach ?>
+
                          </tbody>
                           </table>
                           </div>
@@ -198,9 +190,15 @@ if ($all_affective_domains) {?>
    <!--  -->
    <?php include "../template/footer.php"; ?>
     <!-- END: Footer-->
+
     <!-- BEGIN: Vendor JS-->
-   <?php include ("../template/FooterScript.php"); ?>
+   <?php include ("../template/DataTableFooterScript.php"); ?>
+    <?php //include "template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
+    <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
+    <!-- END: Page JS-->
+
+    <!-- END: Page JS-->
   </body>
   <!-- END: Body-->
 </html>

@@ -360,6 +360,13 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+  if ($_POST['action'] ==="submit_psychomotor_domain") {
+    $result = $Administration->upload_psychomotor_domain($_POST);
+    if ($result) {
+      echo $result;
+    }
+  }
+
 	if ($_POST['action'] ==="add_student_office") {
 		$result = $Administration->add_new_student_office_title($_POST);
 		if ($result) {

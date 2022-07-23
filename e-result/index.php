@@ -5,10 +5,7 @@ if (!file_exists("../Inc/Osotech.php")){
 }
 require_once ("../Inc/Osotech.php");
 ?>
-<?php if ($Osotech->checkAdmissionPortalStatus() !== true): ?>
-   <?php header("Location: ../");
-   exit();?>
-<?php endif ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +17,9 @@ require_once ("../Inc/Osotech.php");
     <style>
   ul li.emp{
     list-style: numbering;
-    font-weight: 300;
-    font-size: 1.3rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: inherit;
   }
 
   .blinking{
@@ -77,6 +75,7 @@ require_once ("../Inc/Osotech.php");
 
             <!-- Checkout section start -->
             <div id="rs-checkout" class="rs-checkout orange-color pt-100 pb-100 md-pt-70 md-pb-70">
+
                  <div class="container">
                      <div class="coupon-toggle">
                          <div id="accordion" class="accordion">
@@ -84,36 +83,29 @@ require_once ("../Inc/Osotech.php");
                                  <div class="card-header" id="headingOne">
                                      <div class="card-title">
                                          <span style="font-size: 20px;"><i class="fa fa-window-maximize"></i> <button class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none;color: red;"> Click here</button> to read the Instruction on how to check your online result?</span>
-                                         
+
                                      </div>
                                  </div>
-                                 
+
                                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                      <div class="card-body">
       <div class="col-md-12 mb-4">
    <div class="section-tittle">
-<h2 class="text-danger blinking"><span class="blinking">Public Notice!</span> </h2>
-<h5 class="blinking"><span>2021/2022 Academic Promotion Report Sheet is Now Out.</span>
-</h5>
-<h4> You can now check your result. Scratch Cards are available for purchase. <a href="javascript:void(0);" title="Call Admin on 08131374443">the School Premises</a></h4>
-<h2 class="text-center">How to Check your <a href="#" style="color:red;"> Result?</a></h2>
+
 <!-- You can now check your result online. -->
-<p>To check your result, Please, follow the instructions below:</p>
+<h2>To check your result, Please, follow the instructions below:</h2>
 <ul style="font-weight: bold;" class="text-danger">
   <em>
   <li class="emp">Carefully scratch off the covered area of your scratch card to unveil your secret PIN Number</li>
   <li class="emp">Enter Your Admission Number in the space provided</li>
   <li class="emp">Choose Examination Result Class from the list</li>
-  <li class="emp">elect Result Session from the list</li>
-  <li class="emp">Choose your Examination Term (1st,2nd or 3rd)</li>
+  <li class="emp">Select Result Session from the list</li>
+  <li class="emp">Choose your Result Term (1st,2nd or 3rd)</li>
   <li class="emp">Enter the PIN Number in your scratch card correctly</li>
   <li class="emp">Enter your scratch card SERIAL Number</li>
   <li class="emp">Finaly, Click check result Button and wait for your result to display.</li>
   </em>
 </ul>
-<div class="text-center">
-      <img src="cardb.jpg" alt="scratch-card" width="500">
-    </div>
 </div>
   </div>
     </div>
@@ -121,64 +113,76 @@ require_once ("../Inc/Osotech.php");
                              </div>
                          </div>
                      </div>
-
                      <div class="full-grid">
-                         <form id="student_result_checker_form">
-  <div class="col-md-12 text-center" id="response"></div>
-<div class="row">
-<div class="col-md-6">
-<div class="form-group">
-<input type="text" name="student_reg_number" class="form-control" placeholder="Admission No">
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<select name="result_class" id="" class="form-control">
-  <option value="" selected>Choose Class</option>
-  <?php echo $Osotech->get_classroom_InDropDown_list();?>
-</select>
-</div>
-</div>
-<div class="col-lg-6 col-md-6">
-<div class="form-group">
-<select name="result_session" id="" class="form-control">
-  <option value="" selected>Choose Session</option>
- <?php echo $Osotech->get_all_session_lists();?>
-</select>
-</div>
-</div>
-<div class="col-lg-6 col-md-6">
-<div class="form-group">
-<select name="result_term" id="" class="form-control">
-  <option value="" selected>Choose Term</option>
-  <option value="1st Term">1st Term</option>
-  <option value="2nd Term">2nd Term</option>
-  <option value="3rd Term">3rd Term</option>
-</select>
-</div>
-</div>
-<div class="col-lg-12">
-<div class="form-group">
-<input type="password" autocomplete="off" id="password2" name="cardPin_" class="form-control" placeholder="Enter Scratch Pin">
-</div>
-</div>
-<div class="col-lg-12">
-<div class="form-group">
-<input type="text" autocomplete="off" id="password3" name="cardSerial_" class="form-control" placeholder="Enter Pin Serial">
-</div>
-</div>
-</div>
-<input type="hidden" name="action" value="check_Student_Result">
-<button type="submit" class="btn btn-primary btn-lg btn-block __loadingBtn__" style="border-radius: 20px; float: right;">Check Result</button>
-<div class="clearfix"></div>
-</form>
+                       <h2 class="text-danger blinking"><span class="blinking">Public Notice!</span> </h2>
+                       <h5 class="blinking"><span>2021/2022 Academic Promotion Report Sheet is Now Out.</span>
+                       </h5>
+                       <h4> You can now check your result. Scratch Cards are available at the school Premises or contact. <a href="tel:08131374443" title="Call Admin on 08131374443">Admin</a></h4>
+
+                       <form id="student_result_checker_form">
+                         <div class="col-md-12 text-center" id="response"></div>
+                           <div class="billing-fields">
+                               <div class="form-content-box">
+                                   <div class="row">
+                                       <div class="col-md-6 col-sm-12 col-xs-12">
+                                           <div class="form-group">
+                                               <label>Admission No*</label>
+                                               <input autocomplete="off"  name="student_reg_number" class="form-control-mod" type="text" placeholder="e.g 2022C243140001">
+                                           </div>
+                                       </div>
+                                       <div class="col-md-6 col-sm-12 col-xs-12">
+                                           <div class="form-group">
+                                               <label>Result Class *</label>
+                                              <select class="form-control-md" name="result_class">
+                                                <option value="" selected>Choose...</option>
+                                                <?php echo $Osotech->get_classroom_InDropDown_list();?>
+                                              </select>
+                                           </div>
+                                       </div>
+
+                                       <div class="col-md-6 col-sm-12 col-xs-12">
+                                           <div class="form-group">
+                                               <label>Result Session *</label>
+                                               <select class="form-control-md" name="result_session">
+                                                 <option value="" selected>Choose...</option>
+                                                 <?php echo $Osotech->get_all_session_lists();?>
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-md-6 col-sm-12 col-xs-12">
+                                           <div class="form-group">
+                                               <label>Result Term *</label>
+                                               <select class="form-control-md" name="result_term">
+                                                 <option value="" selected>Choose Term</option>
+                                                 <option value="1st Term">1st Term</option>
+                                                  <option value="2nd Term">2nd Term</option>
+                                                  <option value="3rd Term">3rd Term</option>
+                                               </select>
+                                           </div>
+                                       </div>
+                                       <div class="col-md-6 col-sm-12 col-xs-12">
+                                           <div class="form-group">
+                                               <label>Scratch Pin *</label>
+                                               <input autocomplete="off" name="cardPin_" class="form-control-mod" type="password" placeholder="***********">
+                                           </div>
+                                       </div>
+                                       <div class="col-md-6 col-sm-12 col-xs-12">
+                                           <div class="form-group">
+                                               <label>Scratch Serial *</label>
+                                               <input autocomplete="off"  name="cardSerial_" class="form-control-mod" type="text" placeholder="e.g 465343321">
+                                           </div>
+                                       </div>
+                                    </div>
+                               </div>
+                               <input type="hidden" name="action" value="check_Student_Result">
+                                <button class="btn-shop orange-color float-right __loadingBtn__" type="submit">Check Result</button>
+                           </div>
+                           <!-- .billing-fields -->
+                       </form>
                      </div>
                  </div>
             </div>
             <!-- Checkout section end -->
-	        <!-- Newsletter section start -->
-            <?php //include_once ("Templates/NewsletterForm.php");?>
-	        <!-- Newsletter section end -->
         </div>
 	<!-- Main content End -->
 	<!-- Footer Start -->
@@ -190,6 +194,28 @@ require_once ("../Inc/Osotech.php");
     <?php include_once ("Templates/SearchBar.php") ?>
 	<!-- Search Modal End -->
     <?php include_once ("Templates/FooterScript.php") ?>
-    <script src="signature.js"></script>
+    <script>
+    $(document).ready(function(){
+    $("#student_result_checker_form").on("submit",function(event){
+        $(".__loadingBtn__").html('<img src="../rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
+        //send request
+        event.preventDefault();
+        const checkResultForm = $(this).serialize();
+        $.post("../Inc/checkStudentResult",checkResultForm,function(data){
+        setTimeout(function(){
+          //popWindow();
+          $("#response").html(data);
+          $(".__loadingBtn__").html('Check Result').attr("disabled",false);
+          setTimeout(()=>{
+            $("#student_result_checker_form")[0].reset();
+            $(".alert").alert('close').slideUp('slow');
+          },3000);
+        },1000);
+        })
+
+      });
+
+      });
+    </script>
 </body>
 </html>

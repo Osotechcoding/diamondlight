@@ -36,7 +36,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                 <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
+                 <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['STAFF_ROLE']);?></a>
                   </li>
                   <li class="breadcrumb-item active"> Affective Domain
                   </li>
@@ -120,8 +120,8 @@ require_once "helpers/helper.php";
             if ($Configuration->isEmptyStr($std_class) || $Configuration->isEmptyStr($_term) || $Configuration->isEmptyStr($school_session)) {
             echo $Alert->alert_msg(" Please Select Class,Term and Session to Continue!","danger");
             }else{
-$all_affective_domains = $Administration->get_all_affective_domain($std_class,$_term,$school_session);
-if ($all_affective_domains) {?>
+$all_psychomotor_domains = $Administration->get_all_psychomotor_domain($std_class,$_term,$school_session);
+if ($all_psychomotor_domains) {?>
 <div class="card">
    <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
                  <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name) ?> </h5>
@@ -140,26 +140,26 @@ if ($all_affective_domains) {?>
                    <tr>
                     <th width="250">Student</th>
                     <th>Admission No</th>
-                    <th> Punctuality</th>
-                    <th> Neatness</th>
-                    <th>Honesty</th>
-                    <th>Self Control</th>
-                    <th>Attentiveness</th>
-                    <th>Leadership</th>
+                    <th> Handwriting</th>
+                    <th> Sports</th>
+                    <th>Fluency</th>
+                    <th>Handling Tools</th>
+                    <th>Drawing & Painting</th>
+                    <th>Crafts</th>
                 </tr>
             </thead>
             <tbody class="text-center">
-                  <?php foreach ($all_affective_domains as $value): ?>
+                  <?php foreach ($all_psychomotor_domains as $value): ?>
                     <?php $student_data = $Student->get_student_data_byId($value->student_id) ?>
                             <tr>
                         <td><span><?php echo strtoupper($student_data->full_name);?></span></td>
                         <td><span><?php echo strtoupper($student_data->stdRegNo);?></span></td>
-                        <td><?php echo $value->punctuality;?></td>
-                        <td><?php echo $value->neatness;?></td>
-                        <td><?php echo $value->honesty;?></td>
-                        <td><?php echo $value->self_control;?></td>
-                        <td><?php echo $value->attentiveness;?></td>
-                        <td><?php echo $value->leadership;?></td>
+                        <td><?php echo $value->Handwriting;?></td>
+                        <td><?php echo $value->Sports;?></td>
+                        <td><?php echo $value->Fluency;?></td>
+                        <td><?php echo $value->Handlingtools;?></td>
+                        <td><?php echo $value->Drawing;?></td>
+                        <td><?php echo $value->crafts;?></td>
                     </tr>
                     <?php endforeach ?>
 
