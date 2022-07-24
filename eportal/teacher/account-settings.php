@@ -232,7 +232,7 @@ require_once "helpers/helper.php";
                                     aria-labelledby="account-pill-password" aria-expanded="false">
                                     <h4 class="text-center text-muted"> UPDATE ACCOUNT PASSWORD</h4>
                                     <form class="validate-form" id="password-update-form">
-                                      <div class="col-md-12 text-center" id="myResponseText"></div>
+                                     <!--  <div class="col-md-12 text-center" id="myResponseText"></div> -->
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -501,8 +501,8 @@ require_once "helpers/helper.php";
       $.post("../actions/actions",UPDATEPWDFORM.serialize(),function(data){
         setTimeout(()=>{
           $(".__loadingBtn__").html('Save Changes').attr("disabled",false);
-          $("#myResponseText").html(data);
-        },1000);
+          $("#server-response").html(data);
+        },500);
       })
     });
 
@@ -530,8 +530,8 @@ require_once "helpers/helper.php";
         $.post("../actions/actions",myData,function(result){
             setTimeout(()=>{
                  $(".resend-btn").html('Resend Confirmation');
-            $("#resendResponse").html(result);
-            },1500);
+            $("#server-response").html(result);
+            },500);
         })
     })
 
@@ -545,25 +545,10 @@ require_once "helpers/helper.php";
       $.post("../actions/actions",UPDATE_BANK_FROM.serialize(),function(res_data){
         setTimeout(()=>{
           $(".__loadingBtn3__").html('Save Changes').attr("disabled",false);
-          $("#myResponseText3").html(res_data);
-        },1000);
+          $("#server-response").html(res_data);
+        },500);
       })
     })
-
-    //upload photo start
-    const UPLOADPHOTOFORM = $("#upload_avatar_photo_form");
-    UPLOADPHOTOFORM.on("click", function(e){
-      e.preventDefault();
-     
-    })
-
-    //when update profile details form is submitted
-
-
-    /*$("#myavatar").on("change", function(e){
-      var file = e.target.files[0].name;
-      $("#osotech-result").html(file + " is the selected file");
-    })*/
   })
 </script>
     <!-- END: Page JS-->

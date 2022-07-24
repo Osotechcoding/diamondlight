@@ -20,16 +20,17 @@
                <li><a class="d-flex align-items-center" href="markstudentass"><i class="bx bx-edit-alt"></i><span class="menu-item text-truncate" data-i18n="Online Classroom">Mark Assignment</span></a>
               </li>
           <!-- RESULT -->
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-bar-chart fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE RESULTS">Student Results</span></a>
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-bar-chart fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="Manage Results">Manage Results</span></a>
             <ul class="menu-content">
-           <li class=" nav-item"><a href="examinationquestion"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Exam Question">Upload Questions</span></a>
+           <li class=" nav-item"><a href="examinationquestion"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Exam Question">Submit Questions</span></a>
           </li>
           <li class="nav-item"><a href="result_uploading"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Results</span></a>
           </li>
+           <li class=" nav-item"><a href="view_uploaded_result"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
+          </li>
            <!-- RESULT COMMENT SECTION -->
           <?php if ($staff_data->staffRole =="Class Teacher"): ?>
-             <li><a class="d-flex align-items-center" href="mystudents"><i class="fa fa-graduation-cap"></i><span class="menu-item text-truncate" data-i18n="Virtual Lecture">My Students</span></a>
-              </li>
+            
              <li class="nav-item"><a href="class_teacher_comment"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Result Comments"> Result Comments</span></a>
           </li>
            <li class="nav-item"><a href="view_uploaded_comment"><i class="fa fa-comment fa-1x"></i><span class="menu-title text-truncate" data-i18n="Result Comments"> View Comments</span></a>
@@ -44,22 +45,23 @@
          </li>
           <?php endif ?>
          <!-- RESULT COMMENT SECTION -->
-           <li class=" nav-item"><a href="view_uploaded_result"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
-          </li>
+          
             </ul>
           </li>
           <!-- RESULT ENDS -->
           <!-- STUDENT -->
            <!-- SUBJECT REGISTRATION -->
           <?php if ($staff_data->staffRole ==="Class Teacher"): ?>
-             <li class="nav-item"><a href="registerStudentSubject"><i class="fa fa-book fa-1x"></i><span class="menu-title text-truncate" data-i18n="Subject Registration"> Subject Registration</span></a>
-          </li>
-           <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-graduation-cap fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="STUDENT"> Attendance</span></a>
+              <li class="nav-item"><a href="registerStudentSubject"><i class="fa fa-book fa-1x"></i><span class="menu-title text-truncate" data-i18n="Subjects Offered"> Subjects Offered</span></a>
+          </li> 
+           <li><a class="d-flex align-items-center" href="mystudents"><i class="fa fa-graduation-cap"></i><span class="menu-item text-truncate" data-i18n="Students">Students</span></a>
+              </li>
+           <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-check-square-o fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="Attendance"> Attendance</span></a>
             <ul class="menu-content">
           <!-- student_attendance -->
-           <li class="nav-item"><a href="student_attendance"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Attendance">Upload Attendance</span></a>
+           <li class="nav-item"><a href="student_attendance"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Mark Attendance">Mark Attendance</span></a>
           </li>
-           <li class="nav-item"><a href="view_student_attendance"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Attendant">View Attendance </span></a>
+           <li class="nav-item"><a href="view_student_attendance"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Attendance">View Attendance </span></a>
           </li>
             </ul>
           </li>
@@ -72,9 +74,7 @@
                <li class=" nav-item"><a href="duty"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Assign Duty">My Duties</span></a>
           </li>
                <li><a class="d-flex align-items-center" href="add_event"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Event">School Events</span></a> </li>
-                <li><a class="d-flex align-items-center" href="add_holidays"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Holiday"> Holidays</span></a> </li>
-
-
+                <li><a class="d-flex align-items-center" href="add_holidays"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Holiday">Holidays</span></a> </li>
             </ul>
           </li>
           <li><a class="d-flex align-items-center" href="account-settings"><i class="fa fa-cogs"></i><span class="menu-item text-truncate" data-i18n="Virtual Lecture">Edit Profile</span></a>

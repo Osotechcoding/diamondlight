@@ -113,7 +113,6 @@ require_once "helpers/helper.php";
           <th>Gender</th>
           <th>CLASS</th>
           <th>STATUS</th>
-          <th>ACTION</th>
         </tr>
       </thead>
         <tbody class="text-center">
@@ -127,7 +126,7 @@ require_once "helpers/helper.php";
                 <a href="./uploadstupassport?stdRegistrationId=<?php echo $students->stdRegNo;?>&actionId=<?php echo $students->stdId;?>"><button type="button" class="badge badge-dark">
                   <span class="fa fa-camera"></span> Upload</button></a>
                 <?php else: ?>
-                  <img src="../schoolImages/students/<?php echo $students->stdPassport;?>" width="70" style="border-radius: 30%;" alt="student-passport">
+                  <img src="../schoolImages/students/<?php echo $students->stdPassport;?>" width="80" style="border-radius: 10px;border: 3px solid deepskyblue;" alt="student-passport">
               <?php endif ?>
               
               </td>
@@ -137,13 +136,8 @@ require_once "helpers/helper.php";
           <td><?php echo strtoupper($students->studentClass)?></td>
            
            <td><span class="badge badge-success badge-pill">Admitted</span></td>
-         <td>
-          <div class="btn-group mb-1">
-            <a class="text-info" href="editmystudent?student-data=<?php echo ($students->stdId);?>">
-              <button type="button" class="btn btn-dark btn-sm"><span class="fa fa-edit"></span></button></a> 
-          </div>
-          <!--  -->
-        </td>
+       
+      
         </tr>
           <?php }
           }

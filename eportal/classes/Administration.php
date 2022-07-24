@@ -1702,15 +1702,15 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 		$bypass = $this->config->Clean($data['bypass']);
 		//check if auth is set
 		if ($this->config->isEmptyStr($bypass) || $bypass!=md5("oiza1")) {
-			$this->response = $this->alert->alert_msg("Authentication Failed, Please Check your Connection and Try again!","danger");
-		}elseif ($this->config->isEmptyStr($staff_name) || $this->config->isEmptyStr($salary) ||$this->config->isEmptyStr($rent_alawi) || $this->config->isEmptyStr($transport_alawi) || $this->config->isEmptyStr($cloth_alawi) || $this->config->isEmptyStr($med_alawi) || $this->config->isEmptyStr($tds)) {
-		$this->response = $this->alert->alert_msg("All input fields are required, check it and Try again!","danger");
+			$this->response = $this->alert->alert_toastr("error","Authentication Failed, Please Check your Connection and Try again!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->isEmptyStr($staff_name) || $this->config->isEmptyStr($salary) || $this->config->isEmptyStr($tds)) {
+		$this->response = $this->alert->alert_toastr("error","Staff Name, Salary and Monthly Tax are required!",__OSO_APP_NAME__." Says");
 	}else{
 		//check for duplicate entry in db
 		$this->stmt = $this->dbh->prepare("SELECT payrollId FROM `visap_staff_payroll_tbl` WHERE staff_id=? LIMIT 1");
 		$this->stmt->execute(array($staff_name));
 		if ($this->stmt->rowCount()==1) {
-				$this->response = $this->alert->alert_msg("Salary is already allocated for the selected staff!","danger");
+				$this->response = $this->alert->alert_toastr("error","Salary is already allocated for the selected staff!",__OSO_APP_NAME__." Says");
 		}else{
 			//create a fresh payroll for the staff
 			$net_salary = intval(($salary+$rent_alawi+$transport_alawi+$cloth_alawi+$med_alawi)-($tds));
@@ -1720,13 +1720,13 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 				$this->stmt = $this->dbh->prepare("INSERT INTO `visap_staff_payroll_tbl` (staff_id,salary,rent_alawi,transport_alawi,cloth_alawi,med_alawi,tds,net_salary,created_at) VALUES (?,?,?,?,?,?,?,?,?);");
 				if ($this->stmt->execute(array($staff_name,$salary,$rent_alawi,$transport_alawi,	$cloth_alawi,$med_alawi,$tds,$net_salary,$created_at))) {
 				$this->dbh->commit();
-				$this->response = $this->alert->alert_msg("Payroll Saved successfully, Please wait... ","success")."<script>setTimeout(()=>{
+				$this->response = $this->alert->alert_toastr("success","Payroll Saved successfully, Please wait... ","success")."<script>setTimeout(()=>{
 				window.location.reload();
 			},500);</script>";
 				}
 			} catch (PDOException $e) {
 				$this->dbh->rollback();
-					$this->response  = $this->alert->alert_msg(" Failed! Please try again...: Error: ".$e->getMessage(),"danger");
+					$this->response  = $this->alert->alert_toastr("error"," Failed! Please try again...: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 			}
 		}
 	}
@@ -1765,7 +1765,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 				$cloth = $value->cloth_alawi;
 				$transport = $value->transport_alawi;
 				$med = $value->med_alawi;
-				$this->response =intval($rent+$cloth+$transport+$med);
+				$this->response =(int)($rent+$cloth+$transport+$med);
 				return $this->response;
 				 unset($this->dbh);
 			}
@@ -1773,22 +1773,22 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 	}
 
 	public function get_sum_of_total_tds(){
-		$this->stmt = $this->dbh->prepare("SELECT sum(`tds`) as cnt FROM `visap_staff_payroll_tbl`");
+		$this->stmt = $this->dbh->prepare("SELECT sum(`tds`) as tax_tds FROM `visap_staff_payroll_tbl`");
 		$this->stmt->execute();
 		if ($this->stmt->rowCount()>0) {
 			$result = $this->stmt->fetch();
-		$this->response = $result->cnt;
+		$this->response = $result->tax_tds;
 		return $this->response;
 		 unset($this->dbh);
 		}
 	}
 
 	public function get_sum_of_total_salary_payout_monthly(){
-		$this->stmt = $this->dbh->prepare("SELECT sum(`salary`) as cnt FROM `visap_staff_payroll_tbl`");
+	$this->stmt = $this->dbh->prepare("SELECT sum(`salary`) as staff_salary FROM `visap_staff_payroll_tbl`");
 		$this->stmt->execute();
 		if ($this->stmt->rowCount()>0) {
 			$result = $this->stmt->fetch();
-		$this->response = $result->cnt;
+		$this->response = $result->staff_salary;
 		return $this->response;
 		 unset($this->dbh);
 		}
@@ -1839,6 +1839,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 	//STUDENT ATTENDANT METHODS
 
@@ -1858,7 +1859,7 @@ return $diff->format('%y');
     // Initialize cURL
     $ch = curl_init($url);
     // Set options
-    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,10);
+    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,20);
     curl_setopt($ch,CURLOPT_HEADER,true);
     curl_setopt($ch,CURLOPT_NOBODY,true);
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);

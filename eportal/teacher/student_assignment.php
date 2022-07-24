@@ -37,7 +37,7 @@ require_once "helpers/helper.php";
                   </li>
                   <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['STAFF_ROLE']);?></a>
                   </li>
-                  <li class="breadcrumb-item active">Upload Assignment
+                  <li class="breadcrumb-item active">Assignment
                   </li>
                 </ol>
               </div>
@@ -58,7 +58,7 @@ require_once "helpers/helper.php";
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <button type="button" class="btn btn-dark btn-lg btn-round" data-toggle="modal" data-target="#uploadLectureModal"><span class="fa fa-edit fa-1x"></span> Upload Assignment</button>  
+          <button type="button" class="btn btn-dark btn-lg btn-round" data-toggle="modal" data-target="#uploadLectureModal"><span class="fa fa-edit fa-1x"></span> Give Assignment</button>  
         </div>
         <div class="card-body card-dashboard">
        <div class="text-center" id="response"></div>
@@ -186,7 +186,7 @@ require_once "helpers/helper.php";
                 <input type="hidden" name="bypass" value="<?php echo md5("oiza1");?>">
                 <div class="modal-footer">
                    <button type="submit" class="btn btn-dark ml-1 __loadingBtn__">
-                     Upload Assignment
+                     Submit
                   <button type="button" class="btn btn-danger ml-1" data-dismiss="modal">
                     Back
                   </button>
@@ -269,7 +269,7 @@ $("#assignment_form").on("submit",function(event){
         $("#assignment_form")[0].reset();
         $("#server-response").html(data);
         //alert(data);
-      },2500);
+      },500);
     }
 
   });

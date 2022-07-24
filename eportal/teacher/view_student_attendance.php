@@ -8,7 +8,7 @@ require_once "helpers/helper.php";
   <!-- BEGIN: Head-->
 <head>
     <?php include "../template/MetaTag.php";?>
-    <title><?php echo __SCHOOL_NAME__ ?> :: Student Attendance Management</title>
+    <title><?php echo $SmappDetails->school_name; ?> :: View Student Attendance History</title>
    <!-- include template/HeaderLink.php -->
    <?php include "../template/HeaderLink.php";?>
   <!-- END: Head-->
@@ -36,7 +36,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['STAFF_ROLE'] ?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void();"><?php echo $_SESSION['STAFF_ROLE'] ?></a>
                   </li>
                   <li class="breadcrumb-item active">Students Attendance
                   </li>
@@ -53,24 +53,21 @@ require_once "helpers/helper.php";
     </div>
     <!-- content goes here -->
         <div class="card">
-          <div class="card-header">
-            <!--<h3>Upload Cognitive Domain</h3>-->
-             <?php //include_once 'Links/results_btn.php'; ?>
-          </div>
+         
           <div class="card-body">
              <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
   <div class="row match-height">
     <div class="col-md-12 col-12">
       <div class="card">
-        <div class="card-header">
-        <!-- <button type="button" class="btn btn-danger btn-md badge-pill" data-toggle="modal" data-target="#csv_Modal"><span class="fa fa-file fa-1x"></span> UPLOAD BY CSV</button>-->
-        <!--</div>-->
+      <!--   <div class="card-header">
+         <button type="button" class="btn btn-danger btn-md badge-pill" data-toggle="modal" data-target="#csv_Modal"><span class="fa fa-file fa-1x"></span> UPLOAD BY CSV</button>
+        </div> -->
         <div class="card-body">
           <form class="form form-vertical" action="" method="post">
             <div class="form-body">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="student_class"> Class</label>
                     <select name="student_class" id="student_class" class="form-control select2" style="width: 100%;">
@@ -79,7 +76,7 @@ require_once "helpers/helper.php";
                     </select>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <div class="form-group">
                     <label for="rollType"> Class</label>
                     <select name="rollType" id="rollType" class="form-control custom-select" style="width: 100%;">rollType
@@ -88,8 +85,8 @@ require_once "helpers/helper.php";
                      <option value="Absent">Absent</option>
                     </select>
                   </div>
-                </div>                
-                 <div class="col-md-4">
+                </div>     -->            
+                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="att_date">Attendance Date</label>
                   <input type="date" name="att_date" class="form-control">
@@ -115,15 +112,15 @@ require_once "helpers/helper.php";
              <!-- ############################# --> 
 
 <?php if (isset($_POST['submit_search'])): ?>
-  <?php if (empty($_POST['student_class']) || empty($_POST['att_date']) || empty($_POST['rollType'])): ?>
-  <?php echo '<div class="text-center col-md-12">'.$Alert->alert_msg("Select Attendance class, and Date  and Attedance status to continue").'</div>';?>
+  <?php if (empty($_POST['student_class']) || empty($_POST['att_date'])): ?>
+  <?php echo '<div class="text-center col-md-12">'.$Alert->alert_msg("Select Attendance class, and Date to continue").'</div>';?>
     <?php else: ?>
       <?php 
       $student_class = $_POST['student_class'];
       $date = date("Y-m-d",strtotime($_POST['att_date']));
-      $rollType = $_POST['rollType'];
-      $attendance_details = $Administration->show_attendance_by_date($student_class,$rollType,$date);
-      if ($attendance_details) {?>
+      $attendance_details = $Administration->show_attendance_by_date($student_class,$date);
+      if ($attendance_details) { 
+        $cnt =0;?>
         <div class="card">
           <div class="card-body">
             <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
@@ -135,15 +132,18 @@ require_once "helpers/helper.php";
   <table class="table-bordered table table-stripped mb-5 text-center">
       <thead class="text-center">
           <tr>
+            <th width="10%">S/N</th>
               <th width="40%">STUDENT NAME</th>
-              <th width="30%">REG NO</th>
-              <th width="30%">ROLL CALL</th>
+              <th width="25%">REG NO</th>
+              <th width="25%">ROLL CALL</th>
           </tr>
       </thead>
       <tbody class="text-center">
          <?php foreach ($attendance_details as $value): ?>
-          <?php $student_data = $Student->get_student_data_ByRegNo($value->stdReg);?>
+          <?php $cnt++;
+           $student_data = $Student->get_student_data_ByRegNo($value->stdReg);?>
           <tr>
+            <td><?php echo $cnt;?> </td>
       <td><input type="hidden" name="total_number" value="1" />
           <input type="text" name="student_name[]" readonly value="<?php echo strtoupper($student_data->full_name) ?>" class="form-control"></td>
       <td><input type="text" name="reg_number[]" readonly value="<?php echo strtoupper($value->stdReg) ?>" class="form-control"></td>
@@ -178,13 +178,11 @@ require_once "helpers/helper.php";
     </div>
   </div>
     <!-- demo chat-->
-   
    <?php include "../template/footer.php"; ?>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
     <?php include "../template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
-    <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
     <!-- END: Page JS-->
 
     <!-- END: Page JS-->

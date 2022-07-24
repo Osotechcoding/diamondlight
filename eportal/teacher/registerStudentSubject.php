@@ -35,7 +35,7 @@ require_once "helpers/helper.php";
                   </li>
                   <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['STAFF_ROLE']);?></a>
                   </li>
-                  <li class="breadcrumb-item active"> Subjects Registration
+                  <li class="breadcrumb-item active"> Subjects Offered
                   </li>
                 </ol>
               </div>
@@ -45,7 +45,7 @@ require_once "helpers/helper.php";
         <div class="content-body">
           <div class="row">
              <div class="col-12">
-    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-book fa-1x"></span> STUDENT EXAM SUBJECT REGISTRATION</h3>
+    <h3 class="bd-lead text-primary text-bold"><span class="fa fa-book fa-1x"></span> STUDENT EXAM SUBJECTS</h3>
   </div>
           </div>
           <div class="row">
@@ -97,40 +97,7 @@ require_once "helpers/helper.php";
      
       <div class="card-body">
         <!-- filter student -->
-       <div class="users-list-filter px-1">
-        <form id="subject_register_form">
-            <div class="row border rounded py-2 mb-2">
-                
-                <div class="col-md-3">
-                    <label for="ClassGrade">Subject Class</label>
-                    <fieldset class="form-group">
-                      <input type="hidden" name="submittedBy" value="<?php echo $_SESSION['STAFF_USERNAME'];?>">
-                      <input type="text" autocomplete="off" class="form-control" name="subject_class" value="<?php echo $staff_assigned_class; ?>" readonly>
-                      <!-- <select class="form-control select2" name="subject_class">
-                            <option value="" selected>Choose...</option>
-                          <?php //echo $Administration->get_classroom_InDropDown_list();?>
-                        </select> -->
-                    </fieldset>
-                </div>
-                <div class="col-md-5">
-                    <label for="subject">Select Subject to Register</label>
-                    <fieldset class="form-group">
-                      <select class="form-control select2" name="subject" id="subject">
-                            <option value="" selected>Choose...</option>
-                          <?php echo $Administration->get_all_subjects_InDropDown_list();?>
-                        </select>
-                    </fieldset>
-                    <input type="hidden" name="action" value="register_class_subject">
-                   <input type="hidden" name="bypass" value="<?php echo md5("oiza1");?>">
-                    
-                </div>
-                <div class="col-md-4 d-flex align-items-center">
-                    <button type="submit" class="btn btn-dark btn-lg btn-block glow users-list-clear mb-0 __loadingBtn__2">Register Subject</button>
-                </div>
-            </div>
-            <div class="col-md-12 text-center server-response" id="result-responseText"></div>
-        </form>
-    </div>
+       
       <!-- filter student ends -->
         <div class="col-md-12 text-center" id="delete_response"></div>
         <div class="table-responsive">
@@ -138,9 +105,10 @@ require_once "helpers/helper.php";
         <thead class="text-center">
           <tr>
           <th>S/N</th>
+          <th>Subject Class</th>
           <th>Subject Name</th>
           <th>Registered At</th>
-          <th>Action</th>
+          
         </tr>
       </thead>
         <tbody class="text-center">
@@ -154,14 +122,9 @@ if ($regiestered_subejcts) {
     ?>
     <tr>
 <td><?php echo $cnt;?></td>
+<td><?php echo strtoupper($staff_data->staffGrade);?></td>
 <td><?php echo ucwords($allSubject->subject_name);?></td>
 <td><?php echo date("l jS F Y",strtotime($allSubject->created_at));?></td>
-<td class="text-right">
-</a>
-<button type="button" data-id="<?php echo $allSubject->id;?>" data-value="<?php echo $allSubject->subject_name;?>" class="btn btn-danger btn-sm mb-1 remove_sub_btn __loadingBtn__<?php echo $allSubject->id;?>">
-<i class="far fa-trash-alt"></i> Unregister
-</button>
-</td>
 </tr>
     <?php
     // code...

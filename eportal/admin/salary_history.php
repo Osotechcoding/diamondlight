@@ -1,6 +1,18 @@
 <?php 
 require_once "helpers/helper.php";
  ?>
+ <?php 
+
+if (isset($_GET['action']) && $_GET['action'] === "viewsalary" && isset($_GET['staffId']) && $_GET['staffId'] !== "") {
+ $staffId = $Configuration->Clean($_GET['staffId']);
+ 
+}else{
+  header("Location: visap_payroll");
+  exit();
+}
+
+
+  ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- BEGIN: Head-->

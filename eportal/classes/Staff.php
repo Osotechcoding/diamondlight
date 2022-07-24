@@ -198,16 +198,16 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 			$confirm_new_pass = $this->config->Clean($data['confirm-new-password']);
 			//check for empty
 			if ($this->config->isEmptyStr($old_pass)) {
-				$this->response = $this->alert->alert_msg("Please your current password to continue!","danger");
+				$this->response = $this->alert->alert_toastr("error","Please your current password to continue!",__OSO_APP_NAME__." Says");
 			}elseif ($this->config->isEmptyStr($new_password)) {
 				// code...
-					$this->response = $this->alert->alert_msg("Enter your new Password to Continue!","danger");
+					$this->response = $this->alert->alert_toastr("error","Enter your new Password to Continue!",__OSO_APP_NAME__." Says");
 			}elseif ($this->config->isEmptyStr($confirm_new_pass)) {
-				$this->response = $this->alert->alert_msg("Confirm your new Password to Continue!","danger");
+				$this->response = $this->alert->alert_toastr("error","Confirm your new Password to Continue!",__OSO_APP_NAME__." Says");
 			}elseif ((strlen($new_password) < 8) || (strlen($new_password) >15)) {
-				$this->response = $this->alert->alert_msg("Password lenght must be between Eight (8) and twelve (12) characters","danger");
+				$this->response = $this->alert->alert_toastr("error","Password lenght must be between Eight (8) and twelve (12) characters",__OSO_APP_NAME__." Says");
 			}elseif ($new_password !== $confirm_new_pass) {
-				$this->response = $this->alert->alert_msg("New Password and Confirm Password is not Match!","danger");
+				$this->response = $this->alert->alert_toastr("error","New Password and Confirm Password is not Match!",__OSO_APP_NAME__." Says");
 			}else{
 				//check the old pass with the one in the database
 				$this->stmt = $this->dbh->prepare("SELECT * FROM {$this->table} WHERE staffId=? LIMIT 1");
@@ -227,24 +227,24 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 				if ($this->stmt->execute(array($real_pass,$staffId))) {
 					// code...
 					$this->dbh->commit();
-			$this->response = $this->alert->alert_msg("Password updated Successfully! Please wait...","success")."<script>setTimeout(()=>{
+			$this->response = $this->alert->alert_toastr("successs","Password updated Successfully! Please wait...",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 			window.location.href='logout?action=logout';
 			},500);</script>";
 				}else{
-			$this->response = $this->alert->alert_msg("Internal Error Occured!, Please try again","danger");
+			$this->response = $this->alert->alert_toastr("error","Internal Error Occured!, Please try again",__OSO_APP_NAME__." Says");
 				}
 
 						} catch (PDOException $e) {
 	$this->dbh->rollback();
-    $this->response  =$this->alert->alert_msg("Password update failed: Error Occurred: ".$e->getMessage(),"danger");
+    $this->response  =$this->alert->alert_toastr("error","Password update failed: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 						}
 
 					}else{
-					$this->response = $this->alert->alert_msg("Old Password is not Match!","danger");	
+					$this->response = $this->alert->alert_toastr("error","Old Password is not Match!",__OSO_APP_NAME__." Says");	
 					}
 				}else{
 					//echo
-					$this->response = $this->alert->alert_msg("Account details not found!","danger");
+					$this->response = $this->alert->alert_toastr("error","Account details not found!",__OSO_APP_NAME__." Says");
 				}
 			}
 
@@ -392,22 +392,22 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 		$account_type = $this->config->Clean($data['bank_account_type']);
 		//check for any null values
 		if ($this->config->isEmptyStr($staffId) || $this->config->isEmptyStr($bankName)) {
-		$this->response = $this->alert->alert_msg("Your bank name is required!","warning");	
+		$this->response = $this->alert->alert_toastr("error","Your bank name is required!",__OSO_APP_NAME__." Says");	
 		}elseif ($this->config->isEmptyStr($account_name)) {
-			$this->response = $this->alert->alert_msg("Your Account Name is required!","warning");
+			$this->response = $this->alert->alert_toastr("error","Your Account Name is required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($account_no)) {
-			$this->response = $this->alert->alert_msg("Your bank account number is required!","warning");
+			$this->response = $this->alert->alert_toastr("error","Your bank account number is required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($account_type)) {
-	$this->response = $this->alert->alert_msg("Your account type is Required!","warning");
+	$this->response = $this->alert->alert_toastr("error","Your account type is Required!",__OSO_APP_NAME__." Says");
 		}elseif (strlen($account_no) >10 || strlen($account_no) <10 ) {
-	$this->response = $this->alert->alert_msg("A Valid account Number is required!","warning");
+	$this->response = $this->alert->alert_toastr("error","A Valid account Number is required!",__OSO_APP_NAME__." Says");
 		}
 		else{
 			//lets check if this user already uploaded an account details
 			$this->stmt =$this->dbh->prepare("SELECT * FROM `visap_staff_bank_details_tbl` WHERE staff_id=? LIMIT 1");
 			$this->stmt->execute(array($staffId));
 			if ($this->stmt->rowCount()==1) {
-		$this->response = $this->alert->alert_msg("Bank Details already Uploaded,Please contact your portal admin for your bank update!","danger");
+		$this->response = $this->alert->alert_toastr("error","Bank Details already Uploaded,Please contact your portal admin for your bank Details update!",__OSO_APP_NAME__." Says");
 			}else{
 				//create a fresh account detaisl for the current user
 				try {
@@ -419,16 +419,16 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 				if ($this->stmt->execute(array($staffId,$bankName,$account_name,$account_type,$account_no,$created_at))) {
 					// code...
 					 $this->dbh->commit();
-						$this->response = $this->alert->alert_msg(" Bank info Uploaded Successfully","success")."<script>setTimeout(()=>{
+						$this->response = $this->alert->alert_toastr("success"," Bank info Uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 							window.location.reload();
 						},500);</script>";
 				}else{
-						$this->response = $this->alert->alert_msg("Something went wrong, Please try again ...","danger");
+						$this->response = $this->alert->alert_toastr("error","Something went wrong, Please try again ...",__OSO_APP_NAME__." Says");
 				}
 					
 				} catch (PDOException $e) {
 	 $this->dbh->rollback();
-    $this->response  =$this->alert->alert_msg("This error Occurred: ".$e->getMessage(),"danger");
+    $this->response  =$this->alert->alert_toastr("error","This error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 				}
 			}
 		}
@@ -453,29 +453,29 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 		$auth = $this->config->Clean($d['auth_pass']);
 		//check for error in form
 		if ($this->config->isEmptyStr($surName)) {
-			$this->response = $this->alert->alert_toastr("warning","The staff Surname is Required!",__OSO_APP_NAME__." Says");
+			$this->response = $this->alert->alert_toastr("error","The staff Surname is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($firstName)) {
-	$this->response = $this->alert->alert_toastr("warning","The staff First Name is Required!",__OSO_APP_NAME__." Says");
+	$this->response = $this->alert->alert_toastr("error","The staff First Name is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($middleName)) {
-		$this->response = $this->alert->alert_toastr("warning","The staff Middle Name is Required!",__OSO_APP_NAME__." Says");
+		$this->response = $this->alert->alert_toastr("error","The staff Middle Name is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($email)) {
-	$this->response = $this->alert->alert_toastr("warning","The staff Portal E-mail is Required!",__OSO_APP_NAME__." Says");
+	$this->response = $this->alert->alert_toastr("error","The staff Portal E-mail is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($mphone)) {
-		$this->response = $this->alert->alert_toastr("warning","The staff Phone Number is Required!",__OSO_APP_NAME__." Says");
+		$this->response = $this->alert->alert_toastr("error","The staff Phone Number is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($musername)) {
-		$this->response = $this->alert->alert_toastr("warning","The staff Portal Username is Required!",__OSO_APP_NAME__." Says");
+		$this->response = $this->alert->alert_toastr("error","The staff Portal Username is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($mpassword)) {
-		$this->response = $this->alert->alert_toastr("warning","The staff Portal Password is Required!",__OSO_APP_NAME__." Says");
+		$this->response = $this->alert->alert_toastr("error","The staff Portal Password is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($education)) {
-		$this->response = $this->alert->alert_toastr("warning","The staff Qualification is Required!",__OSO_APP_NAME__." Says");
+		$this->response = $this->alert->alert_toastr("error","The staff Qualification is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($jobType)) {
-			$this->response = $this->alert->alert_toastr("warning","The staff Job Type is Required!",__OSO_APP_NAME__." Says");
+			$this->response = $this->alert->alert_toastr("error","The staff Job Type is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($staff_gender)) {
-			$this->response = $this->alert->alert_toastr("warning","The staff Gender is Required!",__OSO_APP_NAME__." Says");
+			$this->response = $this->alert->alert_toastr("error","The staff Gender is Required!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($auth)) {
-			$this->response = $this->alert->alert_toastr("warning","Authentication Key is Required!",__OSO_APP_NAME__." Says");
+			$this->response = $this->alert->alert_toastr("error","Authentication Key is Required!",__OSO_APP_NAME__." Says");
 		}elseif (!$this->config->is_Valid_Email($email)) {
-			$this->response = $this->alert->alert_toastr("warning","A valid e-mail address is Required!",__OSO_APP_NAME__." Says");
+			$this->response = $this->alert->alert_toastr("error","A valid e-mail address is Required!",__OSO_APP_NAME__." Says");
 		}
 		else{
 			if ($auth !== __OSO__CONTROL__KEY__) {
@@ -483,9 +483,9 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 			}else{
 				//lets check if the email entered is already exists
 				if ($this->config->check_single_data('visap_staff_tbl','staffEmail',$email)) {
-				$this->response = $this->alert->alert_toastr("warning","$email is already taken, Please try another email address!",__OSO_APP_NAME__." Says");
+				$this->response = $this->alert->alert_toastr("error","$email is already taken, Please try another email address!",__OSO_APP_NAME__." Says");
 				}elseif ($this->config->check_single_data('visap_student_tbl','stdEmail',$email)) {
-	$this->response = $this->alert->alert_toastr("warning","$email is already taken on this Portal, Please try another!",__OSO_APP_NAME__." Says");
+	$this->response = $this->alert->alert_toastr("error","$email is already taken on this Portal, Please try another!",__OSO_APP_NAME__." Says");
 				}else{
 				//convert the pass to hash
 				$hashed_password = $this->config->encrypt_user_password($mpassword);
@@ -509,7 +509,7 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 			 	
 			 } catch (PDOException $e) {
 			$this->dbh->rollback();
-   $this->response  =$this->alert->alert_msg("Error Occurred: ".$e->getMessage(),"danger"); 	
+   $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says"); 	
 			 }
 
 				}
@@ -518,6 +518,18 @@ $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO
 		}
 		return $this->response;
 		unset($this->dbh);
+	}
+
+	public function checkBankDetails($staffId): bool{
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_staff_bank_details_tbl` WHERE staff_id=? LIMIT 1");
+		$this->stmt->execute([$staffId]);
+		if ($this->stmt->rowCount()==1) {
+			$this->response = true;
+		}else{
+			$this->response = false;
+		}
+		return $this->response;
+			unset($this->dbh);
 	}
 
 	//generate staff admission no

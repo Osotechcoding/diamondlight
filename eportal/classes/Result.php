@@ -123,7 +123,11 @@ class Result {
 			// code...
 		}*/elseif (!$this->config->check_single_data("visap_student_tbl","stdRegNo",$stdRegNo)) {
 		$this->response = $this->alert->alert_toastr("error","Invalid student admission number!",__OSO_APP_NAME__." Says");
-		}else{
+		}elseif (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+           $this->response = $this->alert->alert_toastr("error","This Result is not yet Ready!",__OSO_APP_NAME__." Says");
+            }elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+            	$this->response = $this->alert->alert_toastr("error","This Result is not yet Ready!",__OSO_APP_NAME__." Says");
+            }else{
 $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
 	$this->stmt->execute(array($stdRegNo,$stdGrade,$stdTerm,$stdSession));
 	if ($this->stmt->rowCount()> 0) {
@@ -371,5 +375,17 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
 		return $this->response;
 		unset($this->dbh);
 	}
+
+	public function checkResultReadyModule($querytable,$stdReg,$stdGrade,$term,$session): bool{
+         $this->stmt = $this->dbh->prepare("SELECT * FROM {$querytable} WHERE reg_number=? AND student_class=? AND term=? AND session=? LIMIT 1");
+          $this->stmt->execute(array($stdReg,$stdGrade,$term,$session));
+         if ($this->stmt->rowCount() ==1) {
+            $this->response = true;
+        }else{
+             $this->response = false;
+        }
+        return $this->response;
+            unset($this->dbh);
+    }
 
 }

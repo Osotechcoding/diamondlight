@@ -158,7 +158,12 @@ class Osotech
 
                 $this->response = self::alert_msg("Please enter Card Serial Number to continue!","danger");
 
-            }else{
+            }elseif (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+               $this->response = self::alert_msg("This Result is not yet Ready!","danger");
+            }elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+               $this->response = self::alert_msg("This Result is not yet Ready!","danger");
+            }
+            else{
                 //let's check any invalid inputs
                 if (!self::check_single_data("visap_student_tbl","stdRegNo",$stdRegNo)) {
                     $this->response = self::alert_msg("Invalid Admission Number!","danger");
@@ -178,7 +183,7 @@ class Osotech
                         $PinId = $pin_data->pin_id;
                         //unset($this->dbh);
                         if ($status =='1') {
-                            // pin has ben used let'a get the useer details from pin history
+                            // pin has ben used let'a get the user details from pin history
                             $this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_result_pins_history`WHERE pin_code=? AND pin_serial=? AND used_term=? AND used_session=? LIMIT 1");
                             $this->stmt->execute(array($cardPin,$cardSerial,$stdTerm,$stdSession));
                             if ($this->stmt->rowCount()==1) {
@@ -247,7 +252,13 @@ class Osotech
                             $this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_result_pins_history` WHERE studentRegNo=? AND student_class=? AND pin_code=? AND pin_serial=? AND used_term=? AND used_session=? LIMIT 1");
                             $this->stmt->execute(array($stdRegNo,$stdGrade,$cardPin,$cardSerial,$stdTerm,$stdSession));
                             if ($this->stmt->rowCount()=='0') {
-                                //create pin used history
+
+                                if (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+                                 $this->response = self::alert_msg("This Result is not yet Ready!","danger");
+                                }elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+                                $this->response = self::alert_msg("This Result is not yet Ready!","danger");
+                                }else{
+                                  //create pin used history
                                 $updated_pin_status =1;
                                 try {
                                     $this->dbh->beginTransaction();
@@ -286,8 +297,8 @@ class Osotech
                                                                 break;
                                                         }
                                                         $this->response = '<script>setTimeout(()=>{
-			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=700");$("#checkResultForm")[0].reset();
-		},1000)</script>';
+            window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=700");$("#checkResultForm")[0].reset();
+        },1000)</script>';
                                                     }elseif ($result_opened =='3') {
                                                         $this->response = self::alert_msg("This Result is Held, Please contact your Admin!","danger");
                                                     }
@@ -305,7 +316,9 @@ class Osotech
                                 } catch (PDOException $e) {
                                     $this->dbh->rollback();
                                     $this->response = self::alert_msg("Sorry :) No Result Found!!!","danger");
+                                }  
                                 }
+                                
                             }
 
                         }
@@ -1141,6 +1154,39 @@ if ($this->stmt->rowCount() > 0) {
     	return $this->response;
     	unset($this->dbh);
     }
+    }
+
+    //get student psychomotor
+    public function getStudentPsychomotorDetails($stdReg,$stdGrade,$term,$session){
+        $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_psycho_tbl` WHERE reg_number=? AND student_class=? AND term=? AND session=? LIMIT 1");
+        $this->stmt->execute(array($stdReg,$stdGrade,$term,$session));
+        if ($this->stmt->rowCount() ==1) {
+            $this->response = $this->stmt->fetch();
+            return $this->response;
+            unset($this->dbh);
+        }
+    }
+
+    public function getStudentAffectiveDomainDetails($stdReg,$stdGrade,$term,$session){
+        $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_behavioral_tbl` WHERE reg_number=? AND student_class=? AND term=? AND session=? LIMIT 1");
+        $this->stmt->execute(array($stdReg,$stdGrade,$term,$session));
+        if ($this->stmt->rowCount() ==1) {
+            $this->response = $this->stmt->fetch();
+            return $this->response;
+            unset($this->dbh);
+        }
+    }
+
+    public function checkResultReadyModule($querytable,$stdReg,$stdGrade,$term,$session): bool{
+         $this->stmt = $this->dbh->prepare("SELECT * FROM {$querytable} WHERE reg_number=? AND student_class=? AND term=? AND session=? LIMIT 1");
+          $this->stmt->execute(array($stdReg,$stdGrade,$term,$session));
+         if ($this->stmt->rowCount() ==1) {
+            $this->response = true;
+        }else{
+             $this->response = false;
+        }
+        return $this->response;
+            unset($this->dbh);
     }
 
 }

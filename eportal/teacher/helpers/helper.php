@@ -18,6 +18,7 @@ $Administration = new Administration();
  $Admin         = new Admin();
 $Pin_serial     = new Pins();
 $Alert          = new Alert();
+$Blog = new Blog();
 
 @$Configuration->osotech_session_kick();
 $Configuration->check_session_data();

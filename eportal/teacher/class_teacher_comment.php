@@ -82,7 +82,12 @@ require_once "helpers/helper.php";
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="comment_term">Result Term</label>
-                   <select name="comment_term" class="form-control"><option value="<?php echo $activeSess->term_desc;?>" selected><?php echo $activeSess->term_desc;?></option></select>
+                   <select name="comment_term" class="form-control">
+                    <option value="" selected>Choose...</option>
+                    <option value="1st Term">1st Term</option>
+                    <option value="2nd Term">2nd Term</option>
+                    <option value="3rd Term">3rd Term</option>
+                   </select>
                   </div>
                 </div>
                 <div class="col-md-4">

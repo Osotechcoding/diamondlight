@@ -163,7 +163,7 @@ img.schlogo-image{
   <section id="result">
    <div id="osotech-div">
       <img src="<?php echo $Configuration->get_schoolLogoImage();?>" class="schlogo-image" style="float: left;">
-      <small style="text-align: auto;margin-left: 30px;font-size: 20px;"><?php echo strtoupper($SmappDetails->school_name); ?></small>
+      <small style="text-align: auto;margin-left: 10px;font-size: 14px;"><?php echo strtoupper($SmappDetails->school_name); ?></small>
 
        <h5 style="text-align: center;margin-right: 50px;font-size: 10px;">School Phones: <?php echo ucwords($SmappDetails->school_phone); ?> , <?php echo ucwords($SmappDetails->school_fax); ?> </h5>
       <h5 style="text-align: center;margin-right: 50px;font-size: 14px;">School Address: <?php echo ucwords($SmappDetails->school_address); ?> <?php echo ucwords($SmappDetails->country); ?></h5>

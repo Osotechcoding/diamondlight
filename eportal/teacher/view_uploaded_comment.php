@@ -53,19 +53,13 @@ require_once "helpers/helper.php";
     <!-- content goes here -->
         <div class="card">
           <div class="card-header">
-            <h3>Upload Result Comment</h3>
-             <?php //include_once 'Links/results_btn.php'; ?>
-          </div>
-
           <div class="card-body">
              <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
   <div class="row match-height">
     <div class="col-md-12 col-12">
       <div class="card">
-      <!--   <div class="card-header">
-         <button type="button" class="btn btn-danger btn-md badge-pill" data-toggle="modal" data-target="#csv_Modal"><span class="fa fa-file fa-1x"></span> UPLOAD BY CSV</button>
-        </div> -->
+     
         <div class="card-body">
           <form class="form form-vertical" action="" method="POST">
             <div class="form-body">
@@ -82,7 +76,12 @@ require_once "helpers/helper.php";
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="comment_term">Result Term</label>
-                   <select name="comment_term" class="form-control"><option value="<?php echo $activeSess->term_desc;?>" selected><?php echo $activeSess->term_desc;?></option></select>
+                   <select name="comment_term" class="form-control">
+                    <option value="" selected>Choose...</option>
+                    <option value="1st Term">1st Term</option>
+                    <option value="2nd Term">2nd Term</option>
+                    <option value="3rd Term">3rd Term</option>
+                  </select>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -170,7 +169,7 @@ if ($view_result_comments) {
                               </div>
                              
                                 </div>
-                                        <!-- ends -->
+                                <!-- ends -->
 
  <?php
 }else{

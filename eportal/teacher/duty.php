@@ -9,7 +9,7 @@ require_once "helpers/helper.php";
 <head>
     <!-- metaTag -->
     <?php include ("../template/MetaTag.php"); ?>
-    <title><?php echo $SmappDetails->school_name; ?> :: Duty Assignment </title>
+    <title><?php echo $SmappDetails->school_name; ?> :: Duty </title>
      <?php include ("../template/dataTableHeaderLink.php"); ?>
     <!-- include dataTableHeaderLink.php -->
 
@@ -63,7 +63,7 @@ require_once "helpers/helper.php";
       <div class="card">
 
         <div class="card-header">
-          <h4 class="text-center">MY DUTIES FOR THE 2021/2022 ACADEMIC SESSION </h4>
+          <h4 class="text-center">MY DUTIES FOR THE <?php echo $activeSess->session_desc_name;?> ACADEMIC SESSION </h4>
         </div>
         <div class="card-body card-dashboard">
           
@@ -132,7 +132,6 @@ require_once "helpers/helper.php";
             </div>
           </div>
 
-          
     <!-- BEGIN: Footer-->
   <?php include ("../template/footer.php"); ?>
     <!-- END: Footer-->

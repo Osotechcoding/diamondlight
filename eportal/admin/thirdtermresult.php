@@ -165,7 +165,7 @@ img.schlogo-image{
   <section id="result">
     <div id="osotech-div">
       <img src="<?php echo $Configuration->get_schoolLogoImage();?>" class="schlogo-image" style="float: left;">
-      <small style="text-align: auto;margin-left: 30px;font-size: 20px;"><?php echo strtoupper($SmappDetails->school_name); ?></small>
+      <small style="text-align: auto;margin-left: 10px;font-size: 14px;"><?php echo strtoupper($SmappDetails->school_name); ?></small>
 
        <h5 style="text-align: center;margin-right: 50px;font-size: 10px;"> Tel: <?php echo ucwords($SmappDetails->school_phone); ?> , <?php echo ucwords($SmappDetails->school_fax); ?> </h5>
       <h5 style="text-align: center;margin-right: 50px;font-size: 14px;"> Location: <?php echo ucwords($SmappDetails->school_address); ?> <?php echo ucwords($SmappDetails->country); ?></h5>
@@ -177,7 +177,7 @@ img.schlogo-image{
     <P>SESSION:&nbsp;&nbsp; <b><?php echo $rsession; ?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ADMISSION NO:&nbsp;&nbsp; <b><?php echo strtoupper($student_data->stdRegNo);?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; D.O.B:&nbsp;&nbsp; <b><?php echo date("F jS, Y",strtotime($student_data->stdDob));?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; AGE:&nbsp;&nbsp; <b><?php echo $Administration->get_student_age($student_data->stdDob);?>yrs</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P>
     <!-- <P>CLUB / SOCIETY:&nbsp;&nbsp; <b>JET, CHOIR</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P> -->
     <?php if ($student_data->stdPassport==NULL || $student_data->stdPassport==""): ?>
-      <img src="../author.jpg" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
+      <img src="../schoolImages/students/male.png" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
       <?php else: ?>
         <img src="../schoolImages/students/<?php echo $student_data->stdPassport;?>" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
     <?php endif ?>

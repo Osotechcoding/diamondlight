@@ -12,21 +12,17 @@ require_once "helpers/helper.php";
     <title><?php echo $SmappDetails->school_name; ?> :: PAYROLL MANAGEMENT</title>
      <?php include ("../template/dataTableHeaderLink.php"); ?>
     <!-- include dataTableHeaderLink.php -->
-
   </head>
   <!-- END: Head-->
-
   <!-- BEGIN: Body-->
   <body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
 
     <!-- BEGIN: Header-->
     <?php include ("template/HeaderNav.php"); ?>
-    <!-- headerNav.php -->
     <!-- END: Header-->
     <!-- BEGIN: Main Menu-->
   <?php include ("template/Sidebar.php"); ?>
     <!-- END: Main Menu-->
-
     <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>
@@ -39,7 +35,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']) ?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']) ?></a>
                   </li>
                   <li class="breadcrumb-item active">STAFF PAYROLL
                   </li>
@@ -127,16 +123,18 @@ require_once "helpers/helper.php";
                     <td><?php echo ucwords($staff_data->full_name);?></td>
                     <td><?php echo ucwords($staff_data->staffRole);?></td>
                     <td><?php echo ucwords($staff_data->staffEducation);?></td>
-                    <td><?php echo date("l jS F,Y",strtotime($staff_data->appliedDate)) ?></td>
+                    <td><?php echo date("F j,Y",strtotime($staff_data->appliedDate)) ?></td>
                     <td>&#8358;<?php echo number_format($payrolls->net_salary,2);?></td>
                     <td>  <div class="btn-group dropdown mr-1 mb-1">
               <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="5,20">
                 Click Me
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                 <a class="dropdown-item text-info" data-toggle="modal" data-target="#viewbankInfoModalForm" href="javascript:void(0);"> Bank Details</a>
+                 <?php if ($Staff->checkBankDetails($staff_data->staffId) === true): ?>
+                   <a class="dropdown-item text-info" data-toggle="modal" data-target="#viewbankInfoModalForm" href="javascript:void(0);"> Bank Details</a>
+                 <?php endif ?>
                 <a class="dropdown-item text-warning pay_form_btn" data-id="<?php echo $payrolls->staff_id;?>" data-action="show_pay_salary_modal" data-payroll="<?php echo $payrolls->payrollId;?>" href="javascript:void(0);"> Pay Salary</a>
-                <a class="dropdown-item text-info" href="salary_history?staffId=1&action=view"> Payment History</a>
+                <a class="dropdown-item text-info" href="salary_history?staffId=1&action=viewsalary"> Payment History</a>
               </div>
             </div></td>
                   </tr>
@@ -177,10 +175,10 @@ require_once "helpers/helper.php";
           <div class="card-opening text-center"><h2>Bank Information</h2></div>
             <div class="card-desc">
                 <!-- if transfer -->
-                <h4>Name of Bank: <small><b>FIRST BANK PLC</b></small></h4>
-                <h4>Account Holder's Name: <small><b>AGBERAYI IDOWU SAM</b></small></h4>
-                <h4>Account No: <b class="text-danger">3107991990</b></h4>
-                <h4>Account Type: <b><span class="badge badge-info text-white badge-lg">Saving Account</span></b></h4>
+                <h4>Name of Bank: <small><b id="nameofbank">FIRST BANK PLC</b></small></h4>
+                <h4>Account Holder's Name: <small><b id="nameofowner">AGBERAYI IDOWU SAM</b></small></h4>
+                <h4>Account No: <b class="text-danger" id="accountnumber">3107991990</b></h4>
+                <h4>Account Type: <b><span class="badge badge-info text-white badge-lg" id="owneraccounttype ">Saving Account</span></b></h4>
             </div>
             <!-- Ends -->
         <div class="modal-footer">
@@ -210,8 +208,8 @@ require_once "helpers/helper.php";
                   <div class="col-md-12 col-12 col-xl-12 col-lg-12 col-sm-12">
                   <div class="row">
                <div class="col-md-12">
-                 <div class="text-center col-md-12" id="responseText">
-                 </div>
+                <!--  <div class="text-center col-md-12" id="responseText">
+                 </div> -->
                   <div class="form-group">
                   <label for="staff_name">STAFF NAME</label>
                 <select name="staffId" id="staff_name" class="select2 form-control">
@@ -264,7 +262,7 @@ require_once "helpers/helper.php";
                 <div class="modal-footer">
                <button type="submit" class="btn btn-dark ml-1 __loadingBtn__">Submit</button>
                   <button type="button" class="btn btn-danger ml-1" data-dismiss="modal">
-                  <span class="fa fa-power-off"></span>
+                  <span class="fa fa-power-off"> Close</span>
                   </button>
                 </div>
                  </form>
@@ -399,8 +397,8 @@ role="dialog">
  $.post("../actions/actions",STAFFPAYROLLFORM.serialize(),function(data){
    setTimeout(()=>{
  $(".__loadingBtn__").html('Submit').attr("disabled",false);
-  $("#responseText").html(data);
-   },1500);
+  $("#server-response").html(data);
+   },500);
  })
    });
    //show bank transfer details when transfer is selected
