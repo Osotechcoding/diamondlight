@@ -158,12 +158,7 @@ class Osotech
 
                 $this->response = self::alert_msg("Please enter Card Serial Number to continue!","danger");
 
-            }elseif (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
-               $this->response = self::alert_msg("This Result is not yet Ready!","danger");
-            }elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
-               $this->response = self::alert_msg("This Result is not yet Ready!","danger");
-            }
-            else{
+            }else{
                 //let's check any invalid inputs
                 if (!self::check_single_data("visap_student_tbl","stdRegNo",$stdRegNo)) {
                     $this->response = self::alert_msg("Invalid Admission Number!","danger");
@@ -196,7 +191,12 @@ class Osotech
                                     $this->response = self::alert_msg("This Pin has been used by another Student!","danger");
                                 }elseif ($usedCounter >= '5') {
                                     $this->response = self::alert_msg("You Have Exhausted Your Time Usage Validity of this Pin!","danger");
-                                }else{
+                                }elseif (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+               $this->response = self::alert_msg("This Result is not yet Ready!","danger");
+            }elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+               $this->response = self::alert_msg("This Result is not yet Ready!","danger");
+            }
+                                else{
                                     //let's increase the counter
                                     //$pin_counter = $counter++;
                                     $this->stmt = $this->dbh->prepare("UPDATE `tbl_result_pins_history` SET pin_counter=pin_counter+1 WHERE pinId=? LIMIT 1");

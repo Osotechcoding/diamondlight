@@ -51,9 +51,7 @@ require_once "helpers/helper.php";
   </div>
     </div>
     <!-- content goes here -->
-        <div class="card">
-          <div class="card-header">
-          <div class="card-body">
+        
              <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
   <div class="row match-height">
@@ -103,10 +101,10 @@ require_once "helpers/helper.php";
     </div>
    
   </div>
+
 </section>
 <!-- Basic Vertical form layout section end -->
-        </div>
-      </div>
+     
 
 <?php if (isset($_POST['show_comment_sheet_btn'])): ?>
   <?php 
@@ -124,9 +122,10 @@ if ($view_result_comments) {
  ?>
  <!--starts  -->
              <!-- ############################# -->
-                  <div class="card show-on-print">
-                  <div class="card-body">
-                  <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
+    <div class="card show-on-print">
+                
+ <div class="card-body">
+  <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
                  <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
         <h4 class="text-center text-danger"><strong>STUDENTS RESULT COMMENT REPORT</strong></h4>
                         <!-- ############################# -->
@@ -138,8 +137,6 @@ if ($view_result_comments) {
                 
             </div>
          <br>
-</div>
- <div class="card-body">
 <div class="table-responsive">
         <table class=" table-bordered table table-stripped osotechDatatable table-hover">
                 <thead class="text-center">
@@ -192,6 +189,10 @@ echo '<div class="card show-on-print">
   </div>
     <!-- END: Content-->
     </div>
+       </div>
+      </div>
+  </div>
+
     <!-- demo chat-->
    
    <?php include "../template/footer.php"; ?>
@@ -200,11 +201,7 @@ echo '<div class="card show-on-print">
     <?php include "../template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
     <!-- upload comment script will be here ..coming soon -->
-  <script>
-    // $(document).ready(function(){
-    //   $(".osotechDatatable").DataTable();
-    // })
-  </script>
+ 
     <!-- END: Page JS-->
   </body>
   <!-- END: Body-->

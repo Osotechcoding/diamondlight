@@ -39,7 +39,7 @@ background-repeat: no-repeat;">
 <div class="login-left">
 <img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
 <h4 class="text-center text-warning mt-2"><?php echo ucwords($SmappDetails->school_name); ?><h4>
-<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">Osotech Software Inc</span></a></p>
+<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
@@ -83,7 +83,7 @@ background-repeat: no-repeat;">
 </form>
 <div class="text-center dont-have">Not a Staff? <button type="button" class="btn btn-danger btn-sm navigate_to_student_login">Login here</button>
 <p><a href="../">School Website</a></p>
-<p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">Osotech Software Inc</span></a></p>
+<p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 
 </div>

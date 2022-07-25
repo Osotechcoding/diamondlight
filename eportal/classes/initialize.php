@@ -1,6 +1,6 @@
 <?php 
 if (!defined("__OSOTECH__DEV_COMPANY__")) {
-	define("__OSOTECH__DEV_COMPANY__", "Osotech");
+	define("__OSOTECH__DEV_COMPANY__", "SMATech");
 	define("__OSO_HOST__",'localhost');
 	define("__OSO_USER__",'root');
 	define("__OSO_PASS__",'osotech');
@@ -15,7 +15,7 @@ if (!defined("__OSOTECH__DEV_COMPANY__")) {
 	define("__OSO__CONTROL__KEY__","diamond123");
 	define("__OSO_APP_VERSION__","v1.1.1");
 	define("__OSO_APP_DEV_YEAR__","2022");
-	define("__OSO_APP_NAME__","SMApp");
+	define("__OSO_APP_NAME__","SMATech");
 	define("__SCHOOL_NAME__","E-Portal @ DiamondLight School & College");
 	define("__SCHOOL_LOCATION_ADDRESS__","8,Road 20, Golden Estate, Ijagba, Otta,Nigeria");
 	define("APP_ROOT","http://localhost/diamondlight/eportal/");

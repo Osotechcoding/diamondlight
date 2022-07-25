@@ -1,8 +1,8 @@
 <?php 
 @session_start();
-// require_once "helpers/helper.php";
-require_once "languages/config.php";
-require_once "classes/Configuration.php";
+ require_once "helpers/helper.php";
+// require_once "languages/config.php";
+// require_once "classes/Configuration.php";
 require_once "classes/Session.php";
 
 //$tses_token = Session::set_xss_token();
@@ -12,7 +12,7 @@ require_once "classes/Session.php";
 
 <head>
 <?php include_once ("template/MetaTag.php");?>
-<title><?php echo __SCHOOL_NAME__; ?> :: Student Login</title>
+<title><?php echo ucwords($SmappDetails->school_name); ?> :: Forgot Password</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
 
 <link rel="stylesheet" href="bapps/plugins/bootstrap/css/bootstrap.min.css">
@@ -24,7 +24,7 @@ require_once "classes/Session.php";
 
 <link rel="stylesheet" href="bapps/css/style.css">
 </head>
-<body id="top" style=" background:rgba(0, 0, 0, 0.8) url('schlloginbg.jpg');
+<body id="top" style=" background:rgba(0, 0, 0, 0.8) url('schoolbg.jpg');
 background-position:center;
 background-size: cover;
 background-repeat: no-repeat;">
@@ -34,15 +34,15 @@ background-repeat: no-repeat;">
 <div class="container">
 <div class="loginbox">
 <div class="login-left">
-<img src="schlogo.png" width="350" class="img-fluid" alt="logo">
-<h3 class="text-center text-warning"><?php echo __SCHOOL_NAME__; ?></h3>
-<a href="../" target="_blank">Go to Homepage</a>
+<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo">
+<h3 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name);?></h3>
+<a href="../" target="_blank" style="text-decoration: none;color: white;">Go to Homepage</a>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
-<div class="text-center"><img src="schlogo.png" width="150" class="img-fluid" alt="logo"></div>
+<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo"></div>
 
-<h1>Forgot Password Page</h1>
+<h1>Forgot Password</h1>
  <div class="text-warning text-center mb-2"><small>Enter the email you used when you joined and we will send you reset link</small></div>
 <form id="student-login-form">
     <input type="hidden" name="txss_token" value="<?php echo $tses_token;?>">
@@ -63,11 +63,11 @@ background-repeat: no-repeat;">
     <a href="./" style="float: right;color: darkseagreen;">Remember Password?</a>
         </div>
 <div class="form-group">
-<button class="btn btn-success btn-block __loadingBtn__" type="submit">Send Me Reset Link</button>
+<button class="btn btn-dark btn-block __loadingBtn__" type="submit">Send Me Reset Link</button>
 </div>
 </form>
 <div class="text-center dont-have">
-<p><a href="https://glorysupremeschool.com">School Website</a></p></div>
+<p><a href="../">School Website</a></p></div>
 </div>
 </div>
 </div>
@@ -93,10 +93,10 @@ login_form.on("submit", function(event){
      $(".__loadingBtn__").html('<img src="assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled", true);
      $.post("actions/actions",login_form.serialize(),function(result){
         setTimeout(()=>{
-            $(".__loadingBtn__").html('LOGIN').attr("disabled", false);
+            $(".__loadingBtn__").html('Send Me Reset Link').attr("disabled", false);
             //alert(result);
             $("#server-response").html(result);
-        },2000);
+        },500);
      })
 
 })

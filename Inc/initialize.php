@@ -11,7 +11,7 @@ if (!defined("__AUTHOR_NAME__")) {
     define("__OSO_SCHOOL_CODE__","C12004");
     define("__SCHOOL_NAME__", strtoupper("DiamondLight Schools"));
     define("__SCHOOL_ABBREV", strtoupper("DLSC"));
-    define("__OSO_APP_NAME__", strtoupper("smapp"));
+    define("__OSO_APP_NAME__", strtoupper("SMATech"));
     define("APP_ROOT","http://localhost/diamondlight/");
     define("ADMISSION_ROOT","http://localhost/diamondlight/admission/");
     define("RESULT_ROOT","http://localhost/diamondlight/e-result/");

@@ -87,7 +87,7 @@ require_once "helpers/helper.php";
                 </div>
                
               </div>
-               <button type="submit" name="show_broad_sheet_btn" class="btn btn-dark btn-md badge-pill float-right">Mark Attendant</button>
+               <button type="submit" name="show_broad_sheet_btn" class="btn btn-dark btn-md badge-pill float-right">Mark Attendance</button>
                <div class="clearfix"></div>
             </div>
           </form>

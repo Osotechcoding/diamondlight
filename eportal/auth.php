@@ -43,7 +43,7 @@ background-repeat: no-repeat;">
 <div class="login-left">
 <img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
 <h3 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name); ?> <h3>
-<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">Osotech Software Inc</span></a></p>
+<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
@@ -86,7 +86,7 @@ placeholder="<?php echo $lang['password'];?>">
 </div>
 </form>
 <p class="text-center"><a href="../">School Website</a></p> 
-<p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">Osotech Software Inc</span></a></p>
+<p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 </div>
 </div>
@@ -119,7 +119,7 @@ placeholder="<?php echo $lang['password'];?>">
             setTimeout(()=>{
             $("#server-response").html(res);
             $(".__loadingBtn__").html('<?php echo $lang['login'];?><i id="icon-arrow" class="bx bx-right-arrow-alt"></i>').attr("disabled",false);
-            },2000);
+            },500);
         }
     })
             });
