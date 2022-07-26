@@ -347,7 +347,7 @@ require_once "helpers/helper.php";
          $(".__loadingBtn__").html('UPLOAD NOW').attr("disabled",false);
          console.log(data);
          $("#server-response").html(data);
-      },2000);
+      },500);
      })
         });
        })

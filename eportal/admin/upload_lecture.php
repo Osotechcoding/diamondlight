@@ -1,5 +1,6 @@
 <?php
 require_once "helpers/helper.php";
+$Administration->auto_remove_virtual_lecture();
  ?>
 <!DOCTYPE html>
 

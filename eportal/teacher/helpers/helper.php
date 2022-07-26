@@ -1,8 +1,7 @@
 <?php
+@ob_start();
 @session_start();
-require_once '../classes/Database.php';
 require_once "../languages/config.php";
-require_once "../classes/Configuration.php";
 date_default_timezone_set("Africa/Lagos");
 //create an autoload function
 spl_autoload_register(function($filename){

@@ -1121,11 +1121,12 @@ $this->response = $this->alert->alert_toastr("error","Your file could not be mov
         if ($this->stmt->execute([$fileId])) {
             //remove the file from folder
             $filePath ="../lecture_file/".$file_Uploaded;
-           if($filePath){
+           if(file_exists($filePath)){
            	unlink($filePath);
            }
         }
         }
+        unset($this->dbh);
     }
 	}
 

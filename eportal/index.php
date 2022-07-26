@@ -106,7 +106,7 @@ login_form.on("submit", function(event){
             $(".__loadingBtn__").html('LOGIN').attr("disabled", false);
             //alert(result);
             $("#server-response").html(result);
-        },2000);
+        },500);
      })
 
 })
