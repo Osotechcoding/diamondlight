@@ -230,7 +230,7 @@ class Osotech
                                                             break;
                                                     }
                                                     $this->response = '<script>setTimeout(()=>{
-			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=700");$("#checkResultForm")[0].reset();
+			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=500");$("#checkResultForm")[0].reset();
 		},1000)</script>';
                                                 }elseif ($result_opened =='3') {
                                                     $this->response = self::alert_msg("This Result is Held, Please contact your Admin!","danger");
@@ -297,7 +297,7 @@ class Osotech
                                                                 break;
                                                         }
                                                         $this->response = '<script>setTimeout(()=>{
-            window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=700");$("#checkResultForm")[0].reset();
+            window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=500");$("#checkResultForm")[0].reset();
         },1000)</script>';
                                                     }elseif ($result_opened =='3') {
                                                         $this->response = self::alert_msg("This Result is Held, Please contact your Admin!","danger");

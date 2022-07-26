@@ -154,9 +154,9 @@ $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE
 			$student_result_page ="./thirdtermresult?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
 				break;
 		}
-		$this->response = $this->alert->alert_toastr("success","Gathering Result... Pls wait...",__OSO_APP_NAME__." Says").'<script>setTimeout(()=>{
-			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=800, height=700");$("#SingleStudentResult_form")[0].reset();
-		},1000)</script>';
+		$this->response = $this->alert->alert_toastr("success","Generating student Report Sheet, Pls wait...",__OSO_APP_NAME__." Says").'<script>setTimeout(()=>{
+			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=700, height=850");$("#SingleStudentResult_form")[0].reset();
+		},3000)</script>';
 			}elseif ($result_opened =='3') {
 	$this->response = $this->alert->alert_toastr("error","This Result is Held, Please contact your Admin!",__OSO_APP_NAME__." Says");
 			}

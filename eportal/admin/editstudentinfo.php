@@ -65,7 +65,11 @@ if (isset($_GET['student-data']) && $_GET['student-data']!="") {
 <div class="row">
              <div class="col-12">
     <h3 class="bd-lead text-primary text-bold"><?php if ($student_data->stdPassport==NULL || $student_data->stdPassport==""): ?>
-    <img src="../author.jpg" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php if ($student_data->stdGender == "Male"): ?>
+      <img src="../schoolImages/students/male.png" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+      <?php else: ?>
+        <img src="../schoolImages/students/female.png" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php endif ?>
       <?php else: ?>
         <img src="../schoolImages/students/<?php echo $student_data->stdPassport;?>" width="100" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
     <?php endif ?> <b class="text-muted"><?php echo ucwords($student_data->full_name);?>'s </b> Profile </h3>

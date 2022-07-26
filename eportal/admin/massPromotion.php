@@ -124,7 +124,11 @@ require_once "helpers/helper.php";
            <tr>
             <td><?php echo $count;?> </td>
              <td><?php if ($promotion->stdPassport==NULL || $promotion->stdPassport==""): ?>
-    <img src="../author.jpg" width="80" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php if ($promotion->stdGender == "Male"): ?>
+      <img src="../schoolImages/students/male.png" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+      <?php else: ?>
+        <img src="../schoolImages/students/female.png" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php endif ?>
       <?php else: ?>
         <img src="../schoolImages/students/<?php echo $promotion->stdPassport;?>" width="80" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
     <?php endif ?></td>

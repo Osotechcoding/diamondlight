@@ -140,7 +140,11 @@ require_once "helpers/helper.php";
         <tbody class="text-center">
             <tr>
               <td><?php if ($student_data->stdPassport==NULL || $student_data->stdPassport==""): ?>
-    <img src="../author.jpg" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php if ($student_data->stdGender == "Male"): ?>
+      <img src="../schoolImages/students/male.png" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+      <?php else: ?>
+        <img src="../schoolImages/students/female.png" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php endif ?>
       <?php else: ?>
         <img src="../schoolImages/students/<?php echo $student_data->stdPassport;?>" width="100" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
     <?php endif ?> </td>

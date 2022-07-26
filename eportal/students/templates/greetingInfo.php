@@ -24,7 +24,12 @@
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
 <?php if ($student_data->stdPassport ==NULL || $student_data->stdPassport == ""): ?>
-    <img src="assets/img/author.jpg" width="150" alt="passport" style="border:2px solid grey;border-radius: 10px;" class="float-right p-0 mb-0 mr-2">
+    <?php if ($student_data->stdGender == "Male"): ?>
+        <img src="../schoolImages/students/male.png" width="150" alt="passport" style="border:2px solid darkblue;border-radius: 10px;" class="float-right p-0 mb-0 mr-2">
+        <?php else: ?>
+        <img src="../schoolImages/students/female.png" width="150" alt="passport" style="border:2px solid darkblue;border-radius: 10px;" class="float-right p-0 mb-0 mr-2">
+    <?php endif ?>
+   
 <?php else: ?>
     <img src="../schoolImages/students/<?php echo $student_data->stdPassport;?>" width="150" alt="passport" style="border:2px solid darkblue;border-radius: 10px;" class="float-right p-0 mb-0 mr-2">
 <?php endif ?>

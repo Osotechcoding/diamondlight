@@ -97,24 +97,12 @@ table {
 tbody >tr:nth-child(odd) {
   background: #d1d0ce3a;
 }
-/*.schname{
+.schname{
     display: block;
-     margin-left: auto; 
+     /*margin-left: auto;*/
     margin-right: auto;
     width: 80%;
-}*/
-/*Osotech Custom style*/
-img.schlogo-image{
-    width: 100px;
-    float: left;
-    margin-top: 2px;
-     padding: 5px;
 }
-#osotech-div {
-   width: 80%;
-   font-weight: bold;
-}
-/*Osotech Custom style*/
 .container-ca{
     display: flex;
     flex-wrap: nowrap;
@@ -160,18 +148,16 @@ img.schlogo-image{
 </head>
 <body>
   <section id="result">
-  <div id="osotech-div">
-      <img src="<?php echo $Osotech->get_schoolLogoImage();?>" class="schlogo-image" style="float: left;">
-      <small style="text-align: auto;margin-left: 10px;font-size: 14px;"><?php echo strtoupper($Osotech->getConfigData()->school_name); ?></small>
-      <h5 style="text-align: center;margin-right: 50px;font-size: 14px;"> Address: <?php echo ucwords($Osotech->getConfigData()->school_address); ?> <?php echo ucwords($Osotech->getConfigData()->country); ?></h5>
-       <h2 style="text-align:center; text-decoration: underline;">STUDENT'S <?php echo strtoupper($term);?> PERFORMANCE  REPORT</h2>
-    </div>
-     <hr>
+ <img src="../assets/images/resulttop1.jpg" alt="" class="schname">
     <p>NAME: &nbsp; &nbsp;<b><?php echo strtoupper($student_data->full_name);?> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </b> GENDER:&nbsp;&nbsp; <b><?php echo ucfirst($student_data->stdGender)?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; CLASS: <b><?php echo strtoupper($student_data->studentClass);?>&nbsp;</b> &nbsp;&nbsp;&nbsp;&nbsp;Term: <b><?php echo $term ?></b></p>
     <P>SESSION:&nbsp;&nbsp; <b><?php echo $rsession; ?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ADMISSION NO:&nbsp;&nbsp; <b><?php echo strtoupper($student_data->stdRegNo);?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; D.O.B:&nbsp;&nbsp; <b><?php echo date("F jS, Y",strtotime($student_data->stdDob));?></b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; AGE:&nbsp;&nbsp; <b><?php echo $Osotech->get_student_age($student_data->stdDob);?>yrs</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P>
     <!-- <P>CLUB / SOCIETY:&nbsp;&nbsp; <b>JET, CHOIR</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</P> -->
     <?php if ($student_data->stdPassport==NULL || $student_data->stdPassport==""): ?>
-      <img src="../assets/images/passportSample.jpg" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
+     <?php if ($student_data->stdGender == "Male"): ?>
+       <img src="../eportal/schoolImages/students/male.png" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
+        <?php else: ?>
+          <img src="../eportal/schoolImages/students/female.png" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
+      <?php endif ?>
       <?php else: ?>
         <img src="../eportal/schoolImages/students/<?php echo $student_data->stdPassport;?>" alt="passport" style="float: right; width: 100px;height: 125px; margin-top: -150px; border: 4px solid #625D5D; padding: 2px;">
     <?php endif ?>
@@ -665,7 +651,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
 
       <div class="footer-area">
         <div class="teacher">
-          <h4>Teacher's Remark:</h4>
+          <h4>Class Teacher's Remark:</h4>
           <hr>
           <?php if ($teacher_res_comment = $Osotech->get_student_result_comment_details($student_reg_number,$student_class,$term,$rsession)) {?>
             <p><b><?php echo ucwords($student_data->full_name); ?></b> <?php echo $teacher_res_comment->teacher_comment; ?></p>
@@ -684,7 +670,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
           <?php endif ?></b></p>
         </div>
         <div class="principal">
-          <h4>Principal's Remark:</h4>
+          <h4>Head of School's Remark:</h4>
           <hr>
          <?php if ($principal_res_comment = $Osotech->get_student_result_comment_details($student_reg_number,$student_class,$term,$rsession)) {?>
             <p><b><?php echo ucwords($student_data->full_name); ?></b> <?php echo $principal_res_comment->principal_coment; ?></p>
@@ -710,7 +696,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
       </div>
       <br>
 <hr>
-<h4 style="margin-bottom: 20px;color: darkred;">Note: <b>Any alteration renders this result invalid.</b></h4>
+<h4 style="margin-bottom: 20px;color: darkred;">Note: <b>Any alteration renders this result invalid.</b><span style="float: right;"> Powered by: SMATech</span></h4>
 <button onclick="javascript:window.print();" type="button" style="background: black; color: white; margin-bottom: 15px;">Print Now</button>
 
     <!-- End of result -->

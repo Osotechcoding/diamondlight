@@ -123,8 +123,11 @@ require_once "helpers/helper.php";
             <tr>
              <td>
               <?php if ($students->stdPassport ==""||$students->stdPassport ==NULL): ?>
-                <a href="./uploadstupassport?stdRegistrationId=<?php echo $students->stdRegNo;?>&actionId=<?php echo $students->stdId;?>"><button type="button" class="badge badge-dark">
-                  <span class="fa fa-camera"></span> Upload</button></a>
+                <?php if ($students->stdGender == "Male"): ?>
+      <img src="../schoolImages/students/male.png" width="80" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+      <?php else: ?>
+        <img src="../schoolImages/students/female.png" width="80" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+    <?php endif ?>
                 <?php else: ?>
                   <img src="../schoolImages/students/<?php echo $students->stdPassport;?>" width="80" style="border-radius: 10px;border: 3px solid deepskyblue;" alt="student-passport">
               <?php endif ?>
