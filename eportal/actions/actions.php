@@ -474,6 +474,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//upload_headofschool_comments
+	if ($_POST['action'] ==="upload_headofschool_comments") {
+		$result = $Result->uploadHeadOfSchoolResultComment($_POST);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

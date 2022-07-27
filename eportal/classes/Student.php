@@ -519,7 +519,7 @@ $this->response = false;
 
 	public function get_students_byClassDesc($grade_desc){
 		$status ="Active";
-		$this->stmt = $this->dbh->prepare("SELECT *,concat(`stdSurName`,' ',`stdFirstName`,' ',`stdMiddleName`) as full_name FROM $this->table_name WHERE studentClass=? AND stdAdmStatus=?");
+		$this->stmt = $this->dbh->prepare("SELECT *,concat(`stdSurName`,' ',`stdFirstName`,' ',`stdMiddleName`) as full_name FROM $this->table_name WHERE studentClass=? AND stdAdmStatus=? ORDER BY stdSurName ASC");
 		$this->stmt->execute([$grade_desc,$status]);
 		if ($this->stmt->rowCount()>0) {
 			$this->response =$this->stmt->fetchAll();

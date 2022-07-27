@@ -138,6 +138,7 @@ if ($all_psychomotor_domains) {?>
         <table class=" table-bordered table table-stripped table-hover">
                 <thead class="text-center">
                    <tr>
+                    <th>S/N</th>
                     <th width="250">Student</th>
                     <th>Admission No</th>
                     <th> Handwriting</th>
@@ -149,9 +150,14 @@ if ($all_psychomotor_domains) {?>
                 </tr>
             </thead>
             <tbody class="text-center">
-                  <?php foreach ($all_psychomotor_domains as $value): ?>
-                    <?php $student_data = $Student->get_student_data_byId($value->student_id) ?>
+                  <?php
+                  $x =0;
+                   foreach ($all_psychomotor_domains as $value): ?>
+                    <?php 
+                    $x++;
+                     $student_data = $Student->get_student_data_byId($value->student_id) ?>
                             <tr>
+                              <td><?php echo $x;?></td>
                         <td><span><?php echo strtoupper($student_data->full_name);?></span></td>
                         <td><span><?php echo strtoupper($student_data->stdRegNo);?></span></td>
                         <td><?php echo $value->Handwriting;?></td>

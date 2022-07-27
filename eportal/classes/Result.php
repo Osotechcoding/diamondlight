@@ -82,6 +82,65 @@ class Result {
 		unset($this->dbh);
 	}
 
+	//upload head of school result comment
+	public function uploadHeadOfSchoolResultComment($data){
+		$total_count 	= $data['total_count'];
+		$auth_pass 		= $data['auth_pass'];
+		$term 			= $data['term'];
+		$comment_class 	= $data['result_comment_class'];
+		$school_session = $data['school_session'];
+
+		//check for empty values 
+		if ($this->config->isEmptyStr($auth_pass)) {
+			$this->response = $this->alert->alert_toastr("error","Authentication code is Required!",__OSO_APP_NAME__." Says");
+			// code...
+		}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}
+		elseif (!$this->config->check_user_activity_allowed("result_comment")) {
+	$this->response = $this->alert->alert_toastr("error","Comment Uploading is not allowed at the moment!",__OSO_APP_NAME__." Says");
+		}else{
+			//loop through all the student involved
+			for ($i=0; $i < (int)$total_count; $i++) { 
+				$student_regNo = $data['student_regNo'][$i];
+				$comId = $data['comId'][$i];
+				$staff_comment 	= 	$data['headofschool_comment'][$i];
+				//check for empty comment
+				if ($this->config->isEmptyStr($staff_comment)) {
+				$this->response = $this->alert->alert_toastr("error","Please write your comment to continue!",__OSO_APP_NAME__." Says");
+				}else{
+				//check for duplicate comment upload
+				$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_result_comment_tbl` WHERE stdRegNo=? AND stdGrade=? AND principal_coment!=NULL AND term=? AND schl_Sess=? LIMIT 1");
+				$this->stmt->execute(array($student_regNo,$comment_class,$term,$school_session));
+				//check the row that was returned 
+				if ($this->stmt->rowCount() ==1) {
+				$this->response = $this->alert->alert_toastr("error","Comment already uploaded for student with Reg No: $student_regNo",__OSO_APP_NAME__." Says");
+				}else{
+				//let upload the comment now
+					try {
+						$this->dbh->beginTransaction();
+		$this->stmt = $this->dbh->prepare("UPDATE `visap_result_comment_tbl` SET principal_coment=? WHERE commentId=? AND stdRegNo=? AND stdGrade=? AND term=? AND schl_Sess=?");
+		if ($this->stmt->execute(array($staff_comment,$comId,$student_regNo,$comment_class,$term,$school_session))) {
+		//update subjectRank will be here later
+			 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Comment uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.assign('./');
+			},500);</script>";
+		}
+						
+					} catch (PDOException $e) {
+	$this->dbh->rollback();
+    $this->response  =$this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");	
+					}
+				}
+				}
+			}
+		}
+
+		return $this->response;
+		unset($this->dbh);
+	}
+
 	//View uploaded result method
 	public function view_uploaded_result_comment($stdGrade,$term,$session){
 		$this->stmt= $this->dbh->prepare("SELECT * FROM `visap_result_comment_tbl` WHERE stdGrade=? AND term=? AND schl_Sess=? ORDER BY stdRegNo ASC");
@@ -387,5 +446,21 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
         return $this->response;
             unset($this->dbh);
     }
+
+    //View uploaded result method
+	public function fetchUploadedResultByClass(){
+		$this->response ="";
+	$this->stmt = $this->dbh->prepare("SELECT DISTINCT(`stdGrade`) FROM `visap_result_comment_tbl` ORDER BY stdGrade ASC LIMIT 30");
+			$this->stmt->execute();
+			if ($this->stmt->rowCount()>0) {
+			while ($row = $this->stmt->fetch()) {
+	$this->response.='<option value="'.$row->stdGrade.'">'.$row->stdGrade.'</option>';
+			}
+			}else{
+			$this->response = false;
+			}
+			return $this->response;
+			 unset($this->dbh);
+	}
 
 }

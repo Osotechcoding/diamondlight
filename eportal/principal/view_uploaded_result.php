@@ -52,14 +52,7 @@ require_once "helpers/helper.php";
   </div>
     </div>
     <!-- content goes here -->
-    
         <div class="card">
-          <div class="card-header">
-            <!--  -->
-            <?php include_once 'Links/results_btn.php'; ?>
-            
-          </div>
-
           <div class="card-body">
 <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
@@ -158,30 +151,31 @@ require_once "helpers/helper.php";
                   <table class="table table-bordered table-striped text-center">
                          <thead class="text-center">
                         <tr>
+                          <th>S/N</th>
                             <th width="20%"> Student</th>
                             <th width="15%"> Class</th>
                             <th width="20%">Subject</th>
                             <th width="15%"> C.A</th>
                             <th width="15%">EXAM(60)</th>
                             <th width="10%">Total</th>
-                            <th width="10%">AVERAGE</th>
                         </tr>
                         </thead>
                         <tbody class="text-center">
 
                           <?php 
+                          $cnt=0;
                       foreach ($get_all_uploaded_results as $value) { 
+                        $cnt++;
                         $student_data = $Student->get_student_data_ByRegNo($value->stdRegCode);
                         ?>
                     <tr>
+                      <td><?php echo $cnt; ?> </td>
                     <td><span><?php echo strtoupper($student_data->full_name);?></span> </td>
                     <td><?php echo strtoupper($value->studentGrade);?></td>
                   <td><?php echo strtoupper($value->subjectName);?></td>
                   <td><input type="text" value="<?php echo $value->ca;?>" class="form-control" readonly></td>
                   <td><input type="text" value="<?php echo $value->exam;?>" class="form-control" readonly></td>
                   <td><input type="text" value="<?php echo $value->overallMark;?>" class="form-control" readonly></td>
-                  <td><input type="text" value="<?php echo number_format(($value->overallMark/2));?>" class="form-control" readonly></td>
-                 
                 </tr>
                           <?php }
                            ?>

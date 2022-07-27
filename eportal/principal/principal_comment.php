@@ -52,10 +52,7 @@ require_once "helpers/helper.php";
     </div>
     <!-- content goes here -->
         <div class="card">
-          <div class="card-header">
-            <h3>Upload Result Comment</h3>
-             <?php include_once 'Links/results_btn.php'; ?>
-          </div>
+        
 
           <div class="card-body">
              <!-- Basic Vertical form layout section start -->
@@ -63,9 +60,9 @@ require_once "helpers/helper.php";
   <div class="row match-height">
     <div class="col-md-12 col-12">
       <div class="card">
-        <div class="card-header">
+       <!--  <div class="card-header">
          <button type="button" class="btn btn-danger btn-md badge-pill" data-toggle="modal" data-target="#csv_Modal"><span class="fa fa-file fa-1x"></span> UPLOAD BY CSV</button>
-        </div>
+        </div> -->
         <div class="card-body">
           <form class="form form-vertical" action="" method="POST">
             <div class="form-body">
@@ -73,9 +70,10 @@ require_once "helpers/helper.php";
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="comment_class"> Class</label>
-                    <select name="comment_class" id="comment_class" class="form-control">
+                    <select name="comment_class" id="comment_class" class="form-control select2">
                       <option value="" selected>Choose...</option>
-                      <?php echo $Administration->get_classroom_InDropDown_list(); ?>
+                      <!-- show all the uploaded comment by class name -->
+                      <?php echo $Result->fetchUploadedResultByClass(); ?>
                     </select>
                   </div>
                 </div>
@@ -83,7 +81,12 @@ require_once "helpers/helper.php";
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="comment_term">Result Term</label>
-                   <select name="comment_term" class="form-control"><option value="<?php echo $activeSess->term_desc;?>" selected><?php echo $activeSess->term_desc;?></option></select>
+                   <select name="comment_term" class="form-control">
+                    <option value="" selected>Choose...</option>
+                    <option value="1st Term">1st Term</option>
+                    <option value="2nd Term">2nd Term</option>
+                    <option value="3rd Term">3rd Term</option>
+                  </select>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -94,7 +97,7 @@ require_once "helpers/helper.php";
                 </div>
                
                 <div class="col-12 d-flex justify-content-end">
-                <button type="submit" name="show_comment_sheet_btn" class="btn btn-primary mr-1">Show Broad Sheet</button>
+                <button type="submit" name="show_comment_sheet_btn" class="btn btn-primary mr-1">Show Comment Sheet</button>
               
                 </div>
               </div>
@@ -117,7 +120,7 @@ require_once "helpers/helper.php";
     $comment_term = $Configuration->Clean($_POST['comment_term']);
     $comment_sess = $Configuration->Clean($_POST['comment_sess']);
 
-    $get_all_uploaded_results_students = $Student->get_students_byClassDesc($comment_class);
+    $get_all_uploaded_results_students = $Result->view_uploaded_result_comment($comment_class,$comment_term,$comment_sess);
     ?>
     <?php 
 
@@ -128,31 +131,31 @@ if ($get_all_uploaded_results_students) {
              <!-- ############################# -->
                   <div class="card show-on-print">
                   <div class="card-body">
-                  <h2 class="text-info text-center">GLORY SUPREME SCHOOL</h2>
-                 <h5 class="text-center text-warning">1 -5,Glory Supreme Avanue,Ijagba, Onigbin, Ota,<br /> Ogun State, Nigeria</h5>
-        <h4 class="text-center text-danger"><strong>STUDENTS RESULT COMMENT SHEET</strong></h4>
+                 <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
+                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
+        <h4 class="text-center text-danger"><strong>STUDENTS COMMENT SHEET</strong></h4>
                         <!-- ############################# -->
             <br />
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center offset-1">
             <span class="btn btn-info btn-round text-center"><?php echo strtoupper($comment_class) ?> </span>
                 <span class="btn btn-dark btn-round text-center"><?php echo strtoupper($comment_term) ?> </span>
-                <span class="btn btn-danger btn-round text-center"><?php echo ($comment_sess) ?></span>
+                <span class="btn btn-danger btn-round text-center"><?php echo ($comment_sess)?></span>
                 
             </div>
          <br>
 </div>
  <div class="card-body">
-  <form method="POST" action="">
+  <form id="result_comment_form">
 
 <div class="table-responsive">
         <table class=" table-bordered table table-stripped table-hover datatable">
                 <thead class="text-center">
                     <tr>
-                    <th width="25%">Student</th>
-                    <th width="8%">Admission No</th>
-                    <th width="12%">Overall Score</th>
-                    <th width="25%">Class Teacher's Comment</th>
-                    <th width="30%">Principal's Comment</th>
+                    <th width="15%">S/N</th>
+                    <th width="20%">Student</th>
+                    <th width="15%">Admission No</th>
+                    <th width="25%">Class Teacher Comment</th>
+                    <th width="25%">Head of School's Comment</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -160,35 +163,36 @@ if ($get_all_uploaded_results_students) {
                     <?php foreach ($get_all_uploaded_results_students as $value): ?>
                       <?php $total_count++;
                       //get_student_result_gradeByRegNo
-          $student_result_data = $Result->get_student_result_gradeByRegNo($value->stdRegNo,$value->studentClass,$comment_term,$comment_sess);?>
-          <?php if ($student_result_data): ?>
-            <?php 
-            $exam_score = intval($student_result_data->exam);
-            $average_score = doubleval($student_result_data->mark_average.rand(0,9));
-            $overall_score = doubleval($student_result_data->overallMark*14);
-            $obtaineable_mark = doubleval(14 * 100.00);
+         // $student_result_data = $Result->get_student_result_gradeByRegNo($value->stdRegNo,$value->studentClass,$comment_term,$comment_sess); 
 
-             ?>
+         $student_data = $Student->get_student_data_ByRegNo($value->stdRegNo);
+         ?>
              <tr>
-                      <input type="hidden" name="term" value="<?php echo $comment_term;?>">
+              <td><?php echo $total_count; ?> </td>
+                  <input type="hidden" name="term" value="<?php echo $comment_term;?>">
                     <input type="hidden" name="school_session" value="<?php echo $activeSess->session_desc_name;?>">
-                     <input class="form-control" type="hidden" name="student_regNo[]" value="<?php echo $value->stdRegNo;?>">
-                        <td><?php echo ucwords($value->full_name);?></td>
+                    <input class="form-control" type="hidden" name="student_regNo[]" value="<?php echo $value->stdRegNo;?>">
+                        <td><?php echo ucwords($student_data->full_name);?></td>
                         <td><?php echo ucwords($value->stdRegNo);?></td>
-                  <td><input type="hidden" name="performance_score[]" value="<?php echo $overall_score;?>"><?php echo $overall_score;?> of <?php echo $obtaineable_mark; ?></td>
-                  <td><input type="text" name="teacher_comment[]"class="form-control" placeholder=" write comment here..."></td>
-                  <td><input type="text" name="principal_comment[]"class="form-control" placeholder=" write comment here..."></td>
+                        <td><?php echo ucwords($value->teacher_comment);?></td>
+                  <td><input type="text" name="headofschool_comment[]"class="form-control" placeholder=" write comment here..."><input type="hidden" name="total_count" value="<?php echo $total_count; ?>">
+                    <input class="form-control" type="hidden" name="comId[]" value="<?php echo $value->commentId;?>"></td>
                 </tr>
-          <?php endif ?>
-
-                   
-                      
-              
+        
                           <?php endforeach ?>           
                             </tbody>
                                 </table>
                               </div>
-                        <button class="btn btn-dark submit-btn btn-md mr-2 float-right mt-1" type="submit" name="upload-btn"> UPLOAD COMMENT</button>
+                               <input type="hidden" name="action" value="upload_headofschool_comments">
+                              
+                              <input type="hidden" name="result_comment_class" value="<?php echo $comment_class;?>">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>Authentication Code</label>
+                                <input type="password" autocomplete="off" class="form-control" placeholder="**********" name="auth_pass">
+                              </div>
+                              </div>
+                        <button class="btn btn-dark submit-btn btn-md mr-2 float-right mt-1 __loadingBtn__" type="submit"> SUBMIT COMMENT</button>
                         <div class="clearfix"></div>
                       </form>
                                         </div>
@@ -293,7 +297,23 @@ echo '<div class="card show-on-print">
      <!-- BEGIN: Page JS-->
     <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
     <!-- END: Page JS-->
-
+<script>
+      $(document).ready(function(){
+        const PRINCIPAL_COMMENT_FORM = $("#result_comment_form");
+    PRINCIPAL_COMMENT_FORM.on("submit", function(e){
+        e.preventDefault();
+        //myResponseText3
+          $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
+      //send request 
+      $.post("../actions/actions",PRINCIPAL_COMMENT_FORM.serialize(),function(res_data){
+        setTimeout(()=>{
+          $(".__loadingBtn__").html('Upload Comment').attr("disabled",false);
+          $("#server-response").html(res_data);
+        },500);
+      })
+    })
+      })
+    </script>
     <!-- END: Page JS-->
   </body>
   <!-- END: Body-->

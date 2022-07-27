@@ -7,17 +7,16 @@ require_once "helpers/helper.php";
 <head>
     <?php include "../template/MetaTag.php";?>
     <title><?php echo $SmappDetails->school_name ?> :: Student Result Uploading</title>
-   <!-- include template/HeaderLink.php -->
    <?php include "../template/HeaderLink.php";?>
   <!-- END: Head-->
   <!-- BEGIN: Body-->
   <body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
     <!-- BEGIN: Header-->
     <?php include "template/HeaderNav.php"; ?>
-    <!-- include headernav.php -->
+    <!-- END: Header-->
     <!-- BEGIN: Main Menu-->
     <?php include "template/Sidebar.php";?>
-    <!-- include Sidebar.php -->
+   
     <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>
@@ -50,21 +49,13 @@ require_once "helpers/helper.php";
         <div class="card">
           <div class="card-header">
             <!--  -->
-            <?php include_once 'Links/results_btn.php'; ?>
+            <?php //include_once 'Links/results_btn.php'; ?>
             
           </div>
-
-          <div class="card-body">
 <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
   <div class="row match-height">
     <div class="col-md-12 col-12">
-      <div class="card">
-        <div class="card-header">
-            <h3>Upload Student Results</h3>
-          <button type="button" class="btn btn-danger btn-md badge-pill" data-toggle="modal" data-target="#csv_Modal"><span class="fa fa-file fa-1x"></span> UPLOAD CSV RESULT</button>
-      
-        </div>
         <div class="card-body">
           <form class="form form-vertical" action="" method="post">
             <div class="form-body">
@@ -81,9 +72,9 @@ require_once "helpers/helper.php";
                  <div class="col-md-4">
                   <div class="form-group">
                     <label for="result_class">Select Class</label>
-                    <select name="result_class" id="result_class" class="select2 form-control form-control-lg">
+                     <select name="result_class" id="result_class" class="select2 form-control form-control-lg">
                       <option value="">Choose...</option>
-                     <?php echo $Administration->get_classroom_InDropDown_list(); ?>
+                      <?php echo $Administration->get_classroom_InDropDown_list();?>
                     </select>
                   </div>
                 </div>
@@ -91,7 +82,10 @@ require_once "helpers/helper.php";
                   <div class="form-group">
                     <label for="result_term">select Term</label>
                     <select name="result_term" id="result_term" class="custom-select form-control form-control-lg">
-                      <option value="<?php echo $activeSess->term_desc;?>" selected><?php echo $activeSess->term_desc;?></option>
+                      <option value="" selected>Choose...</option>
+                      <option value="1st Term">1st Term</option>
+                      <option value="2nd Term">2nd Term</option>
+                      <option value="3rd Term">3rd Term</option>
                     </select>
                   </div>
                 </div>
@@ -136,8 +130,8 @@ require_once "helpers/helper.php";
               <div class="card">
             <div class="card-body">
         <hr class="text-bold-700">
-       <h2 class="text-info text-center"><?php echo strtoupper(__SCHOOL_NAME__) ?> </h2>
-                 <h5 class="text-center text-warning"><?php echo ucwords(__SCHOOL_LOCATION_ADDRESS__) ?> </h5>
+       <h2 class="text-info text-center"><?php echo strtoupper($SmappDetails->school_name) ?> </h2>
+                 <h5 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_address) ?> </h5>
         <h4 class="text-center text-danger"><strong>STUDENTS EXAMINATION RESULT SHEET</strong></h4>
                  <!-- ############################# -->
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -154,24 +148,25 @@ require_once "helpers/helper.php";
                     <table class="table table-stripped text-center">
                         <thead class="text-center">
                         <tr>
-                            <th width="30%"> STUDENT NAME</th>
-                            <th width="30%">SUBJECT</th>
-                            <th width="20%"> CA (40)</th>
-                            <th width="20%">EXAM (60)</th>
+                          <th width="10%">S/N</th>
+                            <th width="20%"> STUDENT NAME</th>
+                            <th width="20%">ADMISSION NO</th>
+                            <th width="20%">SUBJECT</th>
+                            <th width="15%"> CA (40)</th>
+                            <th width="15%">EXAM (60)</th>
                         </tr>
                         </thead>
                         <tbody class="text-center">
                          <?php
-                         //
                             foreach ($get_all_exam_subjects as $val) {
                              $cnt++;
-                    // $get_all_exam_subjects = $Result->get_exam_subjectsByClassName($val->studentClass,$result_subject);
                              ?>
                       <tr>
-                    
+                        <td><?php echo $cnt;?> </td>
                       <input type="hidden" name="result_class[]" value="<?php echo strtoupper($val->studentClass);?>">
                       <input type="hidden" name="student_regNo[]" value="<?php echo strtoupper($val->stdRegNo);?>">
                     <td><span><?php echo strtoupper($val->stdSurName." ".$val->stdFirstName." ".$val->stdMiddleName);?></span> <input type="hidden" name="student_name[]" value="<?php echo strtoupper($val->stdSurName." ".$val->stdFirstName." ".$val->stdMiddleName);?>"></td>
+                    <td><?php echo strtoupper($val->stdRegNo);?></td>
                     <td><span><?php echo strtoupper($val->subject_name);?></span><input type="hidden" name="subject[]" value="<?php echo strtoupper($val->subject_name);?>"></td>
                   <td><input type="number" placeholder="40" min="0" max="40" name="cass[]" step="1" class="form-control" required></td>
                   <td><input type="number" placeholder="60" min="0" max="60" name="exam[]" step="1" placeholder="" class="form-control" required>
@@ -191,14 +186,14 @@ require_once "helpers/helper.php";
            </div>
            </form>
             </div>
-  </div>
+  
                         <?php
                           }else
                           {
       //get_exam_subjectsByClassName($grade_desc,$subject)
-          echo "<div class='text-center'>
-          ".$Alert->alert_msg(" No result found for $result_subject  In $result_class Class!","danger")."
-          </div>";
+          echo "<div class='card'><div class='text-center'>
+          ".$Alert->alert_msg(" No result found for $result_subject  In $result_class Class !","danger")."
+          </div></div>";
                           }
                            ?>
                
@@ -208,8 +203,10 @@ require_once "helpers/helper.php";
       <?php endif; ?>
       
       <!-- BROADSHEET ENDS -->
+      </div>
+
 </section>
-        </div>
+       
       </div>
      
     <!-- content goes end -->
@@ -289,10 +286,8 @@ require_once "helpers/helper.php";
             </div>
           </div>
     <!-- BUS MODAL  END -->
-    <!-- BEGIN: Vendor JS-->
     <?php include "../template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
-   
 <script>
   $(document).ready(function(){
     const student_result_upload_form = $("#student_result_upload_form");
@@ -312,9 +307,6 @@ require_once "helpers/helper.php";
     })
   })
 </script>
-    <!-- END: Page JS-->
-
-    <!-- END: Page JS-->
   </body>
   <!-- END: Body-->
 </html>

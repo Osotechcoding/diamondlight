@@ -166,6 +166,7 @@ require_once "helpers/helper.php";
                   <table class="table table-bordered table-striped text-center">
                          <thead class="text-center">
                         <tr>
+                          <th>S/N</th>
                             <th width="25%"> Student</th>
                             <th width="20%"> Class</th>
                             <th width="20%">Subject</th>
@@ -177,10 +178,13 @@ require_once "helpers/helper.php";
                         <tbody class="text-center">
 
                           <?php 
+                          $cnt=0;
                       foreach ($get_all_uploaded_results as $value) { 
+                        $cnt++;
                         $student_data = $Student->get_student_data_ByRegNo($value->stdRegCode);
                         ?>
                     <tr>
+                     <td><?php echo $cnt; ?> </td>
                     <td><span><?php echo strtoupper($student_data->full_name);?></span> </td>
                     <td><?php echo strtoupper($value->studentGrade);?></td>
                   <td><?php echo strtoupper($value->subjectName);?></td>

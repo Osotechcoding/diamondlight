@@ -30,9 +30,11 @@
          
           <li class=" nav-item"><a href="result_uploading"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Results</span></a>
           </li>
-           <li class=" nav-item"><a href="student_results"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
+           <li class=" nav-item"><a href="view_uploaded_result"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
           </li>
-          <li class="nav-item"><a href="principal_comment"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Result Comments"> Result Comments</span></a>
+          <li class="nav-item"><a href="principal_comment"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Result Comments"> Upload Comments</span></a>
+          </li>
+           <li class="nav-item"><a href="viewComments"><i class="fa fa-comments-o fa-1x"></i><span class="menu-title text-truncate" data-i18n="view Comments"> View Comments</span></a>
           </li>
         
             </ul>

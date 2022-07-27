@@ -52,12 +52,7 @@ require_once "helpers/helper.php";
     </div>
     <!-- content goes here -->
         <div class="card">
-          <div class="card-header">
-            <h3>Upload Result Comment</h3>
-             <?php include_once 'Links/results_btn.php'; ?>
-          </div>
-
-          <div class="card-body">
+        <div class="card-body">
              <!-- Basic Vertical form layout section start -->
 <section id="basic-vertical-layouts">
   <div class="row match-height">
@@ -154,7 +149,6 @@ if ($get_all_uploaded_results_students) {
                       <th width="5%">S/N</th>
                     <th width="25%">Student</th>
                     <th width="15%">Admission No</th>
-                    <th width="15%">Overall Score</th>
                     <th width="40%">Teacher's Comment</th>
                 </tr>
             </thead>
@@ -179,7 +173,6 @@ if ($get_all_uploaded_results_students) {
                      <td><?php echo $total_count; ?></td>
                         <td><?php echo ucwords($value->full_name);?></td>
                         <td><?php echo ucwords($value->stdRegNo);?></td>
-                  <td><input type="hidden" name="performance_score[]" value="<?php echo $overall_score;?>"><?php echo $overall_score;?> of <?php echo $obtaineable_mark; ?> Points</td>
                   <td><input type="text" name="comment[]"class="form-control" placeholder="write comment here..."><input type="hidden" name="total_count" value="<?php echo $total_count; ?>"></td>
                 </tr>
           <?php endif ?>
@@ -307,7 +300,7 @@ echo '<div class="card">
         setTimeout(()=>{
           $(".__loadingBtn__").html('Upload Comment').attr("disabled",false);
           $("#server-response").html(res_data);
-        },1000);
+        },500);
       })
     })
       })

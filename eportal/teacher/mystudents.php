@@ -107,6 +107,7 @@ require_once "helpers/helper.php";
       <table class="table table-bordered">
         <thead class="text-center">
           <tr>
+            <th>S/N</th>
           <th>PASSPORT</th>
           <th>FULLNAME</th>
           <th>ADMISSION NO</th>
@@ -119,8 +120,12 @@ require_once "helpers/helper.php";
           <?php //$staff_assigned_class
           $all_active_students = $Student->get_all_students_by_status_by_class($staff_assigned_class,"Active");
           if ($all_active_students) {
-           foreach ($all_active_students as $students) {?>
+            $count =0;
+           foreach ($all_active_students as $students) { 
+            $count++;
+            ?>
             <tr>
+              <td><?php echo $count; ?></td>
              <td>
               <?php if ($students->stdPassport ==""||$students->stdPassport ==NULL): ?>
                 <?php if ($students->stdGender == "Male"): ?>

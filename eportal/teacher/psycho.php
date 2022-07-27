@@ -143,6 +143,7 @@ require_once "helpers/helper.php";
         <table class=" table-bordered table table-stripped table-hover datatable">
                 <thead class="text-center">
                     <tr>
+                      <th>S/N</th>
                     <th width="250">Student</th>
                     <th> Handwriting</th>
                     <th> Sports</th>
@@ -158,6 +159,7 @@ require_once "helpers/helper.php";
                     foreach ($student_details as $value) {
                       $cnt++;?>
                     <tr>
+                      <td><?php echo $cnt; ?> </td>
                       <td width="250"><?php echo ucwords($value->full_name);?>
                         <input class="form-control" type="hidden" name="student_id[]" value="<?php echo $value->stdId?>">
                          <input type="hidden" value="<?php echo $value->stdRegNo;?>" name="std_reg_number[]">
