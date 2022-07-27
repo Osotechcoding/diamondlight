@@ -65,6 +65,8 @@
           </li>
           <li class=" nav-item"><a href="viewpsycho"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Psychomotor">View Psychomotor</span></a>
           </li>
+           <li class=" nav-item"><a href="viewResultComments"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="Result Comments">Result Comments</span></a>
+          </li>
           <li class=" nav-item"><a href="checkResult"><i class="fa fa-line-chart fa-1x"></i><span class="menu-title text-truncate" data-i18n="Check Result">Check Result</span></a>
           </li>
            <li class=" nav-item"><a href="editstudentresult"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Update Student Result">Edit Result</span></a>
