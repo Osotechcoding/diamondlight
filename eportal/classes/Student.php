@@ -815,8 +815,8 @@ public function upload_student_passport($data,$file){
     }
     elseif (!in_array($image_ext, $allowed)) {
     $this->response = $this->alert->alert_toastr("error","Your passport format is not supported, Only PNG,JPG,JPEG",__OSO_APP_NAME__." Says");
-    }elseif ($passport_size > 50) {
-   $this->response = $this->alert->alert_toastr("error","Your Image Size should not exceed 50KB, Your file Size is :".number_format($passport_size,2)."KB",__OSO_APP_NAME__." Says");
+    }elseif ($passport_size > 20) {
+   $this->response = $this->alert->alert_toastr("error","Your Image Size should not exceed 20KB, Your file Size is :".number_format($passport_size,2)."KB",__OSO_APP_NAME__." Says");
     }elseif ($passport_error!=0) {
    $this->response = $this->alert->alert_toastr("error","There was an error Uploading your image",__OSO_APP_NAME__." Says");
     }

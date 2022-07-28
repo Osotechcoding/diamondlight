@@ -72,6 +72,7 @@ body {
         width: 595px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 10px;
     }
 
 td {

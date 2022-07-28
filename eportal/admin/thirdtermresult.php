@@ -203,7 +203,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
   $firstTermTotal =$stmt_first_term->fetch();
   $_firstTermTotal =$firstTermTotal->overallMark;
   }else{
-    $_firstTermTotal =0;
+    $_firstTermTotal ='-';
   }
   $stmt_second_term = $dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE studentGrade='$student_class' AND term='2nd Term' AND aca_session='$rsession' AND stdRegCode='$student_reg_number' AND subjectName='$showResult->subjectName'");
   $stmt_second_term->execute();
@@ -211,7 +211,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
   $secondTermTotal =$stmt_second_term->fetch();
   $_secondTermTotal =$secondTermTotal->overallMark;
   }else{
-    $_secondTermTotal =0;
+    $_secondTermTotal ='-';
   }
   ?>
 <!--  -->
@@ -312,24 +312,28 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                   <td><?php echo $mx; ?></td>
                   <td><?php echo $markOb; ?></td>
                   <td><?php echo ($percentage_mark);?> %</td>
-                  <?php if ($percentage_mark >=75 && $percentage_mark <= 100) {
+                  <?php if ($percentage_mark >=85 && $percentage_mark <= 100) {
                    $performance_grade = 'A';
+                   $performance_remark = 'Distinction';
+                  }elseif ($percentage_mark >=75 && $percentage_mark <= 84.99) {
+                    $performance_grade = 'B';
                    $performance_remark = 'Excellence';
-                  }elseif ($percentage_mark >=65 && $percentage_mark <= 74.99) {
-                   $performance_grade = 'B';
+                  }
+                  elseif ($percentage_mark >=65 && $percentage_mark <= 74.99) {
+                   $performance_grade = 'C';
                    $performance_remark = 'Very Good';
                   }elseif ($percentage_mark >=60 && $percentage_mark <= 64.99) {
-                    $performance_grade = 'C';
+                    $performance_grade = 'D';
                     $performance_remark = 'Good';
                   }elseif ($percentage_mark >=50 && $percentage_mark <= 59.99) {
-                   $performance_grade = 'D';
-                   $performance_remark = 'Fairly Good';
-                  }elseif ($percentage_mark >=40 && $percentage_mark <= 49.99) {
                    $performance_grade = 'E';
-                   $performance_remark = 'Weak';
+                   $performance_remark = 'Fair';
+                  }elseif ($percentage_mark >=40 && $percentage_mark <= 49.99) {
+                   $performance_grade = 'F';
+                   $performance_remark = 'Poor';
                   }else{
-                    $performance_grade = 'F';
-                    $performance_remark = 'Poor';
+                    $performance_grade = 'G';
+                    $performance_remark = 'Very Poor';
                   }
                    ?>
                   <td><?php echo $performance_grade;?> </td>

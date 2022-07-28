@@ -136,7 +136,7 @@ require_once "helpers/helper.php";
       <!-- filter student ends -->
         <div class="col-md-12 text-center" id="delete_response"></div>
         <div class="table-responsive">
-      <table class="table osotechDatatable table-hover table-bordered table-striped">
+      <table class="table table-hover table-bordered table-striped">
         <thead class="text-center">
           <tr>
           <th>S/N</th>

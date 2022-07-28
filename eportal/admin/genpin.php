@@ -53,17 +53,17 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
         <div class="content-body">
 
            <div class="row">
-  <div class="col-12 mb-3">
+  <div class="col-12 mb-1">
     <h3 class="bd-lead text-primary text-bold" style="font-weight: bolder;"><i class="fa fa-credit-card-alt"></i> Scratch Card Generator</h3>
   </div>
 </div>
  
 
-          <div class="col-md-12">
-            <?php include_once("template/pinsLinkBtns.php") ?>
+          <div class="col-md-8 offset-1">
+            <?php //include_once("template/pinsLinkBtns.php") ?>
       <div class="card">
       
-       <h1 class="text-center mt-1" style="font-weight: bolder;"><i class="fa fa-credit-card-alt"></i> Scratch Card Generator</h1>
+       <h1 class="text-center mt-1" style="font-weight: bolder;"><span class="fa fa-credit-card-alt"></span> <?php echo strtoupper(__OSO_APP_NAME__); ?> PIN GENERATOR</h1>
         <div class="card-body">
           <form class="form" id="osotechPinGenForm">
             <div class="form-body">

@@ -71,6 +71,7 @@ body {
         width: 595px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 10px;
     }
 
 td {
@@ -200,7 +201,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
   $firstTermTotal =$stmt_first_term->fetch();
   $_firstTermTotal =$firstTermTotal->overallMark;
   }else{
-    $_firstTermTotal =0;
+    $_firstTermTotal ='-';
   }
   $stmt_second_term = $dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE studentGrade='$student_class' AND term='2nd Term' AND aca_session='$rsession' AND stdRegCode='$student_reg_number' AND subjectName='$showResult->subjectName'");
   $stmt_second_term->execute();
@@ -208,7 +209,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
   $secondTermTotal =$stmt_second_term->fetch();
   $_secondTermTotal =$secondTermTotal->overallMark;
   }else{
-    $_secondTermTotal =0;
+    $_secondTermTotal ='-';
   }
   ?>
 <!--  -->

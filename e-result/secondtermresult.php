@@ -71,6 +71,7 @@ body {
         width: 595px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 10px;
     }
 
 td {
@@ -206,7 +207,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
   $firstTermTotal =$stmt4->fetch();
   $_firstTermTotal =$firstTermTotal->overallMark;
   }else{
-    $_firstTermTotal =0;
+    $_firstTermTotal ='-';
   }
 
       ?>
@@ -218,7 +219,6 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                     <td>
                     <?php echo round(($_firstTermTotal+$showResult->ca+$showResult->exam)/2);?></td>
                     <td> <?php echo $r->mark_grade;?></td>
-                   <!--  <td>2<sup>nd</sup></td> -->
                     <td><?php echo $r->score_remark;?> </td>
                     
                   </tr>

@@ -1802,14 +1802,14 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 		$term = $this->config->Clean($data['term']);
 		$total_count = $this->config->Clean($data['total_count']);
 		if ($this->config->isEmptyStr($todaydate)) {
-		$this->response = $this->alert->alert_msg("Attendance Date  Required! ","danger");
+		$this->response = $this->alert->alert_msg("Attendance Date  is Required! ","danger");
 		}else{
 			for ($i=0; $i < (int)$total_count; $i++) {
 			$reg_number = $data['reg_number'][$i];
 			$attstatus = 	$data['attendant_status'][$i];
 			$classroom = 	$data['student_classroom'][$i];
 			if ($this->config->isEmptyStr($attstatus)) {
-	$this->response = $this->alert->alert_msg("Attendance Status is Required! ","danger");
+	$this->response = $this->alert->alert_msg("Attendance Roll Call Status is Required! ","danger");
 			}else{
 				//lets check if this attendance already submitted ealier
 				$attdate = date("Y-m-d",strtotime($todaydate));
