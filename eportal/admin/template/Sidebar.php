@@ -13,7 +13,7 @@
               </li>
           <li class="navigation-header text-truncate"><span data-i18n="MANAGEMENT">MANAGEMENT</span>
           </li>
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="ADMINISTRATION">ADMINISTRATION</span></a>
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE ACTIVIES">MANAGE ACTIVIES</span></a>
             <ul class="menu-content">
               <li class="nav-item"><a href="acaSession"><i class="fa fa-calendar fa-1x"></i><span class="menu-title text-truncate" data-i18n="academic year">Academic Year</span></a>
           </li>
@@ -41,7 +41,7 @@
             </ul>
           </li>
           <!-- ADMISSION -->
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="ADMISSION PORTAL">ADMISSION PORTAL</span></a>
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE PORTAL">MANAGE PORTAL</span></a>
             <ul class="menu-content">
                <li class=" nav-item"><a href="callAdmission"><i class="fa fa-cogs fa-1x"></i><span class="menu-title text-truncate" data-i18n="Portal Status">Admission Portal</span></a>
           </li>
@@ -85,7 +85,7 @@
           </li>
           <!-- RESULT ENDS -->
           <!-- STUDENT -->
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-graduation-cap fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="STUDENT"> STUDENT</span></a>
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-graduation-cap fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="STUDENTS"> STUDENTS</span></a>
             <ul class="menu-content">
           <li class="nav-item"><a href="ab_students"><i class="fa fa-user-plus fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Students">Manage Students</span></a>
           </li>
@@ -137,6 +137,8 @@
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-credit-card-alt fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCRATCH CARD">SCRATCH CARD</span></a>
             <ul class="menu-content">
               <?php if ($Admin->isSuperAdmin($admin_data->adminId)): ?>
+                <li><a class="d-flex align-items-center" href="gencode"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="OAuth">Generate OAuth</span></a>
+              </li>
                  <li><a class="d-flex align-items-center" href="genpin"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Generate">Generate</span></a>
               </li>
                <li><a class="d-flex align-items-center" href="regPin"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Generate Pins">Admission Pins</span></a>
@@ -213,7 +215,7 @@
           </li> -->
         <li class=" navigation-header text-truncate"><span data-i18n="SETTINGS">SETTINGS</span>
           </li>
-           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-cogs fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Portal Settings">Portal Settings</span></a>
+           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-cogs fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Settings"> Settings</span></a>
             <ul class="menu-content">
                <li class=" nav-item"><a href="app_settings"><i class="fa fa-cogs fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">School Profile</span></a>
           </li>

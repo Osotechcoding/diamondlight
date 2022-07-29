@@ -157,6 +157,7 @@ class Administration {
 				$this->response = false;
 			}
 			return $this->response;
+				unset($this->dbh);
 	}
 
 

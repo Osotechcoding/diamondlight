@@ -482,6 +482,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//genOAuthCode
+	if ($_POST['action'] ==="genOAuthCode") {
+		$result = $Admin->generateOAuthCodeForSchools($_POST);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

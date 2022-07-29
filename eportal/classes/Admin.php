@@ -227,7 +227,7 @@ public function reset_admin_password($data){
 				}
 
 						} catch (PDOException $e) {
-	$this->dbh->rollback();
+			$this->dbh->rollback();
     $this->response  =$this->alert->alert_toastr("error","Failed: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 						}
 			}
@@ -235,4 +235,84 @@ public function reset_admin_password($data){
 		unset($this->dbh);
 		}
 
+		//GENERATE OAUTH CODE FOR SCHOOLS
+		public function generateOAuthCodeForSchools($data){
+			$code = $this->config->Clean($data['code']);
+			$sessioncode = $this->config->Clean($data['sessioncode']);
+			$termcode = $this->config->Clean($data['termcode']);
+			$schoolname = $this->config->Clean($data['schoolname']);
+			if ($this->config->isEmptyStr($schoolname) || $this->config->isEmptyStr($termcode)|| $this->config->isEmptyStr($code) || $this->config->isEmptyStr($sessioncode)) {
+				$this->response = $this->alert->alert_toastr("error","Please Generate Aouth Code to continue!",__OSO_APP_NAME__." Says");
+			}else{
+				//check for duplicate entry
+				$this->stmt = $this->dbh->prepare("SELECT * FROM `school_oauth_code_tbl` WHERE active_ses=? AND term=? AND school_name=? LIMIT 1");
+				$this->stmt->execute(array($sessioncode,$termcode,$schoolname));
+				if ($this->stmt->rowCount() == 1) {
+				$this->response = $this->alert->alert_toastr("error","Code Already Generated for $schoolname for $termcode of $sessioncode!",__OSO_APP_NAME__." Says");
+				}else{
+//create a fresh code for the selected school,term session
+					try {
+						$created_at = date("Y-m-d");
+								$this->dbh->beginTransaction();
+								$this->stmt = $this->dbh->prepare("INSERT INTO `school_oauth_code_tbl` (school_name,term,active_ses,oauth_code,created_at) VALUES (?,?,?,?,?);");
+				if ($this->stmt->execute(array($schoolname,$termcode,$sessioncode,$code,$created_at))) {
+					// code...
+					$this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Oauth Code Generated Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.reload();
+			},500);</script>";
+				}else{
+			$this->response = $this->alert->alert_toastr("error","Internal Error Occured!, Please try again",__OSO_APP_NAME__." Says");
+				}
+						
+					} catch (Exception $e) {
+						$this->dbh->rollback();
+    $this->response  =$this->alert->alert_toastr("error","Failed: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+					}
+				}
+			}
+
+			return $this->response;
+				unset($this->dbh);
+		}
+
+		public function getAllOauthCode(){
+			$this->stmt = $this->dbh->prepare("SELECT * FROM `school_oauth_code_tbl` ORDER BY school_name ASC LIMIT 50");
+			$this->stmt->execute();
+			if ($this->stmt->rowCount()>0) {
+			$this->response = $this->stmt->fetchAll();
+			}else{
+				$this->response = false;
+			}
+			return $this->response;
+			unset($this->dbh);
+		}
+
+
+		public function deleteSchoolOauthCode($codeId){
+			if (!$this->config->isEmptyStr($codeId)) {
+			try {
+		$this->dbh->beginTransaction();
+	//Delete the selected Subject
+		$this->stmt = $this->dbh->prepare("DELETE FROM `school_oauth_code_tbl` WHERE id=? LIMIT 1");
+		if ($this->stmt->execute([$codeId])) {
+			// code...
+			 $this->dbh->commit();
+				$this->response = $this->alert->alert_toastr("success","Oauth Code Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.reload();
+			},500);</script>";
+		}
+			} catch (PDOException $e) {
+		$this->dbh->rollback();
+   $this->response  =$this->alert->alert_toastr("error","Failed: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+			// code...
+		}else{
+			$this->response = false;
+		}
+		return $this->response;
+		unset($this->dbh);
+		}
+			
+		
 }

@@ -3,11 +3,9 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="text-center text-info"> PUBLIC NOTICE! </h1>
-      </div>
+     <h2 class="text-center text-info mt-3"> PUBLIC NOTICE! </h2>
       <div class="modal-body">
-       <div class="paoc-popup-margin paoc-popup-mheading"><h1 class="text-center text-danger">ADMISSION ADMISSION ADMISSION!</h1></div>
+       <div class="paoc-popup-margin paoc-popup-mheading"><h3 class="text-center text-danger">ADMISSION! ADMISSION!! ADMISSION!!!</h3></div>
 <div class="paoc-popup-margin paoc-popup-content"><p class="text-info"><span style="font-size: 18pt;" class="text-info"><strong>This is to inform the General Public that Admission into all Classes is currently open for the 2022/2023 Academic Session.</strong></span></p>
 <p><span style="font-size: 18pt;"><em>Enroll your child/children today. and Obtain 10% Discount Payment</em></span></p>
 <p><span style="font-size: 18pt;"><a href="contact"> Click here</a> to learn more&#8230;&#8230;..</span></p>
@@ -77,8 +75,8 @@
             <div class="col-lg-3 col-md-12 col-sm-12 pl-50 md-pl-15 footer-widget md-mb-50">
                 <h3 class="widget-title">Useful Links</h3>
                 <ul class="site-map">
-                    <li><a href="javascript:void(0);">Year Book</a></li>
-                    <li><a href="javascript:void(0);">News/Blog</a></li>
+                    <li><a href="yearbook">Year Book</a></li>
+                    <li><a href="blog-right">News/Blog</a></li>
                     <li><a href="javascript:void(0);">Gallery</a></li>
                     <li><a href="javascript:void(0);">Calendar</a></li>
                 </ul>

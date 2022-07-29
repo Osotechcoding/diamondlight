@@ -5,6 +5,7 @@
 			<div class="col-md-7">
 				<ul class="topbar-contact">
 					<li>
+
 						<i class="flaticon-email"></i>
 						<a href="mailto:<?php echo ($Osotech->getConfigData()->school_email);?>"><?php echo ($Osotech->getConfigData()->school_email);?></a>
 					</li>
@@ -16,6 +17,7 @@
 			</div>
 			<div class="col-md-5 text-right">
 				<ul class="topbar-right">
+                    <li> <div id="google_translate_element"></div></li>
 					<li class="login-register">
 						<i class="fa fa-sign-in"></i>
 						<a href="./eportal/" class="btn btn-dark" style="text-decoration: none;color:white" target="_blank">PORTAL</a> ||  <a href="./e-result/" class="btn btn-primary" style="text-decoration: none;color:white">E-RESULT</a>

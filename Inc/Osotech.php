@@ -548,7 +548,7 @@ class Osotech
                         $this->stmt =$this->dbh->prepare("INSERT INTO `visap_student_tbl`(stdRegNo,stdEmail,stdUserName,stdPassword,studentClass,stdPhone,stdApplyDate,stdConfToken) VALUES(?,?,?,?,?,?,?,?);");
                         if ($this->stmt->execute(array($admission_no,$stu_email,$username,$hashed_password,$stu_class,$stu_phone,$date,$confirmation_code))) {
                             // grab the LastInsertId...
-                            $_SESSION['AUTH_SMAPP_APPLICANT_ID'] = $this->dbh->lastInsertId();
+                            $_SESSION['AUTH_SMATECH_APPLICANT_ID'] = $this->dbh->lastInsertId();
                             $_SESSION['AUTH_CODE_ADMISSION_NO'] = $admission_no;
                             //let change the Pin Used status
                             $change_status =1;
@@ -613,7 +613,7 @@ class Osotech
                     // create the student info table
                     $this->stmt = $this->dbh->prepare("INSERT INTO `visap_student_info_tbl` (studentId,stdBirthCert,stdCountry,stdSOR,stdLGA,stdHomeTown,stdReligion,stdDisability,stdPermaAdd) VALUES (?,?,?,?,?,?,?,?,?);");
                     if ($this->stmt->execute(array($applicant_id,$birth_cert,$nationality,$state_origin,$localgvt,$hometown,$religion,$challenges,$home_address))) {
-                        $_SESSION['AUTH_SMAPP_APPLICANT_ID'] = $applicant_id;
+                        $_SESSION['AUTH_SMATECH_APPLICANT_ID'] = $applicant_id;
                         $this->dbh->commit();
                         $this->response = self::alert_msg("Step Two completed successfully, Pls wait...","success")."<script>setTimeout(()=>{
 			window.location.href='".ADMISSION_ROOT."step3?applicant=".$admission_no."&page=3';
@@ -667,7 +667,7 @@ class Osotech
                 //update the student info on student tbl
                 $this->stmt = $this->dbh->prepare("UPDATE `visap_student_info_tbl` SET stdMGTitle=?,stdMGName=?,stdMGRelationship=?,stdMGPhone=?,stdMGEmail=?,stdMGOccupation=?,stdMGAddress=?, stdFGTitle=?, stdFGName=?,stdFGRelationship=?,stdFGPhone=?,stdFGEmail=?,stdFGOccupation=?,stdFGAddress=? WHERE studentId=? LIMIT 1");
                 if ($this->stmt->execute(array($mg_title,$mg_name,$mg_relation,$mg_phone,$mg_email,$mg_occu,$mg_address,$fg_title,$fg_name,$fg_relation,$fg_phone,$fg_email,$fg_occu,$fg_address,$applicant_id))) {
-                    $_SESSION['AUTH_SMAPP_APPLICANT_ID'] = $applicant_id;
+                    $_SESSION['AUTH_SMATECH_APPLICANT_ID'] = $applicant_id;
                     $this->dbh->commit();
                     $this->response = self::alert_msg("Step Three completed successfully, Pls wait...","success")."<script>setTimeout(()=>{
 			window.location.href='".ADMISSION_ROOT."step4?applicant=".$admission_no."&page=4';
@@ -729,7 +729,7 @@ class Osotech
                 //update the student info on student tbl
                 $this->stmt = $this->dbh->prepare("INSERT INTO `visap_stdpreschlinfo` (student_id,stdSchoolName,stdDirectorName,stdSchoolPhone,stdSchLocation,stdSchlCat,stdSchlEduLevel,stdPresentClass,stdReasonInPreClass,stdLastReportSheet) VALUES (?,?,?,?,?,?,?,?,?,?);");
                 if ($this->stmt->execute(array($applicant_id,$schoolname,$proprietress,$schl_phone,$prev_schl_loca,$category,$edu_offered,$present_class,$reason_to,$reportsheet_realName))) {
-                    $_SESSION['AUTH_SMAPP_APPLICANT_ID'] = $applicant_id;
+                    $_SESSION['AUTH_SMATECH_APPLICANT_ID'] = $applicant_id;
                     if (move_uploaded_file($reportsheet_temp, $destination)) {
                         $this->dbh->commit();
                         $this->response = self::alert_msg("Step Four completed successfully, Pls wait...","success")."<script>setTimeout(()=>{
@@ -763,13 +763,13 @@ class Osotech
         $blood_group = self::Clean($admission_data['blood_group']);
         $genotype = self::Clean($admission_data['genotype']);
         $illness = self::Clean($admission_data['illness']);
-        $family_illness = self::Clean($admission_data['family_illness']);
+        //$family_illness = self::Clean($admission_data['family_illness']);
         $hospitalized = self::Clean($admission_data['hospitalized']);
         $surgical_operation = self::Clean($admission_data['surgical_operation']);
         //check for auth
         if (self::isEmptyStr($bypass) || $bypass!= md5("oiza123456789")) {
             $this->response = self::alert_msg("Authentication Failed, Please Check your Connection and Try again!","danger");
-        }elseif (self::isEmptyStr($applicant_id) || self::isEmptyStr($admission_no) || self::isEmptyStr($hospital_name) || self::isEmptyStr($doctor_name) || self::isEmptyStr($phone) || self::isEmptyStr($member_since) || self::isEmptyStr($address) || self::isEmptyStr($blood_group) || self::isEmptyStr($genotype) || self::isEmptyStr($illness) || self::isEmptyStr($family_illness) || self::isEmptyStr($hospitalized) || self::isEmptyStr($surgical_operation)) {
+        }elseif (self::isEmptyStr($applicant_id) || self::isEmptyStr($admission_no) || self::isEmptyStr($hospital_name) || self::isEmptyStr($doctor_name) || self::isEmptyStr($phone) || self::isEmptyStr($member_since) || self::isEmptyStr($address) || self::isEmptyStr($blood_group) || self::isEmptyStr($genotype) || self::isEmptyStr($illness) || self::isEmptyStr($hospitalized) || self::isEmptyStr($surgical_operation)) {
             $this->response = self::alert_msg("Please fill in all the required fields and Try again!","danger");
         }
         else{
@@ -777,9 +777,9 @@ class Osotech
             try {
                 $this->dbh->beginTransaction();
                 //update the student info on student tbl
-                $this->stmt = $this->dbh->prepare("INSERT INTO `visap_stdmedical_tbl` (studId,stdHospitalName,stdHospitalOwner,stdHospitalPhone,stdRegDate,stdHospitalAddress,stdBlood,stdGenotype,stdSickness,stdFamilySickness,stdIsHospitalized,stdSurgical) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-                if ($this->stmt->execute(array($applicant_id,$hospital_name,$doctor_name,$phone,$member_since,$address,$blood_group,$genotype,$illness,$family_illness,$hospitalized,$surgical_operation))) {
-                    $_SESSION['AUTH_SMAPP_APPLICANT_ID'] = $applicant_id;
+                $this->stmt = $this->dbh->prepare("INSERT INTO `visap_stdmedical_tbl` (studId,stdHospitalName,stdHospitalOwner,stdHospitalPhone,stdRegDate,stdHospitalAddress,stdBlood,stdGenotype,stdSickness,stdIsHospitalized,stdSurgical) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+                if ($this->stmt->execute(array($applicant_id,$hospital_name,$doctor_name,$phone,$member_since,$address,$blood_group,$genotype,$illness,$hospitalized,$surgical_operation))) {
+                    $_SESSION['AUTH_SMATECH_APPLICANT_ID'] = $applicant_id;
                     $this->dbh->commit();
                     $this->response = self::alert_msg("Step Five completed successfully, Pls wait...","success")."<script>setTimeout(()=>{
 			window.location.href='".ADMISSION_ROOT."submitapplication?applicant=".$admission_no."&page=6';
@@ -836,17 +836,17 @@ class Osotech
                 //update the student info on student tbl
                 $this->stmt = $this->dbh->prepare("UPDATE `visap_student_tbl` SET stdPassport=? WHERE stdId=? AND stdRegNo=? LIMIT 1");
                 if ($this->stmt->execute(array($passport_realName,$applicant_id,$admission_no))) {
-                    $_SESSION['AUTH_SMAPP_APPLICANT_ID'] = $applicant_id;
+                    $_SESSION['AUTH_SMATECH_APPLICANT_ID'] = $applicant_id;
                     if (move_uploaded_file($passport_temp, $destination)) {
                         //send registrationmessage to the new student
-                        $Osotech_mailing = new Osotech_mailing();
-                        if ($Osotech_mailing->SendUserConfirmationEmail($studentEmail,$studentSurname,$confirmation_code,$userType)) {
+                      /*  $Osotech_mailing = new Osotech_mailing();
+                        if ($Osotech_mailing->SendUserConfirmationEmail($studentEmail,$studentSurname,$confirmation_code,$userType)) {*/
                             // Generate the student registration photo card...
                             $this->dbh->commit();
                             $this->response = self::alert_msg("Congratulations, Your registration with us was successful, Pls wait... while we generate your Photo Card","success")."<script>setTimeout(()=>{
 			window.location.href='".ADMISSION_ROOT."regphotocard?applicant=".$admission_no."&page=photocard';
 			},1500);</script>";
-                        }
+                        /*}*/
 
                     }
 
@@ -909,6 +909,7 @@ class Osotech
             }
         }
         return $this->response;
+        unset($this->dbh);
     }
 
     public function validate_Mobile_Number($mobile) {
@@ -942,7 +943,7 @@ class Osotech
     public function generate_admission_number($admitted_year){
      $this->response ="";
      $schoolCode=__OSO_SCHOOL_CODE__;//school Code
-    $this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM $this->table_name ORDER BY stdRegNo DESC LIMIT 1");
+    $this->stmt = $this->dbh->prepare("SELECT stdRegNo FROM `visap_student_tbl` ORDER BY stdRegNo DESC LIMIT 1");
     $this->stmt->execute();
     if ($this->stmt->rowCount() > 0) {
     if ($row = $this->stmt->fetch());

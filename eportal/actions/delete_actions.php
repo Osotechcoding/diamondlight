@@ -133,4 +133,12 @@ if (isset($_POST['action']) && $_POST['action']!="") {
     echo $result;
    }
  }
+
+ if ($_POST['action'] ==="delete_oauth_code") {
+   $codeId = $Configuration->Clean($_POST['codeId']);
+    $result = $Admin->deleteSchoolOauthCode($codeId);
+    if ($result) {
+      echo $result;
+    }
+  }
 }

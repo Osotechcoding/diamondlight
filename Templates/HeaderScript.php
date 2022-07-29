@@ -1,3 +1,11 @@
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Call back function 2 -->
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            }
+        </script>
 <!-- Bootstrap v4.4.1 css -->
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <!-- font-awesome css -->

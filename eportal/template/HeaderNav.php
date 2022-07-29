@@ -18,6 +18,7 @@
               </ul>
             </div>
             <ul class="nav navbar-nav float-right">
+              <li><div id="google_translate_element"></div></li>
               <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon <?php echo ($_SESSION['lang']==='en')? 'flag-icon-us':'flag-icon-ng';?>"></i><span class="selected-language"><?php echo $_SESSION['language']; ?></span></a>
                 <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="?lang=yor" data-language="yor"><i class="flag-icon flag-icon-ng mr-50"></i> Yoruba</a><a class="dropdown-item" href="?lang=hausa" data-language="hausa"><i class="flag-icon flag-icon-ng mr-50"></i> Hausa</a><a class="dropdown-item" href="?lang=igbo" data-language="igbo"><i class="flag-icon flag-icon-ng mr-50"></i> Igbo</a><a class="dropdown-item" href="?lang=en" data-language="en"><i class="flag-icon flag-icon-us mr-50"></i> English</a></div>
               </li>

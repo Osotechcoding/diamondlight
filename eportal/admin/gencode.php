@@ -8,20 +8,22 @@ require_once "helpers/helper.php";
     <?php include "../template/MetaTag.php";?>
     <title><?php echo $SmappDetails->school_name ?> :: Smatech Accesssibility Code Generator</title>
    <!-- include template/HeaderLink.php -->
-   <?php include "../template/HeaderLink.php";?>
+   <?php include "../template/dataTableHeaderLink.php";?>
    <style>
 
 		/* General */
 
-button, code {display: block;margin: 30px auto}
+/*button, code {display: block;margin: 30px auto}*/
 
 /* Code */
 
 code {
+  display: block;
     background-color: antiquewhite;
     color: dimgrey;
     height: 100px;
-    width: 100%;
+    width: auto;
+    margin: 30px auto;
     text-align: center;
     line-height: 100px;
     font-size: 40px;
@@ -29,20 +31,6 @@ code {
     border-left: 15px solid olivedrab
 }
 
-/* Button */
-
-.butt {
-    background-color: olivedrab;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 7px 13px;
-    font-family: Tahoma;
-    font-size: 20px;
-    cursor:pointer
-}
-.butt:hover {background-color: #87ba1d;}
-.butt:active {background-color: #4e6d0f;}
 	</style>
   <!-- END: Head-->
   <!-- BEGIN: Body-->
@@ -85,39 +73,36 @@ code {
       <div class="card">
        
         <div class="card-body">
-        	 <code id="serial">No Serial Generated</code>
-          <form class="form form-vertical">
+        	 <code id="serial">----------</code>
+          <form class="form form-vertical" id="authcodegen_form">
             <div class="form-body">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="first-name-vertical">SCHOOL</label>
-                    <select name="" id="" class="select2 form-control form-control-lg">
-                    	<option value="">Choose School</option>
-                    </select>
+                    <label for="schoolname">SCHOOL NAME</label>
+                    <input type="text" autocomplete="off" class="form-control form-control-lg" name="schoolname"
+                      placeholder="XYZ Schools Nigeria">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="email-id-vertical">TERM</label>
-                    <input type="text" id="email-id-vertical" class="form-control" name="email-id"
-                      placeholder="TERM">
+                    <label for="termcode">TERM</label>
+                    <input type="text" autocomplete="off" class="form-control form-control-lg" name="termcode"
+                      placeholder="Active for 1st Term">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="contact-info-vertical">SESSION</label>
-                    <input type="text" class="form-control" name="contact"
-                      placeholder="SESSION">
+                    <label for="sessioncode">SESSION</label>
+                    <input type="text" autocomplete="off" class="form-control form-control-lg" name="sessioncode"
+                      placeholder="Active for 2021/2022">
                   </div>
+                   <input type="hidden" id="serialsave" class="form-control" name="code" readonly>
+                    <input type="hidden" class="form-control" name="action" value="genOAuthCode" readonly>
                 </div>
-             
-                <input type="hidden" id="serialsave" class="form-control" name="serialsave"
-                      placeholder="OAUTH CODE" readonly>
-               
-                <button id="generate" type="button" class="btn btn-success btn-lg btn-round" onclick="generateSerial()">Generate</button>
-                <div class="clearfix"></div>
-                <button class="btn btn-dark btn-lg mr-1 float-right" type="submit" >Save</button>
+                <button id="generate" type="button" class="btn btn-success btn-lg btn-round" onclick="generateSerial()">Generate Authentication Code</button>
+                 
+                <button class="btn btn-dark btn-lg ml-3 __loadingBtn__" type="submit" style="float: right;">Save Code</button>
               </div>
             </div>
           </form>
@@ -125,19 +110,99 @@ code {
       </div>
     </div>
     <!--  -->
-
-   
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+      <table class="table osotechDatatable table-bordered">
+        <thead class="text-center">
+          <tr>
+          <th>S/N</th>
+          <th>School Name</th>
+          <th>Session</th>
+          <th>Term</th>
+          <th>Code</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+        <tbody class="text-center">
+            <?php 
+                $all_Code = $Admin->getAllOauthCode();
+                if ($all_Code) {
+                  $cnt=0;
+                  foreach ($all_Code as $Codes) {
+                    $cnt++;
+                    ?>
+          <tr>
+            <td><?php echo $cnt;?> </td>
+            <td><?php echo ucwords($Codes->school_name);?></td>
+            <td><?php echo ucwords($Codes->active_ses);?></td>
+          <td><?php echo ucwords($Codes->term);?></td>
+          <td><?php echo ucwords($Codes->oauth_code);?></td>
+          <td><?php echo date("M j, Y",strtotime($Codes->created_at));?></td>
+         <td> <button type="button" class="btn btn-danger btn-md delete_oauthcode_btn __loadingBtn2__<?php echo $Codes->id;?>" data-id="<?php echo $Codes->id;?>">Delete</button> </td>
+        </tr>
+         <?php
+                  }
+                }
+                 ?>
+      </tbody>
+      </table>
+    </div>
+      </div>
+    </div>
     <!-- content goes here -->
         </div>
       </div>
     </div>
+
     <!-- END: Content-->
     </div>
+
+
    <?php include "../template/footer.php"; ?>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->
-    <?php include "../template/FooterScript.php"; ?>
+    <?php include "../template/DataTableFooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
+     <script>
+       $(document).ready(function(){
+
+        //
+         const delete_oauthcode_btn = $(".delete_oauthcode_btn");
+      delete_oauthcode_btn.on("click", function(){
+        let codeId = $(this).data("id");
+        let action = 'delete_oauth_code';
+         let is_true = confirm("Are you Sure you want to Remove this Image?");
+      if (is_true) {
+        $(".__loadingBtn2__"+codeId).html('<img src="../assets/loaders/rolling_loader.svg" width="20"> Processing...').attr("disabled",true);
+        //send request 
+        $.post("../actions/delete_actions",{action:action,codeId:codeId},function(response){
+          setTimeout(()=>{
+            $(".__loadingBtn2__"+codeId).html("Delete").attr("disabled",false);
+            $("#server-response").html(response);
+          },500);
+        });
+      }else{
+        return false;
+      }
+      })
+
+        //
+        const GENAUTHCODEFORM = $("#authcodegen_form");
+        GENAUTHCODEFORM.on("submit", function (event) {
+              event.preventDefault();
+      $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
+      //send request
+      $.post("../actions/actions",GENAUTHCODEFORM.serialize(),function(response){
+        setTimeout(()=>{
+      $(".__loadingBtn__").html('Save Code').attr("disabled",false);
+       $("#server-response").html(response);
+        },500);
+      })
+        })
+       })
+     </script>
      <script>
 	function generateSerial() {
     
@@ -162,7 +227,7 @@ code {
     }
     
     document.getElementById('serial').innerHTML = randomSerial;
-    document.getElementById('serialsave').value = randomSerial.toUpperCase();
+    document.getElementById('serialsave').value = randomSerial;
     
 }
 </script>
