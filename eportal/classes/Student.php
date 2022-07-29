@@ -92,6 +92,7 @@ class Student{
 		$this->response ="0";
 		}
 		return $this->response;
+		unset($this->dbh);
 }
 
 public function count_recent_applicants(){

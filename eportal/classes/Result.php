@@ -463,4 +463,18 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
 			 unset($this->dbh);
 	}
 
+	//get student termly offered subjects
+	public function getMyTermylyOfferedSubjects($stdRegNo,$stdgrade,$term,$session){
+		$this->stmt = $this->dbh->prepare("SELECT count(`reportId`) as total_subjects FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
+			$this->stmt->execute(array($stdRegNo,$stdgrade,$term,$session));
+			if ($this->stmt->rowCount() > 0) {
+			$rows = $this->stmt->fetch();
+			$this->response = $rows->total_subjects;
+			}else{
+			$this->response =0;
+		}
+		return $this->response;
+		unset($this->dbh);
+	}
+
 }

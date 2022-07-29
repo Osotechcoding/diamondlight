@@ -628,7 +628,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             <?php endif; ?></td>
           </tr>
         </table>
-       <!--  <br>
+        <br>
         <table style="table-layout: auto; width:100%;" id="ratingIndices">
           <thead>
               <tr>
@@ -636,7 +636,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
               </tr>
           </thead>
             <tr>
-              <td style="font-size: 8px;">
+              <td style="font-size: 7px;">
                   <p>5. Maintains an Excellent degree of Observable traits.</p>
                   <p>4. Maintains a High level of Observable traits.</p>
                   <p>3. Acceptable level of Observable traits.</p>
@@ -646,7 +646,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             </tr>
            <tr>
         </table>
-        <br> -->
+        <br> 
         <table style="table-layout: auto; width: 100%;" id="gradeAnalysis">
           <thead>
             <tr>
@@ -689,7 +689,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
           <h4>Class Teacher's Remark:</h4>
           <hr>
          <?php if ($teacher_res_comment = $Osotech->get_student_result_comment_details($student_reg_number,$student_class,$term,$rsession)) {?>
-            <p><b><?php echo ucwords($student_data->full_name); ?></b> <?php echo $teacher_res_comment->teacher_comment; ?></p>
+            <p> <?php echo $teacher_res_comment->teacher_comment; ?></p>
             <?php
             // code...
           } ?>
@@ -708,7 +708,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
           <h4>Head of School's Remark:</h4>
           <hr>
           <?php if ($principal_res_comment = $Osotech->get_student_result_comment_details($student_reg_number,$student_class,$term,$rsession)) {?>
-            <p><b><?php echo ucwords($student_data->full_name); ?></b> <?php echo $principal_res_comment->principal_coment; ?></p>
+            <p><b> <?php echo $principal_res_comment->principal_coment; ?></p>
             <?php
             // code...
           } ?>
@@ -733,7 +733,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
       </div>
       <br>
 <hr>
-<h4 style="margin-bottom: 20px;color: darkred;">Note: <b>Any alteration renders this result invalid.</b><span style="float: right;"> Powered by: SMATech</span></h4>
+<h4 style="margin-bottom: 20px;color: darkred;">Note: <b>Any alteration renders this result invalid.</b><span style="float: right;"> Powered by: OsoTech</span></h4>
 <button onclick="javascript:window.print();" type="button" style="background: black; color: white; margin-bottom: 15px;">Print Now</button>
 
     <!-- End of result -->

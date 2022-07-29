@@ -246,11 +246,11 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
                 }
                 //visap_offered_subject_tbl
                 //id,student_class,subject,aca_session
-              $stmt = $dbh->prepare("SELECT count(id) as total_sub FROM `visap_registered_subject_tbl` WHERE subject_class=?");
-                $stmt->execute(array($student_class));
+              $stmt = $dbh->prepare("SELECT count(`reportId`) as total_subjects FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
+                $stmt->execute(array($student_reg_number,$student_class,$term,$rsession));
                 if ($stmt->rowCount()>0) {
                   $reSet = $stmt->fetch();
-                  $subjectOffered = $reSet->total_sub;
+                  $subjectOffered = $reSet->total_subjects;
                 }else{
                   $subjectOffered =0;
                 }
@@ -580,7 +580,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             <?php endif; ?></td>
           </tr>
         </table>
-       <!--  <br>
+         <br>
         <table style="table-layout: auto; width:100%;" id="ratingIndices">
           <thead>
               <tr>
@@ -588,7 +588,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
               </tr>
           </thead>
             <tr>
-              <td style="font-size: 8px;">
+              <td style="font-size: 7px;">
                   <p>5. Maintains an Excellent degree of Observable traits.</p>
                   <p>4. Maintains a High level of Observable traits.</p>
                   <p>3. Acceptable level of Observable traits.</p>
@@ -598,7 +598,7 @@ $resultScore->execute(array($student_reg_number,$student_class,$term,$rsession))
             </tr>
            <tr>
         </table>
-        <br> -->
+        <br> 
         <table style="table-layout: auto; width: 100%;" id="gradeAnalysis">
           <thead>
             <tr>
