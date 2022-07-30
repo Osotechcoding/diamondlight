@@ -52,14 +52,6 @@ require_once "helpers/helper.php";
   <div class="row match-height">
     <div class="col-md-12 col-12">
       <div class="card">
-          <div class="card-header">
-            <?php //include_once 'Links/results_btn.php'; ?>
-          </div>
-        <!-- <div class="card-header">
-            <h3>Select Student Class and Session to view Results</h3>
-         <a href="upload_single_result"> <button type="button" class="btn btn-dark btn-md badge-pill"><span class="fa fa-address-card fa-1x"></span> UPLOAD SINGLE RESULT</button></a>
-      
-        </div> -->
         <div class="card-body">
           <form class="form form-vertical" action="" method="post">
             <div class="form-body">
@@ -116,9 +108,6 @@ require_once "helpers/helper.php";
       </div>
     </div>
   </div>
-
-  </div>
-
 
 </section>
 <!-- Basic Vertical form layout section end -->

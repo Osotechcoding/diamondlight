@@ -71,6 +71,8 @@
           </li>
            <li class=" nav-item"><a href="editstudentresult"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Update Student Result">Edit Result</span></a>
           </li>
+          <li class=" nav-item"><a href="deleteExamResults"><i class="fa fa-trash fa-1x"></i><span class="menu-title text-truncate" data-i18n="Remove Result">Remove Result</span></a>
+          </li>
          <!--  <li class="nav-item"><a href="result_uploading"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Bulk Results</span></a>
           </li> -->
 

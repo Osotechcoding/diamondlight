@@ -1,4 +1,5 @@
  <?php
+ @ob_start();
  @session_start();
 include_once "../languages/config.php";
 // require_once "../classes/Configuration.php";
@@ -18,8 +19,12 @@ $Pin_serial = new Pins();
 $Visitor = new Visitors();
 $Administration = new Administration();
 $Blog = new Blog();
+$Result = new Result();
 
 $request_method = $_SERVER['REQUEST_METHOD'];
+
+if ($request_method === 'POST') {
+
 if (isset($_POST['action']) && $_POST['action']!="") {
   // code...
   if ($_POST['action'] ==="delete_subject_now") {
@@ -141,4 +146,16 @@ if (isset($_POST['action']) && $_POST['action']!="") {
       echo $result;
     }
   }
+
+  //remove_subject_from_result_tbl
+  if ($_POST['action'] ==="remove_subject_from_result_tbl") {
+   $rId = $Configuration->Clean($_POST['rId']);
+    $result = $Result->deleteTermlyResult($rId);
+    if ($result) {
+      echo $result;
+    }
+  
+}
+
+}
 }
