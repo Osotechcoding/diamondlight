@@ -1190,5 +1190,15 @@ if ($this->stmt->rowCount() > 0) {
             unset($this->dbh);
     }
 
+    public function getAllTestimonials(){
+    $this->stmt = $this->dbh->prepare("SELECT * FROM `visap_people_say_tbl` ORDER BY id DESC");
+    $this->stmt->execute();
+    if ($this->stmt->rowCount() >0) {
+    $this->response = $this->stmt->fetchAll();
+    return $this->response;
+    unset($this->dbh);
+}
+    }
+
 }
 $Osotech = new Osotech();

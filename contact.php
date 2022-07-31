@@ -36,7 +36,7 @@ require_once ("Inc/Osotech.php");
             <!-- Breadcrumbs Start -->
             <div class="rs-breadcrumbs breadcrumbs-overlay">
                 <div class="breadcrumbs-img">
-                    <img src="assets/images/breadcrumbs/5.jpg" alt="Breadcrumbs Image">
+                    <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
                 </div>
                 <div class="breadcrumbs-text white-color padding">
                     <h1 class="page-title white-color">Contact Us</h1>

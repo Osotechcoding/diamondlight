@@ -546,4 +546,118 @@ public function delete_galleryById($Id){
 }
 	}
 
+	//create what the people says
+
+	public function createWhatPeopleSays($data,$file){
+		$auth_pass = $this->config->Clean($data['auth_code']);
+		$fullname = $this->config->Clean($data['testimonial_name']);
+		$message = $this->config->Clean($data['content']);
+		$occupation = $this->config->Clean($data['occupation']);
+		$photo_temp = $file['tImage']['tmp_name'];
+		$photoName = $file['tImage']['name'];
+		$photo_size = $file['tImage']['size']/1024;
+		$photo_error = $file['tImage']['error'];
+		//$ext = pathinfo($blogFileName, PATHINFO_EXTENSION);
+		$allowed = array("jpg","jpeg","png");
+		 $name_div = explode(".", $photoName);
+   		$image_ext = strtolower(end($name_div));
+		//CHECK FOR EMPTY FIELDS
+		if ($this->config->isEmptyStr($fullname) || $this->config->isEmptyStr($occupation) || $this->config->isEmptyStr($message) || $this->config->isEmptyStr($photoName)) {
+			$this->response = $this->alert->alert_toastr("error","Invalid Submission, Please try again!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->isEmptyStr($auth_pass)) {
+			$this->response = $this->alert->alert_toastr("error","Please enter an Authentication code to proceed!",__OSO_APP_NAME__." Says");
+		}elseif ($auth_pass !== __OSO__CONTROL__KEY__) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}elseif (!in_array($image_ext, $allowed)) {
+		$this->response = $this->alert->alert_toastr("error","Passport format is not supported!",__OSO_APP_NAME__." Says");
+		}elseif ($photo_size >50) {
+	$this->response = $this->alert->alert_toastr("error","Photo Size should not exceed 50KB, Selected Image Size is :".number_format($photo_size,2)."KB",__OSO_APP_NAME__." Says");
+		}elseif ($photo_error !==0) {
+	 $this->response = $this->alert->alert_toastr("error","There was an error Uploading Gallery Image, Try again!",__OSO_APP_NAME__." Says");
+		}else{
+			$newFileName = __OSO_APP_NAME__.'_testi_'.uniqid().".".$image_ext;
+	$file_destination = "../testimonials/".$newFileName;
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_people_say_tbl` WHERE fullname=? LIMIT 1");
+	$this->stmt->execute(array($fullname));
+	if ($this->stmt->rowCount() ==1) {
+		$this->response = $this->alert->alert_toastr("error","$fullname is already Created, Please check and try again!",__OSO_APP_NAME__." Says");
+	}else {
+		try {
+	$created_at = date("Y-m-d");
+    	$this->dbh->beginTransaction();
+    	$this->stmt = $this->dbh->prepare("INSERT INTO `visap_people_say_tbl` (fullname,message,image,job,created_at) VALUES (?,?,?,?,?);");
+    	if ($this->stmt->execute(array($fullname,$message,$newFileName,$occupation,$created_at))) {
+    		if ($this->config->move_file_to_folder($photo_temp,$file_destination)) {
+    			$this->dbh->commit();
+    $this->response = $this->alert->alert_toastr("success","Testimonial Uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+							window.location.reload();
+						},500);</script>";
+    		}
+    	}else{
+    		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+    	}
+
+    } catch (PDOException $e) {
+    	$this->dbh->rollback();
+    	if (file_exists($file_destination)) {
+		 unlink($file_destination);
+	}
+   $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+    }
+	}
+		}
+ 	return $this->response;
+	unset($this->dbh);
+	}
+
+
+	public function getAllTestimonials(){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_people_say_tbl` ORDER BY id DESC");
+	$this->stmt->execute();
+	if ($this->stmt->rowCount() >0) {
+	$this->response = $this->stmt->fetchAll();
+	return $this->response;
+	unset($this->dbh);
+}
+	}
+
+public function getTestimonialById($Id){
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_people_say_tbl` WHERE id=? LIMIT 1");
+	$this->stmt->execute([$Id]);
+	if ($this->stmt->rowCount() == 1) {
+	$this->response =$this->stmt->fetch();
+	return $this->response;
+	unset($this->dbh);
+	}
+}
+
+	//delete Testimonial by id
+	public function deleteTestimonialById($testiId){
+		if (!$this->config->isEmptyStr($testiId)) {
+			$testimonials_details = self::getTestimonialById($testiId);
+			$filePath = "../testimonials/".$testimonials_details->image;
+			try {
+		$this->dbh->beginTransaction();
+	//Delete the selected Subject
+		$this->stmt = $this->dbh->prepare("DELETE FROM `visap_people_say_tbl` WHERE id=? LIMIT 1");
+		if ($this->stmt->execute([$testiId])) {
+			if (file_exists($filePath)) {
+				if (unlink($filePath)) {
+				 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Deleted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.reload();
+			},500);</script>";
+				}
+			}
+		}
+			} catch (PDOException $e) {
+		$this->dbh->rollback();
+    $this->response  = $this->alert->alert_toastr("error","Failed to Delete: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+		return $this->response;
+		unset($this->dbh);
+		}
+	}
+
+
 }

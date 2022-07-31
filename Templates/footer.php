@@ -76,41 +76,37 @@
                 <h3 class="widget-title">Useful Links</h3>
                 <ul class="site-map">
                     <li><a href="yearbook">Year Book</a></li>
-                    <li><a href="blog-right">News/Blog</a></li>
-                    <li><a href="javascript:void(0);">Gallery</a></li>
-                    <li><a href="javascript:void(0);">Calendar</a></li>
+                    <li><a href="blog-right">News</a></li>
+                    <li><a href="gallery">Gallery</a></li>
+                    <li><a href="events">Events</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12 footer-widget">
                 <h3 class="widget-title">Recent Posts</h3>
-                <div class="recent-post mb-20">
+                <?php $recentBlog = $Osotech->show_all_recent_active_blogs_post();
+                if ($recentBlog) {
+                     foreach ($recentBlog as $keyrecent) {?>
+                      <div class="recent-post mb-20 md-pb-0">
                     <div class="post-img">
-                        <img src="assets/images/footer/1.jpg" alt="">
+                        <img src="eportal/news-images/<?php echo $keyrecent->blog_image; ?>" width="200">
                     </div>
                     <div class="post-item">
                         <div class="post-desc">
-                            <a href="#">University while the lovely valley team work</a>
-                        </div>
-                        <span class="post-date">
-                                        <i class="fa fa-calendar"></i>
-                                        September 20, 2020
-                                    </span>
-                    </div>
-                </div>
-                <div class="recent-post mb-20 md-pb-0">
-                    <div class="post-img">
-                        <img src="assets/images/footer/2.jpg" alt="">
-                    </div>
-                    <div class="post-item">
-                        <div class="post-desc">
-                            <a href="#">High school program starting soon 2021</a>
+                            <a href="#"><?php echo ucwords($keyrecent->blog_title);?></a>
                         </div>
                         <span class="post-date">
                                        <i class="fa fa-calendar-check-o"></i>
-                                        September 14, 2020
+                                       <?php echo date("F j, Y",strtotime($keyrecent->created_at));?>
+                                        
                                     </span>
                     </div>
                 </div>
+                        <?php
+                         
+                     }
+                 } ?>
+                
+                
             </div>
         </div>
     </div>
@@ -126,8 +122,8 @@
             <div class="col-lg-6 text-right md-text-left">
                 <ul class="copy-right-menu">
                     <li><a href="career">Career</a></li>
-                    <li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
-                    <li><a href="./eportal">School Portal</a></li>
+                    <li><a href="javascript:void(0);">Terms</a></li>
+                    <li><a href="./eportal/">Portal</a></li>
 	                <li><a href="./admission/">Admission</a></li>
                 </ul>
             </div>

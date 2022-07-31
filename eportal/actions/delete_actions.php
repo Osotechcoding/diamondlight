@@ -154,7 +154,15 @@ if (isset($_POST['action']) && $_POST['action']!="") {
     if ($result) {
       echo $result;
     }
-  
+}
+
+  //delete_testi
+  if ($_POST['action'] ==="delete_testi") {
+   $testiId = $Configuration->Clean($_POST['testiId']);
+    $result = $Blog->deleteTestimonialById($testiId);
+    if ($result) {
+      echo $result;
+    }
 }
 
 }

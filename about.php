@@ -232,7 +232,7 @@ For more information, kindly contact 08131374443, 08140122566
 					</div>
 					<div class="rs-carousel owl-carousel nav-style2 orange-color" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="true" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="true" data-md-device-dots="false">
 						<div class="team-item">
-							<img src="assets/images/team/1.jpg" alt="">
+							<img src="assets/images/team/2.jpg" alt="">
 							<div class="content-part">
 								<h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
 								<span class="designation">Professor</span>
@@ -258,7 +258,7 @@ For more information, kindly contact 08131374443, 08140122566
 							</div>
 						</div>
 						<div class="team-item">
-							<img src="assets/images/team/3.jpg" alt="">
+							<img src="assets/images/team/2.jpg" alt="">
 							<div class="content-part">
 								<h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
 								<span class="designation">Professor</span>
@@ -281,7 +281,7 @@ For more information, kindly contact 08131374443, 08140122566
 					<div class="row">
 						<div class="col-lg-5 pr-90 md-pr-15 md-mb-30">
 							<div class="donation-part">
-								<img src="assets/images/donor/1.jpg" alt="">
+								<img src="assets/images/about/donor.jpg" alt="">
 								<h3 class="title mb-10">What are you Waiting for?</h3>
 								<div class="desc mb-38">Get your Child(ren) Admitted Now.</div>
 								<div class="btn-part">
@@ -292,7 +292,7 @@ For more information, kindly contact 08131374443, 08140122566
 						<div class="col-lg-7 lg-pl-0 ml--15 md-ml-0">
 							<div class="testi-wrap mb-50">
 								<div class="img-part">
-									<img src="assets/images/testimonial/style2/1.jpg" alt="">
+									<img src="assets/images/about/2.jpg" alt="">
 								</div>
 								<div class="content-part new-content pt-12">
 									<div class="desc">Education is the passport to the future for tomorrow belongs to those who prepare for it today</div>
@@ -304,7 +304,7 @@ For more information, kindly contact 08131374443, 08140122566
 							</div>
 							<div class="testi-wrap">
 								<div class="img-part">
-									<img src="assets/images/testimonial/style2/2.jpg" alt="">
+									<img src="assets/images/about/1.jpg" alt="">
 								</div>
 								<div class="content-part new-content pt-12">
 									<div class="desc">Education is the passport to the future for tomorrow belongs to those who prepare for it today</div>

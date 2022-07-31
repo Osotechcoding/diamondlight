@@ -490,6 +490,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	//upload_what_people_say
+	if ($_POST['action'] ==="upload_what_people_say") {
+		$result = $Blog->createWhatPeopleSays($_POST,$_FILES);
+		if ($result) {
+		echo $result;
+		}
+	}
+
 }
 }
 ?>

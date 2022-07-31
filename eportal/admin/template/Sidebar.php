@@ -196,6 +196,8 @@
                <li><a class="d-flex align-items-center" href="add_gallery"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Gallery</span></a>
                 <li><a class="d-flex align-items-center" href="add_slider"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Slider</span></a>
               </li>
+              <li><a class="d-flex align-items-center" href="add_testimonial"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Testimonial">What People Say</span></a>
+              </li>
 
                 <li><a class="d-flex align-items-center" href="visitor_book"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Visitor">Vistors' Book</span></a>
               </li>
