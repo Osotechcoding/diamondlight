@@ -56,24 +56,24 @@ class Pins{
  		case 'rp':
  	// determine which table to create
  		$this->_table_ = "tbl_reg_pins";
- 		$this->_Pins_code = 15;
- 		$this->_Pins_serial = 8;
- 		$this->_Pins_prefix ="SMAA";
+ 		$this->_Pins_code = 13;
+ 		$this->_Pins_serial = 6;
+ 		$this->_Pins_prefix ="SMA";
  		$this->_pin_desc_ ="Registration Pins";
  			break;
  			case 'rcp':
  		// determine which table to create
  		$this->_table_ = "tbl_result_pins";
- 		$this->_Pins_code = 14;
- 		$this->_Pins_serial = 9;
- 		$this->_Pins_prefix ="SMAR";
+ 		$this->_Pins_code = 12;
+ 		$this->_Pins_serial = 5;
+ 		$this->_Pins_prefix ="SMR";
  		$this->_pin_desc_ ="Result Checker Pins";
  			break;
  			case 'ep':
  		// determine which table to create
  		$this->_table_ = "tbl_exam_pins";
- 		$this->_Pins_code = 13;
- 		$this->_Pins_serial = 10;
+ 		$this->_Pins_code = 12;
+ 		$this->_Pins_serial = 4;
  		$this->_Pins_prefix ="WXVE";
  		$this->_pin_desc_ ="Examination Pins";
  			break;
@@ -81,8 +81,8 @@ class Pins{
  			case 'ewp':
  		// determine which table to create
  		$this->_table_ = "tbl_ewallet_pins";
- 		$this->_Pins_code = 12;
- 		$this->_Pins_serial = 11;
+ 		$this->_Pins_code = 10;
+ 		$this->_Pins_serial = 3;
  		$this->_Pins_prefix ="WXVW";
  		$this->_pin_desc_ ="e-Wallet Pins";
  			break;
@@ -125,7 +125,7 @@ class Pins{
     	$this->stmt->execute(array($pn,$sn));
     	 $fetch_objX2 = $this->stmt->fetch();
     	 $count_check2 = $fetch_objX2->cnt;
-    	 if ($count_check2>=1) {
+    	 if ($count_check2 >= 1) {
     // do a kind of reshuffle again
     	@$pn = str_shuffle(substr($nums3,mt_rand(0,(strlen($nums3)-$this->_Pins_code)),$this->_Pins_code));
     	@$sn = strtoupper($this->_Pins_prefix.str_shuffle(substr($alpha3, mt_rand(0,(strlen($alpha3)-$this->_Pins_serial)),$this->_Pins_serial)));
@@ -135,7 +135,7 @@ class Pins{
     	$this->stmt->execute(array($pn,$sn));
     	 $fetch_objX3 = $this->stmt->fetch();
     	 $count_check3 = $fetch_objX3->cnt;
-    	 if ( $count_check3 >=1) {
+    	 if ( $count_check3 >= 1) {
     	 	// do a kind of reshuffle again
     	 	@$pn = str_shuffle(substr($nums4,mt_rand(0,(strlen($nums4)-$this->_Pins_code)),$this->_Pins_code));
     	@$sn = strtoupper($this->_Pins_prefix.str_shuffle(substr($alpha4, mt_rand(0,(strlen($alpha4)-$this->_Pins_serial)),$this->_Pins_serial)));
@@ -145,7 +145,7 @@ class Pins{
     	$this->stmt->execute(array($pn,$sn));
     	 $fetch_objX4 = $this->stmt->fetch();
     	 $count_check4 = $fetch_objX4->cnt;
-    	 if ($count_check4>=1) {
+    	 if ($count_check4 >= 1) {
     	 	// reshuffle for the last time
     	 	@$pn = str_shuffle(substr($nums5,mt_rand(0,(strlen($nums5)-$this->_Pins_code)),$this->_Pins_code));
     	@$sn = strtoupper($this->_Pins_prefix.str_shuffle(substr($alpha5, mt_rand(0,(strlen($alpha5)-$this->_Pins_serial)),$this->_Pins_serial)));
@@ -184,19 +184,42 @@ public function get_pins($table){
 		}
 	}
 
-	public function delete($table,$id){
-		if (!empty($table) && ! empty($id)) {
-			$this->query ="DELETE FROM $table WHERE pin_id=? LIMIT 1";
-			$this->stmt =$this->dbh->prepare($this->query);
-			$this->stmt->execute(array($id));
-			if ($this->stmt->rowCount()>0) {
-		$this->response = $this->alert->alert_toastr("success","Pin Deleted Successfully!",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{window.location.reload();},500)</script>";
-			}else{
-		 $this->response = $this->alert_toastr("error",$lang['server_error'],__OSO_APP_NAME__." Says");
-			}
+	public function removeUsedResultPin($table,$pinId){
+		if (!$this->config->isEmptyStr($pinId)) {
+			try {
+		$this->dbh->beginTransaction();
+		if ($table === "tbl_result_pins") {
+			$pinHistory = self::getPinsByCodeSerial("tbl_result_pins",$pinId);
+				$oldPin = $pinHistory->pin_code;
+				$oldSerial = $pinHistory->pin_serial;
+				//Delete the selected Subject
+		$this->stmt = $this->dbh->prepare("DELETE FROM `tbl_result_pins_history` WHERE pin_code=? AND pin_serial=? LIMIT 1");
+	if ($this->stmt->execute([$oldPin,$oldSerial])) {
+		$this->stmt = $this->dbh->prepare("DELETE FROM `tbl_result_pins` WHERE pin_id=? LIMIT 1");
+		if ($this->stmt->execute([$pinId])) {
+		 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Pin Deleted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.href='resPin';
+			},800);</script>";
 		}
-		return $this->response;
-		unset($this->dbh);
+	}
+			}else{
+$this->stmt = $this->dbh->prepare("DELETE FROM `$table` WHERE pin_id=? LIMIT 1");
+		if ($this->stmt->execute([$pinId])) {
+		 $this->dbh->commit();
+			$this->response = $this->alert->alert_toastr("success","Pin Deleted Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.href='./';
+			},500);</script>";
+		}
+			}
+			} catch (PDOException $e) {
+		$this->dbh->rollback();
+    $this->response  = $this->alert->alert_toastr("error","Failed to Delete Pin: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
+			}
+
+			return $this->response;
+				unset($this->dbh);
+		}
 	}
 
 	//count scratch Card by table name
@@ -251,6 +274,18 @@ public function get_pins($table){
 				$this->response =$this->stmt->fetch();
 				return $this->response;
 				unset($this->dbh);
+			}
+		}
+	}
+
+	//get pin by Id
+	public function getPinsByCodeSerial($table,$pinId){
+		if (!empty($pinId)) {
+			$this->stmt =$this->dbh->prepare("SELECT * FROM `$table` WHERE pin_id=? LIMIT 1");
+			$this->stmt->execute([$pinId]);
+			if ($this->stmt->rowCount() == 1) {
+				$this->response = $this->stmt->fetch();
+				return $this->response;
 			}
 		}
 	}

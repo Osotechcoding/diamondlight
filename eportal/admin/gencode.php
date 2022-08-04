@@ -73,7 +73,7 @@ code {
       <div class="card">
        
         <div class="card-body">
-        	 <code id="serial">----------</code>
+        	 <code id="serial">**********</code>
           <form class="form form-vertical" id="authcodegen_form">
             <div class="form-body">
               <div class="row">
@@ -81,28 +81,31 @@ code {
                   <div class="form-group">
                     <label for="schoolname">SCHOOL NAME</label>
                     <input type="text" autocomplete="off" class="form-control form-control-lg" name="schoolname"
-                      placeholder="XYZ Schools Nigeria">
+                      placeholder="XYZ Schools">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="termcode">TERM</label>
-                    <input type="text" autocomplete="off" class="form-control form-control-lg" name="termcode"
-                      placeholder="Active for 1st Term">
+                      <select name="termcode" id="termcode" class="custom-select form-control">
+                      <option value="" selected>Choose...</option>
+                      <option value="1st Term">1st Term</option>
+                      <option value="2nd Term">2nd Term</option>
+                      <option value="3rd Term">3rd Term</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="sessioncode">SESSION</label>
-                    <input type="text" autocomplete="off" class="form-control form-control-lg" name="sessioncode"
-                      placeholder="Active for 2021/2022">
+                    <input type="text" autocomplete="off" class="form-control form-control-lg" name="sessioncode" placeholder="2021/2022">
                   </div>
                    <input type="hidden" id="serialsave" class="form-control" name="code" readonly>
                     <input type="hidden" class="form-control" name="action" value="genOAuthCode" readonly>
                 </div>
-                <button id="generate" type="button" class="btn btn-success btn-lg btn-round" onclick="generateSerial()">Generate Authentication Code</button>
+                <button id="generate" type="button" class="btn btn-success btn-lg btn-round" onclick="generateSerial()">Generate</button>
                  
-                <button class="btn btn-dark btn-lg ml-3 __loadingBtn__" type="submit" style="float: right;">Save Code</button>
+                <button class="btn btn-dark btn-lg ml-3 __loadingBtn__" type="submit" style="float: right;">Save</button>
               </div>
             </div>
           </form>

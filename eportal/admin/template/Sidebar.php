@@ -11,8 +11,8 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
           <li class="active"><a class="d-flex align-items-center" href="./"><i class="fa fa-desktop fa-1x"></i><span class="menu-item text-truncate" data-i18n="Dashboard"><?php echo $lang['Dashboard'] ?></span></a>
               </li>
-          <li class="navigation-header text-truncate"><span data-i18n="MANAGEMENT">MANAGEMENT</span>
-          </li>
+         <!--  <li class="navigation-header text-truncate"><span data-i18n="MANAGEMENT">MANAGEMENT</span>
+          </li> -->
           <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE ACTIVIES">MANAGE ACTIVIES</span></a>
             <ul class="menu-content">
               <li class="nav-item"><a href="acaSession"><i class="fa fa-calendar fa-1x"></i><span class="menu-title text-truncate" data-i18n="academic year">Academic Year</span></a>
@@ -73,16 +73,13 @@
           </li>
           <li class=" nav-item"><a href="deleteExamResults"><i class="fa fa-trash fa-1x"></i><span class="menu-title text-truncate" data-i18n="Remove Result">Remove Result</span></a>
           </li>
-         <!--  <li class="nav-item"><a href="result_uploading"><i class="fa fa-upload fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Bulk Results</span></a>
-          </li> -->
+        
+           <li class=" nav-item"><a href="publishResult"><i class="fa fa-paper-plane fa-1x"></i><span class="menu-title text-truncate" data-i18n="Publish Result">Publish Results</span></a>
+          </li>
 
-          <!-- <li class=" nav-item"><a href="javascript:void(0)"><i class="fa fa-paper-plane fa-1x"></i><span class="menu-title text-truncate" data-i18n="Publish Result">Publish Results</span></a>-->
-          <!--</li>-->
-
-          <!--  <li class=" nav-item"><a href="javascript:void(0)"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Published Result">View Published</span></a>
-          </li> -->
-         <!--   <li class=" nav-item"><a href="javascript:void(0)"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Check Result">Check Result</span></a>
-          </li> -->
+            <li class=" nav-item"><a href="viewPublishedResult"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Published Result">View Published</span></a>
+          </li> 
+        
             </ul>
           </li>
           <!-- RESULT ENDS -->
@@ -117,8 +114,8 @@
           </li>
           <!-- STUDENT ENDS -->
 
-          <li class=" navigation-header text-truncate"><span data-i18n="FINANCIAL">FINANCIAL</span>
-          </li>
+        <!--   <li class=" navigation-header text-truncate"><span data-i18n="FINANCIAL">FINANCIAL</span>
+          </li> -->
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-money fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Accounting">ACCOUNTING</span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="make_payment"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Payment">Make Payment</span></a> </li>
@@ -134,8 +131,8 @@
                <li><a class="d-flex align-items-center" href="add_loan"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Loan">Manage Loan</span></a> </li>
             </ul>
           </li>
-          <li class=" navigation-header text-truncate"><span data-i18n="SCHOOL ACTIVITY">SCHOOL ACTIVITY</span>
-          </li>
+         <!--  <li class=" navigation-header text-truncate"><span data-i18n="SCHOOL ACTIVITY">SCHOOL ACTIVITY</span>
+          </li> -->
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-credit-card-alt fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCRATCH CARD">SCRATCH CARD</span></a>
             <ul class="menu-content">
               <?php if ($Admin->isSuperAdmin($admin_data->adminId)): ?>
@@ -155,24 +152,24 @@
               <?php endif ?>
             </ul>
           </li>
-          <!-- <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-hotel fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="HOSTEL">HOSTEL</span></a>
+           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-hotel fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="HOSTEL">HOSTEL</span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="create_hostel"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Hostel">Manage Hostel</span></a>
               </li>
             </ul>
-          </li> -->
-          <!-- <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-book fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="LIBRARY">LIBRARY</span></a>-->
-          <!--  <ul class="menu-content">-->
-          <!--     <li><a class="d-flex align-items-center" href="add_book"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Add Book">Add Book</span></a>-->
-          <!--    </li>-->
-          <!--     <li><a class="d-flex align-items-center" href="student_n_book"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Result Pin">Lend Book</span></a>-->
-          <!--    </li>-->
-          <!--    <li><a class="d-flex align-items-center" href="return_books"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Return Book">Return Book</span></a>-->
-          <!--    </li>-->
-          <!--  </ul>-->
-          <!--</li>-->
+          </li> 
+           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-book fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="LIBRARY">LIBRARY</span></a>
+            <ul class="menu-content">
+               <li><a class="d-flex align-items-center" href="add_book"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Add Book">Add Book</span></a>
+             </li>
+              <li><a class="d-flex align-items-center" href="student_n_book"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Result Pin">Lend Book</span></a>
+             </li>
+             <li><a class="d-flex align-items-center" href="return_books"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Return Book">Return Book</span></a>
+            </li>
+           </ul>
+         </li>
 
-           <!-- <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-bus fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCHOOL BUS"> SCHOOL BUS </span></a>
+          <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-bus fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCHOOL BUS"> SCHOOL BUS </span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="bus_route"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Bus">Manage Bus</span></a>
               </li>
@@ -182,10 +179,10 @@
               <li><a class="d-flex align-items-center" href="running_cost"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Student & Bus">Bus Maintenance</span></a>
               </li>
             </ul>
-          </li> -->
+          </li> 
 
-         <!--  <li class=" navigation-header text-truncate"><span data-i18n="EVENT & BLOG">EVENT & BLOG</span>
-          </li> -->
+          <!--  <li class=" navigation-header text-truncate"><span data-i18n="EVENT & BLOG">EVENT & BLOG</span>
+          </li>  -->
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-calendar fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="blog & event">MANAGE EVENTS</span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="add_event"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Event">Manage Event</span></a> </li>
@@ -203,22 +200,24 @@
               </li>
             </ul>
           </li>
-          <!--  <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCHOOL EXAM">SCHOOL EXAM </span></a>
+           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCHOOL EXAM">SCHOOL EXAM </span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="javascript:void(0)"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Set Exam">Set Exam</span></a>
               </li>
                <li><a class="d-flex align-items-center" href="javascript:void(0)"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Exam Result">Exam Result</span></a>
               </li>
             </ul>
-          </li> -->
-          <!-- <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-envelope fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Messages">MESSAGES</span></a>
+          </li> 
+          <!-- MSG -->
+           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-envelope fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Messages">MESSAGES</span></a>
             <ul class="menu-content">
                <li><a class="d-flex align-items-center" href="javaScript:void(0)"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Send Message">Send </span></a> </li>
                  <li><a class="d-flex align-items-center" href="javaScript:void(0)"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Inbox"> Inbox</span></a> </li>
             </ul>
+          </li> 
+          <!-- MSG -->
+       <!--  <li class=" navigation-header text-truncate"><span data-i18n="SETTINGS">SETTINGS</span>
           </li> -->
-        <li class=" navigation-header text-truncate"><span data-i18n="SETTINGS">SETTINGS</span>
-          </li>
            <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-cogs fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Settings"> Settings</span></a>
             <ul class="menu-content">
                <li class=" nav-item"><a href="app_settings"><i class="fa fa-cogs fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">School Profile</span></a>
@@ -231,16 +230,15 @@
           </li>
             </ul>
           </li>
-         <li>
-                <a class="d-flex align-items-center" onclick=" return confirm('<?php echo $lang["logout-sure?"];?>');" href="logout?action=logout"><i class="fa fa-power-off"></i>
-                <span class="menu-item text-truncate"> <?php echo $lang['Logout'] ?></span></a>
-
-              </li>
+         
 
               <li>
-                <a class="d-flex align-items-center" href="../../" target="_blank"><i class="fa fa-globe"></i>
-                <span class="menu-item text-truncate"> <?php echo 'Visit Website' ?></span></a>
-
+               <a class="d-flex align-items-center" href="../../" target="_blank"><i class="fa fa-globe"></i>
+                <span class="menu-item text-truncate"> <?php echo 'Visit Homepage' ?></span></a>
+              </li>
+              <li>
+                <a class="d-flex align-items-center" onclick=" return confirm('<?php echo $lang["logout-sure?"];?>');" href="logout?action=logout"><i class="fa fa-power-off"></i>
+                <span class="menu-item text-truncate"> <?php echo $lang['Logout'] ?></span></a>
               </li>
         </ul>
       </div>

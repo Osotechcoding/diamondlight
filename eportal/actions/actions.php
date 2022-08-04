@@ -99,33 +99,32 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
-	if ($_POST['action'] ==="delete_pins") {
-			$id = trim($_POST['id']);
-		$table = trim($_POST['table_name']);
+	if ($_POST['action'] ===md5("delete_pins")) {
+		$pinId = $Configuration->Clean($_POST['pinId']);
+		$table = $Configuration->Clean($_POST['table_name']);
+		
 		switch ($table) {
 			case 'tap':
 				// code...
 			$table ="tbl_reg_pins";
 				break;
 				case 'trp':
-				// code...
-				$table ="tbl_result_pins";
-				break;
-				case 'tep':
-				// code...
-				$table ="tbl_exam_pins";
-				break;
-				case 'tewp':
-				// code...
-				$table ="tbl_ewallet_pins";
-				break;
-
+				 $table ="tbl_result_pins";
+				 break;
 		}
-			$result = $Pin_serial->delete($table,$id);
+			$result = $Pin_serial->removeUsedResultPin($table,$pinId);
 			if ($result) {
 				echo $result;
 			}
 	}
+
+/*	if ($_POST['action'] === md5("delete_res_pins")) {
+		$pinId = $Configuration->Clean($_POST['pinId']);
+		$result = $Pin_serial->removeUsedResultPin($pinId);
+		if ($result) {
+				echo $result;
+			}
+	}*/
 
 	if ($_POST['action'] ==="submit_student_result_upload_now") {
 	$result = $Result->upload_student_result($_POST);
@@ -495,6 +494,14 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		$result = $Blog->createWhatPeopleSays($_POST,$_FILES);
 		if ($result) {
 		echo $result;
+		}
+	}
+
+	//submit_published_action
+	if ($_POST['action'] ==="submit_published_action") {
+		$result = $Result->publishSchoolResultsByClass($_POST);
+		if ($result) {
+			echo $result;
 		}
 	}
 

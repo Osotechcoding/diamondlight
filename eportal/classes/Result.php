@@ -159,10 +159,103 @@ class Result {
 	public function view_uploaded_cognitive($data){}
 
 	//published result method
-	public function publish_result($data){}
+	public function publishSchoolResultsByClass($data){
+	$status = $this->config->Clean($data['result_action']);
+	$result_session = $this->config->Clean($data['result_session']);
+	$result_term = $this->config->Clean($data['result_term']);
+	$result_class = $this->config->Clean($data['result_class']);
+	$auth_pass = $this->config->Clean($data['auth_code']);
+	if ($this->config->isEmptyStr($status) || $this->config->isEmptyStr($result_session) || $this->config->isEmptyStr($result_term) || $this->config->isEmptyStr($result_class) || $this->config->isEmptyStr($auth_pass)) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Submission: Unable to Process your Request!",__OSO_APP_NAME__." Says");
+	}elseif ($auth_pass !== __OSO__PUBLISH_RESULT__KEY__) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+	}elseif (!self::checkResultUploadedByClass($result_class,$result_term,$result_session)) {
+	$this->response = $this->alert->alert_toastr("error","Result not found for $result_class",__OSO_APP_NAME__." Says");
+	}
+	else{
+		switch ($status) {
+			case 'Pending':
+				$resStatus = 1;
+				break;
+			case 'Released':
+				$resStatus = 2;
+				break;
+			case 'Held':
+				$resStatus = 3;
+				break;
+			case 'Cancelled':
+				$resStatus = 4;
+				break;
+
+			default:
+			$resStatus = 1;
+				break;
+		}
+		//let's do the result publishing
+		try {
+
+			$this->dbh->beginTransaction();
+			$this->stmt = $this->dbh->prepare("UPDATE `visap_termly_result_tbl` SET rStatus=? WHERE studentGrade=? AND term=? AND aca_session=?");
+	if ($this->stmt->execute(array($resStatus,$result_class,$result_term,$result_session))) {
+		 $this->dbh->commit();
+	 $this->response = $this->alert->alert_toastr("success","Result for $result_class ".strtoupper($status)." Successfully...",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+							window.location.reload();
+						},1000);</script>";
+	}else{
+$this->response = $this->alert->alert_toastr("error","Unknown Error Occured, Please try again!",__OSO_APP_NAME__." Says");
+	}
+		} catch (PDOException $e) {
+		$this->dbh->rollback();
+    $this->response  =$this->alert->alert_toastr("error","Publishing Failed: Error: ".$e->getMessage(),__OSO_APP_NAME__." Says");	
+		}
+
+	}
+	return $this->response;
+	unset($this->dbh);
+	}
 
 	//View published result method
-	public function view_published_result($data){}
+	public function view_published_result(){
+		$this->stmt = $this->dbh->prepare("SELECT DISTINCT (`studentGrade`),term, aca_session,rStatus FROM `visap_termly_result_tbl`");
+		$this->stmt->execute();
+		if ($this->stmt->rowCount() > 0) {
+			$this->response = $this->stmt->fetchAll();
+			return $this->response;
+			unset($this->dbh);
+		}
+	}
+
+	//check if the result have been uploaded 
+	public function checkResultUploadedByClass($stdGrade,$term,$session): bool{
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE studentGrade=? AND term=? AND aca_session=?");
+		$this->stmt->execute(array($stdGrade,$term,$session));
+		if ($this->stmt->rowCount() > 0) {
+		return true;
+		}else{
+		return false;
+		}
+	}
+
+	public function filterStudentResultByAction($status,$term,$session){
+		$this->stmt = $this->dbh->prepare("SELECT DISTINCT (`studentGrade`),term, aca_session,rStatus FROM `visap_termly_result_tbl` WHERE rStatus=? AND term=? AND aca_session=?");
+		$this->stmt->execute(array($status,$term,$session));
+		if ($this->stmt->rowCount() > 0) {
+			$this->response = $this->stmt->fetchAll();
+			return $this->response;
+			unset($this->dbh);
+		}
+	}
+
+	// count no of student that wrote a perticular exam
+	public function getNumberOfStudentSitForExamByClass($stdGrade,$term,$session){
+		$this->stmt= $this->dbh->prepare("SELECT DISTINCT(`stdRegCode`) FROM `visap_termly_result_tbl` WHERE studentGrade=? AND term=? AND aca_session=?");
+		$this->stmt->execute(array($stdGrade,$term,$session));
+		if ($this->stmt->rowCount() > 0) {
+			$this->response = $this->stmt->rowCount();
+			return $this->response;
+			unset($this->dbh);
+		}
+	}
 
 	//check single student result method
 	public function check_view_student_result($data){
@@ -308,10 +401,10 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
 		$exam 			= 	$data['exam'];
 		//check for empty values 
 		if ($this->config->isEmptyStr($result_class) || $this->config->isEmptyStr($student_regNo) || $this->config->isEmptyStr($cass) || $this->config->isEmptyStr($exam)) {
-			$this->response = $this->alert->alert_msg("Please check all your Inputs and try again!","danger");
+			$this->response = $this->alert->alert_toastr("error","Please check all your Inputs and try again!",__OSO_APP_NAME__." Says");
 			// code...
-		}elseif (!$this->config->allowed_result_uploading()) {
-	$this->response = $this->alert->alert_msg("Result Uploading is not allowed at the moment!","danger");
+		}elseif (!$this->config->check_user_activity_allowed('student_result_uploading')) {
+	$this->response = $this->alert->alert_toastr("error","Result Uploading is not allowed at the moment!",__OSO_APP_NAME__." Says");
 		}else{
 			//count the number of student result subjects to be uploaded
 			for ($i=0; $i < (int)$total_count; $i++) { 
@@ -327,11 +420,11 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
 		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=? AND subjectName=?");
 		$this->stmt->execute(array($arr_student_regNo,$arr_result_class,$result_term,$result_session,$arr_subject));
 		if ($this->stmt->rowCount()>0) {
-		$this->response = $this->alert->alert_msg("$arr_subject is already Uploaded!","danger");
+		$this->response = $this->alert->alert_toastr("error","$arr_subject is already Uploaded!",__OSO_APP_NAME__." Says");
 		}else{
 			try {
 		$this->dbh->beginTransaction();
-		$rStatus ='2';
+		$rStatus ='1';
 		$this->stmt = $this->dbh->prepare("INSERT INTO `visap_termly_result_tbl` (stdRegCode,studentGrade,term,aca_session,subjectName,ca,exam,overallMark,mark_average,uploadedTime,uploadedDate,rStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
 		$total_sum =doubleval($arr_cass+$arr_exam);
 		$average_score = round(($total_sum/2)); 
@@ -340,14 +433,14 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
 		if ($this->stmt->execute(array($arr_student_regNo,$arr_result_class,$result_term,$result_session,$arr_subject,$arr_cass,$arr_exam,$total_sum,$average_score,$time,$date,$rStatus))) {
 		//update subjectRank will be here later
 			 $this->dbh->commit();
-			$this->response = $this->alert->alert_msg(" $arr_subject uploaded Successfully","success")."<script>setTimeout(()=>{
-			window.location.reload();
+			$this->response = $this->alert->alert_toastr("success"," $arr_subject uploaded Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+			window.location.href='result_uploading';
 			}, 500);</script>";
 		}
 				
 			} catch (PDOException $e) {
 		$this->dbh->rollback();
-    $this->response  =$this->alert->alert_msg("Upload Failed: Error Occurred: ".$e->getMessage(),"danger");
+    $this->response  =$this->alert->alert_toastr("error","Upload Failed: Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
 				
 			}
 		//$this->response = $this->alert->alert_msg("Result Uploaded Successfully!","success");

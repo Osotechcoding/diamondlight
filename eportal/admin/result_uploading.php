@@ -314,11 +314,8 @@ require_once "helpers/helper.php";
      $.post("../actions/actions",student_result_upload_form.serialize(),function(data){
       setTimeout(()=>{
          $(".__loadingBtn__").html('UPLOAD NOW').attr("disabled",false);
-         $("#myresponse").html(data);
-         // setTimeout(()=>{
-         //  window.location.reload();
-         // },1000);
-      },2000);
+         $("#server-response").html(data);
+      },500);
      })
     })
   })

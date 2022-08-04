@@ -117,7 +117,7 @@ require_once "helpers/helper.php";
                    <td><?php if ($userData): ?>
                    <?php if ($userData->pin_counter >='5'): ?>
                      <span class="badge badge-pill badge-danger badge-sm">Exhausted</span>
-                     <button type="button" name="button" class="badge badge-pill badge-danger badge-sm"><span class="fa fa-trash"></span> Delete</button>
+                     <button type="button" name="button" class="badge badge-pill badge-danger badge-sm del_pinBtn_" data-id="<?php  echo $pin_data->pin_id;?>" data-action="<?php echo md5("delete_pins");?>" data-table="<?php echo ('trp');?>"><span class="fa fa-trash"></span></button>
                    <?php else: ?>
                     <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Times</span>
                    <?php endif ?>
@@ -158,12 +158,13 @@ require_once "helpers/helper.php";
       $(document).on("click",".del_pinBtn_", function(){
         let id = $(this).data("id");
         let table_name = $(this).data("table");
+        let action = $(this).data("action");
         if (confirm("Are you sure, You want to delete this pin?")) {
-          $.post("../actions/actions",{action:"delete_pins",id:id,table_name:table_name},function(data){
+          $.post("../actions/actions",{action:action,pinId:id,table_name:table_name},function(data){
               console.log(data);
             setTimeout(()=>{
               $("#server-response").html(data);
-            },1500);
+            },500);
           });
         }else{
           return false;

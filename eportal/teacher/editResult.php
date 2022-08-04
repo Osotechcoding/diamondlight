@@ -32,7 +32,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
+                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['STAFF_ROLE']);?></a>
                   </li>
                   <li class="breadcrumb-item active">Update Result
                   </li>
@@ -62,9 +62,8 @@ require_once "helpers/helper.php";
                  <div class="col-md-4">
                     <label for="ClassGrade">Student Class</label>
                     <fieldset class="form-group">
-                        <select class="form-control select2" name="ClassGrade" id="ClassGrade">
-                            <option value="">Choose...</option>
-                           <?php echo $Administration->get_classroom_InDropDown_list(); ?>
+                        <select class="form-control" name="ClassGrade" id="ClassGrade">
+                           <option value="<?php echo $staff_assigned_class; ?>" selected><?php echo $staff_assigned_class; ?></option>
                         </select>
                     </fieldset>
                 </div>
@@ -91,7 +90,7 @@ require_once "helpers/helper.php";
                  <div class="col-md-4">
                     <label for="session">Result Session</label>
                     <fieldset class="form-group">
-                    <select class="form-control select2" name="session" id="session">
+                    <select class="form-control" name="session" id="session">
                             <option value="">Choose...</option>
                            <?php echo $Administration->get_all_session_lists(); ?>
                         </select>
@@ -164,7 +163,8 @@ require_once "helpers/helper.php";
       <div class="col-md-6">
         <div class="form-group">
           <label for="Auth">Authentication</label>
-          <input type="password" autocomplete="off" class="form-control" name="Auth" placeholder="**********">
+          <!-- gssota123 -->
+         <input type="password" autocomplete="off" class="form-control" name="Auth" value="diamond123" readonly>
           <input type="hidden" name="action" value="update_student_result_">
         </div>
         

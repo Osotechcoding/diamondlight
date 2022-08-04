@@ -20,7 +20,7 @@
                <li><a class="d-flex align-items-center" href="markstudentass"><i class="bx bx-edit-alt"></i><span class="menu-item text-truncate" data-i18n="Online Classroom">Mark Assignment</span></a>
               </li>
           <!-- RESULT -->
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-bar-chart fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="Manage Results">Manage Results</span></a>
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-bar-chart fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="Manage Results">REPORT SHEET</span></a>
             <ul class="menu-content">
            <li class=" nav-item"><a href="examinationquestion"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Exam Question">Submit Questions</span></a>
           </li>
@@ -28,6 +28,8 @@
           </li>
            <li class=" nav-item"><a href="view_uploaded_result"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Result">View Results</span></a>
           </li>
+          <li class=" nav-item"><a href="editResult"><i class="fa fa-edit fa-1x"></i><span class="menu-title text-truncate" data-i18n="Update Result">Update Result</span></a>
+         </li>
            <!-- RESULT COMMENT SECTION -->
           <?php if ($staff_data->staffRole =="Class Teacher"): ?>
             
@@ -43,6 +45,7 @@
          </li>
          <li class=" nav-item"><a href="viewpsychomotor"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Psychomotor">View Psychomotor</span></a>
          </li>
+         
           <?php endif ?>
          <!-- RESULT COMMENT SECTION -->
           

@@ -12,7 +12,8 @@ if (!defined("__OSOTECH__DEV_COMPANY__")) {
 	define("__OSO_DB_DRIVER__",'mysql');
 	define("__OSO_CHARSET__",'utf8mb4');
 	define("__OSO_SERIAL__NUMBER_","XTAS-KM87-EWA6-09CQ-5J0V");
-	define("__OSO__CONTROL__KEY__","diamond123");
+	define("__OSO__CONTROL__KEY__","12345");
+	define("__OSO__PUBLISH_RESULT__KEY__","12345678");
 	define("__OSO_APP_VERSION__","v1.1.1");
 	define("__OSO_APP_DEV_YEAR__","2022");
 	define("__OSO_APP_NAME__","SMATech");

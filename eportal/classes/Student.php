@@ -34,9 +34,9 @@ class Student{
 		if (!$this->config->check_user_activity_allowed("student_login")) {
 		$this->response =$this->alert->alert_toastr("error","Login is currently not allowed!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->isEmptyStr($email) || $this->config->isEmptyStr($password)) {
-			$this->response =$this->alert->alert_toastr("error","Please enter your email and or password to continue!",__OSO_APP_NAME__." Says");
+			$this->response =$this->alert->alert_toastr("error","Login Details are required!",__OSO_APP_NAME__." Says");
 		}elseif (! $this->config->is_Valid_Email($email)) {
-			$this->response =$this->alert->alert_toastr("error","Invalid email address detected!",__OSO_APP_NAME__." Says");
+			$this->response =$this->alert->alert_toastr("error","Invalid email address!",__OSO_APP_NAME__." Says");
 		}else{
     $this->stmt = $this->dbh->prepare("SELECT * FROM {$this->table_name} WHERE stdEmail=? AND stdAdmStatus='Active' LIMIT 1");
     $this->stmt->execute(array($email));
@@ -57,6 +57,7 @@ class Student{
       	}
       	$this->stmt = $this->dbh->prepare("UPDATE {$this->table_name} SET is_online=1 WHERE stdId=? LIMIT 1");
       	if ($this->stmt->execute(array($result->stdId))) {
+      		session_regenerate_id();
       //$session_token = Session::set_xss_token();
       	$_COOKIE['login_student_email'] =$email;
       	$_COOKIE['login_student_pass'] =$password;
@@ -67,12 +68,12 @@ class Student{
       	$_SESSION['STD_REG_NUMBER'] = $result->stdRegNo;
       	$_SESSION['STD_EMAIL'] = $result->stdEmail;
       	$urlLink = APP_ROOT."students/";
-       $this->response = $this->alert->alert_toastr("success","Login Successful ",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
+       $this->response = $this->alert->alert_toastr("success","Login Successful,Please wait... ",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
          window.location.href='".$urlLink."';
-        },500);</script>";
+        },1000);</script>";
       	}
       }else{
-   $this->response = $this->alert->alert_toastr("error","Login Failed: Invalid account Password!",__OSO_APP_NAME__." Says");//Invalid Account Password
+   $this->response = $this->alert->alert_toastr("error","Login Failed: Invalid Login Details!!",__OSO_APP_NAME__." Says");//Invalid Account Password
       }
     }else{
     $this->response = $this->alert->alert_toastr("error","Login Failed: Invalid account Details!",__OSO_APP_NAME__." Says");// Email Address Not Found or User Details not found
@@ -175,7 +176,7 @@ $this->stmt = $this->dbh->prepare("SELECT *,concat(`stdSurName`,' ',`stdFirstNam
 		}
 		return $this->response;
 }
-
+//
 	//get all admitted students
 
 public function get_all_students_by_status(string $status){

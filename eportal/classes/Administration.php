@@ -1142,6 +1142,7 @@ if ($this->stmt->rowCount()>0) {
 	$this->response = '0';
 }
 return $this->response;
+unset($this->dbh);
 	}
 
 	public function count_all_available_lessons(){
@@ -1155,6 +1156,7 @@ if ($this->stmt->rowCount()>0) {
 	$this->response = '0';
 }
 return $this->response;
+unset($this->dbh);
 	}
 
 		public function count_all_available_lessons_today(){
@@ -1168,6 +1170,7 @@ if ($this->stmt->rowCount()>0) {
 	$this->response = '0';
 }
 return $this->response;
+unset($this->dbh);
 	}
 	//Virtual Classrrom management methods end
 
@@ -1247,6 +1250,7 @@ return $this->response;
 			}
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	//count all staff on assign to duties
@@ -1257,6 +1261,7 @@ return $this->response;
 	 		$get_counted =$this->stmt->fetch();
 	 		$this->response = $get_counted->cnt;
 	 		return $this->response;
+	 		unset($this->dbh);
 	 	}
 	}
 // STAFF DUTY ASSIGN METHODS END
@@ -1677,7 +1682,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 	$this->stmt =$this->dbh->prepare("UPDATE `visap_school_session_tbl` SET active_session=?,active_term=?,Days_open=?,Weeks_open=?,term_ended=?,new_term_begins=? WHERE seId=? LIMIT 1");
 		if ($this->stmt->execute(array($osd->active_session,$osd->active_term,$osd->Days_open,$osd->Weeks_open,$osd->term_ended,$osd->new_term_begins,$seId))) {
 			 $this->dbh->commit();
-			$this->response = $this->alert->alert_msg("VISAP is Now in Simulation Mode &raquo; $simulateTo ","success")."<script>setTimeout(()=>{
+			$this->response = $this->alert->alert_msg(__OSO_APP_NAME__." is Now in Simulation Mode &raquo; $simulateTo ","success")."<script>setTimeout(()=>{
 			window.location.reload();
 			},500);</script>";
 		}
@@ -1688,6 +1693,7 @@ $date =$this->config->Clean(date("Y-m-d",strtotime($data['expense_date'])));
 			}
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	// School Session management methods end
@@ -1978,6 +1984,7 @@ return $diff->format('%y');
 			}
 		}
 		return $this->response;
+		unset($this->dbh);
 	}
 
 	//get student result details to coment on
@@ -2071,6 +2078,7 @@ public function send_resend_confirmation_code($data){
 				$this->response = false;
 			}
 			return $this->response;
+			unset($this->dbh);
   }
 
   public function get_role_InDropDown_list(){
@@ -2085,6 +2093,7 @@ public function send_resend_confirmation_code($data){
 				$this->response = false;
 			}
 			return $this->response;
+			unset($this->dbh);
   }
 
   public function get_all_staff_office(){
@@ -2859,6 +2868,7 @@ $exam_time=$this->config->Clean(date("h:i:s a",strtotime($data['exam_time'])));
 		$this->stmt->execute();
 		$this->response = $this->stmt->rowCount();
 			return ($this->response == 1) ? true : false;
+			unset($this->dbh);
 	}
 	public function deleteAdmissionPortal($Id){
 		if (!$this->config->isEmptyStr($Id)) {

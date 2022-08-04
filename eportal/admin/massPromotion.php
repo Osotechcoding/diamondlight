@@ -59,6 +59,7 @@ require_once "helpers/helper.php";
                     <select name="student_class" class="form-control select2" id="users-list-verified">
                            <option value="">Choose...</option>
                            <?php echo $Administration->get_classroom_InDropDown_list();?>
+                           <option value="Graduated">Graduated</option>
                         </select>
                    </fieldset>
                </div>
@@ -147,6 +148,7 @@ require_once "helpers/helper.php";
           <select name="promoted_to" id="promoted_to" class="form-control select2">
             <option value="" selected> Choose...</option>
             <?php echo $Administration->get_classroom_InDropDown_list();?>
+            <option value="Graduated">Graduated</option>
           </select>
         </div>
       </div>

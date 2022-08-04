@@ -49,6 +49,7 @@ class Admin{
       		setcookie("login_user","",time()-100,'/');
       		setcookie("login_pass","",time()-100,'/');
       	}
+      	session_regenerate_id();
       	$session_token = Session::set_xss_token();
       	$_COOKIE['login_email'] =$email;
       	$_COOKIE['login_pass'] =$password;
@@ -115,6 +116,7 @@ class Admin{
       $db_password = $result->adminPass;
       //check if password entered match with db pwd
       if ($this->config->check_two_passwords_hash($password,$db_password)) {
+      	session_regenerate_id();
       	$session_token = Session::set_xss_token();
       	$_SESSION['ADMIN_TOKEN_ID'] =$result->adminId;
       	$_SESSION['ADMIN_SES_TYPE'] =$result->adminType;
@@ -241,9 +243,12 @@ public function reset_admin_password($data){
 			$sessioncode = $this->config->Clean($data['sessioncode']);
 			$termcode = $this->config->Clean($data['termcode']);
 			$schoolname = $this->config->Clean($data['schoolname']);
-			if ($this->config->isEmptyStr($schoolname) || $this->config->isEmptyStr($termcode)|| $this->config->isEmptyStr($code) || $this->config->isEmptyStr($sessioncode)) {
-				$this->response = $this->alert->alert_toastr("error","Please Generate Aouth Code to continue!",__OSO_APP_NAME__." Says");
-			}else{
+			if ($this->config->isEmptyStr($schoolname) || $this->config->isEmptyStr($termcode)|| $this->config->isEmptyStr($sessioncode)) {
+				$this->response = $this->alert->alert_toastr("error","Please enter the School name, Term and the session to continue!",__OSO_APP_NAME__." Says");
+			}elseif ($this->config->isEmptyStr($code)) {
+				$this->response = $this->alert->alert_toastr("error","Please Generate Oauth Code to Continue!",__OSO_APP_NAME__." Says");
+			}
+			else{
 				//check for duplicate entry
 				$this->stmt = $this->dbh->prepare("SELECT * FROM `school_oauth_code_tbl` WHERE active_ses=? AND term=? AND school_name=? LIMIT 1");
 				$this->stmt->execute(array($sessioncode,$termcode,$schoolname));

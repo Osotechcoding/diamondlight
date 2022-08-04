@@ -64,43 +64,36 @@ require_once ("../Inc/Osotech.php");
                      <div class="coupon-toggle">
                          <div id="accordion" class="accordion">
                              <div class="card">
+                                <h2 class="text-center text-bold text-danger mt-2"> HOW TO APPLY</h2>
                                  <div class="card-header" id="headingOne">
                                      <div class="card-title">
-                                         <span><i class="fa fa-window-maximize"></i> Do you want to continue your unfinished registration?</span>
-                                         <button class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Click here</button>
+                                         <span style="font-size: 20px;"><i class="fa fa-window-maximize"></i> <button class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none;color: red;"> Click here</button> to read the Instruction on how to submit your application via this portal </span>
+
                                      </div>
                                  </div>
-                                 <!-- <div class="coupon-code-input">
-                                             <input type="text" name="coupon_code" placeholder="E-mail" required="">  
-                                         </div>
-                                          <div class="coupon-code-input">
-                                            <input type="text" name="coupon_code" placeholder="Password" required="">
-                                         </div> -->
+
                                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                      <div class="card-body">
-                                         <p class="text-info">Enter your Registration email and your surname as password to continue with your admission.</p>
-                                         <div class="row">
-                                             <div class="col-md-4 col-sm-12 col-xs-12">
-                                             <div class="form-group">
-                                                
-                                                <input type="text" name="coupon_code" placeholder="E-mail"  class="form-control form-control-lg">
-                                                 </div>
-                                             </div>
-                                              
-                                                 <div class="col-md-4 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
-                                                     <input type="text" name="password" placeholder="Surname as Passowrd" class="form-control form-control-lg">
-                                                 </div>
-                                             </div>
-                                             <div class="col-md-4">
-                                                 <div class="form-group">
-                                                      <button class="btn-shop blue-color" type="submit">Continue Registration</button>
-                                       
-                                                 </div>
-                                             </div>
-                                         </div>
-                                        
-                                     </div>
+      <div class="col-md-12 mb-4">
+   <div class="section-tittle">
+
+<!-- You can now check your result online. -->
+<h2>To Apply for our admission Please, follow the instructions below:</h2>
+<ul style="font-weight: bold;" class="text-muted">
+  
+  <li class="emp"><p>Carefully scratch off the covered area of your scratch card to unveil your secret PIN Number </p> </li>
+  <li class="emp"><p>Step I: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+  <li class="emp"><p>Step II: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+  <li class="emp"><p>Step III: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+  <li class="emp"><p>Step IV: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+  <li class="emp"><p>Step V: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+  <li class="emp"><p>Step VI: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+  <li class="emp"><p>Step VII: Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, officiis numquam molestiae alias quia iure, corporis, neque incidunt impedit enim omnis ad fugit, cumque. Aperiam quam, reprehenderit. Adipisci, architecto. Suscipit?</p></li>
+
+</ul>
+</div>
+  </div>
+    </div>
                                  </div>
                              </div>
                          </div>
@@ -110,8 +103,8 @@ require_once ("../Inc/Osotech.php");
                          <form id="form">
                              <div class="billing-fields">
                                  <div class="checkout-title">
-                                    <h4>OR</h4>
-                                     <h3 class="text-info">Start your admission afresh using the form below</h3>
+                                   
+                                     <h3 class="text-info">Carefully fill in the form below to start your admission</h3>
                                  </div>
                                  <div class="form-content-box">
                                     <div class="col-md-12 text-center" id="server-response"></div>

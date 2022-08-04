@@ -100,11 +100,6 @@ public function check_two_passwords_hash($password,$db_password){
     }
   }
 
-  //check if result uploading is active
-  public function allowed_result_uploading(){
-    return true;
-  }
-  
    //String Conversion
   public function convert_String($action,$string){
     $output ="";

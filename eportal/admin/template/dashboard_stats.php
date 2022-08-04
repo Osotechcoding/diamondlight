@@ -108,7 +108,7 @@
                   </div>
                   <div class="text-white line-ellipsis">ADMISSION PINS</div>
                   <h3 class="mb-0 text-white"><?php echo number_format($Pin_serial->count_scratch_pins("tbl_reg_pins"))?></h3>
-                  <a href="javascript:void(0);"><button type="button" class="btn btn-dark btn-sm round ">View</button></a>
+                  <a href="regPin"><button type="button" class="btn btn-dark btn-sm round ">View</button></a>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@
                   </div>
                   <div class="text-white line-ellipsis">RESULT PINS</div>
                   <h3 class="mb-0 text-white"><?php echo number_format($Pin_serial->count_scratch_pins("tbl_result_pins"))?></h3>
-                  <a href="javascript:void(0);"><button type="button" class="btn btn-dark btn-sm round ">View</button></a>
+                  <a href="resPin"><button type="button" class="btn btn-dark btn-sm round ">View</button></a>
                 </div>
               </div>
             </div>

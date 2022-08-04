@@ -1,5 +1,6 @@
 <?php  
-
+# https://www.youtube.com/watch?v=iG2jotQo9NI
+# https://www.youtube.com/watch?v=l4G2MVgXFkw
 /**
  * 
  */
@@ -34,7 +35,7 @@ class Staff {
 			$this->response =$this->alert->alert_toastr("error","Login Details are required!",__OSO_APP_NAME__." Says");
 		}elseif (! $this->config->is_Valid_Email($email)) {
 			// code...
-			$this->response =$this->alert->alert_toastr("error","Invalid Email address!",__OSO_APP_NAME__." Says");
+			$this->response =$this->alert->alert_toastr("error","Invalid Login Details!",__OSO_APP_NAME__." Says");
 		}else{
     $this->stmt = $this->dbh->prepare("SELECT * FROM {$this->table} WHERE staffEmail=? AND staffRole=? LIMIT 1");
     $this->stmt->execute(array($email,$userType));
@@ -56,6 +57,7 @@ class Staff {
       		setcookie("login_pass","",time()-100,'/');
       		setcookie("login_role","",time()-100,'/');
       	}
+      	session_regenerate_id();
       	//$session_token = Session::set_xss_token();
       	$_COOKIE['login_email'] =$email;
       	$_COOKIE['login_pass'] =$password;
@@ -100,15 +102,15 @@ class Staff {
       	}
       	$this->response = $this->alert->alert_toastr("success",$lang['login_success'],__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
          window.location.href='".$urlLink."';
-        },2000);</script>";
+        },1000);</script>";
       	}else{
       		$this->response = $this->alert->alert_toastr("error","Unknown Error Occured Try again...",__OSO_APP_NAME__." Says");
       	}
       }else{
-         $this->response = $this->alert->alert_toastr("error",$lang['login_error4'],__OSO_APP_NAME__." Says");//Invalid Account Password
+         $this->response = $this->alert->alert_toastr("error","Invalid Login Details",__OSO_APP_NAME__." Says");//Invalid Account Password
       }
     }else{
-      $this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO_APP_NAME__." Says");// Email Address Not Found or User Details not found
+      $this->response = $this->alert->alert_toastr("error","Invalid Login!",__OSO_APP_NAME__." Says");// Email Address Not Found or User Details not found
     }
 		}
 		
@@ -172,7 +174,7 @@ class Staff {
       			$urlLink = APP_ROOT."receptionist/";
       			break;
       	}
-       $this->response = $this->alert->alert_toastr("success",$lang['login_success'],$lang['alert-title-success'])."<script>setTimeout(()=>{
+       $this->response = $this->alert->alert_toastr("success","Login Successful! Please wait...",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
          window.location.href='".$urlLink."';
         },500);</script>";
       		}else{
@@ -180,10 +182,10 @@ class Staff {
       		}
       	
       }else{
-         $this->response = $this->alert->alert_toastr("error",$lang['login_error4'],__OSO_APP_NAME__." Says");//Invalid Account Password
+         $this->response = $this->alert->alert_toastr("error","Invalid Login Details",__OSO_APP_NAME__." Says");//Invalid Account Password
       }
       }else{
-$this->response = $this->alert->alert_toastr("error",$lang['login_error5'],__OSO_APP_NAME__." Says");// Email Address Not Found or User Details not found
+$this->response = $this->alert->alert_toastr("error","Invalid Login Details",__OSO_APP_NAME__." Says");// Email Address Not Found or User Details not found
       }
     }
     return $this->response;

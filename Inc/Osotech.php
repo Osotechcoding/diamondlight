@@ -162,7 +162,7 @@ class Osotech
                 //let's check any invalid inputs
                 if (!self::check_single_data("visap_student_tbl","stdRegNo",$stdRegNo)) {
                     $this->response = self::alert_msg("Invalid Admission Number!","danger");
-                }elseif ((strlen($cardPin)>14) || (strlen($cardPin)<14)) {
+                }elseif ((strlen($cardPin)<>10)) {
                     // code...
                     $this->response = self::alert_msg("Invalid Scratch Card Pin Number!","danger");
                 }else{
@@ -189,7 +189,7 @@ class Osotech
                                 $phId = $pin_hitory_data->pinId;
                                 if ($stdRegNo !== $userRegNo) {
                                     $this->response = self::alert_msg("This Pin has been used by another Student!","danger");
-                                }elseif ($usedCounter >= '5') {
+                                }elseif ($usedCounter >= '3') {
                                     $this->response = self::alert_msg("You Have Exhausted Your Time Usage Validity of this Pin!","danger");
                                 }elseif (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
                $this->response = self::alert_msg("This Result is not yet Ready!","danger");
@@ -230,7 +230,7 @@ class Osotech
                                                             break;
                                                     }
                                                     $this->response = '<script>setTimeout(()=>{
-			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=700, height=842");$("#checkResultForm")[0].reset();
+			window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=750, height=842");$("#checkResultForm")[0].reset();
 		},1000)</script>';
                                                 }elseif ($result_opened =='3') {
                                                     $this->response = self::alert_msg("This Result is Held, Please contact your Admin!","danger");
@@ -297,7 +297,7 @@ class Osotech
                                                                 break;
                                                         }
                                                         $this->response = '<script>setTimeout(()=>{
-            window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=700, height=842");$("#checkResultForm")[0].reset();
+            window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=750, height=842");$("#checkResultForm")[0].reset();
         },1000)</script>';
                                                     }elseif ($result_opened =='3') {
                                                         $this->response = self::alert_msg("This Result is Held, Please contact your Admin!","danger");
