@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2022 at 12:55 AM
+-- Generation Time: Aug 04, 2022 at 07:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `api_module_config`
 --
 
-CREATE TABLE `api_module_config` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `api_module_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(30) NOT NULL,
   `type` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
@@ -36,8 +36,10 @@ CREATE TABLE `api_module_config` (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `api_user` varchar(50) NOT NULL,
   `api_pass` varchar(50) NOT NULL,
-  `api_def` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `api_def` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `module` (`module`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `api_module_config`
@@ -50,7 +52,7 @@ INSERT INTO `api_module_config` (`id`, `module`, `type`, `description`, `detail`
 (6, 'staff_login', 'login', 'Staff Login', 'When enabled, staff will be able to log in', 1, '', '', ''),
 (14, 'maintenance_mode', 'main', 'Maintenance Mode', 'When this is turned on, the portal puts itself to maintenence mode', 1, '', '', ''),
 (17, 'result_checking', 'main', 'Student Result Checking Portal Enable/Disable', 'if this is open, the students can check their result else they cant', 1, '', '', ''),
-(18, 'student_result_uploading', 'main', 'Staff Result Uploading', 'When enabled, Staff have the privilege to upload result', 1, '', '', ''),
+(18, 'student_result_uploading', 'main', 'Staff Result Uploading', 'When enabled, Staff have the privilege to upload result', 2, '', '', ''),
 (19, 'result_note', 'main', 'Show result note', 'When enabled, note will show on result', 1, '', '', ''),
 (20, 'result_comment', 'main', 'Result Comment', 'when open, result comment will be shown', 1, '', '', ''),
 (21, 'card_generator', 'main', 'Card Generator', 'Enabling this Scratch Card can be Generated', 1, '', '', ''),
@@ -62,18 +64,19 @@ INSERT INTO `api_module_config` (`id`, `module`, `type`, `description`, `detail`
 -- Table structure for table `current_session_tbl`
 --
 
-CREATE TABLE `current_session_tbl` (
-  `id` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `current_session_tbl` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `session_desc_name` varchar(20) DEFAULT NULL,
-  `term_desc` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `term_desc` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `current_session_tbl`
 --
 
 INSERT INTO `current_session_tbl` (`id`, `session_desc_name`, `term_desc`) VALUES
-(1, '2021/2022', '1st Term');
+(1, '2021/2022', '3rd Term');
 
 -- --------------------------------------------------------
 
@@ -81,11 +84,12 @@ INSERT INTO `current_session_tbl` (`id`, `session_desc_name`, `term_desc`) VALUE
 -- Table structure for table `local_govt_tbl`
 --
 
-CREATE TABLE `local_govt_tbl` (
-  `local_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `local_govt_tbl` (
+  `local_id` int(11) NOT NULL AUTO_INCREMENT,
   `state_id` int(11) DEFAULT NULL,
-  `local_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `local_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`local_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=775 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `local_govt_tbl`
@@ -873,14 +877,15 @@ INSERT INTO `local_govt_tbl` (`local_id`, `state_id`, `local_name`) VALUES
 -- Table structure for table `register_exam_subject_tbl`
 --
 
-CREATE TABLE `register_exam_subject_tbl` (
-  `subId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `register_exam_subject_tbl` (
+  `subId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `std_id` bigint(20) UNSIGNED DEFAULT NULL,
   `stdRegNo` varchar(50) DEFAULT NULL,
   `stdGrade` varchar(50) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
   `schl_Sess` varchar(50) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`subId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -889,14 +894,23 @@ CREATE TABLE `register_exam_subject_tbl` (
 -- Table structure for table `reg_pin_history_tbl`
 --
 
-CREATE TABLE `reg_pin_history_tbl` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reg_pin_history_tbl` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `used_by` varchar(50) DEFAULT NULL,
   `pin_code` varchar(50) DEFAULT NULL,
   `pin_serial` varchar(50) DEFAULT NULL,
   `dated` date DEFAULT NULL,
-  `timed` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `timed` time DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reg_pin_history_tbl`
+--
+
+INSERT INTO `reg_pin_history_tbl` (`id`, `used_by`, `pin_code`, `pin_serial`, `dated`, `timed`) VALUES
+(2, '2022C120040003', '865620591234371', 'SMAA3A38DB87', '2022-07-29', '02:25:18'),
+(3, '2022C120040003', '031591836465722', 'SMAA27403041', '2022-07-29', '02:59:57');
 
 -- --------------------------------------------------------
 
@@ -904,15 +918,41 @@ CREATE TABLE `reg_pin_history_tbl` (
 -- Table structure for table `school_classes`
 --
 
-CREATE TABLE `school_classes` (
-  `class_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `school_classes` (
+  `class_id` int(11) NOT NULL AUTO_INCREMENT,
   `class_desc` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `capacity` int(5) DEFAULT NULL,
   `class_code` varchar(20) DEFAULT NULL,
   `class_teacher` varchar(255) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`class_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `school_oauth_code_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `school_oauth_code_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `school_name` varchar(255) DEFAULT NULL,
+  `term` varchar(50) DEFAULT NULL,
+  `active_ses` varchar(50) DEFAULT NULL,
+  `oauth_code` varchar(50) DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `school_oauth_code_tbl`
+--
+
+INSERT INTO `school_oauth_code_tbl` (`id`, `school_name`, `term`, `active_ses`, `oauth_code`, `created_at`) VALUES
+(3, 'Glory Supreme School Ota', '3rd Term', '2021/2022', 'gKl5AhhtLG', '2022-07-29'),
+(4, 'Diamond Light College Ota', '3rd Term', '2021/2022', '7HBJ0AcPGS', '2022-07-29'),
+(5, 'Juli-T Schools Sango', '3rd Term', '2021/2022', 'vkT1bIvdzr', '2022-07-29');
 
 -- --------------------------------------------------------
 
@@ -920,12 +960,13 @@ CREATE TABLE `school_classes` (
 -- Table structure for table `school_offices`
 --
 
-CREATE TABLE `school_offices` (
-  `id` int(5) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `school_offices` (
+  `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `office_desc` varchar(255) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
-  `created_on` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_on` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `school_offices`
@@ -948,15 +989,16 @@ INSERT INTO `school_offices` (`id`, `office_desc`, `status`, `created_on`) VALUE
 -- Table structure for table `school_subjects`
 --
 
-CREATE TABLE `school_subjects` (
-  `subject_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `school_subjects` (
+  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_desc` varchar(225) DEFAULT NULL,
   `level` varchar(50) DEFAULT NULL,
   `subject_teacher` varchar(225) DEFAULT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'inactive',
   `subject_code` varchar(20) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`subject_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `school_subjects`
@@ -965,7 +1007,7 @@ CREATE TABLE `school_subjects` (
 INSERT INTO `school_subjects` (`subject_id`, `subject_desc`, `level`, `subject_teacher`, `status`, `subject_code`, `created_at`) VALUES
 (1, 'Mathematics', NULL, '', 'active', 'MTH 201', '2022-06-14'),
 (2, 'English Language', NULL, '', 'active', 'ENG20202', '2022-06-14'),
-(3, 'Yoruba Language', NULL, '', 'active', 'YOR203', '2022-06-14'),
+(3, 'Yoruba Language', NULL, NULL, 'active', 'YOR203', '2022-06-14'),
 (4, 'History', NULL, '', 'active', 'HIS204', '2022-06-14'),
 (5, 'French', NULL, '', 'active', 'FRE205', '2022-06-14'),
 (6, 'Christian Religion Studies', NULL, '', 'active', 'CRS206', '2022-06-14'),
@@ -1012,8 +1054,8 @@ INSERT INTO `school_subjects` (`subject_id`, `subject_desc`, `level`, `subject_t
 -- Table structure for table `tbl_admin`
 --
 
-CREATE TABLE `tbl_admin` (
-  `adminId` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_admin` (
+  `adminId` int(1) NOT NULL AUTO_INCREMENT,
   `adminType` enum('Admin','Director') NOT NULL DEFAULT 'Director',
   `adminEmail` varchar(225) DEFAULT NULL,
   `adminUser` varchar(50) DEFAULT NULL,
@@ -1023,16 +1065,17 @@ CREATE TABLE `tbl_admin` (
   `login_time` timestamp NULL DEFAULT NULL,
   `logout_time` timestamp NULL DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`adminId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_admin`
 --
 
 INSERT INTO `tbl_admin` (`adminId`, `adminType`, `adminEmail`, `adminUser`, `adminPass`, `status`, `fullname`, `login_time`, `logout_time`, `token`, `created_at`) VALUES
-(1, 'Admin', 'admin@smapp.com', 'SMApp', '$2y$10$y.gA5dihV/vVsrjpH9JFY.FqLxf9n19eOumxg7KU7qblncFh9Kjdq', 0, 'Osotech Software', NULL, NULL, '23456vb8l0mpaxqwe234', '2022-01-26 08:34:42'),
-(2, 'Director', 'user@smapp.com', 'Director', '$2y$10$/pdf.OVS0iS8ZYvgVI3Zj.fIZsOnjnxH58VXaqpo06KE8HwbWtIXe', 1, 'Smapp User', NULL, NULL, '3wsxvnmk0oo9673saq12', '2022-05-15 22:17:37');
+(1, 'Admin', 'admin@smatech.com', 'SMATech', '$2y$10$y.gA5dihV/vVsrjpH9JFY.FqLxf9n19eOumxg7KU7qblncFh9Kjdq', 0, 'Osotech Software', NULL, NULL, '23456vb8l0mpaxqwe234', '2022-01-26 08:34:42'),
+(2, 'Director', 'user@smatech.com', 'Director', '$2y$10$/pdf.OVS0iS8ZYvgVI3Zj.fIZsOnjnxH58VXaqpo06KE8HwbWtIXe', 1, 'Smapp User', NULL, NULL, '3wsxvnmk0oo9673saq12', '2022-05-15 22:17:37');
 
 -- --------------------------------------------------------
 
@@ -1040,14 +1083,15 @@ INSERT INTO `tbl_admin` (`adminId`, `adminType`, `adminEmail`, `adminUser`, `adm
 -- Table structure for table `tbl_ewallet_pins`
 --
 
-CREATE TABLE `tbl_ewallet_pins` (
-  `pin_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_ewallet_pins` (
+  `pin_id` int(11) NOT NULL AUTO_INCREMENT,
   `pin_code` varchar(50) NOT NULL,
   `pin_serial` varchar(50) NOT NULL,
   `pin_desc` varchar(100) NOT NULL,
   `price` double DEFAULT NULL,
   `pin_status` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`pin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1056,14 +1100,15 @@ CREATE TABLE `tbl_ewallet_pins` (
 -- Table structure for table `tbl_exam_pins`
 --
 
-CREATE TABLE `tbl_exam_pins` (
-  `pin_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_exam_pins` (
+  `pin_id` int(11) NOT NULL AUTO_INCREMENT,
   `pin_code` varchar(50) NOT NULL,
   `pin_serial` varchar(50) NOT NULL,
   `pin_desc` varchar(100) NOT NULL,
   `price` double DEFAULT NULL,
   `pin_status` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`pin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1072,15 +1117,16 @@ CREATE TABLE `tbl_exam_pins` (
 -- Table structure for table `tbl_reg_pins`
 --
 
-CREATE TABLE `tbl_reg_pins` (
-  `pin_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_reg_pins` (
+  `pin_id` int(11) NOT NULL AUTO_INCREMENT,
   `pin_code` varchar(50) NOT NULL,
   `pin_serial` varchar(50) NOT NULL,
   `pin_desc` varchar(100) NOT NULL,
   `price` double DEFAULT NULL,
   `pin_status` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` date DEFAULT NULL,
-  `usedBy` varchar(50) DEFAULT NULL
+  `usedBy` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`pin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1089,14 +1135,15 @@ CREATE TABLE `tbl_reg_pins` (
 -- Table structure for table `tbl_result_pins`
 --
 
-CREATE TABLE `tbl_result_pins` (
-  `pin_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_result_pins` (
+  `pin_id` int(11) NOT NULL AUTO_INCREMENT,
   `pin_code` varchar(50) NOT NULL,
   `pin_serial` varchar(50) NOT NULL,
   `pin_desc` varchar(100) NOT NULL,
   `price` double DEFAULT NULL,
   `pin_status` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`pin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1105,16 +1152,17 @@ CREATE TABLE `tbl_result_pins` (
 -- Table structure for table `tbl_result_pins_history`
 --
 
-CREATE TABLE `tbl_result_pins_history` (
-  `pinId` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_result_pins_history` (
+  `pinId` bigint(20) NOT NULL AUTO_INCREMENT,
   `studentRegNo` varchar(20) DEFAULT NULL,
   `student_class` varchar(20) DEFAULT NULL,
   `pin_code` varchar(20) DEFAULT NULL,
   `pin_serial` varchar(20) DEFAULT NULL,
   `pin_counter` int(1) NOT NULL DEFAULT 0,
   `used_term` varchar(20) DEFAULT NULL,
-  `used_session` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `used_session` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`pinId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1122,14 +1170,22 @@ CREATE TABLE `tbl_result_pins_history` (
 -- Table structure for table `tbl_serial`
 --
 
-CREATE TABLE `tbl_serial` (
-  `id` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_serial` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `serial_key` varchar(225) DEFAULT NULL,
   `activation_date` date DEFAULT NULL,
   `expiry_date` date DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
-  `user_ip` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_ip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_serial`
+--
+
+INSERT INTO `tbl_serial` (`id`, `serial_key`, `activation_date`, `expiry_date`, `user_name`, `user_ip`) VALUES
+(1, 'XTAS-KM87-EWA6-09CQ-5J0V', '2022-08-01', '2023-07-01', 'Smatech', '::1');
 
 -- --------------------------------------------------------
 
@@ -1137,7 +1193,7 @@ CREATE TABLE `tbl_serial` (
 -- Table structure for table `tbl_settings`
 --
 
-CREATE TABLE `tbl_settings` (
+CREATE TABLE IF NOT EXISTS `tbl_settings` (
   `config_id` int(1) NOT NULL,
   `web_name` varchar(255) DEFAULT NULL,
   `web_slogan` varchar(255) DEFAULT NULL,
@@ -1153,7 +1209,8 @@ CREATE TABLE `tbl_settings` (
   `web_logo` varchar(255) DEFAULT NULL,
   `state` varchar(100) DEFAULT NULL,
   `town` varchar(100) DEFAULT NULL,
-  `country` varchar(100) DEFAULT NULL
+  `country` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`config_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1169,8 +1226,8 @@ INSERT INTO `tbl_settings` (`config_id`, `web_name`, `web_slogan`, `welcome_msg`
 -- Table structure for table `visap_admission_open_tbl`
 --
 
-CREATE TABLE `visap_admission_open_tbl` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_admission_open_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `admission_desc` text DEFAULT NULL,
   `batch` varchar(255) DEFAULT NULL,
   `adm_start` date DEFAULT NULL,
@@ -1179,15 +1236,16 @@ CREATE TABLE `visap_admission_open_tbl` (
   `interview_time` time DEFAULT NULL,
   `schl_session` varchar(50) DEFAULT NULL,
   `note` text DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_admission_open_tbl`
 --
 
 INSERT INTO `visap_admission_open_tbl` (`id`, `admission_desc`, `batch`, `adm_start`, `adm_end`, `interview_date`, `interview_time`, `schl_session`, `note`, `status`) VALUES
-(3, 'September Admission', 'Batch A', '2022-08-08', '2022-08-25', '2022-08-29', '09:00:00', '2021/2022', 'A simple, good looking cookie alert for Bootstrap. No dependencies required. We recommend using Bootstrap 4, but Boostrap 3 should work fine as well.', 0);
+(3, 'September Admission', 'Batch A', '2022-08-08', '2022-08-25', '2022-08-29', '09:00:00', '2021/2022', 'A simple, good looking cookie alert for Bootstrap. No dependencies required. We recommend using Bootstrap 4, but Boostrap 3 should work fine as well.', 1);
 
 -- --------------------------------------------------------
 
@@ -1195,8 +1253,8 @@ INSERT INTO `visap_admission_open_tbl` (`id`, `admission_desc`, `batch`, `adm_st
 -- Table structure for table `visap_assignment_tbl`
 --
 
-CREATE TABLE `visap_assignment_tbl` (
-  `assId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_assignment_tbl` (
+  `assId` int(11) NOT NULL AUTO_INCREMENT,
   `teacherId` int(11) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
   `stdGrade` varchar(20) DEFAULT NULL,
@@ -1207,7 +1265,8 @@ CREATE TABLE `visap_assignment_tbl` (
   `created_at` date DEFAULT NULL,
   `download_counter` int(11) DEFAULT NULL,
   `term` varchar(50) DEFAULT NULL,
-  `schl_session` varchar(50) DEFAULT NULL
+  `schl_session` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`assId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1216,24 +1275,33 @@ CREATE TABLE `visap_assignment_tbl` (
 -- Table structure for table `visap_behavioral_tbl`
 --
 
-CREATE TABLE `visap_behavioral_tbl` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_behavioral_tbl` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `student_id` bigint(20) DEFAULT NULL,
   `reg_number` varchar(20) DEFAULT NULL,
   `student_class` varchar(20) DEFAULT NULL,
   `term` varchar(20) DEFAULT NULL,
   `session` varchar(30) DEFAULT NULL,
-  `hand_writing` int(2) DEFAULT NULL,
-  `musical_skills` int(2) DEFAULT NULL,
-  `sports` int(2) DEFAULT NULL,
-  `health` int(2) DEFAULT NULL,
+  `punctuality` int(2) DEFAULT NULL,
+  `neatness` int(2) DEFAULT NULL,
+  `honesty` int(2) DEFAULT NULL,
+  `self_control` int(2) DEFAULT NULL,
   `attentiveness` int(2) DEFAULT NULL,
-  `attitude_to_work` int(2) DEFAULT NULL,
-  `politeness` int(2) DEFAULT NULL,
-  `punctality` int(2) DEFAULT NULL,
+  `leadership` int(2) DEFAULT NULL,
   `class_teacher` varchar(200) DEFAULT NULL,
-  `uploaded_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `uploaded_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_behavioral_tbl`
+--
+
+INSERT INTO `visap_behavioral_tbl` (`id`, `student_id`, `reg_number`, `student_class`, `term`, `session`, `punctuality`, `neatness`, `honesty`, `self_control`, `attentiveness`, `leadership`, `class_teacher`, `uploaded_date`) VALUES
+(1, 1, '2016C243140001', 'JSS 1 A', '1st Term', '2021/2022', 1, 1, 1, 1, 1, 1, 'Osotech Developer', '2022-07-26'),
+(2, 2, '2022C243140002', 'BASIC 2 A', '3rd Term', '2021/2022', 1, 2, 3, 4, 5, 4, 'Smatech', '2022-07-26'),
+(3, 1, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 1, 5, 1, 5, 1, 4, 'Samson Idowu', '2022-07-27'),
+(4, 2, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 3, 2, 5, 1, 3, 5, 'Samson Idowu', '2022-07-27');
 
 -- --------------------------------------------------------
 
@@ -1241,15 +1309,16 @@ CREATE TABLE `visap_behavioral_tbl` (
 -- Table structure for table `visap_blog_post_comments`
 --
 
-CREATE TABLE `visap_blog_post_comments` (
-  `commentId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_blog_post_comments` (
+  `commentId` int(11) NOT NULL AUTO_INCREMENT,
   `blogId` int(11) DEFAULT NULL,
   `guestName` varchar(255) DEFAULT NULL,
   `user_email` varchar(255) DEFAULT NULL,
   `website` varchar(255) DEFAULT NULL,
   `comment` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
-  `comment_date` datetime DEFAULT NULL
+  `comment_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`commentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1258,8 +1327,8 @@ CREATE TABLE `visap_blog_post_comments` (
 -- Table structure for table `visap_blog_post_tbl`
 --
 
-CREATE TABLE `visap_blog_post_tbl` (
-  `blog_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_blog_post_tbl` (
+  `blog_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` varchar(255) DEFAULT NULL,
   `author` varchar(100) DEFAULT NULL,
   `blog_title` text DEFAULT NULL,
@@ -1270,18 +1339,17 @@ CREATE TABLE `visap_blog_post_tbl` (
   `total_view` int(11) DEFAULT NULL,
   `total_comment` int(11) DEFAULT NULL,
   `blog_time` time DEFAULT NULL,
-  `tags` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `tags` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`blog_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_blog_post_tbl`
 --
 
 INSERT INTO `visap_blog_post_tbl` (`blog_id`, `category_id`, `author`, `blog_title`, `blog_content`, `blog_image`, `blog_status`, `created_at`, `total_view`, `total_comment`, `blog_time`, `tags`) VALUES
-(1, 'Inspirational', '1', 'Sample', 'This is just a demo sample of what i want ot use to show you how you can upload  school news', '16567952252072098819.jpg', 2, '2022-07-02', NULL, NULL, '09:53:45', 'Marriage'),
-(2, 'Motivational', '1', 'End of The Year Party', 'How does it work?\r\nExcellent question! When you upload a JPEG file, the image is analyzed. Textures, patterns and colours are automatically identified. The encoder creates an optimally compressed JPEG file based on that information. The final result is compared with the original and fine-tuned. Distracting JPEG artifacts are minimized without big sacrifices in file size. Unnecessary metadata is stripped as well. You will get an optimal image, every time!\r\nCan you tell the difference?\r\nLet me give you a side by side comparison. Move the slider to compare the compressed image with the original. The file size is reduced by more than 70%!', '1657089240292330313.jpg', 2, '2022-07-06', NULL, NULL, '07:34:00', 'Education'),
-(3, 'Culture', '1', 'Staff Seminar 2022', 'How does it work?\r\nExcellent question! When you upload a JPEG file, the image is analyzed. Textures, patterns and colours are automatically identified. The encoder creates an optimally compressed JPEG file based on that information. The final result is compared with the original and fine-tuned. Distracting JPEG artifacts are minimized without big sacrifices in file size. Unnecessary metadata is stripped as well. You will get an optimal image, every time!\r\nCan you tell the difference?\r\nLet me give you a side by side comparison. Move the slider to compare the compressed image with the original. The file size is reduced by more than 70%!', '1657089315691596432.jpg', 2, '2022-07-06', NULL, NULL, '07:35:15', 'Marriage'),
-(4, 'Culture', '1', 'School Party Coming Soon', 'In this article, we&#39;ll be discussing the get, put, and post HTTP methods. You&#39;ll learn what each HTTP method is used for as well as why we use them.\r\nIn order to get a deep understanding of how HTTP methods work, I&#39;ll also go over key context and background information.\r\nTopics we&#39;ll cover in this post:\r\nHTTP Protocol\r\nClient-server architecture\r\nAPIs\r\nBy the end of this article you&#39;ll have a good understanding of the functions of each request method. You&#39;ll also have experience making requests and working with a web API.\r\n\r\nWhat is HTTP?\r\nHTTP is a protocol, or a definite set of rules, for accessing resources on the web. Resources could mean anything from HTML files to data from a database, photos, text, and so on.\r\n\r\nThese resources are made available to us via an API and we make requests to these APIs via the HTTP protocol. API stands for application programming interface. It is the mechanism that allows developers to request resources.\r\n\r\nClient-Server Architecture\r\nIn order to understand the HTTP methods, it’s important to cover the concept of client/server architecture. This architecture describes how all web applications work and defines the rules for how they communicate.\r\n\r\nA client application is the one that a user is actually interacting with, that&#39;s displaying the content. A server application is the one that sends the content, or resource, to your client application. A server application is a program that is running somewhere, listening, and waiting for a request.\r\n\r\nThe main reason for this separation is to secure sensitive information. Your entire client application gets downloaded into the browser, and all of the data can be accessed by anyone accessing your web page.\r\n\r\nThis architecture helps protect things like your API keys, personal data, and more. Now modern tools like Next.js and Netlify allow developers to run server code in the same app as their client app, without needing a dedicated server application.\r\n\r\nClient-Server Communication\r\nClient and server applications communicate by sending individual messages on an as-needed basis, rather than an ongoing stream of communication.\r\n\r\nThese communications are almost always initiated by clients in the form of requests. These requests are fulfilled by the server application which sends back a response containing the resource you requested, among other things.\r\n\r\nWhy We Need A Server-Client Architecture\r\nLet’s say you were building a weather web app, for example. The weather app that your user is going to interact with is the client application – it has buttons, a search bar, and displays data like city name, current temperature, AQI, and so on.\r\n\r\nThis weather app wouldn’t have every city and its weather information coded directly into it. This would make the app bloated and slow, would take forever to research and manually add to a database, and would be a headache to update every single day.\r\n\r\nInstead, the app can access weather data by city using the Weather web API. Your app would gather your user’s location and then make a request to the server saying, “Hey, send me the weather information for this specific city.”\r\n\r\nDepending on what you are trying to achieve, you would use the various request methods that are available. The server sends back a response containing the weather information and a few other things, depending on how the API is written. It may also send back things like a timestamp, the region this city is located in, and more.\r\n\r\nYour client application communicated with a server application running somewhere, whose only job is to listen continuously for a request to that address. When it receives a request, it works to fulfill that request either by reading from a database, another API, local file, or a programmatic calculation based on data you pass in.\r\n\r\nThe Anatomy of an HTTP Request\r\nAn HTTP request must have the following:\r\n\r\nAn HTTP method (like GET)\r\nA host URL (like https://api.spotify.com/)\r\nAn endpoint path(like  v1/artists/{id}/related-artists)\r\nA request can also optionally have:\r\n\r\nBody\r\nHeaders\r\nQuery strings\r\nHTTP version\r\nThe Anatomy of an HTTP Response\r\nA response must have the following:\r\n\r\nProtocol version (like HTTP/1.1)\r\nStatus code (like  200)\r\nStatus text (OK)\r\nHeaders\r\nA response may also optionally have:\r\n\r\nBody\r\nHTTP Methods Explained\r\nPost Malone implies the existence of Get, Put, Patch, and Delete Malone.\r\n\r\n— Paul Ford (@ftrain) November 15, 2019\r\nNow that we know what HTTP is and why it’s used, let’s talk about the different methods we have available to us.\r\n\r\nIn the weather app example above, we wanted to retrieve weather information about a city. But what if we wanted to submit weather information for a city?\r\n\r\nIn real life, you probably wouldn’t have permissions to alter someone else’s data, but let’s imagine that we are contributors to a community-run weather app. And in addition to getting the weather information from an API, members in that city could update this information to display more accurate data.\r\n\r\nOr what if we wanted to add a new city altogether that, for some reason, doesn’t already exist in our database of cities? These are all different functions – retrieve data, update data, create new data – and there are HTTP methods for all of these.\r\n\r\nHTTP POST request\r\nWe use POST to create a new resource. A POST request requires a body in which you define the data of the entity to be created.\r\n\r\nA successful POST request would be a 200 response code. In our weather app, we could use a POST method to add weather data about a new city.\r\n\r\nHTTP GET request\r\nWe use GET to read or retrieve a resource. A successful GET returns a response containing the information you requested.\r\n\r\nIn our weather app, we could use a GET to retrieve the current weather for a specific city.\r\n\r\nHTTP PUT request\r\nWe use PUT to modify a resource. PUT updates the entire resource with data that is passed in the body payload. If there is no resource that matches the request, it will create a new resource.\r\n\r\nIn our weather app, we could use PUT to update all weather data about a specific city.\r\n\r\nHTTP PATCH request\r\nWe use PATCH to modify a part of a resource. With PATCH, you only need to pass in the data that you want to update.\r\n\r\nIn our weather app, we could use PATCH to update the rainfall for a specified day in a specified city.\r\n\r\nHTTP DELETE request\r\nWe use DELETE to delete a resource. In our weather app, we could use DELETE to delete a city we no longer wanted to track for some reason.\r\n\r\nHTTP Method FAQs\r\nWhat’s the difference between PUT and POST?\r\nPUT requests are idempotent, meaning that executing the same PUT request will always produce the same result.\r\n\r\nOn the other hand, a POST will produce different outcomes. If you execute a POST request multiple times, you&#39;ll create a new resource multiple times despite them having the same data being passed in.\r\n\r\nUsing a restaurant analogy, POSTing multiple times would create multiple separate orders, whereas multiple PUT requests will update the same existing order.\r\n\r\nWhat’s the difference between PUT and PATCH?\r\nThe key differences are that PUT will create a new resource if it cannot find the specified resource. And with PUT you need to pass in data to update the entire resource, even if you only want to modify one field.\r\n\r\nWith PATCH, you can update part of a resource by simply passing in the data of the field to be updated.\r\n\r\nWhat if I just want to update part of my resource? Can I still use PUT?\r\nIf you just want to update part of your resource, you still need to send in data for the entire resource when you make a PUT request. The better-suited option here would be PATCH.\r\n\r\nWhy is a body optional for a request and response?\r\nA body is optional because for some requests, like resource retrievals using the GET method, there is nothing to specify in the body of your request. You are requesting all data from the specified endpoint.\r\n\r\nSimilarly, a body is optional for some responses when a status code is sufficient or there is nothing to specify in the body, for example with a DELETE operation.\r\n\r\nHTTP Request Examples\r\nNow that we’ve covered what an HTTP request is, and why we use them, let’s make some requests! We’re going to be playing with the GitHub Gist API.\r\n\r\n&#34;Gist is a simple way to share snippets and pastes with others. All Gists are Git repositories, so they are automatically versioned, forkable and usable from Git.&#34; (Source: Github)\r\nYou will need a GitHub account for this. If you don’t already have one, this is a great opportunity to start one to save your code in the future.\r\n\r\nEvery user on GitHub can create gists, retrieve their gists, retrieve all public gists, delete a gist, and update a gist, amongst other things. To keep things simple we will use Hoppscotch, a platform with a nice interface used to quickly and easily make HTTP requests.\r\n\r\nA quick Hoppscotch walkthrough:\r\n\r\nThere is a drop down menu where you can select the method you want to create a request with.\r\nThere is a text box where you should paste the URL of of the API endpoint you want to access.', '16575659221522326132.png', 2, '2022-07-11', NULL, NULL, '07:58:42', 'Education,Culture');
+(1, 'Educational', '1', '2022 End of the Year Party', 'Our school history is dated back to September, 1998 when it started like a lit of a candle and now grown into a flame that has produced giant of scholars who could fit into any field of the world.', '1659279486699280864.jpg', 2, '2022-07-31', NULL, NULL, '03:58:06', 'Education,Culture'),
+(2, 'Educational', '1', 'Common Errors In English Language', 'he Chairman and Proprietor of Smatech School Portal, Mr Samsom Idowu Agberayi and Mrs Blessing Taiwo Agberayi are passionate about the educational sector. They are Programmer and seasoned Marriage Counsellors.\r\n\r\nThe Chairman was the director of Osotech Software Inc Nigeria Ltd and the Nigerian Chiness Textile in Lagos, Nigeria. He is passionately driven by a vision he received from God to reach out to children and youths. She is a mother who believes that the paradigm of education must shift in Nigeria in conformity with international standards and that is evident at Smatech School Portal.', '16592842001090632612.jpg', 2, '2022-07-31', NULL, NULL, '05:16:40', 'Education');
 
 -- --------------------------------------------------------
 
@@ -1289,8 +1357,8 @@ INSERT INTO `visap_blog_post_tbl` (`blog_id`, `category_id`, `author`, `blog_tit
 -- Table structure for table `visap_classnote_tbl`
 --
 
-CREATE TABLE `visap_classnote_tbl` (
-  `noteId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_classnote_tbl` (
+  `noteId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `std_id` bigint(20) UNSIGNED DEFAULT NULL,
   `reg_number` varchar(50) DEFAULT NULL,
   `class` varchar(50) DEFAULT NULL,
@@ -1301,7 +1369,8 @@ CREATE TABLE `visap_classnote_tbl` (
   `teacher_id` int(11) DEFAULT NULL,
   `term` varchar(50) DEFAULT NULL,
   `session` varchar(50) DEFAULT NULL,
-  `created_on` date DEFAULT NULL
+  `created_on` date DEFAULT NULL,
+  PRIMARY KEY (`noteId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1310,16 +1379,28 @@ CREATE TABLE `visap_classnote_tbl` (
 -- Table structure for table `visap_class_attendance_tbl`
 --
 
-CREATE TABLE `visap_class_attendance_tbl` (
-  `attend_id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_class_attendance_tbl` (
+  `attend_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `stdReg` varchar(20) DEFAULT NULL,
   `studentGrade` varchar(20) DEFAULT NULL,
   `roll_call` varchar(20) DEFAULT NULL,
   `attendant_date` date DEFAULT NULL,
   `term` varchar(20) DEFAULT NULL,
   `schl_session` varchar(20) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`attend_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_class_attendance_tbl`
+--
+
+INSERT INTO `visap_class_attendance_tbl` (`attend_id`, `stdReg`, `studentGrade`, `roll_call`, `attendant_date`, `term`, `schl_session`, `created_at`) VALUES
+(1, '2016C243140001', 'JSS 1 A', 'Present', '2022-07-25', '1st Term', '2021/2022', '2022-07-25'),
+(2, '2022C243140002', 'BASIC 2 A', 'Present', '2022-07-26', '3rd Term', '2021/2022', '2022-07-26'),
+(3, '2022C243140002', 'BASIC 2 A', 'Present', '2022-07-25', '3rd Term', '2021/2022', '2022-07-26'),
+(4, '2016C243140001', 'JSS 1 A', 'Present', '2022-07-27', '3rd Term', '2021/2022', '2022-07-27'),
+(5, '2022C243140002', 'JSS 1 A', 'Absent', '2022-07-27', '3rd Term', '2021/2022', '2022-07-27');
 
 -- --------------------------------------------------------
 
@@ -1327,15 +1408,16 @@ CREATE TABLE `visap_class_attendance_tbl` (
 -- Table structure for table `visap_class_grade_tbl`
 --
 
-CREATE TABLE `visap_class_grade_tbl` (
-  `gradeId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_class_grade_tbl` (
+  `gradeId` int(11) NOT NULL AUTO_INCREMENT,
   `gradeDesc` varchar(50) DEFAULT NULL,
   `grade_division` varchar(2) DEFAULT NULL,
   `grade_dept` varchar(50) DEFAULT NULL,
   `grade_teacher` int(11) DEFAULT NULL,
   `grade_status` enum('pending','active','closed') NOT NULL DEFAULT 'active',
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`gradeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_class_grade_tbl`
@@ -1353,7 +1435,7 @@ INSERT INTO `visap_class_grade_tbl` (`gradeId`, `gradeDesc`, `grade_division`, `
 (9, 'Basic 3', 'A', 'none', NULL, 'active', '2022-06-14'),
 (10, 'Basic 4', 'A', 'none', NULL, 'active', '2022-06-14'),
 (11, 'Basic 5', 'A', 'none', NULL, 'active', '2022-06-14'),
-(12, 'JSS 1', 'A', 'none', NULL, 'active', '2022-06-14'),
+(12, 'JSS 1', 'A', 'none', 1, 'active', '2022-06-14'),
 (13, 'JSS 2', 'A', 'none', NULL, 'active', '2022-06-14'),
 (14, 'JSS 3', 'A', 'none', NULL, 'active', '2022-06-14'),
 (15, 'SSS 1', 'A', 'science', NULL, 'active', '2022-06-14'),
@@ -1369,14 +1451,34 @@ INSERT INTO `visap_class_grade_tbl` (`gradeId`, `gradeDesc`, `grade_division`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `visap_exam_subject_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `visap_exam_subject_tbl` (
+  `examId` int(11) NOT NULL AUTO_INCREMENT,
+  `teacherId` int(11) DEFAULT NULL,
+  `exam_class` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `exam_file` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` date DEFAULT NULL,
+  `term` varchar(20) DEFAULT NULL,
+  `schl_session` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`examId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `visap_fee_component_tbl`
 --
 
-CREATE TABLE `visap_fee_component_tbl` (
-  `compId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_fee_component_tbl` (
+  `compId` int(11) NOT NULL AUTO_INCREMENT,
   `feeType` varchar(100) DEFAULT NULL,
   `fee_status` enum('Pending','Active') DEFAULT NULL,
-  `date` date DEFAULT NULL
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`compId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1385,14 +1487,48 @@ CREATE TABLE `visap_fee_component_tbl` (
 -- Table structure for table `visap_gallery_tbl`
 --
 
-CREATE TABLE `visap_gallery_tbl` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_gallery_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(100) DEFAULT NULL,
   `title` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_gallery_tbl`
+--
+
+INSERT INTO `visap_gallery_tbl` (`id`, `author`, `title`, `image`, `type`, `created_at`) VALUES
+(13, 'SMApp', 'school founder', 'SMAppgallery62d68b429100d.jpg', 'gallery', '2022-07-19'),
+(14, 'SMApp', 'School Hall', 'SMAppgallery62d722945c575.jpg', 'gallery', '2022-07-19'),
+(15, 'SMApp', 'School Logo', 'SMAppyearbook62d722ca9e8a6.png', 'yearbook', '2022-07-19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visap_holiday_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `visap_holiday_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `holiday_desc` varchar(255) DEFAULT NULL,
+  `declared_by` varchar(255) DEFAULT NULL,
+  `date_from` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `note_msg` text DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_holiday_tbl`
+--
+
+INSERT INTO `visap_holiday_tbl` (`id`, `holiday_desc`, `declared_by`, `date_from`, `to_date`, `note_msg`, `created_at`) VALUES
+(2, 'Public Holiday', 'Federal Government', '2022-07-26', '2022-07-28', 'Sample details about the Holiday', '2022-07-22');
 
 -- --------------------------------------------------------
 
@@ -1400,8 +1536,8 @@ CREATE TABLE `visap_gallery_tbl` (
 -- Table structure for table `visap_loan_tbl`
 --
 
-CREATE TABLE `visap_loan_tbl` (
-  `loanId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_loan_tbl` (
+  `loanId` int(11) NOT NULL AUTO_INCREMENT,
   `staffName` varchar(255) NOT NULL,
   `capitalAmount` float DEFAULT NULL,
   `interesetRate` float DEFAULT NULL,
@@ -1414,7 +1550,8 @@ CREATE TABLE `visap_loan_tbl` (
   `csession` varchar(20) DEFAULT NULL,
   `submitted_date` date DEFAULT NULL,
   `returnedAmount` float DEFAULT NULL,
-  `due` float DEFAULT NULL
+  `due` float DEFAULT NULL,
+  PRIMARY KEY (`loanId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1423,15 +1560,16 @@ CREATE TABLE `visap_loan_tbl` (
 -- Table structure for table `visap_notice_board_tbl`
 --
 
-CREATE TABLE `visap_notice_board_tbl` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_notice_board_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_title` varchar(255) DEFAULT NULL,
   `event_time` time DEFAULT NULL,
   `event_content` text DEFAULT NULL,
   `event_date` date DEFAULT NULL,
   `posted_by` varchar(100) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1440,12 +1578,37 @@ CREATE TABLE `visap_notice_board_tbl` (
 -- Table structure for table `visap_offered_subject_tbl`
 --
 
-CREATE TABLE `visap_offered_subject_tbl` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_offered_subject_tbl` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `student_class` varchar(20) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
-  `aca_session` varchar(20) DEFAULT NULL
+  `aca_session` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visap_people_say_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `visap_people_say_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `job` varchar(100) DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_people_say_tbl`
+--
+
+INSERT INTO `visap_people_say_tbl` (`id`, `fullname`, `message`, `image`, `job`, `created_at`) VALUES
+(2, 'Mrs Agberqayi Blessing', 'sample of the content', 'SMATech_testi_62e6709cc9e2d.jpg', 'Trader', '2022-07-31'),
+(4, 'Engr. Dapo Abiodun', 'This is the best school so far', 'SMATech_testi_62e6979cac0a2.png', 'Politician', '2022-07-31');
 
 -- --------------------------------------------------------
 
@@ -1453,12 +1616,45 @@ CREATE TABLE `visap_offered_subject_tbl` (
 -- Table structure for table `visap_prefect_title_tbl`
 --
 
-CREATE TABLE `visap_prefect_title_tbl` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_prefect_title_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visap_psycho_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `visap_psycho_tbl` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `student_id` bigint(20) DEFAULT NULL,
+  `reg_number` varchar(50) DEFAULT NULL,
+  `student_class` varchar(50) DEFAULT NULL,
+  `term` varchar(50) DEFAULT NULL,
+  `session` varchar(50) DEFAULT NULL,
+  `Handwriting` int(2) DEFAULT NULL,
+  `Sports` int(2) DEFAULT NULL,
+  `Fluency` int(2) DEFAULT NULL,
+  `Handlingtools` int(2) DEFAULT NULL,
+  `Drawing` int(2) DEFAULT NULL,
+  `crafts` int(2) DEFAULT NULL,
+  `class_teacher` varchar(100) DEFAULT NULL,
+  `uploaded_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_psycho_tbl`
+--
+
+INSERT INTO `visap_psycho_tbl` (`id`, `student_id`, `reg_number`, `student_class`, `term`, `session`, `Handwriting`, `Sports`, `Fluency`, `Handlingtools`, `Drawing`, `crafts`, `class_teacher`, `uploaded_date`) VALUES
+(1, 1, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 2, 1, 2, 1, 4, 1, 'Sam', '2022-07-27'),
+(2, 2, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 2, 1, 5, 1, 3, 2, 'Sam', '2022-07-27');
 
 -- --------------------------------------------------------
 
@@ -1466,38 +1662,46 @@ CREATE TABLE `visap_prefect_title_tbl` (
 -- Table structure for table `visap_registered_subject_tbl`
 --
 
-CREATE TABLE `visap_registered_subject_tbl` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_registered_subject_tbl` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `subject_class` varchar(50) DEFAULT NULL,
   `subject_name` varchar(255) DEFAULT NULL,
   `createdBy` varchar(100) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_registered_subject_tbl`
 --
 
 INSERT INTO `visap_registered_subject_tbl` (`id`, `subject_class`, `subject_name`, `createdBy`, `created_at`) VALUES
-(1, 'Basic 1 A', 'BST', 'SMApp', '2022-07-13'),
-(2, 'Basic 1 A', 'Business Studies', 'SMApp', '2022-07-13'),
-(3, 'Basic 1 A', 'CCA', 'SMApp', '2022-07-13'),
-(4, 'Basic 1 A', 'Civic Education', 'SMApp', '2022-07-13'),
-(5, 'Basic 1 A', 'Computer', 'SMApp', '2022-07-13'),
-(6, 'Basic 1 A', 'Current Affairs', 'SMApp', '2022-07-13'),
-(7, 'Basic 1 A', 'Diction', 'SMApp', '2022-07-13'),
-(8, 'Basic 1 A', 'English Language', 'SMApp', '2022-07-13'),
-(9, 'Basic 1 A', 'French', 'SMApp', '2022-07-13'),
-(10, 'Basic 1 A', 'Health Habit', 'SMApp', '2022-07-13'),
-(11, 'Basic 1 A', 'History', 'SMApp', '2022-07-13'),
-(12, 'Basic 1 A', 'Letter Work', 'SMApp', '2022-07-13'),
-(13, 'Basic 1 A', 'Mathematics', 'SMApp', '2022-07-13'),
-(14, 'Basic 1 A', 'Music', 'SMApp', '2022-07-13'),
-(15, 'Basic 1 A', 'Number Work', 'SMApp', '2022-07-13'),
-(16, 'Basic 1 A', 'Phonics', 'SMApp', '2022-07-13'),
-(17, 'Basic 2 A', 'Letter Work', 'SMApp', '2022-07-16'),
-(18, 'Basic 2 A', 'Mathematics', 'SMApp', '2022-07-16'),
-(20, 'Basic 2 A', 'Number Work', 'SMApp', '2022-07-16');
+(1, 'Basic 1 A', 'Basic Science', 'SMApp', '2022-07-24'),
+(2, 'Basic 1 A', 'BST', 'SMApp', '2022-07-24'),
+(3, 'Basic 1 A', 'CCA', 'SMApp', '2022-07-24'),
+(4, 'Basic 1 A', 'Civic Education', 'SMApp', '2022-07-24'),
+(5, 'Basic 1 A', 'Computer', 'SMApp', '2022-07-24'),
+(6, 'Basic 1 A', 'Diction', 'SMApp', '2022-07-24'),
+(7, 'Basic 1 A', 'English Language', 'SMApp', '2022-07-24'),
+(8, 'Basic 1 A', 'Handwriting', 'SMApp', '2022-07-24'),
+(10, 'JSS 1 A', 'Agricultural Science', 'SMApp', '2022-07-24'),
+(11, 'JSS 1 A', 'Basic Science', 'SMApp', '2022-07-24'),
+(12, 'JSS 1 A', 'Business Studies', 'SMApp', '2022-07-24'),
+(13, 'JSS 1 A', 'CCA', 'SMApp', '2022-07-24'),
+(14, 'JSS 1 A', 'Civic Education', 'SMApp', '2022-07-24'),
+(15, 'Basic 2 A', 'Basic Science', 'SMATech', '2022-07-26'),
+(16, 'Basic 2 A', 'CCA', 'SMATech', '2022-07-26'),
+(17, 'Basic 2 A', 'Civic Education', 'SMATech', '2022-07-26'),
+(18, 'Basic 2 A', 'Computer', 'SMATech', '2022-07-26'),
+(19, 'Basic 2 A', 'Current Affairs', 'SMATech', '2022-07-26'),
+(20, 'Basic 2 A', 'Diction', 'SMATech', '2022-07-26'),
+(21, 'Basic 2 A', 'Handwriting', 'SMATech', '2022-07-26'),
+(22, 'Basic 2 A', 'Health Habit', 'SMATech', '2022-07-26'),
+(23, 'Basic 2 A', 'History', 'SMATech', '2022-07-26'),
+(24, 'Basic 2 A', 'Quantitative Aptitude', 'SMATech', '2022-07-26'),
+(25, 'Basic 2 A', 'Social Norms', 'SMATech', '2022-07-26'),
+(26, 'Basic 2 A', 'Verbal Aptitude', 'SMATech', '2022-07-26'),
+(27, 'JSS 1 A', 'English Language', 'SMATech', '2022-07-29');
 
 -- --------------------------------------------------------
 
@@ -1505,15 +1709,24 @@ INSERT INTO `visap_registered_subject_tbl` (`id`, `subject_class`, `subject_name
 -- Table structure for table `visap_result_comment_tbl`
 --
 
-CREATE TABLE `visap_result_comment_tbl` (
-  `commentId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_result_comment_tbl` (
+  `commentId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `stdRegNo` varchar(20) DEFAULT NULL,
   `stdGrade` varchar(20) DEFAULT NULL,
   `teacher_comment` text DEFAULT NULL,
   `principal_coment` text DEFAULT NULL,
   `term` varchar(20) DEFAULT NULL,
-  `schl_Sess` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `schl_Sess` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`commentId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_result_comment_tbl`
+--
+
+INSERT INTO `visap_result_comment_tbl` (`commentId`, `stdRegNo`, `stdGrade`, `teacher_comment`, `principal_coment`, `term`, `schl_Sess`) VALUES
+(1, '2016C243140001', 'JSS 1 A', 'Put in more Effort', 'Awesome Child, Keep it Up', '3rd Term', '2021/2022'),
+(2, '2022C243140002', 'JSS 1 A', 'Nice Result', 'Awesome Child, Keep it Up', '3rd Term', '2021/2022');
 
 -- --------------------------------------------------------
 
@@ -1521,15 +1734,16 @@ CREATE TABLE `visap_result_comment_tbl` (
 -- Table structure for table `visap_result_grading_tbl`
 --
 
-CREATE TABLE `visap_result_grading_tbl` (
-  `grading_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_result_grading_tbl` (
+  `grading_id` int(11) NOT NULL AUTO_INCREMENT,
   `grade_class` varchar(20) NOT NULL,
   `mark_grade` varchar(3) DEFAULT NULL,
   `score_from` int(4) DEFAULT 0,
   `score_to` int(4) DEFAULT NULL,
   `score_remark` varchar(50) DEFAULT NULL,
-  `school_ses` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `school_ses` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`grading_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_result_grading_tbl`
@@ -1542,12 +1756,12 @@ INSERT INTO `visap_result_grading_tbl` (`grading_id`, `grade_class`, `mark_grade
 (4, 'Pry', 'D', 45, 49, 'Poor', '2021/2022'),
 (5, 'Pry', 'E', 35, 39, 'Fair', '2021/2022'),
 (6, 'Pry', 'F', 10, 28, 'Failed', '2021/2022'),
-(7, 'Junior', 'A', 70, 100, 'Excellence', '2021/2022'),
-(8, 'Junior', 'B', 60, 69, 'V.Good', '2021/2022'),
-(9, 'Junior', 'C', 50, 59, 'Good', '2021/2022'),
-(10, 'Junior', 'D', 40, 49, 'Poor', '2021/2022'),
-(11, 'Junior', 'E', 30, 39, 'Fair', '2021/2022'),
-(12, 'Junior', 'F', 5, 29, 'Fail', '2021/2022'),
+(7, 'Junior', 'A', 80, 100, 'Excellence', '2021/2022'),
+(8, 'Junior', 'B', 70, 79, 'V.Good', '2021/2022'),
+(9, 'Junior', 'C', 60, 69, 'Good', '2021/2022'),
+(10, 'Junior', 'D', 50, 59, 'Poor', '2021/2022'),
+(11, 'Junior', 'E', 40, 49, 'Fair', '2021/2022'),
+(12, 'Junior', 'F', 1, 39, 'Fail', '2021/2022'),
 (13, 'Senior', 'A1', 80, 100, 'Distinctions', '2021/2022'),
 (14, 'Senior', 'B2', 75, 79, 'Excellence', '2021/2022'),
 (15, 'Senior', 'B3', 70, 74, 'Good', '2021/2022'),
@@ -1556,7 +1770,7 @@ INSERT INTO `visap_result_grading_tbl` (`grading_id`, `grade_class`, `mark_grade
 (18, 'Senior', 'C6', 50, 59, 'Pass', '2021/2022'),
 (19, 'Senior', 'D7', 40, 49, 'Pass', '2021/2022'),
 (20, 'Senior', 'E8', 30, 39, 'Poor', '2021/2022'),
-(21, 'Senior', 'F9', 5, 30, 'Failed', '2021/2022');
+(21, 'Senior', 'F9', 1, 29, 'Failed', '2021/2022');
 
 -- --------------------------------------------------------
 
@@ -1564,14 +1778,15 @@ INSERT INTO `visap_result_grading_tbl` (`grading_id`, `grade_class`, `mark_grade
 -- Table structure for table `visap_school_expense_tbl`
 --
 
-CREATE TABLE `visap_school_expense_tbl` (
-  `expense_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_school_expense_tbl` (
+  `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `expense_desc` text DEFAULT NULL,
   `cost` double DEFAULT NULL,
   `receiver` varchar(255) DEFAULT NULL,
   `cterm` varchar(20) DEFAULT NULL,
   `csession` varchar(20) DEFAULT NULL,
-  `created_on` date DEFAULT NULL
+  `created_on` date DEFAULT NULL,
+  PRIMARY KEY (`expense_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1580,13 +1795,14 @@ CREATE TABLE `visap_school_expense_tbl` (
 -- Table structure for table `visap_school_fee_allocation_tbl`
 --
 
-CREATE TABLE `visap_school_fee_allocation_tbl` (
-  `faId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_school_fee_allocation_tbl` (
+  `faId` int(11) NOT NULL AUTO_INCREMENT,
   `component_id` varchar(50) DEFAULT NULL,
   `gradeDesc` varchar(50) DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `created_on` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`faId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1595,14 +1811,15 @@ CREATE TABLE `visap_school_fee_allocation_tbl` (
 -- Table structure for table `visap_school_prefect_tbl`
 --
 
-CREATE TABLE `visap_school_prefect_tbl` (
-  `prefectId` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_school_prefect_tbl` (
+  `prefectId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `student_id` bigint(20) DEFAULT NULL,
   `studentGrade` varchar(20) DEFAULT NULL,
   `officeName` varchar(200) DEFAULT NULL,
   `school_session` varchar(50) DEFAULT NULL,
   `activeness` tinyint(1) NOT NULL DEFAULT 1,
-  `created_on` date DEFAULT NULL
+  `created_on` date DEFAULT NULL,
+  PRIMARY KEY (`prefectId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1611,8 +1828,8 @@ CREATE TABLE `visap_school_prefect_tbl` (
 -- Table structure for table `visap_school_profile`
 --
 
-CREATE TABLE `visap_school_profile` (
-  `id` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_school_profile` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `school_name` varchar(255) DEFAULT NULL,
   `govt_approve_number` varchar(20) DEFAULT NULL,
   `school_address` text DEFAULT NULL,
@@ -1639,15 +1856,16 @@ CREATE TABLE `visap_school_profile` (
   `default_language` varchar(100) DEFAULT NULL,
   `school_history` text DEFAULT NULL,
   `founded_year` varchar(20) DEFAULT NULL,
-  `school_gmail` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `school_gmail` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_school_profile`
 --
 
 INSERT INTO `visap_school_profile` (`id`, `school_name`, `govt_approve_number`, `school_address`, `school_slogan`, `school_director`, `director_mobile`, `registrar`, `registrar_mobile`, `principal`, `principal_mobile`, `school_state`, `school_city`, `country`, `postal_code`, `school_email`, `school_phone`, `school_fax`, `website_url`, `website_name`, `school_logo`, `school_barcode`, `school_badge`, `school_favicon`, `default_language`, `school_history`, `founded_year`, `school_gmail`) VALUES
-(1, 'Abolarin Collge Oke-Ila', 'C26313', 'Plot 8,Block2, Ijagba Ota', 'Education Is Power', 'Engr. Samson Idowu A', '+2348131374443', 'Miss Iremide Agberayi E', '+2348140122566', 'Mrs. Blessing Agberayi T (BSc)', '+2349036583063', 'Osun State', 'Ifelodun', 'Nigeria', 2345, 'info@abolarincollege.com', '08131374443', '09036583063', 'www.abolarincollege.com', 'www.julitschools.com', 'logo_16580959405028792.png', NULL, NULL, NULL, 'English', 'Abolarin College Oke-Ila  designed to provide learning in conducive environment for the teaching of students under the direction of qualified teachers. In our school, students progress through a series of school activities.\r\n\r\nThe school was established in the year 2012 and has since increase in population as our aim is to provide competitive and quality education in a conducive environment with all learning aids.\r\n\r\nWe have highly qualified teachers taking all the various subjects from Basic level to secondary level. All subjects are covered and the curriculum of the school is based on the scheme of work from the ministry of education.', '2nd May,1998', 'abolarincollege@gmail.com');
+(1, 'Smatech School Portal', 'C26313', 'Plot 8,Block2, Ijagba Ota', 'Education Is Power', 'Engr. Samson Idowu A', '+2348131374443', 'Miss Iremide Agberayi E', '+2348140122566', 'Mrs. Blessing Agberayi T (BSc)', '+2349036583063', 'Osun State', 'Ifelodun', 'Nigeria', 2345, 'info@smp.com', '08131374443', '09036583063', 'www.schoolportal.com', 'www.julitschools.com', 'logo_16595470995508995.png', NULL, NULL, NULL, 'English', 'SMATech designed to provide learning in conducive environment for the teaching of students under the direction of qualified teachers. In our school, students progress through a series of school activities.\r\n\r\nThe school was established in the year 2012 and has since increase in population as our aim is to provide competitive and quality education in a conducive environment with all learning aids.\r\n\r\nWe have highly qualified teachers taking all the various subjects from Basic level to secondary level. All subjects are covered and the curriculum of the school is based on the scheme of work from the ministry of education.', '2nd May,1998', 'spm@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -1655,16 +1873,25 @@ INSERT INTO `visap_school_profile` (`id`, `school_name`, `govt_approve_number`, 
 -- Table structure for table `visap_school_session_history_tbl`
 --
 
-CREATE TABLE `visap_school_session_history_tbl` (
-  `sehisId` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_school_session_history_tbl` (
+  `sehisId` int(1) NOT NULL AUTO_INCREMENT,
   `active_session` varchar(50) NOT NULL,
   `active_term` varchar(20) NOT NULL,
   `Days_open` int(3) NOT NULL,
   `Weeks_open` int(3) NOT NULL,
   `term_ended` date NOT NULL,
   `new_term_begins` date NOT NULL,
-  `updated_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `updated_at` date NOT NULL,
+  PRIMARY KEY (`sehisId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_school_session_history_tbl`
+--
+
+INSERT INTO `visap_school_session_history_tbl` (`sehisId`, `active_session`, `active_term`, `Days_open`, `Weeks_open`, `term_ended`, `new_term_begins`, `updated_at`) VALUES
+(1, '2021/2022', '1st Term', 70, 16, '2022-08-27', '2022-09-05', '2022-07-26'),
+(2, '2021/2022', '2nd Term', 62, 14, '2022-04-16', '2022-05-09', '2022-07-26');
 
 -- --------------------------------------------------------
 
@@ -1672,14 +1899,15 @@ CREATE TABLE `visap_school_session_history_tbl` (
 -- Table structure for table `visap_school_session_tbl`
 --
 
-CREATE TABLE `visap_school_session_tbl` (
+CREATE TABLE IF NOT EXISTS `visap_school_session_tbl` (
   `seId` int(1) NOT NULL,
   `active_session` varchar(50) NOT NULL,
   `active_term` enum('1st Term','2nd Term','3rd Term') NOT NULL DEFAULT '1st Term',
   `Days_open` int(3) NOT NULL,
   `Weeks_open` int(3) NOT NULL,
   `term_ended` date NOT NULL,
-  `new_term_begins` date NOT NULL
+  `new_term_begins` date NOT NULL,
+  PRIMARY KEY (`seId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1687,7 +1915,7 @@ CREATE TABLE `visap_school_session_tbl` (
 --
 
 INSERT INTO `visap_school_session_tbl` (`seId`, `active_session`, `active_term`, `Days_open`, `Weeks_open`, `term_ended`, `new_term_begins`) VALUES
-(1, '2021/2022', '1st Term', 70, 16, '2022-08-27', '2022-09-05');
+(1, '2021/2022', '3rd Term', 59, 13, '2022-07-29', '2022-09-19');
 
 -- --------------------------------------------------------
 
@@ -1695,10 +1923,11 @@ INSERT INTO `visap_school_session_tbl` (`seId`, `active_session`, `active_term`,
 -- Table structure for table `visap_session_list`
 --
 
-CREATE TABLE `visap_session_list` (
-  `id` int(11) NOT NULL,
-  `session_desc` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `visap_session_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `session_desc` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_session_list`
@@ -1713,24 +1942,25 @@ INSERT INTO `visap_session_list` (`id`, `session_desc`) VALUES
 -- Table structure for table `visap_sliders_tbl`
 --
 
-CREATE TABLE `visap_sliders_tbl` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_sliders_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `slider_desc` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_sliders_tbl`
 --
 
 INSERT INTO `visap_sliders_tbl` (`id`, `title`, `slider_desc`, `image`, `status`, `created_at`) VALUES
-(5, 'Coronation Day', 'This is the Coronation Day Text', 'SMApp_62d45719ac909_.jpg', 1, '2022-07-17'),
-(6, 'Title Text', 'issues a POST to the specified URL with.', 'SMApp_62d4578cd06e6_.jpg', 1, '2022-07-17'),
-(7, 'Sample two', 'Another Slider sample', 'SMApp_62d46cc85d872_.jpg', 1, '2022-07-17'),
-(8, 'Education Sector', 'Education is the passport to the future for tomorrow belongs to those who prepare for it today', 'SMApp_62d47b2987f16_.jpg', 1, '2022-07-17');
+(1, 'Abolarin', 'This will be the content', 'SMApp_62d689d859c7b_.jpg', 1, '2022-07-19'),
+(2, 'Anotheer Topic', 'Sample caption', 'SMApp_62d68a0d12de3_.jpg', 1, '2022-07-19'),
+(3, 'School Name', 'This is just the Content', 'SMApp_62d72257774f6_.jpg', 1, '2022-07-19'),
+(4, 'Abolarin The King', 'HRM Kabiyesi Oba Abolarin And His Chiefs', 'SMApp_62dc7b2fc5dbc_.jpg', 1, '2022-07-23');
 
 -- --------------------------------------------------------
 
@@ -1738,15 +1968,16 @@ INSERT INTO `visap_sliders_tbl` (`id`, `title`, `slider_desc`, `image`, `status`
 -- Table structure for table `visap_social_link_tbl`
 --
 
-CREATE TABLE `visap_social_link_tbl` (
-  `id` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_social_link_tbl` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `twitter` varchar(200) DEFAULT NULL,
   `youtube` varchar(200) DEFAULT NULL,
   `facebook` varchar(200) DEFAULT NULL,
   `goggle` varchar(200) DEFAULT NULL,
   `instagram` varchar(200) DEFAULT NULL,
-  `linkedin` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `linkedin` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_social_link_tbl`
@@ -1761,14 +1992,15 @@ INSERT INTO `visap_social_link_tbl` (`id`, `twitter`, `youtube`, `facebook`, `go
 -- Table structure for table `visap_staff_bank_details_tbl`
 --
 
-CREATE TABLE `visap_staff_bank_details_tbl` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_staff_bank_details_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) DEFAULT NULL,
   `bank_name` varchar(255) DEFAULT NULL,
   `account_name` varchar(255) DEFAULT NULL,
   `account_type` varchar(50) DEFAULT NULL,
   `account_number` varchar(20) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1777,16 +2009,17 @@ CREATE TABLE `visap_staff_bank_details_tbl` (
 -- Table structure for table `visap_staff_duty_tbl`
 --
 
-CREATE TABLE `visap_staff_duty_tbl` (
-  `duty_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_staff_duty_tbl` (
+  `duty_id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_name` varchar(255) DEFAULT NULL,
   `duty` varchar(255) DEFAULT NULL,
   `duty_week` varchar(100) DEFAULT NULL,
   `message` text DEFAULT NULL,
   `term` varchar(20) DEFAULT NULL,
   `session` varchar(20) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`duty_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1794,8 +2027,8 @@ CREATE TABLE `visap_staff_duty_tbl` (
 -- Table structure for table `visap_staff_paid_salary_tbl`
 --
 
-CREATE TABLE `visap_staff_paid_salary_tbl` (
-  `salaryId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_staff_paid_salary_tbl` (
+  `salaryId` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) DEFAULT NULL,
   `amount` float DEFAULT NULL,
   `forMonth` varchar(50) DEFAULT NULL,
@@ -1806,7 +2039,8 @@ CREATE TABLE `visap_staff_paid_salary_tbl` (
   `bank_status` varchar(20) DEFAULT NULL,
   `csession` varchar(20) DEFAULT NULL,
   `term` varchar(20) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`salaryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1815,8 +2049,8 @@ CREATE TABLE `visap_staff_paid_salary_tbl` (
 -- Table structure for table `visap_staff_payroll_tbl`
 --
 
-CREATE TABLE `visap_staff_payroll_tbl` (
-  `payrollId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_staff_payroll_tbl` (
+  `payrollId` int(11) NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) DEFAULT NULL,
   `salary` float DEFAULT NULL,
   `rent_alawi` float DEFAULT NULL,
@@ -1825,8 +2059,16 @@ CREATE TABLE `visap_staff_payroll_tbl` (
   `med_alawi` float DEFAULT NULL,
   `tds` float DEFAULT NULL,
   `net_salary` float DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`payrollId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_staff_payroll_tbl`
+--
+
+INSERT INTO `visap_staff_payroll_tbl` (`payrollId`, `staff_id`, `salary`, `rent_alawi`, `transport_alawi`, `cloth_alawi`, `med_alawi`, `tds`, `net_salary`, `created_at`) VALUES
+(1, 1, 60000, 20000, 5000, 5000, 2000, 2000, 90000, '2022-07-23');
 
 -- --------------------------------------------------------
 
@@ -1834,14 +2076,23 @@ CREATE TABLE `visap_staff_payroll_tbl` (
 -- Table structure for table `visap_staff_post_tbl`
 --
 
-CREATE TABLE `visap_staff_post_tbl` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_staff_post_tbl` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `staff_id` int(11) DEFAULT NULL,
   `duty` varchar(20) DEFAULT NULL,
   `office` varchar(100) DEFAULT NULL,
   `term` varchar(20) DEFAULT NULL,
-  `schlSes` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `schlSes` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_staff_post_tbl`
+--
+
+INSERT INTO `visap_staff_post_tbl` (`id`, `staff_id`, `duty`, `office`, `term`, `schlSes`) VALUES
+(1, 1, NULL, 'Class Teacher', NULL, NULL),
+(2, 2, NULL, 'Principal', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1849,8 +2100,8 @@ CREATE TABLE `visap_staff_post_tbl` (
 -- Table structure for table `visap_staff_tbl`
 --
 
-CREATE TABLE `visap_staff_tbl` (
-  `staffId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_staff_tbl` (
+  `staffId` int(11) NOT NULL AUTO_INCREMENT,
   `staffRegNo` varchar(50) DEFAULT NULL,
   `staffGrade` varchar(50) DEFAULT NULL,
   `staffRole` varchar(100) DEFAULT NULL,
@@ -1875,8 +2126,17 @@ CREATE TABLE `visap_staff_tbl` (
   `online` tinyint(1) NOT NULL DEFAULT 0,
   `staffType` enum('Teaching','Non-Teaching') DEFAULT NULL,
   `appliedDate` date DEFAULT NULL,
-  `staffAssignedClass` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `staffAssignedClass` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`staffId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_staff_tbl`
+--
+
+INSERT INTO `visap_staff_tbl` (`staffId`, `staffRegNo`, `staffGrade`, `staffRole`, `firstName`, `lastName`, `staffEmail`, `staffPass`, `staffUser`, `staffDob`, `staffEducation`, `staffPhone`, `staffCourse`, `staffAddress`, `confirmation_code`, `staffToken`, `tokenExpire`, `staffPassport`, `staffGender`, `maritalStatus`, `portalEmail`, `jobStatus`, `online`, `staffType`, `appliedDate`, `staffAssignedClass`) VALUES
+(1, 'SMP22001', 'JSS 1 A', 'Class Teacher', 'Adeola Oyintola', 'Samson', 'samson@gmail.com', '$2y$10$7R8KpjqCYGYnu0XzNC4cd.05ZvNMEYMbgZBEAMuCDd.lIJbypPXaS', 'Samson', NULL, 'HND', '08131374443', NULL, NULL, 'b4b755d76cc6c3d', NULL, NULL, 'SMP22001661154.png', 'Male', NULL, 'samson@SMApp.portal', 1, 1, 'Teaching', '2022-07-20', NULL),
+(2, 'SMP22002', NULL, 'Principal', 'Blessing Taiwo', 'Agberayi', 'oizablessing@gmail.com', '$2y$10$pERFKIeWZr8UC5CQtuxRE.9K2BQ2ATjchv6ppkd7xV.AFvr1C22h.', 'oiza', NULL, 'BSc', '08313174443', NULL, NULL, 'dfe03feb39b79a1', NULL, NULL, NULL, 'Female', NULL, 'oizablessing@SMATech.portal', 1, 1, 'Teaching', '2022-07-27', NULL);
 
 -- --------------------------------------------------------
 
@@ -1884,10 +2144,11 @@ CREATE TABLE `visap_staff_tbl` (
 -- Table structure for table `visap_state_tbl`
 --
 
-CREATE TABLE `visap_state_tbl` (
-  `state_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `visap_state_tbl` (
+  `state_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`state_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `visap_state_tbl`
@@ -1938,8 +2199,8 @@ INSERT INTO `visap_state_tbl` (`state_id`, `name`) VALUES
 -- Table structure for table `visap_stdmedical_tbl`
 --
 
-CREATE TABLE `visap_stdmedical_tbl` (
-  `medicalId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_stdmedical_tbl` (
+  `medicalId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `studId` bigint(20) UNSIGNED NOT NULL,
   `stdHospitalName` varchar(255) DEFAULT NULL,
   `stdHospitalOwner` varchar(255) DEFAULT NULL,
@@ -1953,8 +2214,17 @@ CREATE TABLE `visap_stdmedical_tbl` (
   `stdIsHospitalized` varchar(100) DEFAULT NULL COMMENT '0=No, 1=Yes',
   `stdSurgical` varchar(100) DEFAULT NULL COMMENT '0=No, 1=Yes',
   `stdLastScanedReport` varchar(255) DEFAULT NULL,
-  `stdBcertificate` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `stdBcertificate` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`medicalId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_stdmedical_tbl`
+--
+
+INSERT INTO `visap_stdmedical_tbl` (`medicalId`, `studId`, `stdHospitalName`, `stdHospitalOwner`, `stdHospitalPhone`, `stdRegDate`, `stdHospitalAddress`, `stdBlood`, `stdGenotype`, `stdSickness`, `stdFamilySickness`, `stdIsHospitalized`, `stdSurgical`, `stdLastScanedReport`, `stdBcertificate`) VALUES
+(1, 4, 'Osotech Hospital', 'Mr Idowu S', '08123323334', '2010-10-01', 'Sango Ota', 'B', 'AA', 'None', NULL, 'Yes', 'I Don Not know', NULL, NULL),
+(2, 5, 'Aturamu Specialist Hospital', 'Dr. Aturamu', '08131311112', '2011-10-10', 'Ikere Ekiti', 'A', 'AA', 'None', NULL, 'No', 'No', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1962,8 +2232,8 @@ CREATE TABLE `visap_stdmedical_tbl` (
 -- Table structure for table `visap_stdpreschlinfo`
 --
 
-CREATE TABLE `visap_stdpreschlinfo` (
-  `preId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_stdpreschlinfo` (
+  `preId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `student_id` bigint(20) UNSIGNED NOT NULL,
   `stdSchoolName` varchar(255) DEFAULT NULL,
   `stdDirectorName` varchar(100) DEFAULT NULL,
@@ -1974,8 +2244,17 @@ CREATE TABLE `visap_stdpreschlinfo` (
   `stdSchlEduLevel` varchar(50) DEFAULT NULL,
   `stdPresentClass` varchar(50) DEFAULT NULL,
   `stdReasonInPreClass` text DEFAULT NULL,
-  `stdLastReportSheet` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `stdLastReportSheet` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`preId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_stdpreschlinfo`
+--
+
+INSERT INTO `visap_stdpreschlinfo` (`preId`, `student_id`, `stdSchoolName`, `stdDirectorName`, `stdSchoolPhone`, `stdSchLocation`, `stdSchoolType`, `stdSchlCat`, `stdSchlEduLevel`, `stdPresentClass`, `stdReasonInPreClass`, `stdLastReportSheet`) VALUES
+(1, 4, 'Juli-T Schools Ota', 'Mrs Lawal', '09787654321', 'Urban', NULL, 'PRIVATE', 'PRIMARY & SECONDARY', 'Nursery Two', 'Change of Environment', 'report_sheet_2022C1200400035763656.png'),
+(2, 5, 'Osotech School Ota', 'Mr Osotech', '081313734443', 'Urban', NULL, 'PRIVATE', 'PRIMARY & SECONDARY', 'Creche', 'Change of Environment', 'report_sheet_2022C1200400038868055.png');
 
 -- --------------------------------------------------------
 
@@ -1983,8 +2262,8 @@ CREATE TABLE `visap_stdpreschlinfo` (
 -- Table structure for table `visap_student_info_tbl`
 --
 
-CREATE TABLE `visap_student_info_tbl` (
-  `stdInfoId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_student_info_tbl` (
+  `stdInfoId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `studentId` bigint(20) UNSIGNED NOT NULL,
   `stdBirthCert` varchar(50) DEFAULT NULL,
   `stdCountry` varchar(50) DEFAULT NULL,
@@ -2007,8 +2286,17 @@ CREATE TABLE `visap_student_info_tbl` (
   `stdFGPhone` varchar(20) DEFAULT NULL,
   `stdFGEmail` varchar(100) DEFAULT NULL,
   `stdFGOccupation` varchar(255) DEFAULT NULL,
-  `stdFGAddress` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `stdFGAddress` text DEFAULT NULL,
+  PRIMARY KEY (`stdInfoId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_student_info_tbl`
+--
+
+INSERT INTO `visap_student_info_tbl` (`stdInfoId`, `studentId`, `stdBirthCert`, `stdCountry`, `stdSOR`, `stdLGA`, `stdHomeTown`, `stdReligion`, `stdDisability`, `stdPermaAdd`, `stdMGTitle`, `stdMGName`, `stdMGRelationship`, `stdMGPhone`, `stdMGEmail`, `stdMGOccupation`, `stdMGAddress`, `stdFGTitle`, `stdFGName`, `stdFGRelationship`, `stdFGPhone`, `stdFGEmail`, `stdFGOccupation`, `stdFGAddress`) VALUES
+(1, 4, 'Certificate', 'Nigerian', 'Ekiti State', 'Emure', 'Emure Ekiti', 'Christianity', 'None', 'No 12 Sango Ota, Ogun State', 'Mr', 'Agberayi Samson J', 'Father', '08112334321', 'myfathercare@gmail.com', 'Doctor', 'Sango Ota', 'Mrs', 'Blessing O.A', 'Mother', '09898765554', 'myothercares@gmail.com', 'Nurse', 'Sango Ota'),
+(2, 5, 'Certificate', 'Nigerian', 'Ekiti State', 'Ikere', 'Ikere Ekiti', 'Christianity', 'None', 'Olaotan Avenue, Ijoko Road, Sango Ota', 'Engr.', 'Agberayi Idowu Samson', 'Father', '081313734443', 'osotechcoding@gmail.com', 'Programmer', 'Sango Ota', 'Mrs', 'Agberayi Blessing T', 'Mother', '08131374443', 'oizataiwo@gmail.com', 'Teaching', 'Sango Ota');
 
 -- --------------------------------------------------------
 
@@ -2016,8 +2304,8 @@ CREATE TABLE `visap_student_info_tbl` (
 -- Table structure for table `visap_student_payment_history_tbl`
 --
 
-CREATE TABLE `visap_student_payment_history_tbl` (
-  `phId` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_student_payment_history_tbl` (
+  `phId` bigint(20) NOT NULL AUTO_INCREMENT,
   `std_id` bigint(20) NOT NULL,
   `stdAdmNo` varchar(50) NOT NULL,
   `stdGrade` varchar(20) DEFAULT NULL,
@@ -2033,7 +2321,8 @@ CREATE TABLE `visap_student_payment_history_tbl` (
   `teller` varchar(100) DEFAULT NULL,
   `bank_name` varchar(100) DEFAULT NULL,
   `collectedBy` varchar(100) DEFAULT NULL,
-  `today_date` date DEFAULT NULL
+  `today_date` date DEFAULT NULL,
+  PRIMARY KEY (`phId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -2042,8 +2331,8 @@ CREATE TABLE `visap_student_payment_history_tbl` (
 -- Table structure for table `visap_student_payment_tbl`
 --
 
-CREATE TABLE `visap_student_payment_tbl` (
-  `paymentId` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_student_payment_tbl` (
+  `paymentId` bigint(20) NOT NULL AUTO_INCREMENT,
   `std_id` bigint(20) NOT NULL,
   `stdAdmNo` varchar(50) NOT NULL,
   `stdGrade` varchar(20) DEFAULT NULL,
@@ -2059,7 +2348,8 @@ CREATE TABLE `visap_student_payment_tbl` (
   `teller` varchar(100) DEFAULT NULL,
   `bank_name` varchar(100) DEFAULT NULL,
   `collectedBy` varchar(100) DEFAULT NULL,
-  `today_date` date DEFAULT NULL
+  `today_date` date DEFAULT NULL,
+  PRIMARY KEY (`paymentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -2068,8 +2358,8 @@ CREATE TABLE `visap_student_payment_tbl` (
 -- Table structure for table `visap_student_tbl`
 --
 
-CREATE TABLE `visap_student_tbl` (
-  `stdId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_student_tbl` (
+  `stdId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `stdRegNo` varchar(20) DEFAULT NULL,
   `stdEmail` varchar(160) DEFAULT NULL,
   `stdUserName` varchar(50) DEFAULT NULL,
@@ -2088,8 +2378,19 @@ CREATE TABLE `visap_student_tbl` (
   `stdPassport` varchar(255) DEFAULT NULL,
   `stdConfToken` varchar(255) DEFAULT NULL,
   `stdTokenExp` datetime DEFAULT NULL,
-  `is_online` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `is_online` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`stdId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_student_tbl`
+--
+
+INSERT INTO `visap_student_tbl` (`stdId`, `stdRegNo`, `stdEmail`, `stdUserName`, `stdPassword`, `studentClass`, `stdSurName`, `stdFirstName`, `stdMiddleName`, `stdDob`, `stdGender`, `stdAddress`, `stdPhone`, `stdAdmStatus`, `stdApplyDate`, `stdApplyType`, `stdPassport`, `stdConfToken`, `stdTokenExp`, `is_online`) VALUES
+(1, '2016C243140001', 'adeyemo.oladele12@gmail.com', 'Adediji', '$2y$10$RJexmeuAdbFIQwiAVkdBd.4Oy8.B.jYyqri.qo3TGJrjvP5aHyK.2', 'JSS 1 A', 'Adediji', 'Kehinde', 'Ademola', '2005-11-27', 'Male', 'ilobu', '08066558484', 'Active', '2016-09-16', 'Day', '2016C2431400015025056.jpg', '5e28352e67233a', NULL, 0),
+(2, '2022C243140002', 'samuelade@gmail.com', 'Samuel', '$2y$10$5q/oHaPFR7/MjRz8HQOLJ.NsnnNyBxMf/B1wDlZZtMupGZUZ3XxiS', 'JSS 1 A', 'Samuel', 'Adeola', 'Adewumi', '2018-03-10', 'Female', 'Nigeria', '09090987654', 'Active', '2022-07-26', 'Day', NULL, '0d884908ed5808', NULL, 0),
+(4, '2022C120040003', 'samjec@gmail.com', 'Idowu', '$2y$10$dPaauKnCHL0.XFYH9aoJOehgvrfC9kuoK3RKwmvnQrAuQbNotcD5a', 'Basic 1 A', 'Idowu', 'Samson', 'Ademola', '2018-08-05', 'Male', 'No 12 Sango Ota, Ogun State', '2348131367763', 'Active', '2022-07-29', 'Day', '2022C1200400038089675.jpg', '4fdc77b78c', NULL, 0),
+(5, '2022C120040003', 'irewole@gmail.com', 'Yakubu', '$2y$10$xF2mJXZ67zah3mJvZSx8nuwiLjXYt9H3IwgAbTrFLqPGgFhRtiq2a', 'Basic 5 A', 'Idowu', 'Iremide', 'Elizabeth', '2021-10-06', 'Female', 'Olaotan Avenue, Ijoko Road, Sango Ota', '2347077665432', 'Active', '2022-07-29', 'Day', '2022C120040003981635.jpg', 'cabf7c25a5', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2097,8 +2398,8 @@ CREATE TABLE `visap_student_tbl` (
 -- Table structure for table `visap_submitted_class_assignment_tbl`
 --
 
-CREATE TABLE `visap_submitted_class_assignment_tbl` (
-  `aId` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_submitted_class_assignment_tbl` (
+  `aId` bigint(20) NOT NULL AUTO_INCREMENT,
   `question_id` int(11) NOT NULL,
   `tId` int(11) DEFAULT NULL,
   `stdRegno` varchar(50) DEFAULT NULL,
@@ -2110,7 +2411,8 @@ CREATE TABLE `visap_submitted_class_assignment_tbl` (
   `school_session` varchar(20) DEFAULT NULL,
   `status` tinyint(1) DEFAULT 0 COMMENT '0=not seen,1=seen',
   `Submitted_at` date DEFAULT NULL,
-  `note_to_student` text DEFAULT NULL
+  `note_to_student` text DEFAULT NULL,
+  PRIMARY KEY (`aId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -2119,8 +2421,8 @@ CREATE TABLE `visap_submitted_class_assignment_tbl` (
 -- Table structure for table `visap_termly_result_tbl`
 --
 
-CREATE TABLE `visap_termly_result_tbl` (
-  `reportId` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_termly_result_tbl` (
+  `reportId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `studentId` bigint(20) UNSIGNED DEFAULT NULL,
   `stdRegCode` varchar(50) DEFAULT NULL,
   `studentGrade` varchar(50) DEFAULT NULL,
@@ -2136,8 +2438,36 @@ CREATE TABLE `visap_termly_result_tbl` (
   `mark_average` double NOT NULL DEFAULT 0,
   `uploadedTime` time DEFAULT NULL,
   `uploadedDate` date DEFAULT NULL,
-  `rStatus` smallint(1) NOT NULL DEFAULT 2
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `rStatus` smallint(1) NOT NULL DEFAULT 2,
+  PRIMARY KEY (`reportId`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_termly_result_tbl`
+--
+
+INSERT INTO `visap_termly_result_tbl` (`reportId`, `studentId`, `stdRegCode`, `studentGrade`, `term`, `aca_session`, `subjectName`, `ca`, `test1`, `test2`, `exam`, `overallMark`, `subjectRank`, `mark_average`, `uploadedTime`, `uploadedDate`, `rStatus`) VALUES
+(1, NULL, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 'BASIC SCIENCE', 38, NULL, NULL, 58, 96, NULL, 48, '07:09:11', '2022-07-27', 2),
+(3, NULL, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 'CCA', 40, NULL, NULL, 50, 90, NULL, 45, '08:51:17', '2022-07-27', 2),
+(4, NULL, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 'CCA', 38, NULL, NULL, 45, 83, NULL, 42, '08:51:17', '2022-07-27', 2),
+(6, NULL, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 'AGRICULTURAL SCIENCE', 32, NULL, NULL, 56, 88, NULL, 44, '08:51:46', '2022-07-27', 2),
+(7, NULL, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 'CIVIC EDUCATION', 29, NULL, NULL, 43, 72, NULL, 36, '08:52:59', '2022-07-27', 2),
+(8, NULL, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 'CIVIC EDUCATION', 31, NULL, NULL, 47, 78, NULL, 39, '08:52:59', '2022-07-27', 2),
+(9, NULL, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 'BUSINESS STUDIES', 40, NULL, NULL, 50, 90, NULL, 45, '08:53:30', '2022-07-27', 2),
+(10, NULL, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 'BUSINESS STUDIES', 40, NULL, NULL, 56, 96, NULL, 48, '08:53:31', '2022-07-27', 2),
+(11, NULL, '2016C243140001', 'JSS 1 A', '1st Term', '2021/2022', 'BASIC SCIENCE', 40, NULL, NULL, 56, 96, NULL, 48, '08:23:09', '2022-07-29', 1),
+(12, NULL, '2022C243140002', 'JSS 1 A', '1st Term', '2021/2022', 'BASIC SCIENCE', 36, NULL, NULL, 54, 90, NULL, 45, '08:23:09', '2022-07-29', 1),
+(13, NULL, '2016C243140001', 'JSS 1 A', '1st Term', '2021/2022', 'CCA', 36, NULL, NULL, 45, 81, NULL, 41, '08:23:33', '2022-07-29', 1),
+(14, NULL, '2022C243140002', 'JSS 1 A', '1st Term', '2021/2022', 'CCA', 34, NULL, NULL, 42, 76, NULL, 38, '08:23:33', '2022-07-29', 1),
+(15, NULL, '2016C243140001', 'JSS 1 A', '1st Term', '2021/2022', 'AGRICULTURAL SCIENCE', 38, NULL, NULL, 44, 82, NULL, 41, '08:24:00', '2022-07-29', 1),
+(16, NULL, '2022C243140002', 'JSS 1 A', '1st Term', '2021/2022', 'AGRICULTURAL SCIENCE', 31, NULL, NULL, 35, 66, NULL, 33, '08:24:00', '2022-07-29', 1),
+(17, NULL, '2016C243140001', 'JSS 1 A', '1st Term', '2021/2022', 'CIVIC EDUCATION', 40, NULL, NULL, 46, 86, NULL, 43, '08:24:28', '2022-07-29', 1),
+(18, NULL, '2022C243140002', 'JSS 1 A', '1st Term', '2021/2022', 'CIVIC EDUCATION', 32, NULL, NULL, 58, 90, NULL, 45, '08:24:28', '2022-07-29', 1),
+(19, NULL, '2016C243140001', 'JSS 1 A', '1st Term', '2021/2022', 'BUSINESS STUDIES', 40, NULL, NULL, 50, 90, NULL, 45, '08:24:57', '2022-07-29', 1),
+(20, NULL, '2022C243140002', 'JSS 1 A', '1st Term', '2021/2022', 'BUSINESS STUDIES', 38, NULL, NULL, 52, 90, NULL, 45, '08:24:57', '2022-07-29', 1),
+(21, NULL, '2016C243140001', 'JSS 1 A', '3rd Term', '2021/2022', 'ENGLISH LANGUAGE', 38, NULL, NULL, 56, 94, NULL, 47, '08:26:28', '2022-07-29', 2),
+(22, NULL, '2022C243140002', 'JSS 1 A', '3rd Term', '2021/2022', 'ENGLISH LANGUAGE', 35, NULL, NULL, 48, 83, NULL, 42, '08:26:28', '2022-07-29', 2),
+(23, NULL, '2022C120040003', 'BASIC 1 A', '3rd Term', '2021/2022', 'BASIC SCIENCE', 40, NULL, NULL, 58, 98, NULL, 49, '10:56:03', '2022-08-01', 2);
 
 -- --------------------------------------------------------
 
@@ -2145,8 +2475,8 @@ CREATE TABLE `visap_termly_result_tbl` (
 -- Table structure for table `visap_upcoming_event_tbl`
 --
 
-CREATE TABLE `visap_upcoming_event_tbl` (
-  `eventId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_upcoming_event_tbl` (
+  `eventId` int(11) NOT NULL AUTO_INCREMENT,
   `author` int(2) DEFAULT NULL,
   `event_title` varchar(255) DEFAULT NULL,
   `event_detail` longtext DEFAULT NULL,
@@ -2156,8 +2486,18 @@ CREATE TABLE `visap_upcoming_event_tbl` (
   `etime` time DEFAULT NULL,
   `evenue` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`eventId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visap_upcoming_event_tbl`
+--
+
+INSERT INTO `visap_upcoming_event_tbl` (`eventId`, `author`, `event_title`, `event_detail`, `event_image`, `eorganizer`, `edate`, `etime`, `evenue`, `status`, `created_at`) VALUES
+(1, 1, 'Entrance Examination', 'sample', 'SMApp_event62d68abaefdd62.24534511.jpg', 'The School Management', '2022-09-27', '08:30:00', 'school educational centre', 2, '2022-07-19'),
+(2, 1, 'Advanced PHP', 'Just the sample Message to Participants', 'SMApp_event62dbc81b3790c6.37767386.png', 'Developer', '2022-07-30', '02:00:00', 'School Hall', 2, '2022-07-23'),
+(3, 1, 'PHP Coding Standard', 'Come Very Early', 'SMApp_event62dbc9407837f1.89542146.png', 'Developer Osotech', '2022-07-28', '01:00:00', 'Sango Ota', 2, '2022-07-23');
 
 -- --------------------------------------------------------
 
@@ -2165,8 +2505,8 @@ CREATE TABLE `visap_upcoming_event_tbl` (
 -- Table structure for table `visap_virtual_lesson_tbl`
 --
 
-CREATE TABLE `visap_virtual_lesson_tbl` (
-  `lectureId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `visap_virtual_lesson_tbl` (
+  `lectureId` int(11) NOT NULL AUTO_INCREMENT,
   `lesson_file` varchar(255) DEFAULT NULL,
   `lesson_topic` varchar(255) DEFAULT NULL,
   `lesson_grade` varchar(20) DEFAULT NULL,
@@ -2176,8 +2516,9 @@ CREATE TABLE `visap_virtual_lesson_tbl` (
   `message` text DEFAULT NULL,
   `date_to` date DEFAULT NULL,
   `uploaded_date` date DEFAULT NULL,
-  `counter` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `counter` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`lectureId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -2185,8 +2526,8 @@ CREATE TABLE `visap_virtual_lesson_tbl` (
 -- Table structure for table `visitor_book`
 --
 
-CREATE TABLE `visitor_book` (
-  `visitor_id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `visitor_book` (
+  `visitor_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `visitor_name` varchar(255) NOT NULL,
   `visitor_phone` varchar(50) DEFAULT NULL,
   `visitor_address` text DEFAULT NULL,
@@ -2198,725 +2539,9 @@ CREATE TABLE `visitor_book` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` date DEFAULT NULL,
   `cterm` varchar(50) DEFAULT NULL,
-  `cses` varchar(50) DEFAULT NULL
+  `cses` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`visitor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `api_module_config`
---
-ALTER TABLE `api_module_config`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `module` (`module`);
-
---
--- Indexes for table `current_session_tbl`
---
-ALTER TABLE `current_session_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `local_govt_tbl`
---
-ALTER TABLE `local_govt_tbl`
-  ADD PRIMARY KEY (`local_id`);
-
---
--- Indexes for table `register_exam_subject_tbl`
---
-ALTER TABLE `register_exam_subject_tbl`
-  ADD PRIMARY KEY (`subId`);
-
---
--- Indexes for table `reg_pin_history_tbl`
---
-ALTER TABLE `reg_pin_history_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `school_classes`
---
-ALTER TABLE `school_classes`
-  ADD PRIMARY KEY (`class_id`);
-
---
--- Indexes for table `school_offices`
---
-ALTER TABLE `school_offices`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `school_subjects`
---
-ALTER TABLE `school_subjects`
-  ADD PRIMARY KEY (`subject_id`);
-
---
--- Indexes for table `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`adminId`);
-
---
--- Indexes for table `tbl_ewallet_pins`
---
-ALTER TABLE `tbl_ewallet_pins`
-  ADD PRIMARY KEY (`pin_id`);
-
---
--- Indexes for table `tbl_exam_pins`
---
-ALTER TABLE `tbl_exam_pins`
-  ADD PRIMARY KEY (`pin_id`);
-
---
--- Indexes for table `tbl_reg_pins`
---
-ALTER TABLE `tbl_reg_pins`
-  ADD PRIMARY KEY (`pin_id`);
-
---
--- Indexes for table `tbl_result_pins`
---
-ALTER TABLE `tbl_result_pins`
-  ADD PRIMARY KEY (`pin_id`);
-
---
--- Indexes for table `tbl_result_pins_history`
---
-ALTER TABLE `tbl_result_pins_history`
-  ADD PRIMARY KEY (`pinId`);
-
---
--- Indexes for table `tbl_serial`
---
-ALTER TABLE `tbl_serial`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_settings`
---
-ALTER TABLE `tbl_settings`
-  ADD PRIMARY KEY (`config_id`);
-
---
--- Indexes for table `visap_admission_open_tbl`
---
-ALTER TABLE `visap_admission_open_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_assignment_tbl`
---
-ALTER TABLE `visap_assignment_tbl`
-  ADD PRIMARY KEY (`assId`);
-
---
--- Indexes for table `visap_behavioral_tbl`
---
-ALTER TABLE `visap_behavioral_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_blog_post_comments`
---
-ALTER TABLE `visap_blog_post_comments`
-  ADD PRIMARY KEY (`commentId`);
-
---
--- Indexes for table `visap_blog_post_tbl`
---
-ALTER TABLE `visap_blog_post_tbl`
-  ADD PRIMARY KEY (`blog_id`);
-
---
--- Indexes for table `visap_classnote_tbl`
---
-ALTER TABLE `visap_classnote_tbl`
-  ADD PRIMARY KEY (`noteId`);
-
---
--- Indexes for table `visap_class_attendance_tbl`
---
-ALTER TABLE `visap_class_attendance_tbl`
-  ADD PRIMARY KEY (`attend_id`);
-
---
--- Indexes for table `visap_class_grade_tbl`
---
-ALTER TABLE `visap_class_grade_tbl`
-  ADD PRIMARY KEY (`gradeId`);
-
---
--- Indexes for table `visap_fee_component_tbl`
---
-ALTER TABLE `visap_fee_component_tbl`
-  ADD PRIMARY KEY (`compId`);
-
---
--- Indexes for table `visap_gallery_tbl`
---
-ALTER TABLE `visap_gallery_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_loan_tbl`
---
-ALTER TABLE `visap_loan_tbl`
-  ADD PRIMARY KEY (`loanId`);
-
---
--- Indexes for table `visap_notice_board_tbl`
---
-ALTER TABLE `visap_notice_board_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_offered_subject_tbl`
---
-ALTER TABLE `visap_offered_subject_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_prefect_title_tbl`
---
-ALTER TABLE `visap_prefect_title_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_registered_subject_tbl`
---
-ALTER TABLE `visap_registered_subject_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_result_comment_tbl`
---
-ALTER TABLE `visap_result_comment_tbl`
-  ADD PRIMARY KEY (`commentId`);
-
---
--- Indexes for table `visap_result_grading_tbl`
---
-ALTER TABLE `visap_result_grading_tbl`
-  ADD PRIMARY KEY (`grading_id`);
-
---
--- Indexes for table `visap_school_expense_tbl`
---
-ALTER TABLE `visap_school_expense_tbl`
-  ADD PRIMARY KEY (`expense_id`);
-
---
--- Indexes for table `visap_school_fee_allocation_tbl`
---
-ALTER TABLE `visap_school_fee_allocation_tbl`
-  ADD PRIMARY KEY (`faId`);
-
---
--- Indexes for table `visap_school_prefect_tbl`
---
-ALTER TABLE `visap_school_prefect_tbl`
-  ADD PRIMARY KEY (`prefectId`);
-
---
--- Indexes for table `visap_school_profile`
---
-ALTER TABLE `visap_school_profile`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_school_session_history_tbl`
---
-ALTER TABLE `visap_school_session_history_tbl`
-  ADD PRIMARY KEY (`sehisId`);
-
---
--- Indexes for table `visap_school_session_tbl`
---
-ALTER TABLE `visap_school_session_tbl`
-  ADD PRIMARY KEY (`seId`);
-
---
--- Indexes for table `visap_session_list`
---
-ALTER TABLE `visap_session_list`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_sliders_tbl`
---
-ALTER TABLE `visap_sliders_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_social_link_tbl`
---
-ALTER TABLE `visap_social_link_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_staff_bank_details_tbl`
---
-ALTER TABLE `visap_staff_bank_details_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_staff_duty_tbl`
---
-ALTER TABLE `visap_staff_duty_tbl`
-  ADD PRIMARY KEY (`duty_id`);
-
---
--- Indexes for table `visap_staff_paid_salary_tbl`
---
-ALTER TABLE `visap_staff_paid_salary_tbl`
-  ADD PRIMARY KEY (`salaryId`);
-
---
--- Indexes for table `visap_staff_payroll_tbl`
---
-ALTER TABLE `visap_staff_payroll_tbl`
-  ADD PRIMARY KEY (`payrollId`);
-
---
--- Indexes for table `visap_staff_post_tbl`
---
-ALTER TABLE `visap_staff_post_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `visap_staff_tbl`
---
-ALTER TABLE `visap_staff_tbl`
-  ADD PRIMARY KEY (`staffId`);
-
---
--- Indexes for table `visap_state_tbl`
---
-ALTER TABLE `visap_state_tbl`
-  ADD PRIMARY KEY (`state_id`);
-
---
--- Indexes for table `visap_stdmedical_tbl`
---
-ALTER TABLE `visap_stdmedical_tbl`
-  ADD PRIMARY KEY (`medicalId`);
-
---
--- Indexes for table `visap_stdpreschlinfo`
---
-ALTER TABLE `visap_stdpreschlinfo`
-  ADD PRIMARY KEY (`preId`);
-
---
--- Indexes for table `visap_student_info_tbl`
---
-ALTER TABLE `visap_student_info_tbl`
-  ADD PRIMARY KEY (`stdInfoId`);
-
---
--- Indexes for table `visap_student_payment_history_tbl`
---
-ALTER TABLE `visap_student_payment_history_tbl`
-  ADD PRIMARY KEY (`phId`);
-
---
--- Indexes for table `visap_student_payment_tbl`
---
-ALTER TABLE `visap_student_payment_tbl`
-  ADD PRIMARY KEY (`paymentId`);
-
---
--- Indexes for table `visap_student_tbl`
---
-ALTER TABLE `visap_student_tbl`
-  ADD PRIMARY KEY (`stdId`);
-
---
--- Indexes for table `visap_submitted_class_assignment_tbl`
---
-ALTER TABLE `visap_submitted_class_assignment_tbl`
-  ADD PRIMARY KEY (`aId`);
-
---
--- Indexes for table `visap_termly_result_tbl`
---
-ALTER TABLE `visap_termly_result_tbl`
-  ADD PRIMARY KEY (`reportId`);
-
---
--- Indexes for table `visap_upcoming_event_tbl`
---
-ALTER TABLE `visap_upcoming_event_tbl`
-  ADD PRIMARY KEY (`eventId`);
-
---
--- Indexes for table `visap_virtual_lesson_tbl`
---
-ALTER TABLE `visap_virtual_lesson_tbl`
-  ADD PRIMARY KEY (`lectureId`);
-
---
--- Indexes for table `visitor_book`
---
-ALTER TABLE `visitor_book`
-  ADD PRIMARY KEY (`visitor_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `api_module_config`
---
-ALTER TABLE `api_module_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `current_session_tbl`
---
-ALTER TABLE `current_session_tbl`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `local_govt_tbl`
---
-ALTER TABLE `local_govt_tbl`
-  MODIFY `local_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=775;
-
---
--- AUTO_INCREMENT for table `register_exam_subject_tbl`
---
-ALTER TABLE `register_exam_subject_tbl`
-  MODIFY `subId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reg_pin_history_tbl`
---
-ALTER TABLE `reg_pin_history_tbl`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `school_classes`
---
-ALTER TABLE `school_classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `school_offices`
---
-ALTER TABLE `school_offices`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `school_subjects`
---
-ALTER TABLE `school_subjects`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  MODIFY `adminId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tbl_ewallet_pins`
---
-ALTER TABLE `tbl_ewallet_pins`
-  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_exam_pins`
---
-ALTER TABLE `tbl_exam_pins`
-  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_reg_pins`
---
-ALTER TABLE `tbl_reg_pins`
-  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_result_pins`
---
-ALTER TABLE `tbl_result_pins`
-  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_result_pins_history`
---
-ALTER TABLE `tbl_result_pins_history`
-  MODIFY `pinId` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_serial`
---
-ALTER TABLE `tbl_serial`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_admission_open_tbl`
---
-ALTER TABLE `visap_admission_open_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `visap_assignment_tbl`
---
-ALTER TABLE `visap_assignment_tbl`
-  MODIFY `assId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_behavioral_tbl`
---
-ALTER TABLE `visap_behavioral_tbl`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_blog_post_comments`
---
-ALTER TABLE `visap_blog_post_comments`
-  MODIFY `commentId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_blog_post_tbl`
---
-ALTER TABLE `visap_blog_post_tbl`
-  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `visap_classnote_tbl`
---
-ALTER TABLE `visap_classnote_tbl`
-  MODIFY `noteId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_class_attendance_tbl`
---
-ALTER TABLE `visap_class_attendance_tbl`
-  MODIFY `attend_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_class_grade_tbl`
---
-ALTER TABLE `visap_class_grade_tbl`
-  MODIFY `gradeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `visap_fee_component_tbl`
---
-ALTER TABLE `visap_fee_component_tbl`
-  MODIFY `compId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_gallery_tbl`
---
-ALTER TABLE `visap_gallery_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `visap_loan_tbl`
---
-ALTER TABLE `visap_loan_tbl`
-  MODIFY `loanId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_notice_board_tbl`
---
-ALTER TABLE `visap_notice_board_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_offered_subject_tbl`
---
-ALTER TABLE `visap_offered_subject_tbl`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_prefect_title_tbl`
---
-ALTER TABLE `visap_prefect_title_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_registered_subject_tbl`
---
-ALTER TABLE `visap_registered_subject_tbl`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `visap_result_comment_tbl`
---
-ALTER TABLE `visap_result_comment_tbl`
-  MODIFY `commentId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_result_grading_tbl`
---
-ALTER TABLE `visap_result_grading_tbl`
-  MODIFY `grading_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `visap_school_expense_tbl`
---
-ALTER TABLE `visap_school_expense_tbl`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_school_fee_allocation_tbl`
---
-ALTER TABLE `visap_school_fee_allocation_tbl`
-  MODIFY `faId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_school_prefect_tbl`
---
-ALTER TABLE `visap_school_prefect_tbl`
-  MODIFY `prefectId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_school_profile`
---
-ALTER TABLE `visap_school_profile`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `visap_school_session_history_tbl`
---
-ALTER TABLE `visap_school_session_history_tbl`
-  MODIFY `sehisId` int(1) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_session_list`
---
-ALTER TABLE `visap_session_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `visap_sliders_tbl`
---
-ALTER TABLE `visap_sliders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `visap_social_link_tbl`
---
-ALTER TABLE `visap_social_link_tbl`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `visap_staff_bank_details_tbl`
---
-ALTER TABLE `visap_staff_bank_details_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_staff_duty_tbl`
---
-ALTER TABLE `visap_staff_duty_tbl`
-  MODIFY `duty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `visap_staff_paid_salary_tbl`
---
-ALTER TABLE `visap_staff_paid_salary_tbl`
-  MODIFY `salaryId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_staff_payroll_tbl`
---
-ALTER TABLE `visap_staff_payroll_tbl`
-  MODIFY `payrollId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_staff_post_tbl`
---
-ALTER TABLE `visap_staff_post_tbl`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_staff_tbl`
---
-ALTER TABLE `visap_staff_tbl`
-  MODIFY `staffId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_state_tbl`
---
-ALTER TABLE `visap_state_tbl`
-  MODIFY `state_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT for table `visap_stdmedical_tbl`
---
-ALTER TABLE `visap_stdmedical_tbl`
-  MODIFY `medicalId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_stdpreschlinfo`
---
-ALTER TABLE `visap_stdpreschlinfo`
-  MODIFY `preId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_student_info_tbl`
---
-ALTER TABLE `visap_student_info_tbl`
-  MODIFY `stdInfoId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_student_payment_history_tbl`
---
-ALTER TABLE `visap_student_payment_history_tbl`
-  MODIFY `phId` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_student_payment_tbl`
---
-ALTER TABLE `visap_student_payment_tbl`
-  MODIFY `paymentId` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_student_tbl`
---
-ALTER TABLE `visap_student_tbl`
-  MODIFY `stdId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_submitted_class_assignment_tbl`
---
-ALTER TABLE `visap_submitted_class_assignment_tbl`
-  MODIFY `aId` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_termly_result_tbl`
---
-ALTER TABLE `visap_termly_result_tbl`
-  MODIFY `reportId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_upcoming_event_tbl`
---
-ALTER TABLE `visap_upcoming_event_tbl`
-  MODIFY `eventId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visap_virtual_lesson_tbl`
---
-ALTER TABLE `visap_virtual_lesson_tbl`
-  MODIFY `lectureId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visitor_book`
---
-ALTER TABLE `visitor_book`
-  MODIFY `visitor_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
