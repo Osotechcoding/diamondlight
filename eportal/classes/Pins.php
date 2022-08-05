@@ -20,6 +20,7 @@ class Pins{
 	protected $query;
 	protected $config;
 	protected $response;
+	protected $redirectedPage;
 	public function __construct(){
 		$conn = new Database;
 		$this->dbh = $conn->osotech_connect();
@@ -60,6 +61,7 @@ class Pins{
  		$this->_Pins_serial = 6;
  		$this->_Pins_prefix ="SMA";
  		$this->_pin_desc_ ="Registration Pins";
+ 		$this->redirectedPage ='regPin';
  			break;
  			case 'rcp':
  		// determine which table to create
@@ -68,6 +70,7 @@ class Pins{
  		$this->_Pins_serial = 5;
  		$this->_Pins_prefix ="SMR";
  		$this->_pin_desc_ ="Result Checker Pins";
+ 		$this->redirectedPage ='resPin';
  			break;
  			case 'ep':
  		// determine which table to create
@@ -76,6 +79,7 @@ class Pins{
  		$this->_Pins_serial = 4;
  		$this->_Pins_prefix ="WXVE";
  		$this->_pin_desc_ ="Examination Pins";
+ 		$this->redirectedPage ='examPin';
  			break;
 
  			case 'ewp':
@@ -85,6 +89,7 @@ class Pins{
  		$this->_Pins_serial = 3;
  		$this->_Pins_prefix ="WXVW";
  		$this->_pin_desc_ ="e-Wallet Pins";
+ 		$this->redirectedPage ='walletPin';
  			break;
  		// default:
  		// 	// code...
@@ -162,7 +167,7 @@ class Pins{
     }
     if ($this->stmt!=NULL) {
     	// code...
-    $this->response =$this->alert->alert_toastr("success","You have Successfully Generated <b>".$countInserted." ".$this->_pin_desc_."",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{window.location.reload();},500)</script>";
+    $this->response =$this->alert->alert_toastr("success","You have Successfully Generated <b>".$countInserted." ".$this->_pin_desc_."",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{window.location.href='".$this->redirectedPage."';},1000)</script>";
     }else{
     $this->response = $this->alert->alert_toastr("error",$lang['server_error'],__OSO_APP_NAME__." Says");
     }
@@ -289,4 +294,16 @@ $this->stmt = $this->dbh->prepare("DELETE FROM `$table` WHERE pin_id=? LIMIT 1")
 			}
 		}
 	}
+
+	 public function get_scratch_card_usage($pin,$serial,$stdRegNo){
+        $this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_result_pins_history` WHERE pin_code=? AND pin_serial=? AND studentRegNo=? LIMIT 1");
+        $this->stmt->execute(array($pin,$serial,$stdRegNo));
+        if ($this->stmt->rowCount()==1) {
+            $res = $this->stmt->fetch();
+            $this->response = $res->pin_counter;
+            return $this->response;
+            unset($this->dbh);
+        }
+
+    }
 }

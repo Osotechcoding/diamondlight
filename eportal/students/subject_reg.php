@@ -37,7 +37,6 @@
 <thead class="thead-light">
 <tr>
 <th>S/N</th>
-<th>Class Desc</th>
 <th>Subject Desc</th>
 <th>Registered at</th>
 </tr>
@@ -52,8 +51,7 @@ if ($regiestered_subejcts) {
 		?>
 	<tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo ucwords($allSubject->subject_class);?></td>
-<td><?php echo ucwords($allSubject->subject_name);?></td>
+<td><?php echo strtoupper($allSubject->subject_name);?></td>
 <td><?php echo date("l jS F, Y",strtotime($allSubject->created_at));?></td>
 </tr>
 		<?php

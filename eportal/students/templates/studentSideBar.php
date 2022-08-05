@@ -16,10 +16,18 @@
 <a href="#"><img src="assets/img/sidebar/icon-3.png" alt="icon"> <span> Academics</span> <span class="menu-arrow"></span></a>
 <ul class="list-unstyled" style="display: none;">
 <li><a href="subject_reg"><span> My Subjects</span></a></li>
-<!-- <li><a href="assessment"><span> Performance</span></a></li> -->
+ <li><a href="assessment"><span> Performance</span></a></li> 
 <!-- <li><a href="classnotes"><span>Classnotes</span></a></li> -->
 <li><a href="weeklyAssignment"><span> Assignments</span></a></li>
 <li><a href="submittedAssignments"><span>Submitted Assignments</span></a></li>
+</ul>
+</li>
+<li class="submenu">
+<a href="#"><i class="fas fa-chart-line"></i> <span> Report Sheet</span> <span class="menu-arrow"></span></a>
+<ul class="list-unstyled" style="display: none;">
+<li><a href="checkMyResult"><span>Check My Result</span></a></li>
+ <!-- <li><a href="javascript:void(0);"><span> 2nd Term Report</span></a></li> 
+<li><a href="javascript:void(0);"><span>3rd Term Report</span></a></li> --> 
 </ul>
 </li>
 <li class="submenu">
@@ -46,7 +54,7 @@
 <li class="submenu">
 <a href="#"><img src="assets/img/sidebar/icon-2.png" alt="icon"> <span>My Profile</span> <span class="menu-arrow"></span></a>
 <ul class="list-unstyled" style="display: none;">
-<li><a href="myprofile"><span>View Profile</span></a></li>
+<!-- <li><a href="myprofile"><span>View Profile</span></a></li> -->
 <!-- <li><a href="javascript:void(0);"><span>Edit Profile</span></a></li>
 <li><a href="javascript:void(0);"><span>Print Slip</span></a></li> -->
 <li><a href="change-password"><span>Change Password</span></a></li>

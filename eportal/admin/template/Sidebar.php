@@ -84,18 +84,18 @@
           </li>
           <!-- RESULT ENDS -->
           <!-- STUDENT -->
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-graduation-cap fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="STUDENTS"> STUDENTS</span></a>
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-graduation-cap fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE STUDENTS">MANAGE STUDENTS</span></a>
             <ul class="menu-content">
-          <li class="nav-item"><a href="ab_students"><i class="fa fa-user-plus fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Students">Manage Students</span></a>
+          <li class="nav-item"><a href="ab_students"><i class="fa fa-user-plus fa-1x"></i><span class="menu-title text-truncate" data-i18n="View Students">View Students</span></a>
           </li>
           <!-- student_attendance -->
-           <li class="nav-item"><a href="student_attendance"><i class="fa fa-child fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage attendant">Mark Attendance</span></a>
+           <li class="nav-item"><a href="student_attendance"><i class="fa fa-child fa-1x"></i><span class="menu-title text-truncate" data-i18n="Mark Attendance">Mark Attendance</span></a>
           </li>
            <li class="nav-item"><a href="view_student_attendance"><i class="fa fa-child fa-1x"></i><span class="menu-title text-truncate" data-i18n="view Attendance">View Attendance</span></a>
           </li>
            <li class="nav-item"><a href="prefects"><i class="fa fa-user-secret fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Prefects">Manage Prefects</span></a>
           </li>
-           <li class="nav-item"><a href="student_office_list"><i class="fa fa-credit-card-alt fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Prefects">Student Office</span></a>
+           <li class="nav-item"><a href="student_office_list"><i class="fa fa-credit-card-alt fa-1x"></i><span class="menu-title text-truncate" data-i18n="Student Prefects">Student Office</span></a>
           </li>
           <li class="nav-item"><a href="massPromotion"><i class="fa fa-line-chart fa-1x"></i><span class="menu-title text-truncate" data-i18n="Promotion">Student Promotion</span></a>
           </li>
@@ -103,12 +103,12 @@
           </li>
           <!-- STUDENT ENDS -->
            <!-- STUDENT -->
-          <li class="nav-item"><a href="javascript:void(0)"><i class="fa fa-users fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="STAFF"> STAFF</span></a>
+          <li class="nav-item"><a href="javascript:void(0)"><i class="fa fa-users fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE STAFF"> MANAGE STAFF</span></a>
             <ul class="menu-content">
-          <li class="nav-item"><a href="staffs"><i class="fa fa-user-plus fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Staff">Manage Staff</span></a>
-             <li class="nav-item"><a href="HODs"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Office">Manage Office</span></a>
+          <li class="nav-item"><a href="staffs"><i class="fa fa-user-plus fa-1x"></i><span class="menu-title text-truncate" data-i18n="Staff">Staff</span></a>
+             <li class="nav-item"><a href="HODs"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Staff Office">Staff Office</span></a>
           </li>
-           <li class="nav-item"><a href="staff_office_list"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Manage Office">School Offices</span></a>
+           <li class="nav-item"><a href="staff_office_list"><i class="fa fa-briefcase fa-1x"></i><span class="menu-title text-truncate" data-i18n="Create Office">Create Office</span></a>
           </li>
             </ul>
           </li>
@@ -118,15 +118,15 @@
           </li> -->
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-money fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Accounting">ACCOUNTING</span></a>
             <ul class="menu-content">
-               <li><a class="d-flex align-items-center" href="make_payment"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Payment">Make Payment</span></a> </li>
-                <li><a class="d-flex align-items-center" href="filter-payments"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Payment"> Search Payment</span></a> </li>
+               <li><a class="d-flex align-items-center" href="make_payment"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n=" Make Payment">Make Payment</span></a> </li>
+                <li><a class="d-flex align-items-center" href="filter-payments"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Search Payment"> Search Payment</span></a> </li>
                <li><a class="d-flex align-items-center" href="fee_component"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Fee Component">Fee Component</span></a> </li>
-                 <li><a class="d-flex align-items-center" href="fee_allocate"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Fee Allocation">Fee Structure</span></a> </li>
+                 <li><a class="d-flex align-items-center" href="fee_allocate"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Fee Structure">Fee Structure</span></a> </li>
                   <li><a class="d-flex align-items-center" href="account_reports"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Payment Records">Payment Records</span></a>
               </li>
-              <li><a class="d-flex align-items-center" href="visap_payroll"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Fee Allocation"> Payroll</span></a>
+              <li><a class="d-flex align-items-center" href="visap_payroll"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Payroll"> Payroll</span></a>
               </li>
-                <li><a class="d-flex align-items-center" href="school_expense"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Fee Allocation"> Expenses</span></a>
+                <li><a class="d-flex align-items-center" href="school_expense"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Expenses"> Expenses</span></a>
               </li>
                <li><a class="d-flex align-items-center" href="add_loan"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Loan">Manage Loan</span></a> </li>
             </ul>
@@ -136,9 +136,9 @@
           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-credit-card-alt fa-1x" data-icon="pie-chart"></i><span class="menu-title text-truncate" data-i18n="SCRATCH CARD">SCRATCH CARD</span></a>
             <ul class="menu-content">
               <?php if ($Admin->isSuperAdmin($admin_data->adminId)): ?>
-                <li><a class="d-flex align-items-center" href="gencode"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="OAuth">Generate OAuth</span></a>
+                <li><a class="d-flex align-items-center" href="gencode"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="OAuth">Create OAuth</span></a>
               </li>
-                 <li><a class="d-flex align-items-center" href="genpin"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Generate">Generate</span></a>
+                 <li><a class="d-flex align-items-center" href="genpin"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Generate">Generate Card</span></a>
               </li>
                <li><a class="d-flex align-items-center" href="regPin"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Generate Pins">Admission Pins</span></a>
               </li>
@@ -183,15 +183,15 @@
 
           <!--  <li class=" navigation-header text-truncate"><span data-i18n="EVENT & BLOG">EVENT & BLOG</span>
           </li>  -->
-          <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-calendar fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="blog & event">MANAGE EVENTS</span></a>
+          <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-calendar fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="blog & event">SCHOOL ACTIVITIES</span></a>
             <ul class="menu-content">
-               <li><a class="d-flex align-items-center" href="add_event"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Event">Manage Event</span></a> </li>
-                <li><a class="d-flex align-items-center" href="add_holidays"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Holiday">Manage Holiday</span></a> </li>
+               <li><a class="d-flex align-items-center" href="add_event"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Upload Events">Upload Events</span></a> </li>
+                <li><a class="d-flex align-items-center" href="add_holidays"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Declare Holiday">Declare Holidays</span></a> </li>
 
-               <li><a class="d-flex align-items-center" href="uploadblog"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Blog"> Manage Blog</span></a>
+               <li><a class="d-flex align-items-center" href="uploadblog"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Upload News"> Upload News</span></a>
               </li>
-               <li><a class="d-flex align-items-center" href="add_gallery"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Gallery</span></a>
-                <li><a class="d-flex align-items-center" href="add_slider"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Gallery">Manage Slider</span></a>
+               <li><a class="d-flex align-items-center" href="add_gallery"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="School Gallery">School Gallery</span></a>
+                <li><a class="d-flex align-items-center" href="add_slider"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Homepage Slider">Homepage Slider</span></a>
               </li>
               <li><a class="d-flex align-items-center" href="add_testimonial"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Manage Testimonial">What People Say</span></a>
               </li>
@@ -220,7 +220,7 @@
           </li> -->
            <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-cogs fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Settings"> Settings</span></a>
             <ul class="menu-content">
-               <li class=" nav-item"><a href="app_settings"><i class="fa fa-cogs fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">School Profile</span></a>
+               <li class=" nav-item"><a href="app_settings"><i class="fa fa-cogs fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">Set Profile</span></a>
           </li>
           <li class=" nav-item"><a href="account-settings"><i class="fa fa-edit fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">Edit Profile</span></a>
           </li>
@@ -233,7 +233,7 @@
          
 
               <li>
-               <a class="d-flex align-items-center" href="../../" target="_blank"><i class="fa fa-globe"></i>
+               <a class="d-flex align-items-center" href="http://localhost/diamondlight/" target="_blank"><i class="fa fa-globe"></i>
                 <span class="menu-item text-truncate"> <?php echo 'Visit Homepage' ?></span></a>
               </li>
               <li>

@@ -162,7 +162,7 @@ class Osotech
                 //let's check any invalid inputs
                 if (!self::check_single_data("visap_student_tbl","stdRegNo",$stdRegNo)) {
                     $this->response = self::alert_msg("Invalid Admission Number!","danger");
-                }elseif ((strlen($cardPin)<>10)) {
+                }elseif ((strlen($cardPin)<>12)) {
                     // code...
                     $this->response = self::alert_msg("Invalid Scratch Card Pin Number!","danger");
                 }else{

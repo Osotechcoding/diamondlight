@@ -606,4 +606,212 @@ public function get_exam_subjectsByClassName($grade_desc,$subject){
 		unset($this->dbh);
 	}
 
+	public function checkMyResultByMySelf($data){
+	$stdRegNo = $this->config->Clean(strtoupper($data['student_reg_number']));
+	$stdGrade = $this->config->Clean($data['result_class']);
+	$stdSession = $this->config->Clean($data['result_session']);
+	$stdTerm = $this->config->Clean($data['result_term']);
+	$cardPin = $this->config->Clean($data['cardPin_']);
+	$cardSerial = $this->config->Clean($data['cardSerial_']);
+	$counter =1;
+	//let's check if any of the submitted inputs is null
+	if (!$this->config->check_user_activity_allowed("result_checking")) {
+	$this->response =$this->alert->alert_toastr("error","Checking of Result is currently not allowed on this Portal!",__OSO_APP_NAME__. " Says");
+	}else
+	if ($this->config->isEmptyStr($stdRegNo)) {
+	$this->response = $this->alert->alert_toastr("warning","Student Admission No is Required!",__OSO_APP_NAME__. " Says");
+	}elseif ($this->config->isEmptyStr($stdGrade)) {
+
+	$this->response = $this->alert->alert_toastr("error","Student Class is Required!",__OSO_APP_NAME__. " Says");
+
+	}elseif ($this->config->isEmptyStr($stdSession)) {
+
+	$this->response = $this->alert->alert_toastr("error","Result Session is Required!",__OSO_APP_NAME__. " Says");
+
+	}elseif ($this->config->isEmptyStr($stdTerm)) {
+
+	$this->response = $this->alert->alert_toastr("error","Result Term is Required!",__OSO_APP_NAME__. " Says");
+
+	}elseif ($this->config->isEmptyStr($cardPin)) {
+
+	$this->response = $this->alert->alert_toastr("error","Scratch Card Pin is Required!",__OSO_APP_NAME__. " Says");
+
+	}elseif ($this->config->isEmptyStr($cardSerial)) {
+
+	$this->response = $this->alert->alert_toastr("error","Please enter Card Serial Number to continue!",__OSO_APP_NAME__. " Says");
+
+	}else{
+	//let's check any invalid inputs
+	if (!$this->config->check_single_data("visap_student_tbl","stdRegNo",$stdRegNo)) {
+	$this->response = $this->alert->alert_toastr("error","Invalid Admission Number!",__OSO_APP_NAME__. " Says");
+	}elseif ((strlen($cardPin)<>12)) {
+	// code...
+	$this->response = $this->alert->alert_toastr("error","Invalid Scratch Card Pin Number!",__OSO_APP_NAME__. " Says");
+	}else{
+	//lets check the pin if exists in our system
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_result_pins` WHERE pin_code=? AND pin_serial=? LIMIT 1");
+	$this->stmt->execute(array($cardPin,$cardSerial));
+	//lets check the pin if exists in our system
+	if ($this->stmt->rowCount()==1) {
+	// the Pin Exists...
+	//now let's check the status of the entered pin
+	$pin_data = $this->stmt->fetch();
+	$status = $pin_data->pin_status;
+	$PinId = $pin_data->pin_id;
+	//unset($this->dbh);
+	if ($status =='1') {
+	// pin has ben used let'a get the user details from pin history
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_result_pins_history`WHERE pin_code=? AND pin_serial=? AND used_term=? AND used_session=? LIMIT 1");
+	$this->stmt->execute(array($cardPin,$cardSerial,$stdTerm,$stdSession));
+	if ($this->stmt->rowCount()==1) {
+	//grab the regNo of the Checker and Compare
+	$pin_hitory_data = $this->stmt->fetch();
+	$usedCounter = $pin_hitory_data->pin_counter;
+	$userRegNo = $pin_hitory_data->studentRegNo;
+	$phId = $pin_hitory_data->pinId;
+	if ($stdRegNo !== $userRegNo) {
+	$this->response = $this->alert->alert_toastr("error","This Pin has been used by another Student!",__OSO_APP_NAME__. " Says");
+	}elseif ($usedCounter >= '3') {
+	$this->response = $this->alert->alert_toastr("error","You Have Exhausted Your Time Usage Validity of this Pin!",__OSO_APP_NAME__. " Says");
+	}elseif (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+	$this->response = $this->alert->alert_toastr("error","This Result is not yet Ready!",__OSO_APP_NAME__. " Says");
+	}elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+	$this->response = $this->alert->alert_toastr("error","This Result is not yet Ready!",__OSO_APP_NAME__. " Says");
+	}
+	else{
+	//let's increase the counter
+	//$pin_counter = $counter++;
+	$this->stmt = $this->dbh->prepare("UPDATE `tbl_result_pins_history` SET pin_counter=pin_counter+1 WHERE pinId=? LIMIT 1");
+	if ($this->stmt->execute(array($phId))) {
+	//get the result details
+	//reportId
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
+	$this->stmt->execute(array($stdRegNo,$stdGrade,$stdTerm,$stdSession));
+	if ($this->stmt->rowCount()> 0) {
+	while($result_data = $this->stmt->fetch()){
+	$result_id = $result_data->reportId;
+	$result_opened = $result_data->rStatus;
+	if ($result_opened =='2') {
+	// create a session result Id...
+	$_SESSION['resultmi'] = $result_id;
+	$_SESSION['pin'] = $cardPin;
+	$_SESSION['serial'] = $cardSerial;
+	$_SESSION['result_regNo'] = $stdRegNo;
+	$_SESSION['result_class'] = $stdGrade;
+	$_SESSION['result_term'] = $stdTerm;
+	$_SESSION['result_session'] = $stdSession;
+	switch ($_SESSION['result_term']) {
+	case '1st Term':
+	    $student_result_page ="reportcard?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
+	    break;
+	case '2nd Term':
+	    $student_result_page ="secondtermresult?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
+	    break;
+	case '3rd Term':
+	    $student_result_page ="thirdtermresult?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
+	    break;
+	}
+	$this->response = $this->alert->alert_toastr("success","Processing your Report Sheet, Pls wait...",__OSO_APP_NAME__." Says").'<script>setTimeout(()=>{
+	window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=750, height=842");$("#checkResultForm")[0].reset();
+	},1000)</script>';
+	}elseif ($result_opened =='3') {
+	$this->response = $this->alert->alert_toastr("error","This Result is Held, Please contact your Admin!",__OSO_APP_NAME__. " Says");
+	}
+	else{
+	$this->response = $this->alert->alert_toastr("error","Result not yet released, Try again later!",__OSO_APP_NAME__. " Says");
+	}
+	}
+	}else{
+	$this->response = $this->alert->alert_toastr("error","Sorry :) No Result Found!!!",__OSO_APP_NAME__. " Says");
+	}
+	}
+	}
+	}else{
+	$this->response = $this->alert->alert_toastr("error","This Pin has been used by YOU!",__OSO_APP_NAME__. " Says");
+	}
+	}else{
+	//lets start afresh for this pin
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_result_pins_history` WHERE studentRegNo=? AND student_class=? AND pin_code=? AND pin_serial=? AND used_term=? AND used_session=? LIMIT 1");
+	$this->stmt->execute(array($stdRegNo,$stdGrade,$cardPin,$cardSerial,$stdTerm,$stdSession));
+	if ($this->stmt->rowCount()=='0') {
+
+	if (!self::checkResultReadyModule("visap_behavioral_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+	$this->response = $this->alert->alert_toastr("error","This Result is not yet Ready!",__OSO_APP_NAME__. " Says");
+	}elseif (!self::checkResultReadyModule("visap_psycho_tbl",$stdRegNo,$stdGrade,$stdTerm,$stdSession)) {
+	$this->response = $this->alert->alert_toastr("error","This Result is not yet Ready!",__OSO_APP_NAME__. " Says");
+	}else{
+	//create pin used history
+	$updated_pin_status =1;
+	try {
+	$this->dbh->beginTransaction();
+	$this->stmt = $this->dbh->prepare("INSERT INTO `tbl_result_pins_history` (studentRegNo,student_class,pin_code,pin_serial,pin_counter,used_term,used_session) VALUES (?,?,?,?,?,?,?);");
+	if ($this->stmt->execute(array($stdRegNo,$stdGrade,$cardPin,$cardSerial,$counter,$stdTerm,$stdSession))) {
+	// update the pin status so that it cannot be used again by another
+	$this->stmt = $this->dbh->prepare("UPDATE `tbl_result_pins` SET pin_status=? WHERE pin_id=? LIMIT 1");
+	if ($this->stmt->execute(array($updated_pin_status,$PinId))) {
+	//get the result details
+	//reportId
+	$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=?");
+	$this->stmt->execute(array($stdRegNo,$stdGrade,$stdTerm,$stdSession));
+	if ($this->stmt->rowCount()> 0) {
+	$this->dbh->commit();
+	while($result_data = $this->stmt->fetch()){
+	$result_id = $result_data->reportId;
+	$result_opened = $result_data->rStatus;
+	if ($result_opened =='2') {
+	// create a session result Id...
+	$_SESSION['pin'] = $cardPin;
+	$_SESSION['serial'] = $cardSerial;
+	$_SESSION['resultmi'] = $result_id;
+	$_SESSION['result_regNo'] = $stdRegNo;
+	$_SESSION['result_class'] = $stdGrade;
+	$_SESSION['result_term'] = $stdTerm;
+	$_SESSION['result_session'] = $stdSession;
+	switch ($_SESSION['result_term']) {
+	    case '1st Term':
+	        $student_result_page ="reportcard?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
+	        break;
+	    case '2nd Term':
+	        $student_result_page ="secondtermresult?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
+	        break;
+	    case '3rd Term':
+	        $student_result_page ="thirdtermresult?academic-session=".$stdSession."&student-reg=".$stdRegNo."&Term=".$stdTerm;
+	        break;
+	}
+	$this->response = $this->alert->alert_toastr("success","Processing your Report Sheet, Pls wait...",__OSO_APP_NAME__." Says").'<script>setTimeout(()=>{
+	window.open("'.$student_result_page.'","_blank", "top=100, left=100, width=750, height=842");$("#checkResultForm")[0].reset();
+	},1000)</script>';
+	}elseif ($result_opened =='3') {
+	$this->response = $this->alert->alert_toastr("error","This Result is Held, Please contact your Admin!",__OSO_APP_NAME__. " Says");
+	}
+	else{
+	$this->response = $this->alert->alert_toastr("error","Result not yet released, Try again later!",__OSO_APP_NAME__. " Says");
+	}
+	}
+	}else{
+	$this->response = $this->alert->alert_toastr("error","Sorry :) No Result Found!!!",__OSO_APP_NAME__. " Says");
+	}
+	}
+
+	}
+
+	} catch (PDOException $e) {
+	$this->dbh->rollback();
+	$this->response = $this->alert->alert_toastr("error","Sorry :) No Result Found!!!",__OSO_APP_NAME__. " Says");
+	}  
+	}
+
+	}
+
+	}
+	}else{
+	//pin does not exists
+	$this->response = $this->alert->alert_toastr("error","The Pin you entered does not Exists!",__OSO_APP_NAME__. " Says");
+	}
+	}
+	}
+	return $this->response;
+	unset($this->dbh);
+	}
+
 }

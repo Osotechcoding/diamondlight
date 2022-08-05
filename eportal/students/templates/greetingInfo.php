@@ -12,7 +12,7 @@
     }else{
         $t = "Mrs. ";
     }
-    echo $t.strtoupper($classTeacher->lastName." ".$classTeacher->firstName);
+    echo $t.strtoupper($classTeacher->firstName);
  }else{
     echo '<span class="badge badge-danger badge-md">No Class Teacher Yet</span>';
  } ?></b></h3>

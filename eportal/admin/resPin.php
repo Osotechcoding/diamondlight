@@ -115,9 +115,9 @@ require_once "helpers/helper.php";
                       <span class="badge badge-pill badge-success badge-sm">Not Used</span>
                   <?php endif ?> </td>
                    <td><?php if ($userData): ?>
-                   <?php if ($userData->pin_counter >='5'): ?>
-                     <span class="badge badge-pill badge-danger badge-sm">Exhausted</span>
-                     <button type="button" name="button" class="badge badge-pill badge-danger badge-sm del_pinBtn_" data-id="<?php  echo $pin_data->pin_id;?>" data-action="<?php echo md5("delete_pins");?>" data-table="<?php echo ('trp');?>"><span class="fa fa-trash"></span></button>
+                   <?php if ($userData->pin_counter >='3'): ?>
+                     <span class="badge badge-pill badge-danger badge-sm mb-0 mr-1 ml-1">Exhausted</span>
+                     <button title="Delete Used Pin" type="button" name="button" class="btn btn-danger btn-sm del_pinBtn_" data-id="<?php  echo $pin_data->pin_id;?>" data-action="<?php echo md5("delete_pins");?>" data-table="<?php echo ('trp');?>"><span class="fa fa-trash"></span></button>
                    <?php else: ?>
                     <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Times</span>
                    <?php endif ?>

@@ -230,8 +230,8 @@ require_once "helpers/helper.php";
                  
                    <div class="col-md-12">
                      <div class="form-group">
-                  <label for="lecture_mp4">News Image <span class="text-danger">(png,jpg or jpeg format Only)</span></label>
-                <input type="file" class="form-control form-control-lg" name="blogImage" onchange="previewFile(this);">
+                  <label for="blogImage">News Image <span class="text-danger">(png,jpg or jpeg format Only)</span></label>
+                <input type="file" class="form-control form-control-lg" id="blogImage" name="blogImage" onchange="previewFile(this);">
                     </div>
                     <div class="col-md-6 offset-md-3" id="uploaded_passport">
   <img id="previewImg" width="200" src="../assets/loaders/placeholder.png" alt="Placeholder" style="border: 2px solid darkblue;border-radius:10px;">
@@ -261,7 +261,6 @@ require_once "helpers/helper.php";
                 
                 <input type="hidden" name="postedBy" value="<?php echo $_SESSION['ADMIN_TOKEN_ID'];?>">
                 <input type="hidden" name="action" value="upload_blog_news">
-                <input type="hidden" name="bypass" value="<?php echo md5("oiza1");?>">
                 <div class="modal-footer">
                    <button type="submit" class="btn btn-dark ml-1 __loadingBtn__">
                      Upload Now
@@ -342,12 +341,13 @@ $("#schoolBlogNewsForm").on("submit",function(event){
  $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Uploading...').attr("disabled",true);
     },
     success:function(data){
+      console.log(data)
       setTimeout(()=>{
          $(".__loadingBtn__").html('Submit Lecture').attr("disabled",false);
         $("#schoolBlogNewsForm")[0].reset();
         $("#server-response").html(data);
         //alert(data);
-      },2500);
+      },500);
     }
 
   });
@@ -356,7 +356,7 @@ $("#schoolBlogNewsForm").on("submit",function(event){
     </script>
 <script>
     function previewFile(input){
-        var file = $("input[type=file]").get(0).files[0];
+        var file = $("#blogImage").get(0).files[0];
  
         if(file){
             var reader = new FileReader();

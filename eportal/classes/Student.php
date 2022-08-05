@@ -483,9 +483,9 @@ $this->response = false;
 		unset($this->dbh);
 	}
 
-	public function get_all_my_assessments_by_filter($stdId,$stdRegNo,$stdGrade,$term,$aca_session){
-		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE studentId=? AND stdRegCode=? AND studentGrade=? AND term=? AND aca_session=? ORDER BY uploadedDate DESC");
-		$this->stmt->execute(array($stdId,$stdRegNo,$stdGrade,$term,$aca_session));
+	public function get_all_my_assessments_by_filter($stdRegNo,$stdGrade,$term,$aca_session){
+		$this->stmt = $this->dbh->prepare("SELECT * FROM `visap_termly_result_tbl` WHERE stdRegCode=? AND studentGrade=? AND term=? AND aca_session=? ORDER BY uploadedDate DESC");
+		$this->stmt->execute(array($stdRegNo,$stdGrade,$term,$aca_session));
 		if ($this->stmt->rowCount()>0) {
 			// code...
 			$this->response = $this->stmt->fetchAll();

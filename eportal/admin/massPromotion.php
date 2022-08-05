@@ -50,6 +50,9 @@ require_once "helpers/helper.php";
     
       <div class="card">
         <div class="card-body">
+          <div class="text-center mb-3">
+            <h5><?php echo $Alert->alert_msg("Please Note that Promotion should be done from Upper class to lower class : e.g SSS 3 down to JSS 1!","warning");?></h5>
+          </div>
           <div class="users-list-filter px-1">
         <form action="" method="post">
            <div class="row border rounded py-2 mb-2">

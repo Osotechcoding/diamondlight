@@ -505,6 +505,13 @@ if (isset($_POST['action']) && $_POST['action'] !="") {
 		}
 	}
 
+	if ($_POST['action'] === "_check_Student_Result_") {
+		$result = $Result->checkMyResultByMySelf($_POST);
+		if ($result) {
+			echo $result;
+		}
+	}
+
 }
 }
 ?>

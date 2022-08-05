@@ -6,7 +6,7 @@ include_once '../classes/Session.php';
 date_default_timezone_set("Africa/Lagos");
 //create an autoload function
 spl_autoload_register(function($filename){
-  require_once "../classes/".ucfirst()$filename.".php";
+  require_once "../classes/".ucfirst($filename).".php";
 });
 $Configuration 	= new Configuration();
 $Student = new Student();
@@ -14,6 +14,7 @@ $Administration = new Administration();
 $Result = new Result();
 $Alert = new Alert();
 $Staff = new Staff();
+$Pin_serial = new Pins();
 @$Configuration->osotech_session_kick();
 $Configuration->check_student_session_data();
 $ses_token = Session::set_xss_token();

@@ -21,8 +21,9 @@ class Blog {
 		$blogContent = $this->config->Clean($data['blogContent']);
 		$blogCat = $this->config->Clean($data['blogCat']);
 		$blogstatus = $this->config->Clean($data['blogstatus']);
-		$blogTags = implode(",", $data['tags']);
+		$blogTags = isset($data['tags']) ? implode(",", $data['tags']) : 'Educational' ;
 		$postedBy = $this->config->Clean($data['postedBy']);
+		$auth_code = $this->config->Clean($data['auth_code']);
 		$blogFile_temp = $file['blogImage']['tmp_name'];
 		$blogFileName = $file['blogImage']['name'];
 		$blogFile_size = $file['blogImage']['size']/1024;
@@ -32,9 +33,14 @@ class Blog {
 		 $name_div = explode(".", $blogFileName);
    		$image_ext = strtolower(end($name_div));
 		//CHECK FOR EMPTY FIELDS
-		if ($this->config->isEmptyStr($blogTitle) || $this->config->isEmptyStr($blogCat) || $this->config->isEmptyStr($blogTags) || $this->config->isEmptyStr($postedBy) || $this->config->isEmptyStr($blogstatus) || $this->config->isEmptyStr($blogFileName)) {
+		if ($this->config->isEmptyStr($blogTitle) || $this->config->isEmptyStr($blogCat) || $this->config->isEmptyStr($blogContent) || $this->config->isEmptyStr($postedBy) || $this->config->isEmptyStr($blogstatus) || $this->config->isEmptyStr($blogFileName)) {
 			$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Pls try again!",__OSO_APP_NAME__." Says");
-		}elseif (!in_array($image_ext, $allowed)) {
+		}elseif ($this->config->isEmptyStr($auth_code)) {
+	$this->response = $this->alert->alert_toastr("error","Authentication Code is Required!",__OSO_APP_NAME__." Says");
+		}elseif ($auth_code !== __OSO__CONTROL__KEY__) {
+		$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code!",__OSO_APP_NAME__." Says");
+		}
+		elseif (!in_array($image_ext, $allowed)) {
 		$this->response = $this->alert->alert_toastr("error","Your file format is not supported, Please check and try again!",__OSO_APP_NAME__." Says");
 		}elseif ($blogFile_size >500) {
 		$this->response = $this->alert->alert_toastr("error","Blog Image Size should not exceed 200KB, Selected Image Size is :".number_format($blogFile_size,2)."KB",__OSO_APP_NAME__." Says");
@@ -76,10 +82,10 @@ try {
    $this->response = $this->alert->alert_toastr("error","Error Occurred: ".$e->getMessage(),__OSO_APP_NAME__." Says");
     }
 }
-return $this->response;
-unset($this->dbh);
 
 		}
+		return $this->response;
+unset($this->dbh);
 	}
 
 public function osotech_resize_image($image_resource_id,$width,$height) {

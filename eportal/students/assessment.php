@@ -93,7 +93,7 @@
 </thead>
 <tbody>
 	<?php 
-$filter_assessments = $Student->get_all_my_assessments_by_filter($student_data->stdId,$student_data->stdRegNo,$student_data->studentClass,$term,$aca_session);
+$filter_assessments = $Student->get_all_my_assessments_by_filter($student_data->stdRegNo,$student_data->studentClass,$term,$aca_session);
 if ($filter_assessments) {
 	// code...
 	foreach ($filter_assessments as $fAssessment) {?>
@@ -101,7 +101,13 @@ if ($filter_assessments) {
 <td><?php echo $fAssessment->subjectName;?></td>
 <td><?php echo $fAssessment->ca;?></td>
 <td><?php echo $fAssessment->exam;?></td>
-<td><span class="badge badge-danger"><?php echo $fAssessment->overallMark;?></span></td>
+<td>
+	<?php if ($fAssessment->overallMark >= 60): ?>
+		 <span class="badge badge-success-border badge-lg badge-pill"><?php echo $fAssessment->overallMark;?></span>
+		<?php else: ?>
+ <span class="badge badge-danger-border badge-lg badge-pill"><?php echo $fAssessment->overallMark;?></span>
+	<?php endif ?>
+</td>
 </tr>
 		<?php
 		// code...
