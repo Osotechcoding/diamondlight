@@ -38,18 +38,10 @@ class Pins{
 		}elseif ($q > 200) {
 			// code...
 	$this->response =$this->alert->alert_toastr("error","Maximum Pin to generate is 200, Please check and try again!",__OSO_APP_NAME__."Says");
-		}elseif (!$this->config->check_user_activity_allowed("card_generator")) {
-		$this->response =$this->alert->alert_toastr("error","Card Generator is Disabled, Kindly contact your Administrator!",__OSO_APP_NAME__." Says");
-		} 
+		}
 		else{
 	//check if card generate is allowed at the time of try creating 
-	$this->query = "SELECT * FROM api_module_config WHERE module ='card_generator' LIMIT 1";
-	$this->stmt=$this->dbh->prepare($this->query);
-     $this->stmt->execute();
-
- $getparam = $this->stmt->fetch(PDO::FETCH_ASSOC);
- $cardModuleStatus = $getparam['status'];
- if ($cardModuleStatus == 0) {
+ if (!$this->config->check_user_activity_allowed("card_generator")) {
  	// code...
  	$this->response =$this->alert->alert_toastr("error","Oops! PIN Creation is not allowed at the Moment!",__OSO_APP_NAME__." Says");
  	}else{
@@ -179,7 +171,7 @@ unset($this->dbh);
 
 public function get_pins($table){
 		if (! empty($table)) {
-			$this->query ="SELECT * FROM $table ORDER BY created_at DESC";
+			$this->query ="SELECT * FROM $table ORDER BY pin_id DESC";
 			$this->stmt =$this->dbh->prepare($this->query);
 			$this->stmt->execute();
 			if ($this->stmt->rowCount()>0) {

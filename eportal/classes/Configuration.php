@@ -262,7 +262,7 @@ public function check_user_activity_allowed($module){
     //school real logo 
     $schoolLogo = $schoolDatas->school_logo;
     if ($schoolLogo == NULL || $schoolLogo =="") {
-      $ourLogo = APP_ROOT."schlogo.png";
+      $ourLogo = APP_ROOT."schoolImages/Logo/smatech.png";
     }else{
        $ourLogo = APP_ROOT."schoolImages/Logo/".$schoolLogo;
     }

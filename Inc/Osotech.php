@@ -1106,7 +1106,7 @@
         //school real logo
         $schoolLogo = $schoolDatas->school_logo;
         if ($schoolLogo == NULL || $schoolLogo =="") {
-        $ourLogo = APP_ROOT."eportal/schlogo.png";
+        $ourLogo = APP_ROOT."eportal/schoolImages/Logo/smatech.png";
         }else{
         $ourLogo = APP_ROOT."eportal/schoolImages/Logo/".$schoolLogo;
         }

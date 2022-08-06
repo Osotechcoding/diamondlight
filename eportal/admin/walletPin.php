@@ -60,9 +60,7 @@ $_Pins_ = new Pins();
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
       <div class="card">
-        <div class="card-header">
-         <a href="genpin"><button type="button" class="btn btn-danger btn-xs">Generate Pin</button></a>
-        </div>
+       
         <div class="card-body card-dashboard">
        
           <div class="table-responsive">
@@ -178,13 +176,6 @@ return true;
      $(".view_ex_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./examPin";
-      },1000);
-    })
-
-      //exam pins 
-     $(".gen_pin_btn").on("click", function(){
-      setTimeout(()=>{
-        window.location.href="./genpin";
       },1000);
     })
 

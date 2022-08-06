@@ -59,9 +59,6 @@ require_once "helpers/helper.php";
   <div class="row">
     <div class="col-12">
       <div class="card">
-       <!--  <div class="card-header">
-        <a href="genpin"><button type="button" class="btn btn-danger btn-xs">Generate Pin</button></a>
-        </div> -->
         <div class="card-body card-dashboard">
 
           <div class="table-responsive">
@@ -82,12 +79,13 @@ require_once "helpers/helper.php";
                <?php
                 $pin_datas = $Pin_serial->get_pins("tbl_result_pins");
                  if ($pin_datas!="") {
-                  $cnt =1;
+                  $cnt =0;
                  foreach ($pin_datas as $pin_data):
                   $userData = $Pin_serial->get_pin_card_user_by_code_serial($pin_data->pin_code,$pin_data->pin_serial);
+                  $cnt++;
                   ?>
                    <tr>
-                  <td><?php echo $cnt++; ?></td>
+                  <td><?php echo $cnt; ?></td>
                   <td><?php echo $pin_data->pin_serial;?></td>
                  <td><?php  if (isset($show_pins)) {
                 if ($show_pins === false) {
@@ -119,10 +117,10 @@ require_once "helpers/helper.php";
                      <span class="badge badge-pill badge-danger badge-sm mb-0 mr-1 ml-1">Exhausted</span>
                      <button title="Delete Used Pin" type="button" name="button" class="btn btn-danger btn-sm del_pinBtn_" data-id="<?php  echo $pin_data->pin_id;?>" data-action="<?php echo md5("delete_pins");?>" data-table="<?php echo ('trp');?>"><span class="fa fa-trash"></span></button>
                    <?php else: ?>
-                    <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Times</span>
+                    <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Usage</span>
                    <?php endif ?>
                      <?php else: ?>
-                      <span class="badge badge-pill badge-dark badge-sm">0</span>
+                      <span class="badge badge-pill badge-dark badge-sm">0 Usage</span>
                    <?php endif ?> </td>
                 </tr>
                   <?php endforeach; ?>
@@ -183,13 +181,6 @@ require_once "helpers/helper.php";
         window.location.href="./examPin";
       },1000);
     })
-
-      //exam pins
-    //  $(".gen_pin_btn").on("click", function(){
-    //   setTimeout(()=>{
-    //     window.location.href="./genpin";
-    //   },1000);
-    // })
 
       //Result pins
      $(".view_res_pins_btn").on("click", function(){

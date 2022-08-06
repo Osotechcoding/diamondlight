@@ -188,13 +188,6 @@ return true;
       },1000);
     })
 
-    //   //exam pins
-    //  $(".gen_pin_btn").on("click", function(){
-    //   setTimeout(()=>{
-    //     window.location.href="./genpin";
-    //   },1000);
-    // })
-
       //Result pins
      $(".view_res_pins_btn").on("click", function(){
       setTimeout(()=>{
