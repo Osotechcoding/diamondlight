@@ -1,6 +1,6 @@
 <?php
 $var1 = mt_rand(1, 99);
-$var2 = rand(2, 5);
+$var2 = rand(1, 9);
 
 $answer =$var1 + $var2;
 echo '<div class="col-lg-12 col-md-12">

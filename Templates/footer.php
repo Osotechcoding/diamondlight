@@ -8,11 +8,11 @@
        <div class="paoc-popup-margin paoc-popup-mheading"><h3 class="text-center text-danger">ADMISSION! ADMISSION!! ADMISSION!!!</h3></div>
 <div class="paoc-popup-margin paoc-popup-content"><p class="text-info"><span style="font-size: 18pt;" class="text-info"><strong>This is to inform the General Public that Admission into all Classes is currently open for the 2022/2023 Academic Session.</strong></span></p>
 <p><span style="font-size: 18pt;"><em>Enroll your child/children today. and Obtain 10% Discount Payment</em></span></p>
-<p><span style="font-size: 18pt;"><a href="contact"> Click here</a> to learn more&#8230;&#8230;..</span></p>
-<p><span style="font-size: 18pt;"><a href="tel:+2348131374443"><span style="color: #0000ff;">Call us</span></a> for details&#8230;&#8230;&#8230;&#8230;</span></p>
-<p><span style="font-size: 18pt;"><a href="https://wa.me/2348131374443" target="_blank" rel="noopener">Chat with us</a> now&#8230;&#8230;.</span></p>
+<p><span style="font-size: 18pt;"><a href="./contact"> Click here</a> for more info &#8230;&#8230;..</span></p>
+<p><span style="font-size: 18pt;"><a href="tel:+2348131374443"><span style="color: #0000ff;">Click here </span></a>to call us for details&#8230;&#8230;&#8230;&#8230;</span></p>
+<p><span style="font-size: 18pt;"><a href="https://wa.me/2348131374443" target="_blank" rel="noopener">Click here to Chat with us</a> now&#8230;&#8230;.</span></p>
 </div>
- <span  class="text-danger float-right" style="cursor: pointer;" data-dismiss="modal">Close this Message</span>
+ <span  class="text-danger float-right" style="cursor: pointer;" data-dismiss="modal"> Close this message</span>
 
       </div>
     </div>
@@ -26,27 +26,30 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-12 col-sm-12 footer-widget md-mb-50">
-                <div class="footer-logo mb-30">
+                <div class="footer-logo mb-30 text-center">
                     <a href="./" class="text-center"><img src="<?php echo $Osotech->get_schoolLogoImage();?>" alt="" width="150"></a>
+
                 </div>
-                <div class="textwidget pr-60 md-pr-15"><p class="white-color">Our school history is dated back to September, 1998 when it started like a lit of a candle and now grown into a flame that has produced giant of scholars who could fit into any field of the world.</p>
-                </div>
-                <ul class="footer_social">
+                <div class="textwidget text-center">
+                <h3 class="text-center white-color"><?php echo ($Osotech->getConfigData()->school_name) ?></h3></div>
+               <!--  <div class="textwidget pr-60 md-pr-15"><p class="white-color">Our school history is dated back to September, 1998 when it started like a lit of a candle and now grown into a flame that has produced giant of scholars who could fit into any field of the world.</p>
+                </div> -->
+                <ul class="footer_social text-center">
                     <li>
                         <a href="#" target="_blank"><span><i class="fa fa-facebook"></i></span></a>
                     </li>
                     <li>
-                        <a href="# " target="_blank"><span><i class="fa fa-twitter"></i></span></a>
+                        <a href="#" target="_blank"><span><i class="fa fa-twitter"></i></span></a>
                     </li>
 
                     <li>
-                        <a href="# " target="_blank"><span><i class="fa fa-pinterest-p"></i></span></a>
+                        <a href="#" target="_blank"><span><i class="fa fa-pinterest-p"></i></span></a>
                     </li>
                     <li>
-                        <a href="# " target="_blank"><span><i class="fa fa-google-plus-square"></i></span></a>
+                        <a href="#" target="_blank"><span><i class="fa fa-google-plus-square"></i></span></a>
                     </li>
                     <li>
-                        <a href="# " target="_blank"><span><i class="fa fa-instagram"></i></span></a>
+                        <a href="#" target="_blank"><span><i class="fa fa-instagram"></i></span></a>
                     </li>
 
                 </ul>
@@ -92,7 +95,7 @@
                     </div>
                     <div class="post-item">
                         <div class="post-desc">
-                            <a href="#"><?php echo ucwords($keyrecent->blog_title);?></a>
+                            <a href="blog-single?bId=<?php echo $keyrecent->blog_id;?>&action=view"><?php echo ucwords($keyrecent->blog_title);?></a>
                         </div>
                         <span class="post-date">
                                        <i class="fa fa-calendar-check-o"></i>
@@ -121,7 +124,7 @@
             </div>
             <div class="col-lg-6 text-right md-text-left">
                 <ul class="copy-right-menu">
-                    <li><a href="career">Career</a></li>
+                    <li><a href="./career">Career</a></li>
                     <li><a href="javascript:void(0);">Terms</a></li>
                     <li><a href="./eportal/">Portal</a></li>
 	                <li><a href="./admission/">Admission</a></li>

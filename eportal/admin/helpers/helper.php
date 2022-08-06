@@ -37,4 +37,7 @@ $VisaPSoicalLink = $Administration->get_schoolsocil_link_details();
 //Session Details
 $session_data = $Administration->get_session_details();
 $activeSess =$Administration->get_active_session_details();
+if ($Admin->checkAdminTokenExists($_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL'],$_SESSION['ADMIN_TOKEN']) === false) {
+  $Configuration->destroy();
+}
  ?>

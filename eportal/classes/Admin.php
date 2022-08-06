@@ -59,6 +59,20 @@ class Admin{
       	$_SESSION['ADMIN_SES_TYPE'] =$result->adminType;
       	$_SESSION['ADMIN_USERNAME'] =$result->adminUser;
       	$_SESSION['ADMIN_EMAIL'] =$result->adminEmail;
+      	$token = $this->config->generateRandomUserToken(40);
+            $_SESSION['ADMIN_TOKEN'] = $token;
+      //check token 
+       $this->stmt =$this->dbh->prepare("SELECT * FROM `visap_admin_login_token` WHERE Name=? AND Email=?LIMIT 1");
+      $this->stmt->execute([$_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL']]);
+ 
+      if ($this->stmt->rowCount() == 1) {
+            // code... update the token
+	  $this->stmt = $this->dbh->prepare("UPDATE `visap_admin_login_token` SET Token=? WHERE Name=? AND Email=? LIMIT 1");
+	  $this->stmt->execute(array($token,$_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL']));
+      }else{
+			$this->stmt = $this->dbh->prepare("INSERT INTO `visap_admin_login_token` (Name,Email,Token) VALUES (?,?,?);");
+			$this->stmt->execute(array($_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL'],$token));
+			}
       	$admin_home_link = APP_ROOT."admin/";
        $this->response = $this->alert->alert_toastr("success",$lang['login_success'],__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
          window.location.href='".$admin_home_link."';
@@ -122,6 +136,21 @@ class Admin{
       	$_SESSION['ADMIN_SES_TYPE'] =$result->adminType;
       	$_SESSION['ADMIN_USERNAME'] =$result->adminUser;
       	$_SESSION['ADMIN_EMAIL'] =$result->adminEmail;
+      		$token = $this->config->generateRandomUserToken(40);
+            $_SESSION['ADMIN_TOKEN'] = $token;
+      //check token 
+       $this->stmt =$this->dbh->prepare("SELECT * FROM `visap_admin_login_token` WHERE Name=? AND Email=?LIMIT 1");
+      $this->stmt->execute([$_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL']]);
+ 
+      if ($this->stmt->rowCount() == 1) {
+            // code... update the token
+	  $this->stmt = $this->dbh->prepare("UPDATE `visap_admin_login_token` SET Token=? WHERE Nmae=? AND Email=? LIMIT 1");
+	  $this->stmt->execute(array($token,$_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL']));
+      }else{
+			$this->stmt = $this->dbh->prepare("INSERT INTO `visap_admin_login_token` (Name,Email,Token) VALUES (?,?,?);");
+			$this->stmt->execute(array($_SESSION['ADMIN_USERNAME'],$_SESSION['ADMIN_EMAIL'],$token));
+			}
+
       		$admin_home_link = APP_ROOT."admin/";
        $this->response = $this->alert->alert_toastr("success",$lang['login_success'],__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
          window.location.href='".$admin_home_link."';
@@ -318,6 +347,35 @@ public function reset_admin_password($data){
 		return $this->response;
 		unset($this->dbh);
 		}
+
+		public function checkAdminTokenExists($name,$email,$token){
+	if (isset($name,$email,$token)) {
+		$this->stmt = $this->dbh->prepare("SELECT token FROM `visap_admin_login_token` WHERE Name=? AND Email=? LIMIT 1");
+		$this->stmt->execute(array($name,$email));
+		if ($this->stmt->rowCount() ==1) {
+			//collect the current token from db
+			$tokenRow = $this->stmt->fetch();
+			$currentToken = $tokenRow->token;
+			//compare the two tokens
+			if ($token !== $currentToken) {
+				//return false
+				$this->response = false;
+			}
+		}
+	}
+	return $this->response;
+	 unset($this->dbh);
+}
+
+//delete toke upon logged out
+public function deleteAdminSessionToken($name,$email,$token){
+	$this->stmt = $this->dbh->prepare("DELETE FROM `visap_admin_login_token` WHERE Name=? AND Email=? LIMIT 1");
+		if ($this->stmt->execute(array($name,$email))) {
+		$this->response = true;
+		}
+		return $this->response;
+		 unset($this->dbh);
+}
 			
 		
 }

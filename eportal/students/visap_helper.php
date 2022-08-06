@@ -27,3 +27,7 @@ $SmappDetails = $Configuration->getConfigData();
 $session_data = $Administration->get_session_details();
 $activeSess =$Administration->get_active_session_details();
 $student_data = $Student->get_student_data_byId($_SESSION['STD_SES_ID']);
+
+if ($Student->checkStudentTokenExists($_SESSION['STD_USERNAME'],$_SESSION['STD_EMAIL'],$_SESSION['student_log_token']) === false) {
+  $Configuration->destroy();
+}

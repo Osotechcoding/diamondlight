@@ -67,6 +67,22 @@ class Student{
       	$_SESSION['STD_GRADE_CLASS'] = $result->studentClass;
       	$_SESSION['STD_REG_NUMBER'] = $result->stdRegNo;
       	$_SESSION['STD_EMAIL'] = $result->stdEmail;
+
+      	$token = $this->config->generateRandomUserToken(35);
+            $_SESSION['student_log_token'] = $token;
+      //check token 
+       $this->stmt =$this->dbh->prepare("SELECT * FROM `visap_student_login_token` WHERE username=? AND email=?LIMIT 1");
+      $this->stmt->execute([$_SESSION['STD_USERNAME'],$_SESSION['STD_EMAIL']]);
+ 
+      if ($this->stmt->rowCount() == 1) {
+            // code... update the token
+	  $this->stmt = $this->dbh->prepare("UPDATE `visap_student_login_token` SET token=? WHERE username=? AND email=? LIMIT 1");
+	  $this->stmt->execute(array($token,$_SESSION['STD_USERNAME'],$_SESSION['STD_EMAIL']));
+      }else{
+			$this->stmt = $this->dbh->prepare("INSERT INTO `visap_student_login_token` (username,email,token) VALUES (?,?,?);");
+			$this->stmt->execute(array($_SESSION['STD_USERNAME'],$_SESSION['STD_EMAIL'],$token));
+			}
+
       	$urlLink = APP_ROOT."students/";
        $this->response = $this->alert->alert_toastr("success","Login Successful,Please wait... ",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
          window.location.href='".$urlLink."';
@@ -1367,5 +1383,35 @@ if ($this->stmt->rowCount()>0) {
 			unset($this->dbh);
 		}
 	}
+
+
+	public function checkStudentTokenExists($name,$email,$token){
+	if (isset($name,$email,$token)) {
+		$this->stmt = $this->dbh->prepare("SELECT token FROM `visap_student_login_token` WHERE username=? AND email=? LIMIT 1");
+		$this->stmt->execute(array($name,$email));
+		if ($this->stmt->rowCount() ==1) {
+			//collect the current token from db
+			$tokenRow = $this->stmt->fetch();
+			$currentToken = $tokenRow->token;
+			//compare the two tokens
+			if ($token !== $currentToken) {
+				//return false
+				$this->response = false;
+			}
+		}
+	}
+	return $this->response;
+	 unset($this->dbh);
+}
+
+//delete toke upon logged out
+public function deleteStudentSessionToken($name,$email,$token){
+	$this->stmt = $this->dbh->prepare("DELETE FROM `visap_student_login_token` WHERE username=? AND email=? LIMIT 1");
+		if ($this->stmt->execute(array($name,$email))) {
+		$this->response = true;
+		}
+		return $this->response;
+		 unset($this->dbh);
+}
 
 }

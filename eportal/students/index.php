@@ -11,62 +11,62 @@
 <body>
 <div class="main-wrapper">
 <!-- NAV BAR HEADER -->
-<?php include("templates/navBarMenu.php") ?>
+<?php include_once("templates/navBarMenu.php") ?>
 <!-- NAV BAR HEADER ENDS -->
 <!-- SIDE BAR HEADER -->
-<?php include("templates/studentSideBar.php") ?>
+<?php include_once("templates/studentSideBar.php") ?>
 <!-- SIDE BAR HEADER ENDS -->
 <div class="page-wrapper">
 <div class="content container-fluid">
 <!-- GREETING INFO -->
-<?php include("templates/greetingInfo.php");?>
+<?php include_once("templates/greetingInfo.php");?>
 <!-- GREETING INFO ENDS -->
 
 <div class="row">
-<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 <div class="dash-widget dash-widget5">
-<span class="float-left"><img src="assets/img/dash/dash-1.png" alt="" width="80"></span>
+<span class="float-left"><img src="assets/img/dash/dash-1.png" alt="" width="100"></span>
 <div class="dash-widget-info text-right">
 <span>Subjects</span>
 <h3><?php echo $Student->get_student_offered_subjects($student_data->studentClass)?></h3>
 </div>
 </div>
 </div>
-<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 <div class="dash-widget dash-widget5">
 <div class="dash-widget-info text-left d-inline-block">
 <span>Total Fee</span>
 <h3>&#8358;<?php echo number_format($Administration->get_sum_of_allocated_fee_by_className($student_data->studentClass),2) ?></h3>
 </div>
-<span class="float-right"><img src="assets/img/dash/dash-2.png" width="80" alt=""></span>
+<span class="float-right"><img src="assets/img/dash/dash-2.png" width="100" alt=""></span>
 </div>
 </div>
-<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 <div class="dash-widget dash-widget5">
-<span class="float-left"><img src="assets/img/dash/dash-3.png" alt="" width="80"></span>
+<span class="float-left"><img src="assets/img/dash/dash-3.png" alt="" width="100"></span>
 <div class="dash-widget-info text-right">
 <span>Total Paid</span>
 <h3>&#8358;<?php echo number_format($Administration->get_sum_of_student_total_due("fee_paid",$student_data->stdId,$student_data->stdRegNo,$student_data->studentClass),2) ?></h3>
 </div>
 </div>
 </div>
-<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 <div class="dash-widget dash-widget5">
 <div class="dash-widget-info d-inline-block text-left">
 <span>Outstanding</span>
 <h3>&#8358;<?php echo number_format($Administration->get_sum_of_student_total_due("fee_due",$student_data->stdId,$student_data->stdRegNo,$student_data->studentClass),2) ?></h3>
 </div>
-<span class="float-right"><img src="assets/img/dash/dash-4.png" alt="" width="80"></span>
+<span class="float-right"><img src="assets/img/dash/dash-4.png" alt="" width="100"></span>
 </div>
 </div>
 </div>
 <!-- student performance -->
-<?php //include_once("templates/studentPerformance.php");?>
+<?php include_once("templates/studentPerformance.php");?>
 <!-- student performance -->
 
 <!-- stduent payment chart -->
 
-<?php //include_once ("templates/studentPaymentChart.php") ?>
+<?php include_once ("templates/studentPaymentChart.php") ?>
 <!-- stduent payment chart -->
 
 <!-- MyClassMates -->

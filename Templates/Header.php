@@ -69,22 +69,23 @@
                                         <li> <a href="boards">Board of Advisors</a></li>
                                         <li> <a href="about">Director's Welcome</a></li>
                                         <li><a href="">Heads of School</a></li>
-                                        <li><a href="">School Song</a></li>
-                                        <li><a href="">School Tour</a></li>
+                                        <li><a href="javascript:void(0);">School Song</a></li>
+                                      <!--   <li><a href="javascript:void(0);">School Tour</a></li> -->
                                          <li><a href="team"> Staff</a> </li>
+                                         <li><a href="contact"> Contact Us</a> </li>
                                     </ul>
                                 </li>
 
 	                            <li class="menu-item-has-children">
 		                            <a href="#">ACADEMICS</a>
 		                            <ul class="sub-menu">
-                                        <li><a href="">Our Curriculum</a></li>
-                                        <li><a href="">Co-Curricula Activities</a></li>
-                                        <li><a href="">School Calendar</a></li>
+                                        <li><a href="javascript:void(0);">Our Curriculum</a></li>
+                                        <li><a href="javascript:void(0);">Co-Curricula Activities</a></li>
+                                        <li><a href="javascript:void(0);">School Calendar</a></li>
 			                            <li><a href="prefects">STUDENT PREFECT</a> </li>
 			                            <li><a href="alumni"> ALUMNI PORTAL</a> </li>
 			                            <li><a href="./eportal/">STUDENT PORTAL</a> </li>
-			                            <li><a href="#">RESULT PORTAL</a> </li>
+			                            <li><a href="./e-result/">RESULT PORTAL</a> </li>
 
 		                            </ul>
 	                            </li>
@@ -94,7 +95,7 @@
                                     <ul class="sub-menu">
                                         <li> <a href="">Why choose Us</a> </li>
                                         <li><a href=""> Admission Process</a></li>
-                                        <li><a href="">Faqs</a></li>
+                                        <li><a href="faq2">Faqs</a></li>
                                         <li><a href="">Online Admission</a> </li>
                                         <li><a href="">Download Application Form</a></li>
                                         <li><a href="">Arrange a Visit</a></li>

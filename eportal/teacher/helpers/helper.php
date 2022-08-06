@@ -7,7 +7,7 @@ date_default_timezone_set("Africa/Lagos");
 spl_autoload_register(function($filename){
   require_once "../classes/".ucwords($filename).".php";
 });
-
+$Database = new Database();
 $Visitor        = new Visitors();
 $Student        = new Student();
 $Result         = new Result();
@@ -35,4 +35,8 @@ $staff_assigned_class = $staff_data->staffGrade;
 //Session Details
 $session_data = $Administration->get_session_details();
 $activeSess =$Administration->get_active_session_details();
+
+if ($Staff->checkStaffTokenExists($_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL'],$_SESSION['staff_token']) === false) {
+  $Configuration->destroy();
+}
  ?>

@@ -67,6 +67,22 @@ class Staff {
       	$_SESSION['STAFF_ROLE'] =$result->staffRole;
       	$_SESSION['STAFF_USERNAME'] =$result->staffUser;
       	$_SESSION['STAFF_EMAIL'] =$result->staffEmail;
+
+      	//LOGIN TOKEN
+      	    $token = $this->config->generateRandomUserToken(30);
+            $_SESSION['staff_token'] = $token;
+      //check token 
+       $this->stmt =$this->dbh->prepare("SELECT * FROM `visap_staff_login_token` WHERE username=? AND email=?LIMIT 1");
+      $this->stmt->execute([$_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL']]);
+ 
+      if ($this->stmt->rowCount() == 1) {
+            // code... update the token
+  $this->stmt = $this->dbh->prepare("UPDATE `visap_staff_login_token` SET token=? WHERE username=? AND email=? LIMIT 1");
+  $this->stmt->execute(array($token,$_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL']));
+      }else{
+$this->stmt = $this->dbh->prepare("INSERT INTO `visap_staff_login_token` (username,email,token) VALUES (?,?,?);");
+$this->stmt->execute(array($_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL'],$token));
+}
       	//check for user type
       	$this->stmt = $this->dbh->prepare("UPDATE $this->table SET online=1 WHERE staffId=? LIMIT 1");
       	if ($this->stmt->execute(array($result->staffId))) {
@@ -144,6 +160,21 @@ class Staff {
       	$_SESSION['STAFF_ROLE'] =$result->staffRole;
       	$_SESSION['STAFF_USERNAME'] =$result->staffUser;
       	$_SESSION['STAFF_EMAIL'] =$result->staffEmail;
+      	//LOGIN TOKEN
+      	    $token = $this->config->generateRandomUserToken(30);
+            $_SESSION['staff_token'] = $token;
+      //check token 
+       $this->stmt =$this->dbh->prepare("SELECT * FROM `visap_staff_login_token` WHERE username=? AND email=?LIMIT 1");
+      $this->stmt->execute([$_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL']]);
+ 
+      if ($this->stmt->rowCount() == 1) {
+            // code... update the token
+	  $this->stmt = $this->dbh->prepare("UPDATE `visap_staff_login_token` SET token=? WHERE username=? AND email=? LIMIT 1");
+	  $this->stmt->execute(array($token,$_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL']));
+      }else{
+			$this->stmt = $this->dbh->prepare("INSERT INTO `visap_staff_login_token` (username,email,token) VALUES (?,?,?);");
+			$this->stmt->execute(array($_SESSION['STAFF_USERNAME'],$_SESSION['STAFF_EMAIL'],$token));
+			}
       	//check for user type
       		$this->stmt = $this->dbh->prepare("UPDATE {$this->table} SET online=1 WHERE staffId=? LIMIT 1");
       		if ($this->stmt->execute([$result->staffId])) {
@@ -773,5 +804,37 @@ public function count_all_online_staff(){
    return $this->response;
    unset($this->dbh);
 	}
+
+
+	//CHECK STAFF TOKEN
+public function checkStaffTokenExists($name,$email,$token){
+	if (isset($name,$email,$token)) {
+		$this->stmt = $this->dbh->prepare("SELECT token FROM `visap_staff_login_token` WHERE username=? AND email=? LIMIT 1");
+		$this->stmt->execute(array($name,$email));
+		if ($this->stmt->rowCount() ==1) {
+			//collect the current token from db
+			$tokenRow = $this->stmt->fetch();
+			$currentToken = $tokenRow->token;
+			//compare the two tokens
+			if ($token !== $currentToken) {
+				//return false
+				$this->response = false;
+			}
+		}
+	}
+	return $this->response;
+	 unset($this->dbh);
+}
+
+//delete toke upon logged out
+public function deleteSessionToken($name,$email,$token){
+	$this->stmt = $this->dbh->prepare("DELETE FROM `visap_staff_login_token` WHERE username=? AND email=? LIMIT 1");
+		if ($this->stmt->execute(array($name,$email))) {
+		$this->response = true;
+		}
+		return $this->response;
+		 unset($this->dbh);
+}
+
 
 }

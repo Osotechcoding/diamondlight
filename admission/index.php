@@ -107,7 +107,7 @@ require_once ("../Inc/Osotech.php");
                                      <h3 class="text-info">Carefully fill in the form below to start your admission</h3>
                                  </div>
                                  <div class="form-content-box">
-                                    <div class="col-md-12 text-center" id="server-response"></div>
+                                    <div class="col-md-12 text-center"><h3 id="server-response"></h3></div>
                                       <input type="hidden" name="action" value="submit_first_step_admission">
                                       <input type="hidden" name="bypass" value="<?php echo md5("oiza12345");?>">
                                      <div class="row">
@@ -233,9 +233,9 @@ require_once ("../Inc/Osotech.php");
       }
       
     })
-    setTimeout(()=>{
-        $(".alert").alert('close').slideUp('slow');
-      },5000);
+    // setTimeout(()=>{
+    //     $(".alert").alert('close').slideUp('slow');
+    //   },5000);
   })
 </script>
 <?php

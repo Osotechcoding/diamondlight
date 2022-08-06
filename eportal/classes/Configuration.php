@@ -177,15 +177,16 @@ public function move_file_to_folder($filename,$destination):bool{
 [1-9] make sure that the first digit will be a non zero number
 [0-9]{9,14} will make sure that there is 9 to 14 digits
 $ denotes the end
+^[+]?[1-9][0-9]{9,14}$
 */
 public function validate_Mobile_Number($mobile) {
   if (!empty($mobile)) {
     $isMobileNmberValid = TRUE;
     $mobileDigitsLength = strlen($mobile);
-    if ($mobileDigitsLength < 10 || $mobileDigitsLength > 15) {
+    if ($mobileDigitsLength < 10 || $mobileDigitsLength > 11) {
       $isMobileNmberValid = FALSE;
     } else {
-      if (!preg_match("/^[+]?[1-9][0-9]{9,14}$/", $mobile)) {
+      if (!preg_match("/[0-9]{10,11}$/", $mobile)) {
         $isMobileNmberValid = FALSE;
       }
     }
@@ -267,6 +268,27 @@ public function check_user_activity_allowed($module){
     }
     $this->response = $ourLogo;
     return $this->response;
+  }
+
+//USER LOGIN TOKEN
+  Public function generateRandomUserToken($len){
+  $this->response = "";
+  $stringCode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  $stringCode .="abcdefghijklmnopqrstuvwxyz";
+  $stringCode.="1234567890";
+  $keyMax = strlen($stringCode);
+  $Str =str_shuffle($stringCode);
+  for ($i=0; $i < $len; $i++) { 
+    // code...
+    $this->response.= $Str[random_int(0,$keyMax-1)];
+  }
+  return $this->response;
+}
+
+  public function destroy(){
+    @session_destroy();
+  @header("Location:".APP_ROOT);
+  exit();
   }
 
 }
