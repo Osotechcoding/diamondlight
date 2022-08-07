@@ -48,10 +48,7 @@ require_once "helpers/helper.php";
   </div>
           </div>
     <div class="card">
-      <div class="card-header">
-          <button type="button" class="btn btn-dark btn-sm btn-rounded" data-toggle="modal" data-target="#add_Component_Modal"><i class="fa fa-money fa-1x"></i> Add Component</button>
-          <a href="fee_allocate"> <button type="button" class="btn btn-warning btn-md btn-round"> Fee Allocation</button></a>
-        </div>
+     
       <div class="card-body">
         <div class="text-center col-md-12" id="osotech_res"></div>
         <div class="table-responsive">
@@ -62,7 +59,6 @@ require_once "helpers/helper.php";
           <th>COMPONENT</th>
           <th>STATUS</th>
           <th>CREATED</th>
-          <th>ACTION</th>
         </tr>
       </thead>
         <tbody class="text-center">
@@ -82,17 +78,7 @@ require_once "helpers/helper.php";
           <span class="badge badge-danger badge-md">Inactive</span>
           <?php endif ?> </td>
           <td><?php echo date("j F Y",strtotime($fees->date))?></td>
-         <td> <div class="btn-group dropdown mb-1">
-            <button type="button" class="btn btn-warning">Options</button>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-           <div class="dropdown-menu">
-             <a class="dropdown-item text-info edit_btn_compo" href="javascript:void(0);" data-id="<?php echo $fees->compId;?>" data-action="show_component_edit_modal">Edit</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger delete_btn" data-compo="<?php echo $fees->compId;?>" href="javascript:void(0);">Delete</a>
-            </div>
-          </div> </td>
+         
         </tr>
           <?php
          }
@@ -110,90 +96,7 @@ require_once "helpers/helper.php";
     </div>
     <!-- demo chat-->
     <!-- BEGIN: Footer-->
-   <!-- BUS MODAL Start -->
-   <div class="modal fade" id="add_Component_Modal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <!-- modal-dialog-scrollable -->
-            <div class="modal-dialog modal-md">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><span class="fa fa-money fa-1x"></span> Add Fee Component</h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bx bx-x"></i>
-                  </button>
-                </div>
-                <div class="text-center col-md-12" id="response"></div>
-                <form id="Component_Form_Fee">
-                <div class="modal-body">
-                  <div class="col-md-12 col-12 col-xl-12 col-lg-12 col-sm-12">
-                  <div class="row">
-               <div class="col-md-8">
-                  <div class="form-group">
-                  <label for="component_desc">Component Type</label>
-              <input type="text" id="component_desc" autocomplete="off" class="form-control" name="component_desc" placeholder="e.g Tuition">
-                    </div>
-               </div>
-
-                   <div class="col-md-4">
-                     <div class="form-group">
-                  <label for="status"> STATUS </label>
-               <select name="status" id="status" class="form-control">
-                 <option value="">Choose...</option>
-                 <option value="active">Active</option>
-                 <option value="pending">Pending</option>
-               </select>
-                </div>
-              </div>
-              <input type="hidden" name="action" value="create_component_now">
-              <input type="hidden" name="bypass" value="<?php echo md5("oiza1");?>">
-                 </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                   <button type="submit" class="btn btn-dark ml-1 __loadingBtn__">
-                     Submit</button>
-                  <button type="button" class="btn btn-danger ml-1" data-dismiss="modal">
-                   Close
-                  </button>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div>
-    <!-- BUS MODAL  END -->
-
-    <!-- BUS MODAL Start -->
-   <div class="modal fade" id="Update_Component_Fee_Modal_Form" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <!-- modal-dialog-scrollable -->
-            <div class="modal-dialog modal-md">
-              <div class="modal-content">
-
-                <div class="modal-header">
-                  <h2 class="modal-title" id="exampleModalLongTitle" style="font-size: 30px;font-weight: 700;"><span class="fa fa-edit fa-1x"></span> Update Component</h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bx bx-x"></i>
-                  </button>
-                </div>
-                 <div class="text-center col-md-12" id="response2"></div>
-                <form id="Update_Component_Form_Fee">
-                <div class="modal-body">
-                  <div class="col-md-12 col-12 col-xl-12 col-lg-12 col-sm-12" id="show_component_details_div">
-                  </div>
-                </div>
-                <input type="hidden" name="action" value="update_fee_compo_now">
-                <div class="modal-footer">
-                   <button type="submit" class="btn btn-dark ml-1 __loadingBtn2__">
-                     Save Changes</button>
-                  <button type="button" class="btn btn-danger ml-1" data-dismiss="modal">
-                   Close
-                  </button>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div>
-    <!-- BUS MODAL  END -->
+   
   <?php include ("../template/footer.php"); ?>
     <!-- END: Footer-->
     <!-- BEGIN: Vendor JS-->

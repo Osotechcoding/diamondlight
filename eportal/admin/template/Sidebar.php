@@ -218,13 +218,13 @@
           <!-- MSG -->
        <!--  <li class=" navigation-header text-truncate"><span data-i18n="SETTINGS">SETTINGS</span>
           </li> -->
-           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-cogs fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Settings"> Settings</span></a>
+           <li class=" nav-item"><a href="javaScript:void(0)"><i class="fa fa-cogs fa-1x" data-icon="retweet"></i><span class="menu-title text-truncate" data-i18n="Settings">Application Settings</span></a>
             <ul class="menu-content">
-               <li class=" nav-item"><a href="app_settings"><i class="fa fa-cogs fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">Set Profile</span></a>
+               <li class=" nav-item"><a href="app_settings"><i class="fa fa-cogs fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="School Profile"> School Profile</span></a>
           </li>
-          <li class=" nav-item"><a href="account-settings"><i class="fa fa-edit fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="">Edit Profile</span></a>
+          <li class=" nav-item"><a href="account-settings"><i class="fa fa-edit fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="Personal Profile">Personal Profile</span></a>
           </li>
-                <li class=" nav-item"><a href="controlRoom"><i class="fa fa-cog fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="Configuration">Configuration</span></a>
+                <li class=" nav-item"><a href="controlRoom"><i class="fa fa-cog fa-1x" data-icon="morph-folder"></i><span class="menu-title text-truncate" data-i18n="Configuration">Role &amp; Permission</span></a>
           </li>
           <li class=" nav-item"><a href="mybackup"><i class="fa fa-database fa-1x" data-icon="help"></i><span class="menu-title text-truncate" data-i18n="Backup Restore"> Backup & Restore</span></a>
           </li>

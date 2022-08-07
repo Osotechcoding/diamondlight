@@ -132,7 +132,7 @@ require_once "helpers/helper.php";
             <div class="card-body">
                 <!-- datatable start -->
                 <div class="table-responsive">
-                    <table id="users-list-datatable" class="table text-center">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>PASSPORT</th>
@@ -142,7 +142,7 @@ require_once "helpers/helper.php";
                                 <th>EMAIL</th>
                                 <th>ROLE</th>
                                 <th>STATUS</th>
-                                <th>edit</th>
+                               
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -152,10 +152,9 @@ require_once "helpers/helper.php";
                                 foreach ($get_all_staff as $value) {?>
                                    <tr>
                                     <td><?php if ($value->staffPassport==NULL || $value->staffPassport==""): ?>
-    <a href="./uploadstaffpassport?staffRegId=<?php echo $value->staffRegNo;?>&actionId=<?php echo $value->staffId;?>"><button type="button" class="badge badge-dark">
-                  <span class="fa fa-camera"></span> Upload</button></a>
+    <img src="../schoolImages/staff/teacher.jpg" width="80" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
       <?php else: ?>
-        <img src="../schoolImages/staff/<?php echo $value->staffPassport;?>" width="100" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
+        <img src="../schoolImages/staff/<?php echo $value->staffPassport;?>" width="80" alt="photo" style="border-radius: 10px;border: 3px solid deepskyblue;">
     <?php endif ?></td>
                                 <td><?php echo strtoupper($value->staffRegNo);?></td>
                                 <td>
@@ -173,7 +172,7 @@ require_once "helpers/helper.php";
                                 <?php else: ?>
                                 <span class="badge badge-warning">Pending</span>
                                 <?php endif ?> </td>
-                                <td><a href="editstaffinfo?staffdata=<?php echo $value->staffId;?>"><i class="bx bx-edit-alt"></i></a></td>
+                               
                             </tr> 
                                   <?php  // code...
                                 }

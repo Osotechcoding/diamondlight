@@ -222,7 +222,7 @@ $this->stmt = $this->dbh->prepare("DELETE FROM `$table` WHERE pin_id=? LIMIT 1")
 	//count scratch Card by table name
 	public function count_scratch_pins(string $table){
 		if (!empty($table)) {
-			$this->query ="SELECT count(pin_id) as cnt FROM $table";
+			$this->query ="SELECT count(pin_id) as cnt FROM $table WHERE pin_status=0";
 			$this->stmt =$this->dbh->prepare($this->query);
 			$this->stmt->execute();
 			if ($this->stmt->rowCount()>0) {

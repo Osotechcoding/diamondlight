@@ -33,7 +33,7 @@
              
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
                   <div class="user-nav d-sm-flex d-none"><span class="user-name"><?php echo strtoupper($_SESSION['STAFF_USERNAME']); ?></span><span class="user-status text-success"><?php echo $lang['Online'] ?></span></div><span><?php if ($staff_data->staffPassport==NULL || $staff_data->staffPassport==""): ?>
-    <img src="../author.jpg" width="40" alt="photo" class="round">
+    <img src="../schoolImages/staff/teacher.jpg" width="40" alt="photo" class="round">
       <?php else: ?>
         <img src="../schoolImages/staff/<?php echo $staff_data->staffPassport;?>" width="40" alt="photo" class="round">
     <?php endif ?></span></a>

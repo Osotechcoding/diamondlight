@@ -6,7 +6,7 @@ class backup_restore {
 	 * @string
 	 * @access private
 	 */
-	private $path = 'backups';
+	private $path = '../backups';
 
 	/**
 	 * The backup type, must be either complete, file or database

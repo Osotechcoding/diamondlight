@@ -291,5 +291,16 @@ public function check_user_activity_allowed($module){
   exit();
   }
 
+  public function authenticateRegistrationCard($cardpin,$serial){
+    $status ='1';
+    $this->stmt = $this->dbh->prepare("SELECT * FROM `tbl_reg_pins` WHERE pin_code=? AND pin_serial=? AND pin_status=? LIMIT 1");
+    $this->stmt->execute(array($cardpin,$serial,$status));
+    if ($this->stmt->rowCount()==1) {
+      $this->response = true;
+      return $this->response;
+       unset($this->dbh);
+    }
+  }
+
 }
 $Configuration = new Configuration();

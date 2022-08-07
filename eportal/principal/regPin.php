@@ -105,7 +105,7 @@ $_Pins_ = new Pins();
 
                    ?>
                     </td>
-                  <td><span class="badge badge-pill badge-danger badge-sm">Not Used</span></td>
+                  <td><span class="badge badge-pill badge-success badge-sm">Not Used</span></td>
                 </tr>
                   <?php endforeach; ?>
                <?php } ?>

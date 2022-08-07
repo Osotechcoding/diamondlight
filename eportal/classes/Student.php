@@ -560,6 +560,10 @@ $this->response = false;
 	/*REGISTER STUDENT MANUALLY*/
 	public function register_student_manually($d){
 		$surName = $this->config->Clean($d['student_surname']);
+
+		$cardpin = $this->config->Clean($d['cardpin']);
+		$cardserial = $this->config->Clean($d['cardserial']);
+
 		$firstName = $this->config->Clean($d['student_first_name']);
 		$middleName = $this->config->Clean($d['student_middle_name']);
 		$address = $this->config->Clean($d['student_home_address']);
@@ -582,11 +586,19 @@ $this->response = false;
 		 $this->config->isEmptyStr($student_email) ||
 		 $this->config->isEmptyStr($student_class) ||
 		 $this->config->isEmptyStr($adm_date) ||
-		 $this->config->isEmptyStr($auth_pass2)) {
-			$this->response =$this->alert->alert_toastr("error","Some Important fields are missing",__OSO_APP_NAME__." Says");
+		 $this->config->isEmptyStr($auth_pass2) ||
+		 $this->config->isEmptyStr($cardpin) || 
+		 $this->config->isEmptyStr($cardserial) ) {
+		$this->response =$this->alert->alert_toastr("error","All fileds are Required!",__OSO_APP_NAME__." Says");
 		}elseif (!$this->config->is_Valid_Email($student_email)) {
 			$this->response =$this->alert->alert_toastr("error","<$student_email> is not a valid e-mail address!",__OSO_APP_NAME__." Says");
-		}elseif ($auth_pass2 !== __OSO__CONTROL__KEY__) {
+
+		}elseif (strlen($cardpin) <> 13) {
+		$this->response =$this->alert->alert_toastr("error","Invalid Registration card entered!",__OSO_APP_NAME__." Says");
+		}elseif ($this->config->authenticateRegistrationCard($cardpin,$cardserial) === true) {
+			$this->response =$this->alert->alert_toastr("error","This Registration Card has been Used!",__OSO_APP_NAME__." Says");
+		}
+		elseif ($auth_pass2 !== __OSO__CONTROL__KEY__) {
 			$this->response =$this->alert->alert_toastr("error","Invalid Authentication Code entered!",__OSO_APP_NAME__." Says");
 		}elseif ($this->config->check_single_data('visap_staff_tbl','staffEmail',$student_email)) {
 				$this->response = $this->alert->alert_toastr("error","$student_email is already taken, Please try another email address!",__OSO_APP_NAME__." Says");
@@ -599,18 +611,30 @@ $this->response = false;
 				$stdRegNo = self::generate_admission_number($admitted_year);
 			 $confirmation_code = substr(md5(uniqid(mt_rand(),true)),0,14);
 			 $reg_date = date("Y-m-d");
+			 $time = date("h:i:s");
 			 $student_type ="Day";
 			 $admitted ="Active";
 			 $student_username = $surName;
 			 //$portal_email = $student_username."@portal.".__OSO_APP_NAME__;
 			 try {
 			 	 $this->dbh->beginTransaction();
+
 			 	$this->stmt = $this->dbh->prepare("INSERT INTO $this->table_name (stdRegNo,stdEmail,stdUserName,stdPassword,studentClass,stdSurName,stdFirstName,stdMiddleName,stdDob,stdGender,stdAddress,stdPhone,stdAdmStatus,stdApplyDate,stdApplyType,stdConfToken) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 			 	if ($this->stmt->execute(array($stdRegNo,$student_email,$student_username,$hashed_password,$student_class,$surName,$firstName,$middleName,$Dob,$Gender,$address,$student_phone,$admitted,$adm_date,$student_type,$confirmation_code))) {
-		 $this->dbh->commit();
+			 		//update used pin table
+			 		 $change_status =1;
+        $this->stmt =$this->dbh->prepare("UPDATE `tbl_reg_pins` SET pin_status=?,usedBy=? WHERE pin_code=? AND pin_serial=? LIMIT 1");
+        if ($this->stmt->execute(array($change_status,$stdRegNo,$cardpin,$cardserial))) {
+        //let create a Pin Used History
+        $this->stmt = $this->dbh->prepare("INSERT INTO `reg_pin_history_tbl` (used_by, pin_code, pin_serial, dated, timed) VALUES (?,?,?,?,?);");
+        if ($this->stmt->execute(array($stdRegNo,$cardpin,$cardserial,$reg_date,$time))) {
+        	 $this->dbh->commit();
 						$this->response = $this->alert->alert_toastr("success","$surName $firstName $middleName Registered Successfully",__OSO_APP_NAME__." Says")."<script>setTimeout(()=>{
 							window.location.reload();
 						},500);</script>";
+        }
+      }
+		
 			 	}else{
 				$this->response = $this->alert->alert_toastr("error","Something went wrong, Please try again ...",__OSO_APP_NAME__." Says");
 			 	}

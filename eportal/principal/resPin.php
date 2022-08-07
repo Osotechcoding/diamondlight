@@ -112,16 +112,16 @@ require_once "helpers/helper.php";
                   <td> <?php if ($userData): ?>
                   <span class="badge badge-pill badge-dark badge-sm"><?php echo $userData->studentRegNo ?></span>
                     <?php else: ?>
-                      <span class="badge badge-pill badge-success badge-sm">No Used</span>
+                      <span class="badge badge-pill badge-success badge-sm">Not Used</span>
                   <?php endif ?> </td>
                    <td><?php if ($userData): ?>
                    <?php if ($userData->pin_counter =='5'): ?>
                      <span class="badge badge-pill badge-danger badge-sm">Exhausted</span>
                    <?php else: ?>
-                    <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Times</span>
+                    <span class="badge badge-pill badge-warning badge-sm"><?php echo $userData->pin_counter;?> Usage</span>
                    <?php endif ?>
                      <?php else: ?>
-                      <span class="badge badge-pill badge-success badge-sm">0</span>
+                      <span class="badge badge-pill badge-success badge-sm">0 Usage</span>
                    <?php endif ?> </td>
                 </tr>
                   <?php endforeach; ?>

@@ -102,7 +102,7 @@ require_once "helpers/helper.php";
                                     <div class="media text-center">
                                         <a href="javascript: void(0);">
         <?php if ($staff_data->staffPassport==NULL || $staff_data->staffPassport==""): ?>
-    <img src="../author.jpg" width="150" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
+    <img src="../schoolImages/staff/teacher.jpg" width="150" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
       <?php else: ?>
         <img src="../schoolImages/staff/<?php echo $staff_data->staffPassport;?>" width="150" alt="photo" style="border-radius: 10px;border: 3px solid darkblue;">
     <?php endif ?>

@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
 		unset($ses_id);
 			Session::lock_screen();
 		}else{
-		Session::destroy();	
+		$Configuration->destroy();	
 		}
 		}
 		}

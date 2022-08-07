@@ -43,7 +43,7 @@ background-repeat: no-repeat;">
 <div class="login-left">
 <img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
 <h3 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name); ?> <h3>
-<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
+<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger"><?php echo __OSO_APP_NAME__ ?></span></a></p>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
@@ -71,8 +71,8 @@ placeholder="<?php echo $lang['password'];?>">
 <div class="form-group">
    <select name="login_as" id="login_as" class="select2 form-control">
        <option value="" selected>Choose...</option>
-       <option value="admin">Admin</option>
-       <option value="director">Director</option>
+       <option value="1234509876">Admin</option>
+       <option value="5432106789">Propietor/Propietress</option>
    </select>
 </div>
 <div class="checkbox form-group form-box clearfix">

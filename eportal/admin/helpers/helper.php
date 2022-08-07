@@ -5,7 +5,7 @@ require_once "../languages/config.php";
 date_default_timezone_set("Africa/Lagos");
 //create an autoload function
 spl_autoload_register(function($filename){
-  require_once "../classes/".ucwords($filename).".php";
+  require_once "../classes/".ucfirst($filename).".php";
 });
 
 $Visitor        = new Visitors();

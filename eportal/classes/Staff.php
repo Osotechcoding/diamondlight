@@ -375,17 +375,17 @@ $this->response = $this->alert->alert_toastr("error","Invalid Login Details",__O
 	$address = $this->config->Clean($data['address']);
 	$phone = $this->config->Clean($data['phone']);
 	$dob = $this->config->Clean(date("Y-m-d",strtotime($data['dob'])));
-	$presentClass = $this->config->Clean($data['presentClass']);
 	$gender = $this->config->Clean($data['gender']);
 	$portal_username = $this->config->Clean($data['pusername']);
 	$approved = $this->config->Clean($data['approved']);
 	//check for values
-	if ($this->config->isEmptyStr($staffId) || $this->config->isEmptyStr($surname) || $this->config->isEmptyStr($fname) || $this->config->isEmptyStr($education) || $this->config->isEmptyStr($dob) || $this->config->isEmptyStr($presentClass) || $this->config->isEmptyStr($gender) || $this->config->isEmptyStr($portal_username) || $this->config->isEmptyStr($approved)) {
+	if ($this->config->isEmptyStr($staffId) || $this->config->isEmptyStr($surname) || $this->config->isEmptyStr($fname) || $this->config->isEmptyStr($education) || $this->config->isEmptyStr($dob) || $this->config->isEmptyStr($gender) || $this->config->isEmptyStr($portal_username) || $this->config->isEmptyStr($approved)) {
 		$this->response = $this->alert->alert_toastr("error","Invalid form Submission, Please check your inputs!",__OSO_APP_NAME__." Says");
 	}elseif ($approved !== __OSO__CONTROL__KEY__) {
 	$this->response = $this->alert->alert_toastr("error","Invalid Authentication Code, Try again!",__OSO_APP_NAME__." Says");
 	}else{
 		try {
+			$presentClass = $this->config->Clean($data['presentClass']) ?? NULL;
 			 	 $this->dbh->beginTransaction();
 			 	$this->stmt = $this->dbh->prepare("UPDATE $this->table SET staffGrade=?, firstName=?,lastName=?,staffUser=?,staffDob=?,staffEducation=?,staffPhone=?,staffAddress=?, staffGender=? WHERE staffId=? LIMIT 1");
 			 	if ($this->stmt->execute(array($presentClass,$fname,$surname,$portal_username,$dob,$education,$phone,$address,$gender,$staffId))) {

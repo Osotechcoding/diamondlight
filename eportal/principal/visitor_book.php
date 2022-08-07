@@ -123,9 +123,7 @@ require_once "helpers/helper.php";
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header">
-          <button type="button" class="btn btn-dark btn-md btn-round" data-toggle="modal" data-target="#visitorModal"><span class="fa fa-user-secret fa-1x"></span>  Add New Vistor</button>
-        </div>
+       
         <div class="card-body card-dashboard">
         <div class="form" style="margin: 1rem;padding: 1rem;" style="width: 100%;">
                          <h3 class="text-muted">You can search Visitor by Date</h3>

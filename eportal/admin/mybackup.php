@@ -11,7 +11,7 @@ require_once "helpers/helper.php";
             $message = $newImport -> backup ();   
         }else if($process == 'restore'){
             $message = $newImport -> restore (); 
-            @unlink('backups/database_'.__OSO_DBNAME__.'.sql');
+            @unlink('../backups/database_'.__OSO_DBNAME__.'.sql');
         }
     }
 
@@ -66,9 +66,9 @@ require_once "helpers/helper.php";
             </button>
             <div class="d-flex align-items-center">
               <i class="bx bx-bell"></i>
-              <span>
-              <strong class="text-center">Welcome to <?php echo __OSO_APP_NAME__ ?> <?php echo __OSO_APP_VERSION__; ?> BACKUP & RESTORE MODULE!</strong>
-              </span>
+             <h3 class="text-center text-white"> <span>
+              <strong class="text-center">  Welcome to <?php echo __OSO_APP_NAME__ ?> <?php echo __OSO_APP_VERSION__; ?> BACKUP & RESTORE MODULE!</strong>
+              </span></h3>
             </div>
           </div>
              <div class="row">

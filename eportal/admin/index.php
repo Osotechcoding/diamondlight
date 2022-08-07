@@ -32,7 +32,7 @@ require_once "helpers/helper.php";
                 <ol class="breadcrumb p-0 mb-0 pl-1">
                   <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#"><?php echo $lang['Dashboard'] ?></a>
+                 <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']) ?></a>
                   </li>
                   <li class="breadcrumb-item active"> <?php $Configuration->greet_user(); ?>  <b class="text-muted"> <?php echo $lang['welcome1'] ?></b>
                   </li>

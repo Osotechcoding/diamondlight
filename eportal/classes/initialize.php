@@ -14,11 +14,11 @@ if (!defined("__OSOTECH__DEV_COMPANY__")) {
 	define("__OSO_SERIAL__NUMBER_","XTAS-KM87-EWA6-09CQ-5J0V");
 	define("__OSO__CONTROL__KEY__","12345");
 	define("__OSO__PUBLISH_RESULT__KEY__","12345678");
-	define("__OSO_APP_VERSION__","v1.1.1");
+	define("__OSO_APP_VERSION__","version_2.0.5");
 	define("__OSO_APP_DEV_YEAR__","2022");
-	define("__OSO_APP_NAME__","SMATech");
-	define("__SCHOOL_NAME__","E-Portal @ DiamondLight School & College");
-	define("__SCHOOL_LOCATION_ADDRESS__","8,Road 20, Golden Estate, Ijagba, Otta,Nigeria");
+	define("__OSO_APP_NAME__","SMAPP");
+	define("__SCHOOL_NAME__","School Management Application E-Portal");
+	define("__SCHOOL_LOCATION_ADDRESS__","No 8,Road 20, Smatech Estate, Ikeja, Lagos,Nigeria");
 	define("APP_ROOT","http://localhost/diamondlight/eportal/");
 	//define("APP_ROOT","https://eportal.diamondlightschools.com/");
 	

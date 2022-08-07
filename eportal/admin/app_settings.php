@@ -32,7 +32,7 @@ require_once "helpers/helper.php";
 																		</li>
 																		<li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($_SESSION['ADMIN_SES_TYPE']);?></a>
 																		</li>
-																		<li class="breadcrumb-item active">WebSite Settings
+																		<li class="breadcrumb-item active">School Profile Settings
 																		</li>
 																</ol>
 														</div>
@@ -73,28 +73,28 @@ require_once "helpers/helper.php";
       <a class="nav-link d-flex align-items-center" id="account-pill-info" data-toggle="pill"
       href="#account-vertical-info" aria-expanded="false">
       <i class="bx bx-info-circle"></i>
-      <span>School Profile</span>
+      <span>Set School Profile</span>
       </a>
       </li>
       <li class="nav-item">
       <a class="nav-link d-flex align-items-center" id="account-pill-social" data-toggle="pill"
       href="#account-vertical-social" aria-expanded="false">
       <i class="bx bxl-twitch"></i>
-      <span>Social links</span>
+      <span>Set Social links</span>
       </a>
       </li>
       <li class="nav-item">
       <a class="nav-link d-flex align-items-center" id="account-pill-social" data-toggle="pill"
       href="#new-account-vertical-form" aria-expanded="false">
       <i class="fa fa-user-plus"></i>
-      <span>Add Staff</span>
+      <span>Add New Staff</span>
       </a>
       </li>
       <li class="nav-item">
       <a class="nav-link d-flex align-items-center" id="account-pill-social-two" data-toggle="pill"
       href="#new-student-account-vertical-form" aria-expanded="false">
       <i class="fa fa-graduation-cap"></i>
-      <span>Register Student</span>
+      <span>Add New Student</span>
       </a>
       </li>
 
@@ -687,10 +687,31 @@ require_once "helpers/helper.php";
       					</div>
       	</div>
       </div>
+
+      <!-- SCRATCH CARD -->
+      <div class="col-md-6">
+        <div class="form-group">
+                <div class="controls">
+                        <label for="">CARD PIN</label>
+                <input autocomplete="off" type="password"
+                class="form-control" name="cardpin" placeholder="**********">
+                </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+                <div class="controls">
+                  <label for="">CARD SERIAL</label>
+                <input autocomplete="off" type="text"
+                class="form-control" name="cardserial" placeholder="**********">
+                </div>
+        </div>
+      </div>
+      <!-- SCRATCH CARD -->
       <div class="col-md-6">
       	<div class="form-group">
       					<div class="controls">
-      									<label>AUTH KEY</label>
+      									<label>Authentication Code</label>
       					<input autocomplete="off" type="password"
       					class="form-control"
       	placeholder="Enter Pass Code to continue" name="auth_pass2">

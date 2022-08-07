@@ -32,7 +32,7 @@ require_once "helpers/helper.php";
               <h5 class="content-header-title float-left pr-1 mb-0">Profile</h5>
               <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                  <li class="breadcrumb-item"><a href="index-2.html"><i class="bx bx-home-alt"></i></a>
+                  <li class="breadcrumb-item"><a href="./"><i class="bx bx-home-alt"></i></a>
                   </li>
                  <li class="breadcrumb-item"><a href="javascript:void(0);"><?php echo strtoupper($admin_data->adminType);?></a>
                   </li>

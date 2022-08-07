@@ -22,9 +22,21 @@ class Admin{
 		global $lang;
 		$email = $this->config->Clean($data['ad_email']);
 		$password = $this->config->Clean($data['ad_pass']);
-		$login_as = $this->config->Clean($data['login_as']);
+		$login_as = $this->config->Clean((int)$data['login_as']);
 		$xss_token = $data['txss_token'];
-		if ($this->config->isEmptyStr($email) || $this->config->isEmptyStr($password) || $this->config->isEmptyStr($login_as)) {
+		switch ($login_as) {
+			case 1234509876:
+				$accessUser ="admin";
+				break;
+			
+			case 5432106789:
+			$accessUser ="director";
+				break;
+			default:
+			$accessUser ="";
+				break;
+		}
+		if ($this->config->isEmptyStr($email) || $this->config->isEmptyStr($password) || $this->config->isEmptyStr($accessUser)) {
 			// code...
 			$this->response =$this->alert->alert_toastr("error",$lang['login_error1'],__OSO_APP_NAME__." Says");
 		}elseif (! $this->config->is_Valid_Email($email)) {
@@ -33,7 +45,7 @@ class Admin{
 		}else{
 			 $this->query = "SELECT * FROM {$this->table} WHERE adminEmail=? AND adminType=? LIMIT 1";
     $this->stmt = $this->dbh->prepare($this->query);
-    $this->stmt->execute(array($email,$login_as));
+    $this->stmt->execute(array($email,$accessUser));
     if ($this->stmt->rowCount()==1) {
       $result = $this->stmt->fetch();
       $db_password = $result->adminPass;

@@ -101,32 +101,31 @@ require_once "helpers/helper.php";
       </div>
       
     <div class="card">
-      <div class="card-header">
-          <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#addClassModal"><span class="fa fa-list fa-1x"></span> Add Classroom</button>
-        </div>
+     
       <div class="card-body">
         <div class="text-center col-md-12" id="delete_response"></div>
         <div class="table-responsive">
-      <table class="table osotechDatatable table-hover table-bordered">
+      <table class="table table-hover table-bordered">
         <thead class="text-center">
           <tr>
+            <th>S/N</th>
           <th>CLASS DESC</th>
-          <th> DIVISION</th>
           <th> SUBDIVISION</th>
           <th>CLASS TEACHER</th>
           <th>STATUS</th>
-          <th>ACTION</th>
         </tr>
       </thead>
         <tbody class="text-center">
           <?php 
           $all_classrooms =$Administration->get_all_classrooms();
           if ($all_classrooms) {
+            $cnt=0;
             foreach ($all_classrooms as $classrooms) {
+              $cnt++;
               ?>
               <tr>
-          <td><?php echo strtoupper($classrooms->gradeDesc); ?></td>
-          <td><?php echo strtoupper($classrooms->grade_division); ?></td>
+                <td><?php echo $cnt; ?></td>
+          <td><?php echo strtoupper($classrooms->gradeDesc); ?> <?php echo strtoupper($classrooms->grade_division); ?></td>
           <td><?php echo strtoupper($classrooms->grade_dept); ?></td>
           <td><?php if ($classrooms->grade_teacher ==NULL): ?>
           <span class="badge badge-warning badge-md">Not Assigned</span>
@@ -146,17 +145,7 @@ require_once "helpers/helper.php";
               echo ' <span class="badge badge-success badge-md">Active</span>';
                 break;
             } ?></td>
-         <td>   <div class="btn-group dropdown mb-1">
-            <button type="button" class="btn btn-secondary">Options</button>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-           <div class="dropdown-menu">
-              <a class="dropdown-item text-info update_btn" data-id="<?php echo $classrooms->gradeId;?>" href="javascript:void(0);"><span class="fa fa-edit"></span> Update </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger delete_btn" data-action="delete_classroom_now" data-id="<?php echo $classrooms->gradeId;?>" href="javascript:void(0);"> Delete</a>
-            </div>
-          </div></td>
+         
         </tr>
               <?php
             }

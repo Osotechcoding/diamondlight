@@ -11,22 +11,27 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
           <li class="active"><a class="d-flex align-items-center" href="./"><i class="fa fa-desktop fa-1x"></i><span class="menu-item text-truncate" data-i18n="Dashboard"><?php echo $lang['Dashboard'] ?></span></a>
               </li>
-          <li class="navigation-header text-truncate"><span data-i18n="MANAGEMENT">MANAGEMENT</span>
-          </li>
+         <!--  <li class="navigation-header text-truncate"><span data-i18n="MANAGEMENT">MANAGEMENT</span>
+          </li> -->
          
           <!-- ADMISSION -->
-          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-edit fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="ADMISSION PORTAL">ADMISSION PORTAL</span></a>
+         <!-- administration -->
+          <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-cog fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGEMENT">MANAGEMENT</span></a>
             <ul class="menu-content">
-               <li class=" nav-item"><a href="callAdmission"><i class="fa fa-cogs fa-1x"></i><span class="menu-title text-truncate" data-i18n="Portal Status">Admission Portal</span></a>
+             
+          <li class="nav-item"><a href="registerStudentSubject"><i class="fa fa-book fa-1x"></i><span class="menu-title text-truncate" data-i18n="create_subject"> Subjects</span></a>
+         
+          <li class=" nav-item"><a href="create_classroom"><i class="fa fa-home fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Classrooms</span></a>
           </li>
             </ul>
           </li>
+          <!-- administration ENDS -->
           <!-- ADMISION ENDS -->
           <!-- RESULT -->
           <li class="nav-item"><a href="javaScript:void(0)"><i class="fa fa-bar-chart fa-1x" data-icon="notebook"></i><span class="menu-title text-truncate" data-i18n="MANAGE RESULTS">MANAGE RESULTS</span></a>
             <ul class="menu-content">
              
-          <li class="nav-item"><a href="registerStudentSubject"><i class="fa fa-book fa-1x"></i><span class="menu-title text-truncate" data-i18n="Subject Registration"> Subject Registration</span></a>
+          <li class="nav-item"><a href="registerStudentSubject"><i class="fa fa-book fa-1x"></i><span class="menu-title text-truncate" data-i18n="Exam Subject"> Exam Subjects</span></a>
          
           <li class=" nav-item"><a href="result_uploading"><i class="fa fa-eye fa-1x"></i><span class="menu-title text-truncate" data-i18n="Upload Result">Upload Results</span></a>
           </li>
