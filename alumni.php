@@ -10,13 +10,8 @@ require_once ("Inc/Osotech.php");
     
     <title><?php echo ($Osotech->getConfigData()->school_name);?> :: THE SCHOOL PREFECTS </title>
     <?php include_once("Templates/MetaTag.php");?>
-    <?php include ("Templates/HeaderScript.php");?>
-    <style>
-        .image-border{
-            border-radius: 20px;
-            border:5px solid #F4731C;
-        }
-    </style>
+    <?php include_once ("Templates/HeaderScript.php");?>
+
 </head>
 <body class="defult-home">
 
@@ -63,7 +58,7 @@ require_once ("Inc/Osotech.php");
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-30">
                         <div class="team-item">
-                            <img class="image-border" src="assets/images/team/1.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/author.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">JOHN DOE</a></h4>
                                 <span class="designation">ALUMNI</span>
@@ -73,7 +68,7 @@ require_once ("Inc/Osotech.php");
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-30">
                         <div class="team-item">
-                            <img class="image-border" src="assets/images/team/2.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/author.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">HANNAH DOE</a></h4>
                                  <span class="designation">ALUMNI</span>
@@ -83,7 +78,7 @@ require_once ("Inc/Osotech.php");
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-30">
                         <div class="team-item">
-                            <img class="image-border" src="assets/images/team/3.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/author.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">COW DOE</a></h4>
                                 <span class="designation">ALUMNI</span>
@@ -93,7 +88,7 @@ require_once ("Inc/Osotech.php");
                     </div>
                     <div class="col-lg-4 col-sm-6 md-mb-30">
                         <div class="team-item">
-                            <img class="image-border" src="assets/images/team/1.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/author.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">TAMI DOE</a></h4>
                                 <span class="designation">ALUMNI</span>
@@ -103,7 +98,7 @@ require_once ("Inc/Osotech.php");
                     </div>
                     <div class="col-lg-4 col-sm-6 xs-mb-30">
                         <div class="team-item">
-                            <img class="image-border" src="assets/images/team/2.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/author.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">JOSH DOE</a></h4>
                                 <span class="designation">ALUMNI</span>
@@ -113,7 +108,7 @@ require_once ("Inc/Osotech.php");
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="team-item">
-                            <img class="image-border" src="assets/images/team/3.jpg" alt="">
+                            <img class="image-border" src="assets/images/team/author.jpg" alt="">
                             <div class="content-part">
                                 <h4 class="name"><a href="team-single.php">SMITH YAN</a></h4>
                                 <span class="designation">ALUMNI</span>

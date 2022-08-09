@@ -57,7 +57,7 @@ require_once ("Inc/Osotech.php");
                     <div class="row">
                         <div class="col-lg-4 col-sm-6 mb-30">
                             <div class="team-item">
-                                <img src="assets/images/team/1.jpg" alt="">
+                                <img class="image-border" src="assets/images/team/author.jpg" alt="">
                                 <div class="content-part">
                                     <h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
                                     <span class="designation">Professor</span>
@@ -72,7 +72,7 @@ require_once ("Inc/Osotech.php");
                         </div>
                         <div class="col-lg-4 col-sm-6 mb-30">
                             <div class="team-item">
-                                <img src="assets/images/team/2.jpg" alt="">
+                                <img class="image-border" src="assets/images/team/author.jpg" alt="">
                                 <div class="content-part">
                                     <h4 class="name"><a href="team-single.php">Jesika Albenian</a></h4>
                                     <span class="designation">Professor</span>
@@ -87,7 +87,7 @@ require_once ("Inc/Osotech.php");
                         </div>
                         <div class="col-lg-4 col-sm-6 mb-30">
                             <div class="team-item">
-                                <img src="assets/images/team/3.jpg" alt="">
+                                <img class="image-border" src="assets/images/team/author.jpg" alt="">
                                 <div class="content-part">
                                     <h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
                                     <span class="designation">Professor</span>
@@ -102,7 +102,7 @@ require_once ("Inc/Osotech.php");
                         </div>
                         <div class="col-lg-4 col-sm-6 md-mb-30">
                             <div class="team-item">
-                                <img src="assets/images/team/1.jpg" alt="">
+                                <img class="image-border" src="assets/images/team/author.jpg" alt="">
                                 <div class="content-part">
                                     <h4 class="name"><a href="team-single.php">Jhon Pedrocas</a></h4>
                                     <span class="designation">Professor</span>
@@ -117,7 +117,7 @@ require_once ("Inc/Osotech.php");
                         </div>
                         <div class="col-lg-4 col-sm-6 xs-mb-30">
                             <div class="team-item">
-                                <img src="assets/images/team/2.jpg" alt="">
+                                <img class="image-border" src="assets/images/team/author.jpg" alt="">
                                 <div class="content-part">
                                     <h4 class="name"><a href="team-single.php">Jesika Albenian</a></h4>
                                     <span class="designation">Professor</span>
@@ -132,7 +132,7 @@ require_once ("Inc/Osotech.php");
                         </div>
                         <div class="col-lg-4 col-sm-6">
                             <div class="team-item">
-                                <img src="assets/images/team/3.jpg" alt="">
+                                <img class="image-border" src="assets/images/team/author.jpg" alt="">
                                 <div class="content-part">
                                     <h4 class="name"><a href="team-single.php">Alex Anthony</a></h4>
                                     <span class="designation">Professor</span>

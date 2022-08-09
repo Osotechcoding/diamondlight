@@ -54,7 +54,7 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
 
            <div class="row">
   <div class="col-12 mb-1">
-    <h3 class="bd-lead text-primary text-bold" style="font-weight: bolder;"><i class="fa fa-credit-card-alt"></i> Scratch Card Generator</h3>
+    <h3 class="bd-lead text-bold" style="font-weight: bolder;"><i class="fa fa-credit-card-alt"></i> Scratch Card Generator</h3>
   </div>
 </div>
  
@@ -63,16 +63,15 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
             <?php //include_once("template/pinsLinkBtns.php") ?>
       <div class="card">
       
-       <h1 class="text-center mt-1" style="font-weight: bolder;"><span class="fa fa-credit-card-alt"></span> <?php echo strtoupper(__OSO_APP_NAME__); ?> PIN GENERATOR</h1>
+       <h1 class="text-center mt-2" style="font-weight: bolder;"><span class="fa fa-credit-card-alt"></span> <?php echo strtoupper(__OSO_APP_NAME__); ?> PIN GENERATOR</h1>
         <div class="card-body">
           <form class="form" id="osotechPinGenForm">
             <div class="form-body">
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <label for="q">NO of Scratch Crads to Generate</label>
-                    <input type="number" autocomplete="off" id="q" class="form-control" name="q"
-                      placeholder="e.g 200">
-                     <span class="text-danger">Maximum: 5 Pins</span>
+                    <label for="q">No of Scratch Crads to Generate</label>
+                    <input type="number" autocomplete="off" id="q" class="form-control" name="q" placeholder="e.g 200">
+                     <span class="text-danger">Maximum: 200 Pins</span>
                 
                 </div>
                  <div class="col-md-12 col-12 mb-2">
@@ -87,7 +86,7 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
                 </div>
 
                 <div class="col-12 mb-2">
-                   <label for="p">Enter Scratch Card Price</label>
+                   <label for="p">Enter Card Price</label>
                     <input type="number" id="p" class="form-control" name="p"
                       placeholder="&#8358; 5,000.00">
                 </div>
@@ -114,21 +113,18 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
   
     <!-- BEGIN: Footer-->
 
-   <?php include "../template/footer.php"; ?>
+   <?php include_once "../template/footer.php"; ?>
     <!-- END: Footer-->
 
     <!-- BEGIN: Vendor JS-->
-    <?php include "../template/FooterScript.php"; ?>
+    <?php include_once "../template/FooterScript.php"; ?>
      <!-- BEGIN: Page JS-->
-    <script src="../app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js"></script>
-    <!-- END: Page JS-->
-   
 <script>
   $(document).ready(function(){
     $(".view_reg_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./regPin";
-      },1000);
+      },500);
     })
     /*//exam pins 
      $(".view_ex_pins_btn").on("click", function(){
@@ -147,11 +143,11 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
      $(".view_res_pins_btn").on("click", function(){
       setTimeout(()=>{
         window.location.href="./resPin";
-      },1000);
+      },500);
     })
     $("#osotechPinGenForm").on("submit", function(event){
       event.preventDefault();
-       $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing...').attr("disabled",true);
+       $(".__loadingBtn__").html('<img src="../assets/loaders/rolling_loader.svg" width="30"> Processing Request...').attr("disabled",true);
       const osotechPinGenForm = $(this).serialize();
       $.post("../actions/actions",osotechPinGenForm,function(d){
        // console.log(d);
@@ -159,7 +155,7 @@ if (!$Admin->isSuperAdmin($admin_data->adminId)) {
            $(".__loadingBtn__").html('Generate').attr("disabled",false);
           $("#server-response").html(d);
           $("#osotechPinGenForm")[0].reset();
-        },3000)
+        },500)
       })
    
     })

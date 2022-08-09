@@ -59,7 +59,9 @@ $_Pins_ = new Pins();
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
       <div class="card">
-
+        <div class="card-header">
+          <button type="button" data-target="#showPinPassModal" data-toggle="modal" class="btn btn-danger btn-lg round">Show Hidden Pins</button>
+        </div>
         <div class="card-body card-dashboard">
 
           <div class="table-responsive">
@@ -68,7 +70,7 @@ $_Pins_ = new Pins();
                 <tr>
                  <th>S/N</th>
                   <th>Card Serial</th>
-                   <th>Pin <button type="button" data-target="#showPinPassModal" data-toggle="modal" class="btn btn-outline-danger btn-sm round">Show Pin</button></th>
+                   <th>Pin </th>
                   <th>Price</th>
                   <th>Created</th>
                   <th>Status</th>

@@ -59,6 +59,9 @@ require_once "helpers/helper.php";
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header">
+          <button type="button" data-target="#showPinPassModal" data-toggle="modal" class="btn btn-danger btn-lg round">Show Hidden Pins</button>
+        </div>
         <div class="card-body card-dashboard">
 
           <div class="table-responsive">
