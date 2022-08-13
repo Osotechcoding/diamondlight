@@ -332,9 +332,9 @@ Second Batch Entrance examination into Year 7, 8, 9 & 10 for 2021/2022 Academic 
                              <!--  -->
                              <div class="card">
                                  <div class="card-header">
-                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false">Requirement for admission?</a>
+                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseThreetz654" aria-expanded="false">Requirement for admission?</a>
                                  </div>
-                                 <div id="collapseFour" class="collapse" data-parent="#accordion2" style="">
+                                 <div id="collapseThreetz654" class="collapse" data-parent="#accordion" style="">
                                      <div class="card-body">
                                          <ul style="list-style:disc; font-size: 20px;">
                                              <li>Inquiry by Parents / Guardians</li>

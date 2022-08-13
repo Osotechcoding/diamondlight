@@ -36,19 +36,17 @@ background-repeat: no-repeat;">
 <div class="login-wrapper">
     
 <div class="container">
-     <div class="col-md-12 text-center">
-	     <h1 class="text-center" style="font-size:40px;color: #fff;font-weight:bold;text-shadow: 4px 2px black;"><span> <?php echo ucwords($SmappDetails->school_name);?> </span></h1>
-    </div>
+    
 <div class="loginbox">
 <div class="login-left">
-<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
+<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
 <h3 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name); ?> <h3>
 <p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger"><?php echo __OSO_APP_NAME__ ?></span></a></p>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
-<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo"></div>
-<h1 class="mb-3">ADMIN PORTAL</h1>
+<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="50" class="img-fluid" alt="logo"></div>
+<h1 class="mb-3 mt-2" style="color: #593128;">ADMIN PORTAL</h1>
 <form id="adminLoginForm">
 <input type="hidden" name="action" value="logAdminIn">
 <input type="hidden" name="txss_token" value="<?php echo $tses_token;?>">
@@ -85,7 +83,7 @@ placeholder="<?php echo $lang['password'];?>">
 <button class="btn btn-dark btn-block __loadingBtn__" type="submit">Login</button>
 </div>
 </form>
-<p class="text-center"><a href="../">School Website</a></p> 
+<p class="text-center"><a href="../" target="_blank">School Website</a></p> 
 <p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 </div>

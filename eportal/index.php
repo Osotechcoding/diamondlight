@@ -24,7 +24,7 @@ require_once "classes/Session.php";
 
 <link rel="stylesheet" href="bapps/css/style.css">
 </head>
-<body id="top" style=" background:rgba(0, 0, 0, 0.8) url('schoolbg.jpg');
+<body id="top" style="background:rgba(0, 0, 0, 0.4) url('schoolbg.jpg');
 background-position:center;
 background-size: cover;
 background-repeat: no-repeat;">
@@ -32,19 +32,17 @@ background-repeat: no-repeat;">
 <div class="main-wrapper login-body">
 <div class="login-wrapper">
 <div class="container">
-     <div class="col-md-12 text-center">
-        <h1 class="text-center" style="font-size:40px;color: #fff;font-weight:bold;text-shadow: 4px 2px black;"><span> <?php echo ucwords($SmappDetails->school_name);?> </span></h1>
-    </div>
+     
 <div class="loginbox">
 <div class="login-left">
-<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
+<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
 <h3 class="text-center text-warning"><?php echo ucwords($SmappDetails->school_name); ?></h3>
 <p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
-<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo"></div>
-<h1>STUDENT PORTAL</h1>
+<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="50" class="img-fluid" alt="logo"></div>
+<h1 class="mb-3 mt-2" style="color: #593128;">STUDENT PORTAL</h1>
 <form id="student-login-form">
     <input type="hidden" name="txss_token" value="<?php echo $tses_token;?>">
     <input type="hidden" name="action" value="stud_login">
@@ -75,9 +73,8 @@ background-repeat: no-repeat;">
 <button class="btn btn-dark btn-block __loadingBtn__" type="submit">Login</button>
 </div>
 </form>
-<div class="text-center dont-have">Are you a Staff? <button type="button" class="btn btn-primary btn-sm navigate_to_staff_login"> Login here</button>
-<p><a href="../">School Website</a></p> 
-<p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
+<div class="text-center dont-have">Are you a Staff? <a class="link navigate_to_staff_login" style="cursor: pointer;"> Login here</a> 
+<p class="text-center text-info mt-2 p-2" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 </div>
 </div>
@@ -85,7 +82,9 @@ background-repeat: no-repeat;">
 </div>
 </div>
 </div>
-
+<!-- <div class="col-md-12 text-center mt-3 p-3">
+        <h1 class="text-center" style="font-size:40px;color: #fff;font-weight:bold;text-shadow: 4px 2px black; border-radius: 10px; border: 4px solid orangered; background-color: orangered; text-align: center;display: inline-flex;"> <?php //echo ucwords($SmappDetails->school_name);?></h1>
+    </div> -->
 <script src="bapps/js/jquery-3.6.0.min.js"></script>
 <script src="bapps/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="app-assets/vendors/js/extensions/toastr.min.js"></script>

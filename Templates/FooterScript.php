@@ -38,8 +38,13 @@
 
  <script>
             $(window).on("load", function(){
+              //ResultAlertModalCenter
                setTimeout(()=>{
                  $("#exampleModalCenter").modal("show");
+             },3000);
+
+               setTimeout(()=>{
+                 $("#ResultAlertModalCenter").modal("show");
              },3000);
 
             })

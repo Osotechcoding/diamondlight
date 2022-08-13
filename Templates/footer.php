@@ -1,4 +1,4 @@
-<?php if ($Osotech->checkAdmissionPortalStatus() == true): ?>
+<?php if ($Osotech->checkAdmissionPortalStatus() === true): ?>
     <!-- Public Alert Message -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -20,6 +20,7 @@
 </div>
 <!-- Public Alert Message -->
 <?php endif ?>
+
 
 
 <div class="footer-top">
@@ -114,6 +115,7 @@
         </div>
     </div>
 </div>
+
 <div class="footer-bottom">
     <div class="container">
         <div class="row y-middle">
@@ -127,9 +129,35 @@
                     <li><a href="./career">Career</a></li>
                     <li><a href="javascript:void(0);">Terms</a></li>
                     <li><a href="./eportal/">Portal</a></li>
-	                <li><a href="./admission/">Admission</a></li>
+	                 <?php if ($Osotech->checkAdmissionPortalStatus() == true): ?>
+                        <li>
+                        <a href="./admission/">Admission</a>
+                    </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Student Result Alert Modal -->
+<?php if ($Osotech->checkResultReleasedPortalStatus() === true): ?>
+<div class="modal fade" id="ResultAlertModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+       <div class="paoc-popup-margin paoc-popup-mheading">
+        <h3 class="text-center text-danger">2021/2022 Third-term result is Out!!!</h3>
+        <h4 class="text-center"><span><a href="./e-result" style="text-decoration: none; color: #ff0000;">Click here to check your ward's Result</a></span></h4></div>
+<div class="paoc-popup-margin paoc-popup-content"><p class="text-info"><span style="font-size: 18pt;" class="text-info"><strong>SUMMER SCHOOL starts 8th of August - 2nd of September, 2022 (Boarders are to resume on Saturday, 7th of September).</strong></span></p>
+
+<p><span style="font-size: 18pt;"><a href="./contact"> Click here</a> for more info &#8230;&#8230;..</span></p>
+<p><span style="font-size: 18pt; color: #f00;"><a href="tel:+2348131374443" style="text-decoration: none; color: red;">Click here to Register for SUMMER LESSON &#8230;&#8230;&#8230;&#8230;</a></span></p>
+ <span  class="text-white float-right" style="cursor: pointer; text-transform: uppercase;background:#f00; color: #000;padding: 5px; border-radius: 5px;" data-dismiss="modal"> Close</span>
+
+      </div>
+    </div>
+  </div>
+</div>
+<?php endif ?>
+<!-- Student result Alert Modal -->

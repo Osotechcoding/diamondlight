@@ -1916,7 +1916,7 @@ footer p {
 }
 .login-wrapper .loginbox {
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	display: flex;
     margin: 1.875rem auto;
@@ -1927,7 +1927,8 @@ footer p {
 .login-wrapper .loginbox .login-left {
     align-items: center;
     /*#18aefa #023020  lightgrey*/
-    background:#023020;
+    /*background:#023020;*/
+    background-color: #593128;
     /*background-image: rgba(0,0,0,.6);*/
     border-radius: 10px 0 0 6px;
     flex-direction: column;

@@ -32,19 +32,17 @@ background-repeat: no-repeat;">
 <div class="main-wrapper login-body">
 <div class="login-wrapper">
 <div class="container">
-     <div class="col-md-12 text-center">
-	     <h1 class="text-center" style="font-size:40px;color: #fff;font-weight:bold;text-shadow: 4px 2px black;"><span> <?php echo ucwords($SmappDetails->school_name);?> </span></h1>
-    </div>
+  
 <div class="loginbox">
 <div class="login-left">
-<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="350" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
+<img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo" style="border: 2px solid deepskyblue;border-radius:10px;background: #ffffff;">
 <h4 class="text-center text-warning mt-2"><?php echo ucwords($SmappDetails->school_name); ?><h4>
-<p class="text-center" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
+<p class="text-center mt-2 p-2" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: whitesmoke;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 <div class="login-right">
 <div class="login-right-wrap">
-<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="150" class="img-fluid" alt="logo"></div>
-<h1 class="mb-3">STAFF PORTAL </h1>
+<div class="text-center"><img src="<?php echo $Configuration->get_schoolLogoImage();?>" width="50" class="img-fluid" alt="logo"></div>
+<h1 class="mb-3 mt-2" style="color: #593128;">STAFF PORTAL </h1>
 <form id="staffLoginForm">
     <input type="hidden" name="action" value="staff_login">
     <input type="hidden" name="txss_token" value="<?php echo $tses_token;?>">
@@ -71,7 +69,7 @@ background-repeat: no-repeat;">
     </select>
 </div>
 <div class="checkbox form-group form-box clearfix">
-    <a href="forgot-password" style="float: right;color: red;">Forgot Password</a>
+    <a href="javascript:void(0);" style="float: right;color: red;">Forgot Password</a>
        <div class="form-check checkbox-theme">
        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberme">
         <label class="form-check-label" for="rememberMe">Remember me</label></div>
@@ -81,9 +79,8 @@ background-repeat: no-repeat;">
 <button class="btn btn-dark btn-block __loadingBtn__" type="submit">Login</button>
 </div>
 </form>
-<div class="text-center dont-have">Not a Staff? <button type="button" class="btn btn-danger btn-sm navigate_to_student_login">Login here</button>
-<p><a href="../">School Website</a></p>
-<p class="text-center text-info" style="font-size: 13px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
+<div class="text-center dont-have"><a style="cursor: pointer;" class="navigate_to_student_login">Student Login</a>
+<p class="text-center text-info" style="font-size: 13px; margin-top: 10px;"><a href="../" style="text-decoration: none;color: darkblue;"> Powered by: <span class="text-danger">SmaTech</span></a></p>
 </div>
 
 </div>

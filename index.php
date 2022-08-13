@@ -68,12 +68,12 @@ require_once ("Inc/Osotech.php");
                                 <div class="courses-grid">
                                   
                                     <div class="content-part">
-                                       
+                                        
                                         <div class="course-price">
                                             <span class="price">PDF</span>
                                         </div>
-                                        <h3 class="title"><a href="#">Download the School Calendar</a></h3>
-                                       
+                                        <h3 class="title"><a href="#">Download Brochure</a></h3>
+                                        
                                     </div>
                                 </div>
                            </div>
@@ -81,18 +81,19 @@ require_once ("Inc/Osotech.php");
                         <div class="col-lg-4 col-md-6 mb-30">
                            <div class="courses-item">
                                 <div class="courses-grid">
-                                   
+                                  
                                     <div class="content-part">
-                                        
+                                       
                                         <div class="course-price">
                                             <span class="price">PDF</span>
                                         </div>
-                                        <h3 class="title"><a href="#">The School History</a></h3>
+                                        <h3 class="title"><a href="#">List Of Books</a></h3>
                                        
                                     </div>
                                 </div>
                            </div>
                         </div> 
+                      
                         <div class="col-lg-4 col-md-6 md-mb-30">
                            <div class="courses-item">
                                 <div class="courses-grid">
@@ -102,7 +103,7 @@ require_once ("Inc/Osotech.php");
                                         <div class="course-price">
                                             <span class="price">PDF</span>
                                         </div>
-                                        <h3 class="title"><a href="#">The School Policies</a></h3>
+                                        <h3 class="title"><a href="#">Download Handbook</a></h3>
                                        
                                     </div>
                                 </div>
@@ -117,7 +118,7 @@ require_once ("Inc/Osotech.php");
                                         <div class="course-price">
                                             <span class="price">PDF</span>
                                         </div>
-                                        <h3 class="title"><a href="#">The School Timetable <br> for 2022-2023</a></h3>
+                                        <h3 class="title"><a href="#">School Calendar <br> for 2022-2023</a></h3>
                                        
                                     </div>
                                 </div>
@@ -132,7 +133,7 @@ require_once ("Inc/Osotech.php");
                                         <div class="course-price">
                                             <span class="price">PDF</span>
                                         </div>
-                                        <h3 class="title"><a href="#">Our Admission Guide</a></h3>
+                                        <h3 class="title"><a href="#">Registration Information</a></h3>
                                        
                                     </div>
                                 </div>
@@ -152,50 +153,50 @@ require_once ("Inc/Osotech.php");
                         <div class="col-lg-6 padding-0">
                           <div class=" main-part">
                             <div class="title mb-40 md-mb-15">
-                                <h2 class="text-part">Frequently Asked Questions</h2>
+                                <h3 class="text-part">Frequently Asked Questions</h3>
                             </div>
                               <div class="faq-content">
                                   <div id="accordion" class="accordion">
                                      <div class="card">
                                          <div class="card-header">
-                                             <a class="card-link" data-toggle="collapse" href="#collapseOne">What are the requirements ?</a>
+                                             <a class="card-link" data-toggle="collapse" href="#collapseOne"><?php echo ($Osotech->getConfigData()->school_name); ?> Address?</a>
                                          </div>
                                          <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                              <div class="card-body">
-                                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                                              <?php echo ($Osotech->getConfigData()->school_address); ?> , <?php echo ($Osotech->getConfigData()->school_state); ?>, <?php echo ($Osotech->getConfigData()->country); ?>
                                              </div>
                                          </div>
                                      </div>
                                       <div class="card">
                                           <div class="card-header">
                                              
-                                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">Does Educavo offer free courses?</a>
+                                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">When was <?php echo ($Osotech->getConfigData()->school_name); ?> Established?</a>
                                           </div>
                                           <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
                                               <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                                                <?php echo ($Osotech->getConfigData()->school_name); ?> was established on 2000. as Nursery &amp; Primary School.  The Secondary school began in 2015.
                                               </div>
                                           </div>
                                       </div>
                                       <div class="card">
                                           <div class="card-header">
                                              
-                                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">What is the transfer application process?</a>
+                                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">Is <?php echo ($Osotech->getConfigData()->school_name); ?> a Christian School?</a>
                                           </div>
                                           <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
                                               <div class="card-body">
-                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                                                 YES: <?php echo ($Osotech->getConfigData()->school_name); ?> is a christian school but we welcome a religion in our School.
                                               </div>
                                           </div>
                                       </div>     
                                       <div class="card">
                                           <div class="card-header">
                                              
-                                              <a class="card-link collapsed" data-toggle="collapse" href="#collapsefour" aria-expanded="false">What is distance education?</a>
+                                              <a class="card-link collapsed" data-toggle="collapse" href="#collapsefour" aria-expanded="false">General Student Performance </a>
                                           </div>
                                           <div id="collapsefour" class="collapse" data-parent="#accordion" style="">
                                               <div class="card-body">
-                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                                                 Our student’s all perform excellently well in all subjects and this is evident in the outstanding results gotten from various external exams such as WAEC, NECO, JAMB and various competitions.
                                               </div>
                                           </div>
                                       </div>
@@ -205,7 +206,7 @@ require_once ("Inc/Osotech.php");
                         </div>
                         <div class="col-lg-6 padding-0">
                             <div class="img-part media-icon orange-color">
-                                <a class="popup-videos" href="https://www.youtube.com/watch?v=atMUy_bPoQI">
+                                <a class="popup-videos" href="https://www.youtube.com/">
                                     <i class="fa fa-play"></i>
                                 </a>
                             </div>

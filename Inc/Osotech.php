@@ -1205,5 +1205,9 @@
         }
         }
 
+        public function checkResultReleasedPortalStatus(){
+            return false;
+        }
+
         }
         $Osotech = new Osotech();

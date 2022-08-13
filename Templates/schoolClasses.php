@@ -1,14 +1,14 @@
  <div id="rs-categories" class="rs-categories main-home pt-90 pb-100 md-pt-60 md-pb-40">
                 <div class="container">
                     <div class="sec-title3 text-center mb-45">
-                        <div class="sub-title">SCHOOL </div>
-                        <h2 class="title black-color">OUR FACILITIES</h2>
+                       
+                        <h2 class="title black-color">OUR SCHOOL FACILITIES</h2>
                     </div>
                     <div class="row mb-35">
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="categories-items">
                                 <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/1.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/images/categories/main-home/playground.jpg" alt=""></a>
                                 </div>
                                 <div class="contents">
                                     <div class="img-part">
@@ -24,7 +24,7 @@
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="categories-items">
                                 <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/2.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/images/categories/main-home/library.jpg" alt=""></a>
                                 </div>
                                 <div class="contents">
                                     <div class="img-part">
@@ -40,7 +40,7 @@
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="categories-items">
                                 <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/3.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/images/categories/main-home/physics-lab.jpg" alt=""></a>
                                 </div>
                                 <div class="contents">
                                     <div class="img-part">
@@ -56,7 +56,7 @@
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="categories-items">
                                 <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/4.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/images/categories/main-home/chemistry-lab.jpg" alt=""></a>
                                 </div>
                                 <div class="contents">
                                     <div class="img-part">
@@ -72,7 +72,7 @@
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="categories-items">
                                 <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/5.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/images/categories/main-home/biology-lab.jpg" alt=""></a>
                                 </div>
                                 <div class="contents">
                                     <div class="img-part">
@@ -88,7 +88,7 @@
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="categories-items">
                                 <div class="cate-images">
-                                    <a href="#"><img src="assets/images/categories/main-home/6.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/images/categories/main-home/computer-labs.jpg" alt=""></a>
                                 </div>
                                 <div class="contents">
                                     <div class="img-part">
